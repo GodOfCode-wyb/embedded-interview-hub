@@ -7,10 +7,23 @@
     "difficulty": "基础",
     "answer_short": "典型进程地址空间包含代码段、只读数据段、已初始化数据段、BSS、堆、内存映射区和栈；具体布局受平台、链接脚本、装载器和安全机制影响。",
     "answer_detail": "代码和只读常量通常位于只读映射；已初始化全局变量进入 data，零初始化或未显式初始化的静态存储期对象进入 BSS。堆一般由分配器管理并按需扩展，栈保存调用帧、局部对象和返回信息。MCU 上的位置由链接脚本决定，data 常从 Flash 复制到 RAM，BSS 在启动阶段清零。",
-    "follow_ups": ["为什么 BSS 不需要在固件镜像中保存全部零值？", "局部 static 变量位于哪里？"],
-    "pitfalls": ["把所有局部变量都说成一定在栈上，忽略优化、寄存器和静态存储期。"],
-    "tags": ["内存布局", "堆", "栈", "链接"],
-    "source_ids": ["notes-sharpa", "notes-jingwei"],
+    "follow_ups": [
+      "为什么 BSS 不需要在固件镜像中保存全部零值？",
+      "局部 static 变量位于哪里？"
+    ],
+    "pitfalls": [
+      "把所有局部变量都说成一定在栈上，忽略优化、寄存器和静态存储期。"
+    ],
+    "tags": [
+      "内存布局",
+      "堆",
+      "栈",
+      "链接"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "notes-jingwei"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -22,10 +35,21 @@
     "difficulty": "基础",
     "answer_short": "自动存储期局部变量的生命周期在函数返回时结束，返回其地址会形成悬空指针，后续解引用属于未定义行为。",
     "answer_detail": "函数返回后，对应栈空间可以被新的调用帧复用。即使测试时仍能读到旧值，也不代表对象继续存在。可改为由调用者提供缓冲区、返回值对象、使用具有明确所有权的动态存储，或在确有共享需求时使用静态存储期对象并处理可重入问题。",
-    "follow_ups": ["返回字符串字面量地址是否安全？", "返回 static 局部变量地址有什么并发风险？"],
-    "pitfalls": ["以一次运行结果正常作为代码正确的证据。"],
-    "tags": ["生命周期", "悬空指针", "未定义行为"],
-    "source_ids": ["notes-sharpa"],
+    "follow_ups": [
+      "返回字符串字面量地址是否安全？",
+      "返回 static 局部变量地址有什么并发风险？"
+    ],
+    "pitfalls": [
+      "以一次运行结果正常作为代码正确的证据。"
+    ],
+    "tags": [
+      "生命周期",
+      "悬空指针",
+      "未定义行为"
+    ],
+    "source_ids": [
+      "notes-sharpa"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -37,10 +61,21 @@
     "difficulty": "基础",
     "answer_short": "返回 int、接收两个 int 参数的函数指针可写为 int (*fn)(int, int)；括号不可省略，否则会变成返回指针的函数声明。",
     "answer_detail": "函数指针常用于回调、状态机、驱动操作表和中断向量。使用 typedef 或 using 可以提高可读性，例如 typedef int (*binary_op_t)(int, int)。调用可写为 fn(a, b)，使用前应检查是否为空，并明确回调的生命周期、上下文参数与线程安全约束。",
-    "follow_ups": ["函数指针与指针函数有什么区别？", "C 中如何向回调传递对象上下文？"],
-    "pitfalls": ["混淆 int *fn(int, int) 与 int (*fn)(int, int)。"],
-    "tags": ["函数指针", "回调", "typedef"],
-    "source_ids": ["notes-rtos-linux"],
+    "follow_ups": [
+      "函数指针与指针函数有什么区别？",
+      "C 中如何向回调传递对象上下文？"
+    ],
+    "pitfalls": [
+      "混淆 int *fn(int, int) 与 int (*fn)(int, int)。"
+    ],
+    "tags": [
+      "函数指针",
+      "回调",
+      "typedef"
+    ],
+    "source_ids": [
+      "notes-rtos-linux"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -52,10 +87,22 @@
     "difficulty": "基础",
     "answer_short": "虚函数允许通过基类指针或引用动态分派到派生类实现；纯虚函数使类成为抽象类。常见实现依赖虚表和对象内的虚表指针。",
     "answer_detail": "只有通过基类指针或引用调用虚函数时才体现运行时多态。纯虚函数仍可在类外提供定义，但类依旧抽象。作为多态基类时析构函数通常应为虚函数，否则通过基类指针删除派生对象可能产生未定义行为。构造和析构阶段的动态类型受到对象生命周期阶段限制。",
-    "follow_ups": ["为什么多态基类通常需要虚析构函数？", "构造函数中调用虚函数会发生什么？"],
-    "pitfalls": ["把函数重载和虚函数动态分派混为一谈。"],
-    "tags": ["虚函数", "纯虚函数", "多态", "虚表"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "为什么多态基类通常需要虚析构函数？",
+      "构造函数中调用虚函数会发生什么？"
+    ],
+    "pitfalls": [
+      "把函数重载和虚函数动态分派混为一谈。"
+    ],
+    "tags": [
+      "虚函数",
+      "纯虚函数",
+      "多态",
+      "虚表"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -67,10 +114,21 @@
     "difficulty": "进阶",
     "answer_short": "RAII 将资源生命周期绑定到对象生命周期，构造时获得资源、析构时释放；unique_ptr 表达独占所有权，shared_ptr 表达共享所有权，weak_ptr 用于观察并打破循环引用。",
     "answer_detail": "RAII 不只管理内存，也适用于锁、文件、句柄和外设会话。嵌入式场景可使用静态分配或自定义删除器，关键是明确所有权。shared_ptr 带有控制块、引用计数和潜在原子操作成本，不应无条件使用；实时路径还要关注析构发生的时机是否可预测。",
-    "follow_ups": ["shared_ptr 循环引用如何形成？", "为什么实时任务中要谨慎使用动态分配？"],
-    "pitfalls": ["把 shared_ptr 当作默认指针类型，掩盖所有权设计。"],
-    "tags": ["RAII", "智能指针", "所有权"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "shared_ptr 循环引用如何形成？",
+      "为什么实时任务中要谨慎使用动态分配？"
+    ],
+    "pitfalls": [
+      "把 shared_ptr 当作默认指针类型，掩盖所有权设计。"
+    ],
+    "tags": [
+      "RAII",
+      "智能指针",
+      "所有权"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "ai-draft",
     "updated_at": "2026-08-23"
   },
@@ -82,10 +140,21 @@
     "difficulty": "进阶",
     "answer_short": "移动语义允许对象转移资源所有权，避免不必要的深拷贝；右值引用用于区分可被安全窃取资源的临时对象或显式移动对象。",
     "answer_detail": "std::move 本身只做类型转换，不执行移动。实际是否移动取决于目标类型是否具有可用的移动构造或移动赋值。被移动对象仍必须保持有效、可析构的状态，但其具体值通常未指定。noexcept 会影响标准容器扩容时是否愿意使用移动操作。",
-    "follow_ups": ["std::move 为什么不一定发生移动？", "什么是完美转发？"],
-    "pitfalls": ["继续依赖被移动对象原有的业务值。"],
-    "tags": ["右值引用", "移动构造", "std::move"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "std::move 为什么不一定发生移动？",
+      "什么是完美转发？"
+    ],
+    "pitfalls": [
+      "继续依赖被移动对象原有的业务值。"
+    ],
+    "tags": [
+      "右值引用",
+      "移动构造",
+      "std::move"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "ai-draft",
     "updated_at": "2026-08-23"
   },
@@ -97,10 +166,21 @@
     "difficulty": "基础",
     "answer_short": "数组连续存储、随机访问快且缓存友好；链表插入删除灵活但需要额外指针、局部性差。资源受限系统通常还要考虑内存碎片与确定性。",
     "answer_detail": "数组的索引访问是 O(1)，中间插入通常需要移动元素。链表在已知节点位置时插入删除可为 O(1)，但查找仍是 O(n)。裸机和 RTOS 中常优先使用固定容量数组、对象池或侵入式链表，避免运行期频繁动态分配。",
-    "follow_ups": ["如何用快慢指针判断链表是否有环？", "环形缓冲区为什么适合串口接收？"],
-    "pitfalls": ["只比较时间复杂度，不考虑缓存、碎片和最坏执行时间。"],
-    "tags": ["数组", "链表", "内存碎片"],
-    "source_ids": ["notes-rtos-linux"],
+    "follow_ups": [
+      "如何用快慢指针判断链表是否有环？",
+      "环形缓冲区为什么适合串口接收？"
+    ],
+    "pitfalls": [
+      "只比较时间复杂度，不考虑缓存、碎片和最坏执行时间。"
+    ],
+    "tags": [
+      "数组",
+      "链表",
+      "内存碎片"
+    ],
+    "source_ids": [
+      "notes-rtos-linux"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -112,10 +192,21 @@
     "difficulty": "基础",
     "answer_short": "哈希表通过哈希函数将键映射到桶，平均查询接近 O(1)；冲突常用链地址法或开放寻址法处理。",
     "answer_detail": "性能取决于哈希函数、负载因子、桶数量和冲突策略。开放寻址连续存储、缓存友好，但删除和扩容处理更复杂；链地址法更灵活但有节点和分配成本。嵌入式系统常固定容量并设计失败策略，避免不可控扩容。",
-    "follow_ups": ["负载因子如何影响性能？", "如何在不使用动态内存时实现哈希表？"],
-    "pitfalls": ["声称哈希表查询在所有情况下都是 O(1)。"],
-    "tags": ["哈希表", "冲突", "复杂度"],
-    "source_ids": ["notes-jingwei"],
+    "follow_ups": [
+      "负载因子如何影响性能？",
+      "如何在不使用动态内存时实现哈希表？"
+    ],
+    "pitfalls": [
+      "声称哈希表查询在所有情况下都是 O(1)。"
+    ],
+    "tags": [
+      "哈希表",
+      "冲突",
+      "复杂度"
+    ],
+    "source_ids": [
+      "notes-jingwei"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -127,10 +218,21 @@
     "difficulty": "基础",
     "answer_short": "进程是资源分配和隔离的基本单位，线程是调度执行单元；同一进程的线程共享地址空间和多数资源，但各自拥有栈和寄存器现场。",
     "answer_detail": "进程切换可能涉及地址空间与 TLB 等状态变化，线程切换是否更快取决于是否跨进程、缓存状态和实现。线程共享资源使通信方便，也带来数据竞争；多进程隔离更强，但 IPC 和资源成本通常更高。",
-    "follow_ups": ["线程崩溃为什么可能导致整个进程退出？", "线程切换一定比进程切换快吗？"],
-    "pitfalls": ["把进程和线程的区别简单等同为是否共享全局变量。"],
-    "tags": ["进程", "线程", "上下文切换"],
-    "source_ids": ["notes-sharpa"],
+    "follow_ups": [
+      "线程崩溃为什么可能导致整个进程退出？",
+      "线程切换一定比进程切换快吗？"
+    ],
+    "pitfalls": [
+      "把进程和线程的区别简单等同为是否共享全局变量。"
+    ],
+    "tags": [
+      "进程",
+      "线程",
+      "上下文切换"
+    ],
+    "source_ids": [
+      "notes-sharpa"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -142,10 +244,22 @@
     "difficulty": "进阶",
     "answer_short": "CPU 通过 MMU 按页表把虚拟地址转换为物理地址，TLB 缓存转换结果；映射缺失或权限不满足时触发缺页异常，由内核决定分配、换入或终止访问。",
     "answer_detail": "虚拟内存提供隔离、按需分配、共享映射和统一地址视图。缺页不一定是错误：匿名页首次写入、文件映射按需装入都可能产生正常缺页；访问无效地址或违反权限则可能最终形成 SIGSEGV。",
-    "follow_ups": ["主缺页和次缺页有什么区别？", "mmap 与 malloc 的关系是什么？"],
-    "pitfalls": ["认为出现缺页异常就一定是程序崩溃。"],
-    "tags": ["虚拟内存", "MMU", "页表", "缺页"],
-    "source_ids": ["linux-docs"],
+    "follow_ups": [
+      "主缺页和次缺页有什么区别？",
+      "mmap 与 malloc 的关系是什么？"
+    ],
+    "pitfalls": [
+      "认为出现缺页异常就一定是程序崩溃。"
+    ],
+    "tags": [
+      "虚拟内存",
+      "MMU",
+      "页表",
+      "缺页"
+    ],
+    "source_ids": [
+      "linux-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -157,10 +271,21 @@
     "difficulty": "基础",
     "answer_short": "经典必要条件是互斥、持有并等待、不可剥夺和循环等待。工程中优先通过固定加锁顺序、缩小临界区和超时机制预防。",
     "answer_detail": "排查时应获取所有线程堆栈和锁状态，构造等待关系图，寻找循环依赖。重复获取非递归互斥锁也可能自锁。仅靠超时不能修复一致性问题，关键是明确锁层级和资源所有权。",
-    "follow_ups": ["递归锁为什么不应作为默认修复方案？", "Linux 中如何查看阻塞线程堆栈？"],
-    "pitfalls": ["只回答四个条件，不说明工程上的定位和预防。"],
-    "tags": ["死锁", "互斥锁", "锁顺序"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "递归锁为什么不应作为默认修复方案？",
+      "Linux 中如何查看阻塞线程堆栈？"
+    ],
+    "pitfalls": [
+      "只回答四个条件，不说明工程上的定位和预防。"
+    ],
+    "tags": [
+      "死锁",
+      "互斥锁",
+      "锁顺序"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -172,10 +297,21 @@
     "difficulty": "基础",
     "answer_short": "三次握手让双方确认彼此收发能力并同步初始序列号，同时防止旧的重复连接请求直接建立错误连接。",
     "answer_detail": "客户端发送 SYN 与初始序列号，服务端回复 SYN+ACK，客户端再确认服务端序列号。第三次报文使服务端确认客户端已收到自己的 SYN。握手还可协商 MSS、窗口扩大和时间戳等选项。",
-    "follow_ups": ["第三次握手丢失会怎样？", "SYN Flood 的原理和缓解措施是什么？"],
-    "pitfalls": ["只说两次不可靠，却无法说明双方需要分别确认什么。"],
-    "tags": ["TCP", "握手", "序列号"],
-    "source_ids": ["rfc-tcp"],
+    "follow_ups": [
+      "第三次握手丢失会怎样？",
+      "SYN Flood 的原理和缓解措施是什么？"
+    ],
+    "pitfalls": [
+      "只说两次不可靠，却无法说明双方需要分别确认什么。"
+    ],
+    "tags": [
+      "TCP",
+      "握手",
+      "序列号"
+    ],
+    "source_ids": [
+      "rfc-tcp"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -187,10 +323,21 @@
     "difficulty": "基础",
     "answer_short": "TCP 提供无消息边界的可靠字节流，一次 send 与一次 recv 没有一一对应关系；应用层必须自行定义消息边界。",
     "answer_detail": "常见协议 framing 方式包括固定长度、分隔符、长度字段和 TLV。接收端应维护缓冲区，处理半包、多包、非法长度和超时。问题本质不是 TCP 把包错误粘在一起，而是应用错误假设了读取边界。",
-    "follow_ups": ["UDP 是否完全不存在类似问题？", "如何设计可升级的二进制协议头？"],
-    "pitfalls": ["试图通过 sleep 或一次读取更大缓冲区解决边界问题。"],
-    "tags": ["TCP", "协议设计", "缓冲区"],
-    "source_ids": ["rfc-tcp"],
+    "follow_ups": [
+      "UDP 是否完全不存在类似问题？",
+      "如何设计可升级的二进制协议头？"
+    ],
+    "pitfalls": [
+      "试图通过 sleep 或一次读取更大缓冲区解决边界问题。"
+    ],
+    "tags": [
+      "TCP",
+      "协议设计",
+      "缓冲区"
+    ],
+    "source_ids": [
+      "rfc-tcp"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -202,10 +349,21 @@
     "difficulty": "进阶",
     "answer_short": "select 有描述符数量与位图拷贝限制，poll 使用数组但仍需线性扫描，epoll 在 Linux 中维护内核兴趣集合并返回就绪事件，更适合大量连接。",
     "answer_detail": "epoll 并不保证所有场景都更快，连接数量、活跃比例和调用方式都会影响结果。边沿触发通常要求非阻塞 fd，并循环读写直到 EAGAIN；水平触发更易使用，但可能重复通知。",
-    "follow_ups": ["ET 模式为什么通常配合非阻塞 I/O？", "epoll 惊群如何产生？"],
-    "pitfalls": ["把 epoll 描述为完全没有遍历和任何系统调用成本。"],
-    "tags": ["select", "poll", "epoll"],
-    "source_ids": ["linux-man-pages"],
+    "follow_ups": [
+      "ET 模式为什么通常配合非阻塞 I/O？",
+      "epoll 惊群如何产生？"
+    ],
+    "pitfalls": [
+      "把 epoll 描述为完全没有遍历和任何系统调用成本。"
+    ],
+    "tags": [
+      "select",
+      "poll",
+      "epoll"
+    ],
+    "source_ids": [
+      "linux-man-pages"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -217,10 +375,22 @@
     "difficulty": "进阶",
     "answer_short": "CPU 可能只更新了 Cache，设备看到的内存仍是旧数据；设备写内存后，CPU 也可能继续读取缓存旧副本，因此需要一致性硬件或显式同步。",
     "answer_detail": "一致性 DMA 通常由平台保证 CPU 与设备看到一致内容；流式 DMA 映射则要求遵循映射、同步和解除映射规则。方向参数决定数据所有权和必要的缓存维护。驱动不应直接假设所有平台都缓存一致。",
-    "follow_ups": ["dma_alloc_coherent 与 dma_map_single 的用途有什么不同？", "为什么内存屏障不能替代 Cache 清理？"],
-    "pitfalls": ["混淆编译器屏障、CPU 内存屏障和缓存维护。"],
-    "tags": ["DMA", "Cache", "一致性"],
-    "source_ids": ["linux-dma-docs", "arm-docs"],
+    "follow_ups": [
+      "dma_alloc_coherent 与 dma_map_single 的用途有什么不同？",
+      "为什么内存屏障不能替代 Cache 清理？"
+    ],
+    "pitfalls": [
+      "混淆编译器屏障、CPU 内存屏障和缓存维护。"
+    ],
+    "tags": [
+      "DMA",
+      "Cache",
+      "一致性"
+    ],
+    "source_ids": [
+      "linux-dma-docs",
+      "arm-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -232,10 +402,22 @@
     "difficulty": "进阶",
     "answer_short": "volatile 主要约束特定编译器访问优化；原子操作保证操作不可分割；内存屏障约束观察到的内存访问顺序，三者不能互相替代。",
     "answer_detail": "设备寄存器访问通常需使用平台提供的 MMIO 接口。线程共享数据应使用语言或内核的原子与同步原语建立 happens-before 关系。仅把变量声明为 volatile 既不能保证复合操作原子，也不能建立跨核同步顺序。",
-    "follow_ups": ["count++ 为什么不是原子操作？", "编译器屏障和 CPU 屏障有什么区别？"],
-    "pitfalls": ["用 volatile 代替锁解决多线程数据竞争。"],
-    "tags": ["volatile", "原子操作", "内存屏障"],
-    "source_ids": ["arm-docs", "linux-docs"],
+    "follow_ups": [
+      "count++ 为什么不是原子操作？",
+      "编译器屏障和 CPU 屏障有什么区别？"
+    ],
+    "pitfalls": [
+      "用 volatile 代替锁解决多线程数据竞争。"
+    ],
+    "tags": [
+      "volatile",
+      "原子操作",
+      "内存屏障"
+    ],
+    "source_ids": [
+      "arm-docs",
+      "linux-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -247,10 +429,22 @@
     "difficulty": "基础",
     "answer_short": "处理器从向量表取初始 MSP 和复位向量，进入 Reset_Handler，完成 data 搬运、BSS 清零、系统与运行库初始化，最后调用 main。",
     "answer_detail": "向量表基址由架构和 VTOR 配置决定。复位处理函数通常执行 SystemInit，设置时钟或底层硬件，再调用 C/C++ 运行库入口。若使用 C++，还需要执行全局对象构造；链接脚本决定各段的加载地址和运行地址。",
-    "follow_ups": ["向量表为什么第一个元素不是函数地址？", "如何把向量表重定位到 SRAM？"],
-    "pitfalls": ["直接从上电跳到 main，忽略运行时初始化。"],
-    "tags": ["Cortex-M", "向量表", "Reset_Handler"],
-    "source_ids": ["notes-jingwei", "arm-docs"],
+    "follow_ups": [
+      "向量表为什么第一个元素不是函数地址？",
+      "如何把向量表重定位到 SRAM？"
+    ],
+    "pitfalls": [
+      "直接从上电跳到 main，忽略运行时初始化。"
+    ],
+    "tags": [
+      "Cortex-M",
+      "向量表",
+      "Reset_Handler"
+    ],
+    "source_ids": [
+      "notes-jingwei",
+      "arm-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -262,10 +456,23 @@
     "difficulty": "基础",
     "answer_short": "从内部或外部时钟源出发，经 PLL 和分频器生成系统时钟，再通过 AHB、APB 等总线分发给内核和外设；配置时必须满足芯片、电压和 Flash 等待周期限制。",
     "answer_detail": "常见流程是选择 HSI/HSE、配置 PLL 倍频分频、设置总线预分频与 Flash latency、等待新时钟稳定，再切换 SYSCLK。部分定时器时钟在 APB 预分频不为 1 时会有额外倍频，USB 等外设还要求特定时钟精度。",
-    "follow_ups": ["为什么切换高频前要设置 Flash 等待周期？", "APB 定时器时钟为什么可能是总线时钟的两倍？"],
-    "pitfalls": ["只会照抄配置工具结果，不能从目标频率反推时钟路径。"],
-    "tags": ["时钟树", "PLL", "AHB", "APB"],
-    "source_ids": ["notes-jingwei", "stm32-docs"],
+    "follow_ups": [
+      "为什么切换高频前要设置 Flash 等待周期？",
+      "APB 定时器时钟为什么可能是总线时钟的两倍？"
+    ],
+    "pitfalls": [
+      "只会照抄配置工具结果，不能从目标频率反推时钟路径。"
+    ],
+    "tags": [
+      "时钟树",
+      "PLL",
+      "AHB",
+      "APB"
+    ],
+    "source_ids": [
+      "notes-jingwei",
+      "stm32-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -277,10 +484,23 @@
     "difficulty": "进阶",
     "answer_short": "定时器提供稳定采样节拍，DMA 自动搬运转换结果，减少 CPU 抖动和中断负担；双缓冲可让采集与处理并行。",
     "answer_detail": "设计时要检查采样时间、ADC 时钟、源阻抗、转换序列、DMA 宽度和缓冲区长度。连续模式不等于采样间隔严格可控，外部定时器触发更适合确定采样率。还需考虑过采样、校准、参考电压和缓存一致性。",
-    "follow_ups": ["ADC 采样时间与输入源阻抗有什么关系？", "双缓冲如何避免覆盖尚未处理的数据？"],
-    "pitfalls": ["只看 ADC 位数，不考虑模拟前端和有效位数。"],
-    "tags": ["ADC", "DMA", "定时器", "双缓冲"],
-    "source_ids": ["notes-jingwei", "stm32-docs"],
+    "follow_ups": [
+      "ADC 采样时间与输入源阻抗有什么关系？",
+      "双缓冲如何避免覆盖尚未处理的数据？"
+    ],
+    "pitfalls": [
+      "只看 ADC 位数，不考虑模拟前端和有效位数。"
+    ],
+    "tags": [
+      "ADC",
+      "DMA",
+      "定时器",
+      "双缓冲"
+    ],
+    "source_ids": [
+      "notes-jingwei",
+      "stm32-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -292,10 +512,21 @@
     "difficulty": "进阶",
     "answer_short": "高优先级任务等待低优先级任务持有的资源，而低优先级任务又被中优先级任务抢占，导致高优先级任务被间接阻塞。",
     "answer_detail": "优先级继承会暂时提升资源持有者优先级，使其尽快释放锁；优先级天花板通过预设资源最高访问优先级控制阻塞。二者都不能替代合理的临界区设计，还要评估嵌套锁和最坏阻塞时间。",
-    "follow_ups": ["mutex 与 binary semaphore 有什么不同？", "优先级继承能解决死锁吗？"],
-    "pitfalls": ["把普通高优先级任务抢占低优先级任务称为优先级反转。"],
-    "tags": ["优先级反转", "互斥锁", "实时性"],
-    "source_ids": ["freertos-docs"],
+    "follow_ups": [
+      "mutex 与 binary semaphore 有什么不同？",
+      "优先级继承能解决死锁吗？"
+    ],
+    "pitfalls": [
+      "把普通高优先级任务抢占低优先级任务称为优先级反转。"
+    ],
+    "tags": [
+      "优先级反转",
+      "互斥锁",
+      "实时性"
+    ],
+    "source_ids": [
+      "freertos-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -307,10 +538,22 @@
     "difficulty": "基础",
     "answer_short": "ISR 不应执行可能阻塞、耗时不可控或非中断安全的操作；应使用专用 FromISR 接口，并把复杂处理推迟到任务上下文。",
     "answer_detail": "常见错误包括等待互斥锁、调用普通队列接口、动态分配、长时间轮询和大量日志。ISR 通常只清中断源、读取必要状态、投递事件并按需请求任务切换。具体可调用接口由 RTOS 端口和中断优先级规则决定。",
-    "follow_ups": ["为什么某些高优先级中断不能调用 RTOS API？", "如何设计中断到任务的数据通道？"],
-    "pitfalls": ["机械地回答 ISR 中不能调用任何函数。"],
-    "tags": ["ISR", "FromISR", "中断延迟"],
-    "source_ids": ["notes-jingwei", "freertos-docs"],
+    "follow_ups": [
+      "为什么某些高优先级中断不能调用 RTOS API？",
+      "如何设计中断到任务的数据通道？"
+    ],
+    "pitfalls": [
+      "机械地回答 ISR 中不能调用任何函数。"
+    ],
+    "tags": [
+      "ISR",
+      "FromISR",
+      "中断延迟"
+    ],
+    "source_ids": [
+      "notes-jingwei",
+      "freertos-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -322,10 +565,22 @@
     "difficulty": "进阶",
     "answer_short": "RTOS 通常以可分析的最坏响应时间和确定性为目标；通用 Linux 更关注吞吐、公平和功能。PREEMPT_RT 可显著降低 Linux 调度与中断延迟。",
     "answer_detail": "实时性不是平均速度快，而是关键操作在截止时间前完成。Linux 可通过 PREEMPT_RT、线程优先级、CPU 隔离、IRQ 亲和性、内存锁定和避免缺页等手段降低抖动，但仍需测量目标硬件上的最坏延迟。",
-    "follow_ups": ["SCHED_FIFO 与 SCHED_RR 有什么差异？", "如何测试系统最大调度延迟？"],
-    "pitfalls": ["声称 RTOS 调度延迟绝对固定，或 Linux 完全不能实时。"],
-    "tags": ["PREEMPT_RT", "调度延迟", "确定性"],
-    "source_ids": ["notes-rtos-linux", "linux-rt-docs"],
+    "follow_ups": [
+      "SCHED_FIFO 与 SCHED_RR 有什么差异？",
+      "如何测试系统最大调度延迟？"
+    ],
+    "pitfalls": [
+      "声称 RTOS 调度延迟绝对固定，或 Linux 完全不能实时。"
+    ],
+    "tags": [
+      "PREEMPT_RT",
+      "调度延迟",
+      "确定性"
+    ],
+    "source_ids": [
+      "notes-rtos-linux",
+      "linux-rt-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -337,10 +592,23 @@
     "difficulty": "基础",
     "answer_short": "常见方式包括管道、FIFO、信号、消息队列、共享内存、信号量、Unix 域套接字、网络套接字和内存映射文件。",
     "answer_detail": "选择取决于数据量、延迟、是否跨主机、消息边界和同步需求。共享内存拷贝少但必须另行同步；Unix 域套接字接口统一并支持双向通信；信号适合通知而非承载大量数据；管道适合流式父子进程通信。",
-    "follow_ups": ["共享内存为什么仍需要同步？", "Unix 域套接字与 TCP 套接字有什么不同？"],
-    "pitfalls": ["只罗列名词，不能说明选型依据。"],
-    "tags": ["IPC", "共享内存", "Socket"],
-    "source_ids": ["notes-sharpa", "notes-insta-camera", "linux-man-pages"],
+    "follow_ups": [
+      "共享内存为什么仍需要同步？",
+      "Unix 域套接字与 TCP 套接字有什么不同？"
+    ],
+    "pitfalls": [
+      "只罗列名词，不能说明选型依据。"
+    ],
+    "tags": [
+      "IPC",
+      "共享内存",
+      "Socket"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "notes-insta-camera",
+      "linux-man-pages"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -352,10 +620,21 @@
     "difficulty": "基础",
     "answer_short": "常见原因是空悬野指针、越界、栈溢出、错误函数指针和访问只读内存；定位应从崩溃现场、Core Dump 和带符号调用栈开始。",
     "answer_detail": "先确认信号、故障地址和线程，使用 gdb 读取 core、查看 backtrace、寄存器和相关内存，再结合 ASan、Valgrind 或硬件观察点复现。进程隔离可以限制故障影响范围，但不能修复越界或生命周期错误本身。",
-    "follow_ups": ["如何启用 Core Dump？", "ASan 能发现哪些类型的问题？"],
-    "pitfalls": ["把看门狗或进程重启当作修复内存错误。"],
-    "tags": ["SIGSEGV", "Core Dump", "GDB"],
-    "source_ids": ["notes-rtos-linux"],
+    "follow_ups": [
+      "如何启用 Core Dump？",
+      "ASan 能发现哪些类型的问题？"
+    ],
+    "pitfalls": [
+      "把看门狗或进程重启当作修复内存错误。"
+    ],
+    "tags": [
+      "SIGSEGV",
+      "Core Dump",
+      "GDB"
+    ],
+    "source_ids": [
+      "notes-rtos-linux"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -367,10 +646,22 @@
     "difficulty": "基础",
     "answer_short": "驱动不能把设备物理地址当普通指针直接解引用；ioremap 建立适合设备 MMIO 的内核虚拟映射，寄存器应通过 readl、writel 等接口访问。",
     "answer_detail": "MMU 打开后 CPU 使用虚拟地址，设备区域还需要正确的内存类型、缓存和访问顺序属性。现代平台驱动通常通过 devm_platform_ioremap_resource 获取并映射资源，同时完成范围检查和托管释放。",
-    "follow_ups": ["ioremap 与普通内存映射属性有什么不同？", "为什么不建议直接使用 volatile 指针访问寄存器？"],
-    "pitfalls": ["只回答物理地址需要转换成虚拟地址，忽略设备内存属性。"],
-    "tags": ["ioremap", "MMIO", "寄存器"],
-    "source_ids": ["notes-sharpa", "linux-driver-docs"],
+    "follow_ups": [
+      "ioremap 与普通内存映射属性有什么不同？",
+      "为什么不建议直接使用 volatile 指针访问寄存器？"
+    ],
+    "pitfalls": [
+      "只回答物理地址需要转换成虚拟地址，忽略设备内存属性。"
+    ],
+    "tags": [
+      "ioremap",
+      "MMIO",
+      "寄存器"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "linux-driver-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -382,10 +673,24 @@
     "difficulty": "进阶",
     "answer_short": "上半部快速确认并处理必须立即完成的硬件操作，把可延迟工作交给线程化中断、softirq、tasklet 或工作队列等机制。",
     "answer_detail": "选择依据是工作是否允许睡眠、延迟要求和并发模型。工作队列运行在进程上下文，可睡眠；softirq 并发性强且不能睡眠；线程化 IRQ 便于处理大多数设备中断。新代码应结合子系统惯例，避免无必要地新增 tasklet。",
-    "follow_ups": ["工作队列为什么可以调用可能睡眠的函数？", "线程化中断的 primary handler 和 thread_fn 分别做什么？"],
-    "pitfalls": ["把下半部误认为始终运行在用户进程上下文。"],
-    "tags": ["hardirq", "softirq", "工作队列", "线程化中断"],
-    "source_ids": ["notes-sharpa", "notes-rtos-linux", "linux-driver-docs"],
+    "follow_ups": [
+      "工作队列为什么可以调用可能睡眠的函数？",
+      "线程化中断的 primary handler 和 thread_fn 分别做什么？"
+    ],
+    "pitfalls": [
+      "把下半部误认为始终运行在用户进程上下文。"
+    ],
+    "tags": [
+      "hardirq",
+      "softirq",
+      "工作队列",
+      "线程化中断"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "notes-rtos-linux",
+      "linux-driver-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -397,10 +702,22 @@
     "difficulty": "进阶",
     "answer_short": "mutex 可能睡眠，不能在硬中断上下文使用；自旋锁不睡眠，并可配合 irqsave 变体防止本地中断重入同一临界区。",
     "answer_detail": "锁型取决于访问上下文，而不是数据属于驱动就固定使用某种锁。如果数据只在可睡眠的进程上下文访问，mutex 通常更合适。若进程和 IRQ 共享，自旋锁临界区必须短，并使用 spin_lock_irqsave 与对应 restore。",
-    "follow_ups": ["为什么仅 spin_lock 在单核中可能仍不够？", "自旋锁保护区内为什么不能调用可能睡眠的函数？"],
-    "pitfalls": ["回答自旋锁比 mutex 更快，所以驱动总应使用自旋锁。"],
-    "tags": ["spinlock", "mutex", "irqsave"],
-    "source_ids": ["notes-sharpa", "linux-locking-docs"],
+    "follow_ups": [
+      "为什么仅 spin_lock 在单核中可能仍不够？",
+      "自旋锁保护区内为什么不能调用可能睡眠的函数？"
+    ],
+    "pitfalls": [
+      "回答自旋锁比 mutex 更快，所以驱动总应使用自旋锁。"
+    ],
+    "tags": [
+      "spinlock",
+      "mutex",
+      "irqsave"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "linux-locking-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -412,10 +729,21 @@
     "difficulty": "基础",
     "answer_short": "设备树描述不可自动探测的硬件拓扑和资源，驱动通过 compatible 匹配设备并读取寄存器、中断、时钟、GPIO 等属性。",
     "answer_detail": "DTS 经 DTC 编译为 DTB，由 Bootloader 传给内核。内核创建相应设备对象，驱动的 of_match_table 参与匹配。Binding 定义节点属性契约，应优先使用标准子系统属性和 phandle 引用，而不是把策略或易变软件状态塞进设备树。",
-    "follow_ups": ["compatible 字符串为什么通常从具体到通用排列？", "设备树 overlay 适合什么场景？"],
-    "pitfalls": ["把设备树描述成驱动配置文件，忽略硬件描述和 Binding 契约。"],
-    "tags": ["设备树", "compatible", "platform_driver"],
-    "source_ids": ["linux-devicetree-docs"],
+    "follow_ups": [
+      "compatible 字符串为什么通常从具体到通用排列？",
+      "设备树 overlay 适合什么场景？"
+    ],
+    "pitfalls": [
+      "把设备树描述成驱动配置文件，忽略硬件描述和 Binding 契约。"
+    ],
+    "tags": [
+      "设备树",
+      "compatible",
+      "platform_driver"
+    ],
+    "source_ids": [
+      "linux-devicetree-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -427,10 +755,23 @@
     "difficulty": "进阶",
     "answer_short": "先完整保存 panic、Oops、调用栈、寄存器和故障地址，再匹配准确的 vmlinux、配置和模块符号定位源码，最后围绕触发条件最小化复现。",
     "answer_detail": "串口、pstore/ramoops、kdump 或远程日志可保留现场。addr2line、gdb、crash 和脚本可解析地址；若是内存破坏，可启用 KASAN、SLUB debug、lockdep 等诊断。必须确认运行镜像与符号严格对应，避免只盯最后一行日志。",
-    "follow_ups": ["Oops 与 Panic 有什么关系？", "如何保留重启前的内核日志？"],
-    "pitfalls": ["没有保存原始现场就直接根据最后一条业务日志猜测。"],
-    "tags": ["Kernel Panic", "Oops", "crash", "KASAN"],
-    "source_ids": ["notes-sharpa", "linux-debug-docs"],
+    "follow_ups": [
+      "Oops 与 Panic 有什么关系？",
+      "如何保留重启前的内核日志？"
+    ],
+    "pitfalls": [
+      "没有保存原始现场就直接根据最后一条业务日志猜测。"
+    ],
+    "tags": [
+      "Kernel Panic",
+      "Oops",
+      "crash",
+      "KASAN"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "linux-debug-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -442,10 +783,22 @@
     "difficulty": "进阶",
     "answer_short": "I²C 使用开漏 SDA/SCL 和上拉电阻；起始、地址、读写位、ACK、数据与停止构成事务，信号上升时间由总线电容和上拉阻值共同决定。",
     "answer_detail": "上拉过大导致上升慢，过小增加低电平灌电流。总线卡死常见于从设备中途复位后保持 SDA，主机可在硬件允许时释放控制器、输出若干 SCL 脉冲让从机推进状态，再生成 STOP 并重置控制器。恢复策略必须结合芯片手册。",
-    "follow_ups": ["重复起始条件有什么用途？", "时钟拉伸和多主仲裁如何工作？"],
-    "pitfalls": ["给出固定上拉阻值，忽略电压、速度、总线电容和器件灌电流。"],
-    "tags": ["I2C", "上拉电阻", "总线恢复"],
-    "source_ids": ["notes-sharpa", "notes-rtos-linux"],
+    "follow_ups": [
+      "重复起始条件有什么用途？",
+      "时钟拉伸和多主仲裁如何工作？"
+    ],
+    "pitfalls": [
+      "给出固定上拉阻值，忽略电压、速度、总线电容和器件灌电流。"
+    ],
+    "tags": [
+      "I2C",
+      "上拉电阻",
+      "总线恢复"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "notes-rtos-linux"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -457,10 +810,21 @@
     "difficulty": "基础",
     "answer_short": "SPI 模式由 CPOL 和 CPHA 组合决定：CPOL 定义空闲时钟电平，CPHA 定义在哪个边沿采样、哪个边沿改变数据。",
     "answer_detail": "主从必须在模式、位序、字长、片选行为和最大时钟频率上匹配。SPI 没有统一的上层帧格式和应答机制，具体寄存器命令、读写阶段、dummy cycle 都由外设协议规定。",
-    "follow_ups": ["为什么 SPI 全双工读取时仍需要发送 dummy 数据？", "片选信号在多字节事务中应该如何保持？"],
-    "pitfalls": ["只背模式编号，无法根据时序图判断 CPOL/CPHA。"],
-    "tags": ["SPI", "CPOL", "CPHA"],
-    "source_ids": ["notes-jingwei"],
+    "follow_ups": [
+      "为什么 SPI 全双工读取时仍需要发送 dummy 数据？",
+      "片选信号在多字节事务中应该如何保持？"
+    ],
+    "pitfalls": [
+      "只背模式编号，无法根据时序图判断 CPOL/CPHA。"
+    ],
+    "tags": [
+      "SPI",
+      "CPOL",
+      "CPHA"
+    ],
+    "source_ids": [
+      "notes-jingwei"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -472,10 +836,21 @@
     "difficulty": "基础",
     "answer_short": "CAN FD 将单帧有效载荷从最多 8 字节扩展到最多 64 字节，并可在数据阶段切换到更高比特率，同时调整了 CRC 等帧结构。",
     "answer_detail": "仲裁阶段仍需要所有节点按兼容速率参与，数据阶段可通过 BRS 提升速率。CAN FD 节点、收发器和网络时序都要支持相应能力。面试中还应说明标识符参与非破坏性仲裁，数值更小的 ID 优先级更高。",
-    "follow_ups": ["CAN 如何实现非破坏性仲裁？", "终端电阻和采样点如何影响通信？"],
-    "pitfalls": ["只回答速率更快、数据更多，不能说明分阶段速率和兼容限制。"],
-    "tags": ["CAN", "CAN FD", "仲裁"],
-    "source_ids": ["notes-jingwei"],
+    "follow_ups": [
+      "CAN 如何实现非破坏性仲裁？",
+      "终端电阻和采样点如何影响通信？"
+    ],
+    "pitfalls": [
+      "只回答速率更快、数据更多，不能说明分阶段速率和兼容限制。"
+    ],
+    "tags": [
+      "CAN",
+      "CAN FD",
+      "仲裁"
+    ],
+    "source_ids": [
+      "notes-jingwei"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -487,10 +862,22 @@
     "difficulty": "基础",
     "answer_short": "静态库中的目标代码在链接时进入可执行文件；动态库在装载或运行时映射，可被多个进程共享只读代码页并独立维护进程私有数据。",
     "answer_detail": "静态链接部署简单但增大镜像且升级需重新链接；动态库利于共享、插件化和独立升级，但涉及 ABI、搜索路径和版本兼容。动态库全局变量通常在每个进程地址空间中各有实例，不会因共享代码页而自动跨进程共享。",
-    "follow_ups": ["PIC 为什么适合共享库？", "动态库的全局变量在多个进程间是否共享？"],
-    "pitfalls": ["认为动态库加载后全系统只有一份所有数据。"],
-    "tags": ["静态库", "动态库", "链接器", "ABI"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "PIC 为什么适合共享库？",
+      "动态库的全局变量在多个进程间是否共享？"
+    ],
+    "pitfalls": [
+      "认为动态库加载后全系统只有一份所有数据。"
+    ],
+    "tags": [
+      "静态库",
+      "动态库",
+      "链接器",
+      "ABI"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -502,10 +889,22 @@
     "difficulty": "基础",
     "answer_short": "Make 按依赖规则执行命令；CMake 是构建系统生成器，可根据项目描述生成 Ninja、Makefile 或 IDE 工程。",
     "answer_detail": "现代 CMake 应以 target 为中心声明源码、包含路径、编译选项和链接依赖，避免大量全局变量。交叉编译通常通过 toolchain file 指定编译器、sysroot 和查找规则。CMake 不替代编译器和链接器。",
-    "follow_ups": ["交叉编译 toolchain file 应包含哪些信息？", "为什么推荐 target_link_libraries 传播依赖？"],
-    "pitfalls": ["把 CMake 说成比 Make 更高级的编译器。"],
-    "tags": ["Makefile", "CMake", "交叉编译"],
-    "source_ids": ["notes-insta-camera", "cmake-docs"],
+    "follow_ups": [
+      "交叉编译 toolchain file 应包含哪些信息？",
+      "为什么推荐 target_link_libraries 传播依赖？"
+    ],
+    "pitfalls": [
+      "把 CMake 说成比 Make 更高级的编译器。"
+    ],
+    "tags": [
+      "Makefile",
+      "CMake",
+      "交叉编译"
+    ],
+    "source_ids": [
+      "notes-insta-camera",
+      "cmake-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -517,10 +916,22 @@
     "difficulty": "进阶",
     "answer_short": "按电源复位、引脚复用、电气波形、控制器状态、总线协议、驱动绑定和业务数据逐层排查，避免只在应用层反复重试。",
     "answer_detail": "先确认供电、复位与地址脚，再检查 pinctrl 和时钟；用示波器或逻辑分析仪观察 START、地址、ACK 和上升时间；读取控制器错误状态；Linux 下再检查设备树、驱动 probe 与传输返回码。每一步都应保留可复现证据。",
-    "follow_ups": ["看到地址无 ACK 应优先检查什么？", "逻辑分析仪显示正确但驱动仍超时可能是什么原因？"],
-    "pitfalls": ["一开始就修改驱动延时，没有确认电气层和地址。"],
-    "tags": ["分层定位", "逻辑分析仪", "I2C"],
-    "source_ids": ["notes-sharpa", "notes-rtos-linux"],
+    "follow_ups": [
+      "看到地址无 ACK 应优先检查什么？",
+      "逻辑分析仪显示正确但驱动仍超时可能是什么原因？"
+    ],
+    "pitfalls": [
+      "一开始就修改驱动延时，没有确认电气层和地址。"
+    ],
+    "tags": [
+      "分层定位",
+      "逻辑分析仪",
+      "I2C"
+    ],
+    "source_ids": [
+      "notes-sharpa",
+      "notes-rtos-linux"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -532,10 +943,21 @@
     "difficulty": "进阶",
     "answer_short": "可重入函数在执行尚未结束时被再次调用仍能正确工作，通常不依赖未保护的共享可变状态、静态临时缓冲区或不可重入子函数。",
     "answer_detail": "可重入比线程安全要求更严格，因为信号或中断可能在任意点打断。使用调用者提供的状态、局部变量和明确的原子操作更容易实现可重入。使用锁可以让函数线程安全，但若在信号处理器中再次进入，锁本身可能导致死锁。",
-    "follow_ups": ["线程安全函数一定可重入吗？", "strtok 与 strtok_r 的差异是什么？"],
-    "pitfalls": ["仅凭函数没有全局变量就判断其可重入，忽略调用的库函数。"],
-    "tags": ["可重入", "线程安全", "共享状态"],
-    "source_ids": ["notes-insta-camera"],
+    "follow_ups": [
+      "线程安全函数一定可重入吗？",
+      "strtok 与 strtok_r 的差异是什么？"
+    ],
+    "pitfalls": [
+      "仅凭函数没有全局变量就判断其可重入，忽略调用的库函数。"
+    ],
+    "tags": [
+      "可重入",
+      "线程安全",
+      "共享状态"
+    ],
+    "source_ids": [
+      "notes-insta-camera"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -547,10 +969,21 @@
     "difficulty": "基础",
     "answer_short": "QoS 0 是至多一次，QoS 1 是至少一次，QoS 2 是恰好一次；可靠性越高，握手、状态和带宽成本越大。",
     "answer_detail": "QoS 是发送方与下一跳接收方之间的交付语义，不等于端到端业务一定成功。QoS 1 可能重复，业务需要幂等；QoS 2 通过多阶段握手避免应用层重复交付，但设备重连、会话持久化和消息过期仍需设计。",
-    "follow_ups": ["QoS 1 业务如何实现幂等？", "Clean Start 和会话过期有什么作用？"],
-    "pitfalls": ["把 QoS 2 解释为消息永远不会丢且业务一定执行一次。"],
-    "tags": ["MQTT", "QoS", "幂等"],
-    "source_ids": ["mqtt-spec"],
+    "follow_ups": [
+      "QoS 1 业务如何实现幂等？",
+      "Clean Start 和会话过期有什么作用？"
+    ],
+    "pitfalls": [
+      "把 QoS 2 解释为消息永远不会丢且业务一定执行一次。"
+    ],
+    "tags": [
+      "MQTT",
+      "QoS",
+      "幂等"
+    ],
+    "source_ids": [
+      "mqtt-spec"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -562,10 +995,21 @@
     "difficulty": "进阶",
     "answer_short": "DDS 提供去中心化发现、发布订阅和丰富 QoS，适合机器人中不同节点、主机和网络条件下的数据通信。",
     "answer_detail": "ROS 2 通过中间件抽象接入 DDS/RTPS 实现。可靠性、历史深度、持久性、截止时间和 liveliness 等 QoS 必须在发布端与订阅端兼容。传感器高频数据常更重视低延迟，而控制和状态消息可能更重视可靠性。",
-    "follow_ups": ["ROS 2 QoS 不兼容时会发生什么？", "进程内通信和零拷贝有什么意义？"],
-    "pitfalls": ["认为使用 DDS 就自动满足硬实时要求。"],
-    "tags": ["ROS2", "DDS", "QoS"],
-    "source_ids": ["ros2-docs"],
+    "follow_ups": [
+      "ROS 2 QoS 不兼容时会发生什么？",
+      "进程内通信和零拷贝有什么意义？"
+    ],
+    "pitfalls": [
+      "认为使用 DDS 就自动满足硬实时要求。"
+    ],
+    "tags": [
+      "ROS2",
+      "DDS",
+      "QoS"
+    ],
+    "source_ids": [
+      "ros2-docs"
+    ],
     "status": "verified",
     "updated_at": "2026-08-23"
   },
@@ -577,10 +1021,22 @@
     "difficulty": "基础",
     "answer_short": "三者通常都是 4:2:0 采样；YUV420P 的 Y、U、V 为三个平面，NV12 的 UV 交错，NV21 的 VU 交错。",
     "answer_detail": "每四个亮度采样共享一组 U/V，8 位无额外对齐时一帧字节数约为宽×高×1.5。实际缓冲区还要考虑 stride、plane offset、对齐和颜色范围。把 NV12 当 NV21 会导致明显偏色。",
-    "follow_ups": ["1920×1080 YUV420 一帧理论大小是多少？", "stride 为什么可能大于图像宽度？"],
-    "pitfalls": ["只按宽高计算偏移，忽略驱动返回的 stride 和 plane 信息。"],
-    "tags": ["YUV", "NV12", "Camera"],
-    "source_ids": ["notes-insta-camera", "v4l2-docs"],
+    "follow_ups": [
+      "1920×1080 YUV420 一帧理论大小是多少？",
+      "stride 为什么可能大于图像宽度？"
+    ],
+    "pitfalls": [
+      "只按宽高计算偏移，忽略驱动返回的 stride 和 plane 信息。"
+    ],
+    "tags": [
+      "YUV",
+      "NV12",
+      "Camera"
+    ],
+    "source_ids": [
+      "notes-insta-camera",
+      "v4l2-docs"
+    ],
     "status": "reviewed",
     "updated_at": "2026-08-23"
   },
@@ -592,11 +1048,338 @@
     "difficulty": "进阶",
     "answer_short": "量化用较低精度表示权重和激活，可降低模型体积、内存带宽和计算成本，并利用 MCU、DSP 或 NPU 的整数运算能力。",
     "answer_detail": "训练后量化部署简单但可能损失精度；量化感知训练在训练阶段模拟量化误差，通常能获得更好结果。工程中需关注对称/非对称量化、逐张量/逐通道尺度、算子支持、校准数据代表性和端到端延迟。",
-    "follow_ups": ["INT8 量化为什么不一定带来四倍加速？", "逐通道量化适合哪些参数？"],
-    "pitfalls": ["只比较模型文件大小，不测峰值内存、算子回退和真实延迟。"],
-    "tags": ["量化", "INT8", "NPU", "端侧推理"],
-    "source_ids": ["edge-ai-docs"],
+    "follow_ups": [
+      "INT8 量化为什么不一定带来四倍加速？",
+      "逐通道量化适合哪些参数？"
+    ],
+    "pitfalls": [
+      "只比较模型文件大小，不测峰值内存、算子回退和真实延迟。"
+    ],
+    "tags": [
+      "量化",
+      "INT8",
+      "NPU",
+      "端侧推理"
+    ],
+    "source_ids": [
+      "edge-ai-docs"
+    ],
     "status": "reviewed",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-7ae8d809076cfa7a",
+    "title": "如何找到与 SATA 设备关联的内核驱动模块？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备驱动模型与 sysfs",
+    "difficulty": "基础",
+    "answer_short": "通过 sysfs 接口，查看 /sys/block/<设备名>/device/driver 符号链接，或使用 lsblk、udevadm 等工具定位使用的驱动模块。",
+    "answer_detail": "Linux 设备模型通过 sysfs 暴露设备与驱动的关联关系。对于块设备如 SATA 硬盘，通常可在 /sys/block/sda/device/ 下找到 vendor、model 等属性，而 driver 是 device 目录下的符号链接，指向绑定到该设备的驱动目录名。例如执行 `readlink /sys/block/sda/device/driver` 可得到驱动名称（如 ahci），再通过 `lsmod` 或 `modinfo` 查看驱动模块。另一种方式是使用 `udevadm info --query=all --name=/dev/sda`，它也能输出当前绑定的 DRIVER。在嵌入式系统中，若驱动编译进内核而非模块，则没有对应 .ko 文件，但可通过 `/sys/bus/pci/devices/.../driver_override` 或 `/proc/modules`（仅适用于模块）辅助判断。此外，`lspci -k` 可显示 PCI 设备所使用的驱动并推测对应的 SATA 控制器驱动。",
+    "follow_ups": [
+      "如何区分驱动是编入内核还是加载为模块？",
+      "在设备树中如何描述 SATA 控制器并关联驱动？",
+      "如果驱动未绑定，如何排查设备树或平台驱动注册问题？"
+    ],
+    "pitfalls": [
+      "误认为设备名 sda 固定，实际可能因存储介质顺序而改变。",
+      "混淆控制器驱动（如 ahci）和块设备驱动（如 sd_mod），前者属于 PCI 驱动，后者属于 SCSI 子系统驱动。",
+      "sysfs 路径在不同内核版本上可能略有差异，直接硬编码风险高。"
+    ],
+    "tags": [
+      "SATA",
+      "sysfs",
+      "设备驱动模型",
+      "block-device",
+      "Linux内核",
+      "Linux 驱动",
+      "设备驱动模型与 sysfs"
+    ],
+    "source_ids": [
+      "source-f79fb9e5f6e687a5"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-3f9eebd9f8394ed0",
+    "title": "DMA 与总线之间的软硬件交互是如何工作的？",
+    "domain": "计算机体系结构",
+    "subtopic": "DMA 与总线",
+    "difficulty": "进阶",
+    "answer_short": "DMA控制器通过总线(如AMBA)发起读写传输，代替CPU搬运数据，需经过总线仲裁获得总线控制权，并处理地址映射和Cache一致性。",
+    "answer_detail": "DMA是直接内存访问，允许外设直接与内存交换数据，无需CPU逐字干预。在软硬件交互层面，DMA控制器作为总线主设备(master)连接到系统总线（如ARM的AMBA AHB/AXI），能够发起总线请求以访问内存或外设寄存器。软件（驱动）需要配置DMA控制器的源地址、目的地址、传输长度和触发源，然后启动DMA。启动后，DMA控制器向总线仲裁器申请总线使用权，仲裁器根据优先级和当前总线占用情况授予权限。一旦获得总线，DMA就执行地址和数据阶段的传输。传输过程中需注意：1) 总线架构（如AXI支持突发传输）影响效率；2) DMA控制器可能包含FIFO缓冲，需要处理传输完成中断；3) 如果涉及Cache，需进行一致性处理，否则可能读到旧值。嵌入式软件中常用dma_alloc_coherent分配一致缓冲区或使用dma_map_single配合flush/invalidate操作。",
+    "follow_ups": [
+      "DMA 与 Cache 不一致问题是如何产生的？",
+      "在 Linux 中如何配置 DMA 传输？",
+      "AMBA 总线上 AHB 和 APB 的区别是什么？"
+    ],
+    "pitfalls": [
+      "误以为 DMA 传输不消耗 CPU 资源，实际需要CPU配置和中断开销。",
+      "忽略总线仲裁延迟和带宽竞争，可能影响实时性。",
+      "未做 Cache 一致性处理导致数据错误。"
+    ],
+    "tags": [
+      "DMA",
+      "AMBA",
+      "总线",
+      "软硬件交互",
+      "Linux 驱动",
+      "计算机体系结构",
+      "DMA 与总线"
+    ],
+    "source_ids": [
+      "source-0f026c02ac775578"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-9f081ee07efb1ea9",
+    "title": "如何为一个已经被 spidev 驱动占用的 SPI 设备添加自定义设备驱动？",
+    "domain": "Linux 驱动",
+    "subtopic": "SPI 子系统与设备驱动注册",
+    "difficulty": "进阶",
+    "answer_short": "需在设备树中禁用或移除该设备的 spidev 节点，改为绑定自定义驱动，并确保驱动名称与设备树 compatible 匹配；同时考虑 SPI 设备地址和片选冲突。",
+    "answer_detail": "Linux 内核中，spidev 是一个通用的 SPI 用户态驱动，当设备树中 SPI 节点的 compatible 为 \"spidev\"（或类似）时，会绑定 spidev 驱动。若要添加自定义驱动，需要修改设备树：将目标 SPI 设备的 compatible 属性改为自定义驱动中 of_match_table 中定义的字符串，或者在驱动中通过 name 匹配。同时要移除或覆盖 spidev 的兼容项，否则两个驱动会争夺设备。此外，自定义驱动需要实现 spi_driver 的 probe/remove 等回调，并在初始化时注册 driver。要避免与 spidev 冲突，可确保设备树中只有一个 compatible 匹配项。在嵌入式系统中，如果设备已被用户态程序通过 /dev/spidev* 访问，切换为内核驱动时需同步调整用户态程序。还要注意 SPI 设备的片选、模式和时钟频率等配置。",
+    "follow_ups": [
+      "设备树中如何让同一个 SPI 设备在不同阶段绑定不同驱动？",
+      "spidev 驱动和自定义驱动的优先级由什么决定？",
+      "如果设备树中同时存在两个 compatible 会怎样？"
+    ],
+    "pitfalls": [
+      "只添加自定义驱动但忘了修改设备树，导致 probe 不执行。",
+      "错误修改全局 spidev 节点而影响其他设备。",
+      "在驱动中硬编码设备信息而不是使用设备树。"
+    ],
+    "tags": [
+      "Linux 驱动",
+      "SPI",
+      "spidev",
+      "设备树",
+      "SPI 子系统与设备驱动注册"
+    ],
+    "source_ids": [
+      "source-d690f217ee05dcb1"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-24fc2dca5f9dbfb3",
+    "title": "如何从硬件中断号获取 Linux IRQ 号？",
+    "domain": "Linux 驱动",
+    "subtopic": "中断子系统",
+    "difficulty": "进阶",
+    "answer_short": "在 Linux 中，硬件中断号通过 irq_domain 映射为 Linux IRQ 号。设备树中通常使用 interrupts 属性描述硬件中断号，驱动通过 platform_get_irq() 或 irq_of_parse_and_map() 获取 IRQ 号。",
+    "answer_detail": "Linux 中断子系统通过 irq_domain 将硬件中断号（hwirq）映射到 Linux 的 irq_desc 编号。对于设备树平台，驱动通常不直接操作硬件中断号，而是从设备树节点获取。例如，platform_get_irq(pdev, 0) 内部会通过 irq_of_parse_and_map() 解析 interrupts 属性并返回映射后的虚拟 IRQ 号。对于传统非设备树方式，可能采用 irq_create_mapping() 或 irq_alloc_descs() 等接口。理解 irq_domain 的线性映射、树状映射等有助于排查中断申请失败问题。嵌入式驱动开发中，使用错误的中断号会导致 request_irq 失败或中断不触发。",
+    "follow_ups": [
+      "irq_domain 的线性映射和树状映射有何区别？",
+      "platform_get_irq 与 irq_of_parse_and_map 有什么区别？",
+      "设备树中 interrupts 属性如何与驱动关联？"
+    ],
+    "pitfalls": [
+      "混淆硬件中断号与 Linux IRQ 号，外设寄存器中的中断号需经映射才可使用。",
+      "在共享中断中错误使用 dev_id 导致 free_irq 无法正常释放。"
+    ],
+    "tags": [
+      "Linux 驱动",
+      "IRQ",
+      "irq_domain",
+      "设备树",
+      "中断子系统"
+    ],
+    "source_ids": [
+      "source-bcc277846270c87e"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-4394d948800e6eb8",
+    "title": "如何设计一个多功能PMU设备的Linux驱动架构？",
+    "domain": "Linux 驱动",
+    "subtopic": "驱动架构设计",
+    "difficulty": "进阶",
+    "answer_short": "通常采用平台驱动模型，将设备、驱动和总线分离；根据PMU功能拆分为核心驱动和子功能（如I2C、GPIO、regulator、ADC等）驱动，通过MFD（Multi-Function Device）框架或普通平台驱动管理。",
+    "answer_detail": "多功能PMU设备通常通过I2C或SPI连接，内部集成多个子模块（如电压调节器、GPIO、ADC、充电控制等）。在Linux驱动架构中，推荐如下设计：1. 使用设备树描述硬件连接和配置参数，实现驱动与硬件解耦。2. 采用平台驱动模型，将PMU作为平台设备。3. 对于多功能设备，优先考虑使用MFD（Multi-Function Device）框架：PMU核心驱动注册为主设备，通过mfd_add_devices创建子设备，每个子设备对应一个子模块驱动。4. 子模块驱动使用对应子系统接口（如regulator、gpio、hrtimer等），避免直接操作寄存器。5. 中断处理根据功能划分，使用request_threaded_irq或工作队列处理慢速任务。6. 注意电源管理协同，需实现suspend/resume回调。嵌入式约束：资源受限，需考虑驱动内存占用和启动时间；I2C访问可能阻塞，不能用于原子上下文；不同PMU寄存器映射差异大，驱动需通过设备树参数化。",
+    "follow_ups": [
+      "MFD框架和普通平台驱动相比有什么优势？",
+      "如果PMU的多个子功能共享一个I2C控制器，如何设计驱动以避免总线冲突？",
+      "如何为PMU驱动添加电源管理支持？"
+    ],
+    "pitfalls": [
+      "误以为所有多功能设备都必须用MFD，简单设备可用单个驱动处理。",
+      "在中断处理中直接调用I2C传输，导致阻塞或死锁。",
+      "忽略设备树匹配表，导致驱动无法加载。",
+      "未处理并发共享寄存器的保护，导致数据竞争。"
+    ],
+    "tags": [
+      "Linux驱动",
+      "PMU",
+      "MFD",
+      "I2C",
+      "GPIO",
+      "Linux 驱动",
+      "驱动架构设计"
+    ],
+    "source_ids": [
+      "source-e5508e08478a9201"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-08d46cc622684dbd",
+    "title": "Linux 设备驱动 probe() 和 init() 函数没有被调用，为什么？如何排查？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备驱动模型与设备树匹配",
+    "difficulty": "进阶",
+    "answer_short": "模块的 init 函数在模块加载时调用；probe 函数在驱动核心匹配到设备和驱动时调用。未调用的常见原因是设备树 compatible 与驱动 of_match_table 不匹配、驱动未注册、设备未使能或资源获取失败。",
+    "answer_detail": "在 Linux 中，device_driver 的初始化入口通常用 module_init() 声明，当模块插入（insmod）或内核启动加载时调用，完成驱动注册。probe() 是 device_driver 结构体中的回调，当总线上添加了匹配的设备，或驱动注册时已有设备，驱动核心通过匹配（如 of_driver_match_device 匹配设备树 compatible）成功后调用。probe 未被调用，首要排查驱动是否已注册（查看 /sys/bus/.../drivers），其次检查设备树节点是否有效、状态是否为 \"okay\"、compatible 是否匹配，以及资源和依赖如时钟、电源域是否准备好。另外，若使用 module_init 而驱动未编译/加载，则 init 也执行不到。在 Xilinx/PetaLinux 环境中还需检查内核配置和设备树到底载入的是哪个版本。",
+    "follow_ups": [
+      "probe 函数返回 -EPROBE_DEFER 会怎样？",
+      "如何查看驱动和设备的匹配状态？",
+      "module_init 和 subsys_initcall 有什么区别？"
+    ],
+    "pitfalls": [
+      "误以为驱动只要编译进内核就会自动 probe，实际还需设备节点匹配。",
+      "设备树 compatible 中是否有空格或大小写不匹配。",
+      "把 init 和 probe 混淆。"
+    ],
+    "tags": [
+      "Linux 驱动",
+      "设备树",
+      "probe",
+      "module_init",
+      "设备驱动模型与设备树匹配"
+    ],
+    "source_ids": [
+      "source-9ab55f90a5d6f2ec"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-f1091ae36adcf4be",
+    "title": "如何在 Linux 内核空间观察/跟踪硬盘写入？",
+    "domain": "Linux 驱动",
+    "subtopic": "内核调试与跟踪",
+    "difficulty": "进阶",
+    "answer_short": "可以使用 blktrace/blkparse、ftrace、tracepoints（如 block:block_rq_insert）和 kprobes 等方式在内核态跟踪磁盘 I/O 请求。",
+    "answer_detail": "内核提供了多种机制观测块设备 I/O： 1. **blktrace/blkparse**：专门用于跟踪块层请求，可记录插入、合并、完成等事件，适合分析 I/O 性能与路径。 2. **ftrace**：可动态跟踪内核函数调用，通过 `tracefs` 设置过滤器，例如跟踪 `submit_bio`、`generic_make_request` 等关键函数。 3. **tracepoints**：内核预置的静态探针，如 `block:block_rq_insert` 事件，无需重编译即可用 `perf trace` 或 `trace-cmd` 采集。 4. **kprobes**：动态插桩，可探测任意内核函数，但需注意内核版本兼容性和开销。 在嵌入式环境中，需确认内核开启相关配置（如 CONFIG_BLK_DEV_IO_TRACE、CONFIG_TRACEPOINTS），且注意存储空间和性能影响。",
+    "follow_ups": [
+      "如何区分内核中的 I/O 调度算法对跟踪结果的影响？",
+      "用户态工具 (如 iostat) 和内核态跟踪有什么区别和互补性？"
+    ],
+    "pitfalls": [
+      "误以为通过 /proc 或 /sys 即可直接观察内核 I/O 路径，实际需要 root 和调试接口。",
+      "忽略 kprobes 可能引入的性能开销，在实时嵌入式系统中需谨慎。"
+    ],
+    "tags": [
+      "Linux内核",
+      "磁盘I/O",
+      "调试",
+      "ftrace",
+      "blktrace",
+      "Linux 驱动",
+      "内核调试与跟踪"
+    ],
+    "source_ids": [
+      "source-686944364424dcb0"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-9c1fc7af35060a87",
+    "title": "Linux 内核如何识别设备的主设备号和次设备号？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备号与 dev_t",
+    "difficulty": "基础",
+    "answer_short": "内核通过 dev_t 类型和 kdev_t 解析主次设备号，并在 inode 中存储 i_rdev，设备号由 mknod 或 device_create 等注册到 sysfs 和 devtmpfs。",
+    "answer_detail": "Linux 使用 dev_t 表示设备号，其中高 12 位为主设备号，低 20 位为次设备号（不同架构可能有不同编码）。内核在创建设备节点时，通过调用 register_chrdev_region 或 alloc_chrdev_region 分配设备号，并在 inode 的 i_rdev 字段中保存。访问设备时，VFS 通过 inode 中的设备号找到对应驱动。设备号还可从 sysfs 中的 uevent 或 devtmpfs 获取，udev 依赖此信息创建设备节点。嵌入式系统需注意静态分配与动态分配的选择，以及设备号冲突问题。",
+    "follow_ups": [
+      "主设备号和次设备号的作用是什么？",
+      "如何查看系统中已注册的设备号？",
+      "device_create 与 mknod 创建设备节点的区别？"
+    ],
+    "pitfalls": [
+      "误以为设备号是硬件编号，实际上由内核分配并关联驱动。",
+      "混淆 chrdev 和 blkdev 的设备号注册方式。"
+    ],
+    "tags": [
+      "linux-kernel",
+      "device-number",
+      "dev_t",
+      "drivers",
+      "Linux 驱动",
+      "设备号与 dev_t"
+    ],
+    "source_ids": [
+      "source-ec8dac07d6bf66e7"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-0139bb88c0490b9d",
+    "title": "如何确定网络接口对应的内核驱动？",
+    "domain": "Linux 驱动",
+    "subtopic": "网络接口驱动",
+    "difficulty": "基础",
+    "answer_short": "使用 ethtool -i <interface> 或查看 /sys/class/net/<interface>/device/driver 路径。",
+    "answer_detail": "在Linux中，可以通过多种方式查看网络接口对应的驱动。例如，ethtool -i eth0 会输出 driver、version、firmware-version 等信息。也可以查看 /sys/class/net/eth0/device/driver 符号链接，获取驱动的名称。此外，/proc/net/dev 只显示接口统计，lspci -k 可以显示PCI设备的驱动。在嵌入式Linux开发中，理解设备树和驱动匹配机制有助于分析网卡驱动。",
+    "follow_ups": [
+      "如何查看驱动模块的加载状态？",
+      "若接口未绑定驱动，如何排查？"
+    ],
+    "pitfalls": [
+      "混淆网络接口名称与驱动名称；误以为每个接口有独立驱动，实际多个接口可共用同一驱动。"
+    ],
+    "tags": [
+      "网络接口",
+      "驱动",
+      "ethtool",
+      "sysfs",
+      "Linux 驱动",
+      "网络接口驱动"
+    ],
+    "source_ids": [
+      "source-a47ca86a61c4b1b4"
+    ],
+    "status": "ai-draft",
+    "updated_at": "2026-08-23"
+  },
+  {
+    "id": "question-fdf61f240f196013",
+    "title": "Linux 设备树中如何配置触摸屏的中断引脚？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备树中断配置",
+    "difficulty": "基础",
+    "answer_short": "在设备树中，通过 interrupts 属性指定中断源和触发类型，并用 interrupt-parent 指定中断控制器；驱动中使用 platform_get_irq() 获取中断号，然后 request_irq() 注册中断处理函数。",
+    "answer_detail": "设备树中，触摸芯片节点通常包含 interrupt-parent（指向中断控制器，如 GPIO 控制器）和 interrupts（如 <&gpioX pin IRQ_TYPE_EDGE_FALLING>）。内核启动时，of_irq_parse_and_map 将设备树中断映射为 Linux 中断号。驱动在 probe 中调用 platform_get_irq 获取 IRQ，然后 request_irq 注册处理函数，并设置触发类型。对于触摸芯片，需要根据芯片手册配置合适的触发条件（边沿或电平），并注意休眠唤醒时可能需要 IRQF_NO_SUSPEND 或相关唤醒源配置。此外，I2C 触摸芯片通常使用 GPIO 中断，需确认 GPIO 控制器支持中断且有对应的 pinctrl 设置。",
+    "follow_ups": [
+      "如果触摸屏在休眠后无法唤醒，如何排查中断配置？",
+      "interrupts 和 interrupts-extended 的区别是什么？",
+      "如何确定 GPIO 中断的触发类型？"
+    ],
+    "pitfalls": [
+      "忘记配置 interrupt-parent 导致中断号映射失败",
+      "中断触发类型与芯片不匹配导致中断丢失或持续触发",
+      "设备树中中断 GPIO 的 pinctrl 配置冲突",
+      "在 probe 中申请中断时设备尚未就绪"
+    ],
+    "tags": [
+      "设备树",
+      "中断",
+      "触摸屏",
+      "Linux 驱动",
+      "设备树中断配置"
+    ],
+    "source_ids": [
+      "source-6e18ed2d71a52519"
+    ],
+    "status": "ai-draft",
     "updated_at": "2026-08-23"
   }
 ]
