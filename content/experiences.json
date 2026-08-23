@@ -1,0 +1,42 @@
+[
+  {
+    "id":"exp-sharpa-embedded-first",
+    "company":"sharpA",
+    "role":"嵌入式软件",
+    "round":"一面",
+    "date":null,
+    "summary":"从 C 内存布局和 Linux IPC 开始，深入追问中断上下半部、ioremap、锁选择、Kernel Panic 定位与 Camera 驱动框架。",
+    "question_ids":["c-memory-layout","c-return-local-address","os-process-thread","linux-ipc","driver-ioremap","driver-interrupt-bottom-half","driver-spinlock-mutex","driver-kernel-panic","protocol-i2c"],
+    "source_id":"notes-sharpa"
+  },
+  {
+    "id":"exp-jingwei-first",
+    "company":"经纬恒润",
+    "role":"嵌入式软件",
+    "round":"一面",
+    "date":null,
+    "summary":"重点考察 SPI、UART、CAN、以太网、Cortex-M 启动、时钟树、ADC、内存以及 RTOS 中断安全。",
+    "question_ids":["protocol-spi-modes","protocol-can-fd","mcu-cortexm-startup","mcu-clock-tree","mcu-adc-dma","c-memory-layout","rtos-isr-api"],
+    "source_id":"notes-jingwei"
+  },
+  {
+    "id":"exp-rtos-linux-general",
+    "company":null,
+    "role":"嵌入式 / Linux",
+    "round":"技术面",
+    "date":null,
+    "summary":"围绕 RTOS 与 Linux 实时性、中断下半部、链表与数组、I²C 电气特性、段错误和函数指针连续追问。",
+    "question_ids":["rtos-linux-latency","driver-interrupt-bottom-half","ds-array-linked-list","protocol-i2c","linux-segfault","c-function-pointer"],
+    "source_id":"notes-rtos-linux"
+  },
+  {
+    "id":"exp-insta-camera-intern",
+    "company":"影石 Insta360",
+    "role":"嵌入式 Camera 实习",
+    "round":"技术面",
+    "date":"2026-08-15",
+    "summary":"覆盖 Camera 采集链路、YUV、MP4/AAC、交叉编译部署、CMake、库链接、C++ 多态与模板，以及 Linux IPC 和并发。",
+    "question_ids":["media-yuv420","build-static-dynamic-library","build-make-cmake","cpp-virtual-dispatch","linux-ipc","os-deadlock","debug-reentrant-function"],
+    "source_id":"notes-insta-camera"
+  }
+]

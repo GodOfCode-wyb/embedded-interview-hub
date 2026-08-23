@@ -1,0 +1,28 @@
+{
+  "search_feeds": [
+    {"name":"Linux 驱动面经","url":"https://www.bing.com/search?format=rss&q=Linux%20%E9%A9%B1%E5%8A%A8%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E7%BB%8F"},
+    {"name":"STM32 MCU 面经","url":"https://www.bing.com/search?format=rss&q=STM32%20MCU%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E8%AF%95"},
+    {"name":"RTOS 面经","url":"https://www.bing.com/search?format=rss&q=FreeRTOS%20RTOS%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E7%BB%8F"},
+    {"name":"嵌入式 C++ 面经","url":"https://www.bing.com/search?format=rss&q=C%2B%2B%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E7%BB%8F"},
+    {"name":"物联网面经","url":"https://www.bing.com/search?format=rss&q=%E7%89%A9%E8%81%94%E7%BD%91%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E7%BB%8F"},
+    {"name":"机器人面经","url":"https://www.bing.com/search?format=rss&q=ROS2%20%E6%9C%BA%E5%99%A8%E4%BA%BA%20%E5%B5%8C%E5%85%A5%E5%BC%8F%20%E9%9D%A2%E8%AF%95"},
+    {"name":"音视频面经","url":"https://www.bing.com/search?format=rss&q=V4L2%20Camera%20%E9%9F%B3%E8%A7%86%E9%A2%91%20%E9%9D%A2%E7%BB%8F"},
+    {"name":"嵌入式 AI 面经","url":"https://www.bing.com/search?format=rss&q=%E5%B5%8C%E5%85%A5%E5%BC%8F%20AI%20%E7%AB%AF%E4%BE%A7%E6%8E%A8%E7%90%86%20%E9%9D%A2%E8%AF%95"}
+  ],
+  "allowed_result_domains": [
+    "nowcoder.com",
+    "zhihu.com",
+    "juejin.cn",
+    "csdn.net",
+    "github.com",
+    "gitee.com",
+    "cnblogs.com",
+    "51cto.com",
+    "docs.kernel.org",
+    "freertos.org",
+    "st.com",
+    "arm.com"
+  ],
+  "max_items_per_feed": 12,
+  "request_delay_seconds": 1.2
+}

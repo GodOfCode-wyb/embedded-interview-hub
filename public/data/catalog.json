@@ -1,0 +1,558 @@
+{
+  "generated_at": "2026-08-23T09:46:59.540388+00:00",
+  "stats": {
+    "questions": 40,
+    "experiences": 4,
+    "sources": 21,
+    "domains": {
+      "C 语言": 3,
+      "C++": 3,
+      "Linux 系统编程": 2,
+      "Linux 驱动": 5,
+      "RTOS": 3,
+      "STM32 / MCU": 3,
+      "外设与协议": 3,
+      "嵌入式 AI": 1,
+      "操作系统": 3,
+      "数据结构与算法": 2,
+      "机器人": 1,
+      "物联网": 1,
+      "编译与构建": 2,
+      "计算机体系结构": 2,
+      "计算机网络": 3,
+      "调试与测试": 2,
+      "音视频": 1
+    }
+  },
+  "questions": [
+    {
+      "id": "c-memory-layout",
+      "title": "C 程序运行时的内存布局通常如何划分？",
+      "domain": "C 语言",
+      "subtopic": "内存模型",
+      "difficulty": "基础",
+      "tags": [
+        "内存布局",
+        "堆",
+        "栈",
+        "链接"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "c-return-local-address",
+      "title": "函数为什么不能返回局部变量的地址？",
+      "domain": "C 语言",
+      "subtopic": "指针与生命周期",
+      "difficulty": "基础",
+      "tags": [
+        "生命周期",
+        "悬空指针",
+        "未定义行为"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "c-function-pointer",
+      "title": "如何定义并使用函数指针？",
+      "domain": "C 语言",
+      "subtopic": "函数与回调",
+      "difficulty": "基础",
+      "tags": [
+        "函数指针",
+        "回调",
+        "typedef"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "cpp-virtual-dispatch",
+      "title": "虚函数、纯虚函数和运行时多态是什么关系？",
+      "domain": "C++",
+      "subtopic": "对象模型",
+      "difficulty": "基础",
+      "tags": [
+        "虚函数",
+        "纯虚函数",
+        "多态",
+        "虚表"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "cpp-raii-smart-pointer",
+      "title": "RAII 和智能指针如何解决资源管理问题？",
+      "domain": "C++",
+      "subtopic": "资源管理",
+      "difficulty": "进阶",
+      "tags": [
+        "RAII",
+        "智能指针",
+        "所有权"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "cpp-move-semantics",
+      "title": "移动语义解决了什么问题？",
+      "domain": "C++",
+      "subtopic": "现代 C++",
+      "difficulty": "进阶",
+      "tags": [
+        "右值引用",
+        "移动构造",
+        "std::move"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "ds-array-linked-list",
+      "title": "数组和链表在嵌入式场景中如何取舍？",
+      "domain": "数据结构与算法",
+      "subtopic": "线性结构",
+      "difficulty": "基础",
+      "tags": [
+        "数组",
+        "链表",
+        "内存碎片"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "ds-hash-table",
+      "title": "哈希表的基本原理和冲突处理方式是什么？",
+      "domain": "数据结构与算法",
+      "subtopic": "哈希",
+      "difficulty": "基础",
+      "tags": [
+        "哈希表",
+        "冲突",
+        "复杂度"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "os-process-thread",
+      "title": "进程和线程的核心区别是什么？",
+      "domain": "操作系统",
+      "subtopic": "进程与线程",
+      "difficulty": "基础",
+      "tags": [
+        "进程",
+        "线程",
+        "上下文切换"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "os-virtual-memory",
+      "title": "虚拟内存、页表和缺页异常如何协作？",
+      "domain": "操作系统",
+      "subtopic": "内存管理",
+      "difficulty": "进阶",
+      "tags": [
+        "虚拟内存",
+        "MMU",
+        "页表",
+        "缺页"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "os-deadlock",
+      "title": "死锁产生的条件和排查方法是什么？",
+      "domain": "操作系统",
+      "subtopic": "并发同步",
+      "difficulty": "基础",
+      "tags": [
+        "死锁",
+        "互斥锁",
+        "锁顺序"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "net-tcp-handshake",
+      "title": "TCP 为什么需要三次握手？",
+      "domain": "计算机网络",
+      "subtopic": "TCP",
+      "difficulty": "基础",
+      "tags": [
+        "TCP",
+        "握手",
+        "序列号"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "net-tcp-sticky-packet",
+      "title": "TCP 为什么会出现所谓的粘包和拆包？",
+      "domain": "计算机网络",
+      "subtopic": "Socket 编程",
+      "difficulty": "基础",
+      "tags": [
+        "TCP",
+        "协议设计",
+        "缓冲区"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "net-epoll",
+      "title": "select、poll 和 epoll 的主要区别是什么？",
+      "domain": "计算机网络",
+      "subtopic": "I/O 多路复用",
+      "difficulty": "进阶",
+      "tags": [
+        "select",
+        "poll",
+        "epoll"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "arch-cache-coherency",
+      "title": "DMA 与 Cache 不一致问题是怎样产生的？",
+      "domain": "计算机体系结构",
+      "subtopic": "Cache 与 DMA",
+      "difficulty": "进阶",
+      "tags": [
+        "DMA",
+        "Cache",
+        "一致性"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "arch-memory-barrier",
+      "title": "volatile、原子操作和内存屏障分别解决什么问题？",
+      "domain": "计算机体系结构",
+      "subtopic": "内存模型",
+      "difficulty": "进阶",
+      "tags": [
+        "volatile",
+        "原子操作",
+        "内存屏障"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "mcu-cortexm-startup",
+      "title": "ARM Cortex-M 从复位到 main() 经历了什么？",
+      "domain": "STM32 / MCU",
+      "subtopic": "启动流程",
+      "difficulty": "基础",
+      "tags": [
+        "Cortex-M",
+        "向量表",
+        "Reset_Handler"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "mcu-clock-tree",
+      "title": "STM32 时钟树应如何分析和配置？",
+      "domain": "STM32 / MCU",
+      "subtopic": "时钟系统",
+      "difficulty": "基础",
+      "tags": [
+        "时钟树",
+        "PLL",
+        "AHB",
+        "APB"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "mcu-adc-dma",
+      "title": "ADC 连续采样为什么常配合定时器和 DMA？",
+      "domain": "STM32 / MCU",
+      "subtopic": "ADC",
+      "difficulty": "进阶",
+      "tags": [
+        "ADC",
+        "DMA",
+        "定时器",
+        "双缓冲"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "rtos-priority-inversion",
+      "title": "什么是优先级反转？如何缓解？",
+      "domain": "RTOS",
+      "subtopic": "任务调度",
+      "difficulty": "进阶",
+      "tags": [
+        "优先级反转",
+        "互斥锁",
+        "实时性"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "rtos-isr-api",
+      "title": "RTOS 中断服务函数里不能做什么？",
+      "domain": "RTOS",
+      "subtopic": "中断",
+      "difficulty": "基础",
+      "tags": [
+        "ISR",
+        "FromISR",
+        "中断延迟"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "rtos-linux-latency",
+      "title": "RTOS 与通用 Linux 的实时性差异是什么？",
+      "domain": "RTOS",
+      "subtopic": "实时性",
+      "difficulty": "进阶",
+      "tags": [
+        "PREEMPT_RT",
+        "调度延迟",
+        "确定性"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "linux-ipc",
+      "title": "Linux 进程间通信方式有哪些？",
+      "domain": "Linux 系统编程",
+      "subtopic": "IPC",
+      "difficulty": "基础",
+      "tags": [
+        "IPC",
+        "共享内存",
+        "Socket"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "linux-segfault",
+      "title": "Linux 程序产生段错误的常见原因和定位步骤是什么？",
+      "domain": "Linux 系统编程",
+      "subtopic": "故障定位",
+      "difficulty": "基础",
+      "tags": [
+        "SIGSEGV",
+        "Core Dump",
+        "GDB"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "driver-ioremap",
+      "title": "Linux 驱动访问外设寄存器为什么需要 ioremap？",
+      "domain": "Linux 驱动",
+      "subtopic": "MMIO",
+      "difficulty": "基础",
+      "tags": [
+        "ioremap",
+        "MMIO",
+        "寄存器"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "driver-interrupt-bottom-half",
+      "title": "Linux 中断上半部和下半部如何划分？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断",
+      "difficulty": "进阶",
+      "tags": [
+        "hardirq",
+        "softirq",
+        "工作队列",
+        "线程化中断"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "driver-spinlock-mutex",
+      "title": "中断与进程共享数据时为什么常用 spinlock 而不是 mutex？",
+      "domain": "Linux 驱动",
+      "subtopic": "并发",
+      "difficulty": "进阶",
+      "tags": [
+        "spinlock",
+        "mutex",
+        "irqsave"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "driver-device-tree",
+      "title": "设备树如何让驱动与具体板级硬件解耦？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树",
+      "difficulty": "基础",
+      "tags": [
+        "设备树",
+        "compatible",
+        "platform_driver"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "driver-kernel-panic",
+      "title": "Kernel Panic 应如何定位？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核调试",
+      "difficulty": "进阶",
+      "tags": [
+        "Kernel Panic",
+        "Oops",
+        "crash",
+        "KASAN"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "protocol-i2c",
+      "title": "I²C 基本时序、上拉电阻和总线恢复如何理解？",
+      "domain": "外设与协议",
+      "subtopic": "I²C",
+      "difficulty": "进阶",
+      "tags": [
+        "I2C",
+        "上拉电阻",
+        "总线恢复"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "protocol-spi-modes",
+      "title": "SPI 四种模式由什么决定？",
+      "domain": "外设与协议",
+      "subtopic": "SPI",
+      "difficulty": "基础",
+      "tags": [
+        "SPI",
+        "CPOL",
+        "CPHA"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "protocol-can-fd",
+      "title": "经典 CAN 与 CAN FD 的主要区别是什么？",
+      "domain": "外设与协议",
+      "subtopic": "CAN",
+      "difficulty": "基础",
+      "tags": [
+        "CAN",
+        "CAN FD",
+        "仲裁"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "build-static-dynamic-library",
+      "title": "静态库和动态库有什么区别？",
+      "domain": "编译与构建",
+      "subtopic": "链接",
+      "difficulty": "基础",
+      "tags": [
+        "静态库",
+        "动态库",
+        "链接器",
+        "ABI"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "build-make-cmake",
+      "title": "Makefile 和 CMake 的关系是什么？",
+      "domain": "编译与构建",
+      "subtopic": "构建系统",
+      "difficulty": "基础",
+      "tags": [
+        "Makefile",
+        "CMake",
+        "交叉编译"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "debug-i2c-layering",
+      "title": "板端 I²C 设备不工作时如何分层定位？",
+      "domain": "调试与测试",
+      "subtopic": "硬件调试",
+      "difficulty": "进阶",
+      "tags": [
+        "分层定位",
+        "逻辑分析仪",
+        "I2C"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "debug-reentrant-function",
+      "title": "如何判断一个函数是否可重入？",
+      "domain": "调试与测试",
+      "subtopic": "并发安全",
+      "difficulty": "进阶",
+      "tags": [
+        "可重入",
+        "线程安全",
+        "共享状态"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "iot-mqtt-qos",
+      "title": "MQTT QoS 0、1、2 分别保证什么？",
+      "domain": "物联网",
+      "subtopic": "MQTT",
+      "difficulty": "基础",
+      "tags": [
+        "MQTT",
+        "QoS",
+        "幂等"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "robotics-ros2-dds",
+      "title": "ROS 2 为什么使用 DDS？",
+      "domain": "机器人",
+      "subtopic": "ROS 2",
+      "difficulty": "进阶",
+      "tags": [
+        "ROS2",
+        "DDS",
+        "QoS"
+      ],
+      "status": "verified"
+    },
+    {
+      "id": "media-yuv420",
+      "title": "NV12、NV21 和 YUV420P 有什么区别？",
+      "domain": "音视频",
+      "subtopic": "像素格式",
+      "difficulty": "基础",
+      "tags": [
+        "YUV",
+        "NV12",
+        "Camera"
+      ],
+      "status": "reviewed"
+    },
+    {
+      "id": "edge-ai-quantization",
+      "title": "嵌入式 AI 为什么常使用模型量化？",
+      "domain": "嵌入式 AI",
+      "subtopic": "端侧推理",
+      "difficulty": "进阶",
+      "tags": [
+        "量化",
+        "INT8",
+        "NPU",
+        "端侧推理"
+      ],
+      "status": "reviewed"
+    }
+  ]
+}
