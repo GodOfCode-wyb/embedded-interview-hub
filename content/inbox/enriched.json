@@ -1,0 +1,187 @@
+[
+  {
+    "candidate_id": "candidate-8e712054715df460",
+    "source_url": "https://docs.freertos.org/",
+    "source_title": "FreeRTOS™ - FreeRTOS™",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:48.130574+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "该链接为 FreeRTOS 官方文档，与 RTOS 主题相关，但未提供具体面试题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-d8c9daf25ee2b475",
+    "source_url": "https://www.freertos.org/Documentation/00-Overview",
+    "source_title": "FreeRTOS Documentation",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:44.139298+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选是 FreeRTOS 官方文档，与 RTOS 面经主题相关，但未提供具体面试题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-8e52e96d9dcfb57d",
+    "source_url": "https://w.freertos.org/index.html",
+    "source_title": "FreeRTOS™",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:35.093761+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "FreeRTOS 是常见嵌入式实时操作系统，与 RTOS 面试主题直接相关，但摘要未提供具体面试问题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-a2ed95b117cfafd3",
+    "source_url": "https://github.com/FreeRTOS",
+    "source_title": "FreeRTOS - GitHub",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:29.033295+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "该链接为 FreeRTOS 开源仓库，与 RTOS 主题直接相关，可作为学习参考。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-43a29a7460615606",
+    "source_url": "https://wiki.st.com/stm32mcu/wiki/STM32StepByStep:Getting_started_with_STM32_:_STM32_step_by_step",
+    "source_title": "Getting started with STM32: STM32 step-by-step - stm32mcu",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:25.523258+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": false,
+      "reason": "摘要为STM32入门教程，非面试经验，未包含面试题目或公司信息。",
+      "experience": null,
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-d574e08e84ef38cf",
+    "source_url": "https://www.st.com/en/development-tools/stm32cubeide",
+    "source_title": "STM32CubeIDE | Software - STMicroelectronics",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:23.383810+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": false,
+      "reason": "给出的搜索结果是 STM32CubeIDE 工具的官方介绍，不包含任何面试经验或题目内容。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-de96767156cbefd4",
+    "source_url": "https://github.com/torvalds/linux",
+    "source_title": "GitHub - torvalds/linux: Linux kernel source tree · GitHub",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:21.554072+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": false,
+      "reason": "该链接仅为 Linux 内核源码仓库，未提供任何具体面试题或面经内容，无法提取有效问题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-87e74e52c2992d9b",
+    "source_url": "https://github.com/ros2/ros2",
+    "source_title": "GitHub - ros2/ros2: The Robot Operating System, is a meta operating ...",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:19.227240+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "搜索结果与机器人主题相关（ROS2仓库），但未包含具体面试题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-4471caaa1250a3eb",
+    "source_url": "https://www.freertos.org/",
+    "source_title": "FreeRTOS™",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:14.893718+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": true,
+      "reason": "元数据为 FreeRTOS 官网介绍，未包含具体面经题目",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-b87d8b05049c1f1f",
+    "source_url": "https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html",
+    "source_title": "STM32 Microcontrollers (MCUs) - STMicroelectronics",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-08-23T11:21:12.155211+00:00",
+    "review_status": "ai-draft",
+    "result": {
+      "is_relevant": false,
+      "reason": "该搜索结果为 STM32 官方产品介绍页面，不含面试题目或面经内容。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null
+      },
+      "questions": []
+    }
+  }
+]
