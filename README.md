@@ -27,6 +27,7 @@ npm run build
 
 ```bash
 python pipeline/collect.py
+python pipeline/discover.py
 python pipeline/deepseek.py
 python pipeline/deduplicate.py
 python pipeline/promote.py
@@ -36,7 +37,9 @@ python pipeline/validate.py
 
 `deepseek.py` 在未设置 `DEEPSEEK_API_KEY` 时会安全跳过。密钥只应保存在本地环境变量或 GitHub Actions Secret 中。
 
-流水线会优先选择含“面经、面试题、一面、二面”等信号且属于目标技术范围的页面；官方文档和产品主页只作为参考候选。DeepSeek 会在 robots.txt 允许时读取公开页面的有限正文节选，但不会在仓库中保存原文，也不会绕过登录、付费墙或站点限制。只有来源中明确出现的问题才能生成草稿。
+流水线使用免费的公开入口组合搜寻：Bing 搜索 RSS、GitHub 公共仓库与 Markdown 代码搜索、GitLab 公共项目搜索、Stack Overflow 公共技术问答，以及已发现页面中的相关公开链接。搜索会分页进行，并把关联链接维护为可逐日扩张、定期复查的前沿；官方文档和产品主页只作为参考候选。
+
+DeepSeek 会在 robots.txt 允许时读取公开页面的有限正文节选，但不会在仓库中保存原文，也不会绕过登录、付费墙、验证码、反爬或其他访问控制。无法公开读取的页面只保留标题、链接和搜索摘要。只有来源中明确出现的问题才能生成草稿；Stack Overflow 等技术问答只作为八股知识来源，不会伪装成公司面经。
 
 `promote.py` 会把去重后、具有来源证据的候选题以 `ai-draft` 状态加入自动审核 PR。它们不会自动标为已核验；只有人工检查并合并 PR 后，才会进入 `main` 和线上题库。
 
@@ -53,6 +56,11 @@ python pipeline/validate.py
    - Variable：`MAX_STAGE_QUESTIONS`（可选，每次最多进入审核 PR 的题目数）
    - Variable：`PAGE_FETCH_DELAY_SECONDS`（可选，公开页面读取间隔）
    - Variable：`REENRICH_AFTER_DAYS`（可选，默认 30 天后重新检查已发现来源）
+   - Variable：`MAX_LINK_SEED_PAGES`（可选，每轮扫描的公开种子页面数，默认 40）
+   - Variable：`MAX_LINKS_PER_SEED`（可选，每个页面最多发现的候选链接数，默认 20）
+   - Variable：`MAX_LINK_DISCOVERIES`（可选，每轮关联链接新增上限，默认 300）
+   - Variable：`LINK_RESCAN_AFTER_DAYS`（可选，关联链接复查周期，默认 30 天）
+   - Variable：`LINK_REQUEST_DELAY_SECONDS`（可选，关联页面访问间隔，默认 1 秒）
 
 `collect.yml` 默认每天北京时间 21:00 运行，更新候选内容并创建审核 PR。
 
@@ -61,5 +69,6 @@ python pipeline/validate.py
 - 不复制受版权保护的整篇文章。
 - 不绕过登录、付费墙或反爬限制。
 - 只读取允许域名的公开页面有限节选，不在仓库保存文章正文。
+- 免费公开索引无法保证覆盖整个互联网；流水线以多入口、分页、链接扩展和每日增量尽可能提高覆盖率。
 - 公司、日期、轮次和面试结果没有来源时保持未知。
 - AI 内容标记为 `ai-draft`，只有经过资料核验的内容才能标记为 `verified`。

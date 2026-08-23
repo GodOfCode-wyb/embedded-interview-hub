@@ -15,14 +15,63 @@
     {"name":"音视频岗位面试题","query":"\"音视频面试题\" 嵌入式"},
     {"name":"嵌入式 AI 岗位面经","query":"\"嵌入式AI面试\""},
     {"name":"嵌入式综合面经","query":"\"嵌入式面经\""},
-    {"name":"嵌入式综合面试题","query":"\"嵌入式面试\""}
+    {"name":"嵌入式综合面试题","query":"\"嵌入式面试\""},
+    {"name":"Linux 内核八股","query":"Linux 内核 驱动 八股 面试题"},
+    {"name":"设备树中断并发面试","query":"设备树 中断 自旋锁 面试题 Linux 驱动"},
+    {"name":"字符设备总线模型面试","query":"字符设备 platform driver 总线 设备 驱动 面试"},
+    {"name":"C 指针内存八股","query":"C语言 指针 内存管理 面试题 嵌入式"},
+    {"name":"C++ 对象模型八股","query":"C++ 对象模型 虚函数 智能指针 面试题 嵌入式"},
+    {"name":"操作系统并发八股","query":"进程 线程 锁 调度 内存 面试题 操作系统"},
+    {"name":"网络协议八股","query":"TCP UDP socket 网络 面试题 嵌入式"},
+    {"name":"MCU 外设八股","query":"STM32 中断 DMA 定时器 ADC 面试题"},
+    {"name":"RTOS 调度同步八股","query":"FreeRTOS 任务调度 信号量 队列 面试题"},
+    {"name":"ARM 体系结构面试","query":"ARM Cortex 异常 中断 cache MMU 面试题"},
+    {"name":"嵌入式调试构建面试","query":"嵌入式 gdb makefile cmake 调试 面试题"},
+    {"name":"驱动开发面经 site 牛客","query":"site:nowcoder.com Linux 驱动 嵌入式 面经"},
+    {"name":"嵌入式面经 site 掘金","query":"site:juejin.cn 嵌入式 面经 Linux 驱动"},
+    {"name":"嵌入式面试题 site 博客园","query":"site:cnblogs.com 嵌入式 面试题 STM32 RTOS"},
+    {"name":"音视频底层八股","query":"V4L2 FFmpeg 音视频 嵌入式 面试题"},
+    {"name":"嵌入式 AI 推理面试","query":"端侧推理 嵌入式 AI 算子 量化 面试题"}
   ],
   "github_search_queries": [
     {"name":"GitHub 嵌入式面试仓库","query":"\"嵌入式面试\" in:name,description,readme"},
     {"name":"GitHub Linux 驱动面试仓库","query":"\"Linux驱动面试\" in:name,description,readme"},
     {"name":"GitHub STM32 面试仓库","query":"\"STM32面试题\" in:name,description,readme"},
     {"name":"GitHub FreeRTOS 面试仓库","query":"\"FreeRTOS面试题\" in:name,description,readme"},
-    {"name":"GitHub Embedded Interview","query":"\"embedded interview questions\" linux driver in:name,description,readme"}
+    {"name":"GitHub Embedded Interview","query":"\"embedded interview questions\" linux driver in:name,description,readme"},
+    {"name":"GitHub 嵌入式 C C++ 面试仓库","query":"embedded C C++ interview questions in:name,description,readme"},
+    {"name":"GitHub 操作系统网络面试仓库","query":"operating system network interview embedded in:name,description,readme"},
+    {"name":"GitHub 物联网面试仓库","query":"IoT embedded interview questions in:name,description,readme"},
+    {"name":"GitHub 机器人面试仓库","query":"robotics embedded interview questions in:name,description,readme"},
+    {"name":"GitHub 音视频面试仓库","query":"FFmpeg V4L2 interview questions in:name,description,readme"},
+    {"name":"GitHub 嵌入式 AI 面试仓库","query":"edge AI embedded interview questions in:name,description,readme"}
+  ],
+  "github_code_search_queries": [
+    {"name":"GitHub 嵌入式面试文档","query":"\"嵌入式面试\" in:file language:Markdown"},
+    {"name":"GitHub Linux 驱动面试文档","query":"\"Linux驱动面试\" in:file language:Markdown"},
+    {"name":"GitHub STM32 面试文档","query":"\"STM32面试题\" in:file language:Markdown"},
+    {"name":"GitHub FreeRTOS 面试文档","query":"\"FreeRTOS面试题\" in:file language:Markdown"},
+    {"name":"GitHub Embedded Interview 文档","query":"\"embedded interview questions\" in:file language:Markdown"}
+  ],
+  "gitlab_project_queries": [
+    {"name":"GitLab 公共 Interview 项目","query":"interview"}
+  ],
+  "stackexchange_queries": [
+    {"name":"Linux 驱动技术问答","site":"stackoverflow","query":"linux kernel device driver interrupt device tree"},
+    {"name":"STM32 技术问答","site":"stackoverflow","query":"stm32 interrupt dma timer adc"},
+    {"name":"FreeRTOS 技术问答","site":"stackoverflow","query":"freertos scheduling semaphore queue mutex"},
+    {"name":"C 指针内存技术问答","site":"stackoverflow","query":"c pointer memory volatile embedded"},
+    {"name":"C++ 对象模型技术问答","site":"stackoverflow","query":"c++ virtual function object lifetime smart pointer"},
+    {"name":"操作系统并发技术问答","site":"stackoverflow","query":"operating system process thread mutex scheduling memory"},
+    {"name":"TCP Socket 技术问答","site":"stackoverflow","query":"tcp udp socket select epoll embedded"},
+    {"name":"外设协议技术问答","site":"stackoverflow","query":"i2c spi uart embedded protocol"},
+    {"name":"音视频底层技术问答","site":"stackoverflow","query":"v4l2 ffmpeg embedded video"},
+    {"name":"嵌入式 AI 技术问答","site":"stackoverflow","query":"embedded inference quantization edge ai"},
+    {"name":"电子工程 MCU 技术问答","site":"electronics","query":"microcontroller interrupt dma timer adc"},
+    {"name":"电子工程 RTOS 技术问答","site":"electronics","query":"rtos scheduling semaphore queue"},
+    {"name":"电子工程外设协议问答","site":"electronics","query":"i2c spi uart protocol"},
+    {"name":"Unix 内核驱动技术问答","site":"unix","query":"linux kernel module device driver"},
+    {"name":"Unix 进程网络技术问答","site":"unix","query":"process thread socket epoll"}
   ],
   "excluded_repository_names": [
     "GodOfCode-wyb/embedded-interview-hub"
@@ -34,6 +83,9 @@
     "csdn.net",
     "github.com",
     "github.io",
+    "gitlab.com",
+    "stackoverflow.com",
+    "stackexchange.com",
     "gitee.com",
     "cnblogs.com",
     "51cto.com",
@@ -50,7 +102,10 @@
     "cnblogs.com": 12,
     "51cto.com": 10,
     "github.com": 12,
-    "gitee.com": 12
+    "gitee.com": 12,
+    "gitlab.com": 12,
+    "stackoverflow.com": 14,
+    "stackexchange.com": 12
   },
   "reference_domains": [
     "docs.kernel.org",
@@ -75,10 +130,25 @@
     "汽车电子", "车载", "autosar", "fpga", "工业控制", "plc", "功能安全"
   ],
   "minimum_interview_score": 25,
-  "max_items_per_feed": 10,
-  "github_max_items_per_query": 10,
+  "max_items_per_feed": 20,
+  "github_max_items_per_query": 30,
+  "github_max_pages_per_query": 2,
+  "github_code_max_items_per_query": 30,
+  "github_code_max_pages_per_query": 1,
   "github_request_delay_seconds": 2.2,
-  "max_candidates": 400,
+  "github_code_request_delay_seconds": 6.5,
+  "gitlab_max_items_per_query": 100,
+  "gitlab_max_pages_per_query": 5,
+  "gitlab_request_delay_seconds": 0.8,
+  "stackexchange_max_items_per_query": 30,
+  "stackexchange_max_pages_per_query": 1,
+  "stackexchange_request_delay_seconds": 1.2,
+  "max_link_seed_pages": 40,
+  "max_links_per_seed": 20,
+  "max_link_discoveries": 300,
+  "link_rescan_after_days": 30,
+  "link_request_delay_seconds": 1.0,
+  "max_candidates": 5000,
   "page_excerpt_chars": 12000,
   "request_delay_seconds": 1.0
 }

@@ -53,7 +53,7 @@ def is_publishable(item: dict) -> bool:
 
 
 def main() -> int:
-    limit = int(os.environ.get("MAX_STAGE_QUESTIONS", "12"))
+    limit = int(os.environ.get("MAX_STAGE_QUESTIONS", "40"))
     today = datetime.now(timezone.utc).date().isoformat()
     review = read_json(INBOX / "review.json", []) or []
     candidates = read_json(INBOX / "candidates.json", []) or []
@@ -86,12 +86,17 @@ def main() -> int:
         source_url = str(item["source_url"]).strip()
         source_id = existing_source_by_url.get(source_url) or stable_id(source_url, "source")
         if source_id not in existing_source_ids:
+            provider = item.get("candidate_provider")
+            is_technical_qa = provider == "stackexchange-search"
             sources.append({
                 "id": source_id,
                 "title": bounded_text(item.get("source_title") or title, 220),
-                "kind": "公开面经候选",
+                "kind": "公开技术问答" if is_technical_qa else "公开面经候选",
                 "url": source_url,
-                "trust": "AI 结构化草稿，需人工核验",
+                "trust": (
+                    "公开技术问答的 AI 结构化草稿，需人工核验"
+                    if is_technical_qa else "AI 结构化草稿，需人工核验"
+                ),
             })
             existing_source_ids.add(source_id)
             existing_source_by_url[source_url] = source_id
@@ -162,7 +167,7 @@ def main() -> int:
         updates.insert(0, {
             "date": today,
             "title": f"新增 {staged} 道待审核面试题",
-            "description": "从公开面经候选中提取并去重，答案状态为 AI 草稿，合并前需人工检查来源与技术准确性。",
+            "description": "从公开面经和技术问答中提取并去重，答案状态为 AI 草稿，合并前需人工检查来源与技术准确性。",
         })
         write_json(CONTENT / "questions.json", questions)
         write_json(CONTENT / "sources.json", sources)

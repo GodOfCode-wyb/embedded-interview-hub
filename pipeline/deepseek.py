@@ -130,7 +130,9 @@ def needs_enrichment(candidate: dict, previous: dict | None, refresh_days: int) 
         return True
     source_updated = candidate.get("published_at")
     if (
-        candidate.get("provider") == "github-search"
+        candidate.get("provider") in {
+            "github-search", "github-code-search", "gitlab-project-search", "stackexchange-search"
+        }
         and source_updated
         and source_updated != previous.get("source_published_at")
     ):
@@ -153,6 +155,7 @@ def build_prompt(candidate: dict, known_titles: list[str], page_excerpt: str) ->
 候选摘要：{candidate.get('summary', '')}
 候选链接：{candidate.get('url', '')}
 发现主题：{candidate.get('discovered_by', '')}
+发现方式：{candidate.get('provider', '')}
 候选评分：{candidate.get('score', 0)}
 
 页面正文节选（仅用于提取事实，不得长段复制）：
@@ -189,7 +192,8 @@ def build_prompt(candidate: dict, known_titles: list[str], page_excerpt: str) ->
 3. 每个来源最多整理 8 道最有价值且不重复的题；不得长段复制来源文本。
 4. 只保留 C/C++、操作系统、网络、STM32/MCU、ARM、RTOS、Linux 系统/驱动、协议、构建调试、物联网、机器人、音视频、嵌入式 AI。
 5. 排除汽车电子、车载、AUTOSAR、FPGA、工业控制、PLC、功能安全专项内容。
-6. 输出严格 JSON。"""
+6. Stack Overflow 等公开技术问答属于八股知识来源，不得据此虚构公司、岗位、轮次或真实面经。
+7. 输出严格 JSON。"""
 
 
 def call_api(api_key: str, base_url: str, model: str, prompt: str) -> dict:
@@ -229,7 +233,7 @@ def main() -> int:
 
     base_url = os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com")
     model = os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-flash")
-    limit = int(os.environ.get("MAX_ENRICH_ITEMS", "10"))
+    limit = int(os.environ.get("MAX_ENRICH_ITEMS", "30"))
     refresh_days = int(os.environ.get("REENRICH_AFTER_DAYS", "30"))
     config = read_json(CONFIG_PATH, {}) or {}
     candidates = read_json(CANDIDATES_PATH, []) or []
@@ -259,6 +263,7 @@ def main() -> int:
                     "candidate_id": candidate["id"],
                     "source_url": candidate["url"],
                     "source_title": candidate["title"],
+                    "source_provider": candidate.get("provider"),
                     "source_published_at": candidate.get("published_at"),
                     "model": model,
                     "generated_at": datetime.now(timezone.utc).isoformat(),
@@ -277,6 +282,7 @@ def main() -> int:
                 "candidate_id": candidate["id"],
                 "source_url": candidate["url"],
                 "source_title": candidate["title"],
+                "source_provider": candidate.get("provider"),
                 "source_published_at": candidate.get("published_at"),
                 "model": model,
                 "generated_at": datetime.now(timezone.utc).isoformat(),

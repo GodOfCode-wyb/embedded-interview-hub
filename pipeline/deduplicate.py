@@ -65,6 +65,7 @@ def main() -> int:
                 "candidate_id": record["candidate_id"],
                 "source_url": record["source_url"],
                 "source_title": record.get("source_title"),
+                "candidate_provider": candidate.get("provider") or record.get("source_provider"),
                 "candidate_score": candidate.get("score", 0),
                 "relevance_reason": result.get("reason"),
                 "experience": result.get("experience"),

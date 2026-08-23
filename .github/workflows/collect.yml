@@ -21,10 +21,15 @@ jobs:
       DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL || 'https://api.deepseek.com' }}
       DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}
-      MAX_ENRICH_ITEMS: ${{ vars.MAX_ENRICH_ITEMS || '10' }}
-      MAX_STAGE_QUESTIONS: ${{ vars.MAX_STAGE_QUESTIONS || '12' }}
+      MAX_ENRICH_ITEMS: ${{ vars.MAX_ENRICH_ITEMS || '30' }}
+      MAX_STAGE_QUESTIONS: ${{ vars.MAX_STAGE_QUESTIONS || '40' }}
       PAGE_FETCH_DELAY_SECONDS: ${{ vars.PAGE_FETCH_DELAY_SECONDS || '0.8' }}
       REENRICH_AFTER_DAYS: ${{ vars.REENRICH_AFTER_DAYS || '30' }}
+      MAX_LINK_SEED_PAGES: ${{ vars.MAX_LINK_SEED_PAGES || '40' }}
+      MAX_LINKS_PER_SEED: ${{ vars.MAX_LINKS_PER_SEED || '20' }}
+      MAX_LINK_DISCOVERIES: ${{ vars.MAX_LINK_DISCOVERIES || '300' }}
+      LINK_RESCAN_AFTER_DAYS: ${{ vars.LINK_RESCAN_AFTER_DAYS || '30' }}
+      LINK_REQUEST_DELAY_SECONDS: ${{ vars.LINK_REQUEST_DELAY_SECONDS || '1.0' }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
@@ -51,6 +56,9 @@ jobs:
 
       - name: Discover public sources
         run: python pipeline/collect.py
+
+      - name: Expand related public links
+        run: python pipeline/discover.py
 
       - name: Structure candidates with DeepSeek
         run: python pipeline/deepseek.py
@@ -89,7 +97,7 @@ jobs:
 
           pr_number="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
           pr_title="content: 每日面经与候选题更新"
-          pr_body="自动发现公开面经、提取明确出现的问题并生成 AI 答案草稿。请在 Files changed 中重点检查 content/questions.json、content/sources.json 和 content/inbox/review.json；合并 PR 即表示人工审核通过。"
+          pr_body="通过免费公开搜索、公共代码索引、技术问答和合规关联链接发现面经与八股资料，并对明确出现的问题生成 AI 答案草稿。请在 Files changed 中重点检查 content/questions.json、content/sources.json 和 content/inbox/review.json；合并 PR 即表示人工审核通过。"
           if [ -n "$pr_number" ]; then
             gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
           else

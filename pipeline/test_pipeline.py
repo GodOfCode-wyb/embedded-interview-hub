@@ -9,6 +9,7 @@ from unittest.mock import patch
 
 import collect
 import deepseek
+import discover
 import promote
 from common import ROOT, read_json, write_json
 
@@ -45,6 +46,16 @@ class CollectorScoringTests(unittest.TestCase):
             "title": "example/embedded-interview-notes",
             "summary": "Embedded Linux driver interview questions and RTOS notes.",
             "url": "https://github.com/example/embedded-interview-notes",
+        }
+        _, kind, status, _ = collect.score_candidate(item, self.config)
+        self.assertEqual(kind, "interview")
+        self.assertEqual(status, "discovered")
+
+    def test_public_technical_qa_is_prioritized_as_bagu_source(self) -> None:
+        item = {
+            "title": "Why must volatile be used for a memory mapped register?",
+            "summary": "公开技术问答，面试八股参考：C 指针内存技术问答；标签 c embedded volatile",
+            "url": "https://stackoverflow.com/questions/123/example",
         }
         _, kind, status, _ = collect.score_candidate(item, self.config)
         self.assertEqual(kind, "interview")
@@ -92,6 +103,30 @@ class PageExtractionTests(unittest.TestCase):
             "review_status": "ai-draft",
         }
         self.assertFalse(deepseek.needs_enrichment(candidate, previous, 30))
+
+
+class LinkDiscoveryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.config = read_json(ROOT / "config" / "sources.json", {}) or {}
+        cls.allowed = {value.lower() for value in cls.config.get("allowed_result_domains", [])}
+
+    def test_parses_public_article_link(self) -> None:
+        links = discover.parse_links(
+            '<nav><a href="/login">登录</a></nav>'
+            '<article><a href="/post/linux-driver-interview">Linux 驱动面试题</a></article>'
+        )
+        self.assertEqual(len(links), 2)
+        self.assertEqual(links[1]["anchor"], "Linux 驱动面试题")
+
+    def test_rejects_login_and_unapproved_domains(self) -> None:
+        self.assertIsNone(discover.safe_public_link("https://juejin.cn/post/1", "/login", self.allowed))
+        self.assertIsNone(discover.safe_public_link("https://juejin.cn/post/1", "https://example.com/a", self.allowed))
+
+    def test_accepts_relevant_related_link(self) -> None:
+        seed = {"title": "Linux 驱动开发面经", "summary": "嵌入式驱动", "provider": "bing-rss"}
+        link = {"anchor": "字符设备与中断面试题", "url": "https://juejin.cn/post/linux-driver"}
+        self.assertTrue(discover.link_is_relevant(link, seed, self.config))
 
 
 class PromotionPolicyTests(unittest.TestCase):
