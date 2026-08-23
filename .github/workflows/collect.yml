@@ -22,6 +22,9 @@ jobs:
       DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL || 'https://api.deepseek.com' }}
       DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}
       MAX_ENRICH_ITEMS: ${{ vars.MAX_ENRICH_ITEMS || '10' }}
+      MAX_STAGE_QUESTIONS: ${{ vars.MAX_STAGE_QUESTIONS || '12' }}
+      PAGE_FETCH_DELAY_SECONDS: ${{ vars.PAGE_FETCH_DELAY_SECONDS || '0.8' }}
+      REENRICH_AFTER_DAYS: ${{ vars.REENRICH_AFTER_DAYS || '30' }}
       GH_TOKEN: ${{ github.token }}
     steps:
       - name: Checkout
@@ -34,6 +37,18 @@ jobs:
         with:
           python-version: '3.13'
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install site dependencies
+        run: npm ci
+
+      - name: Test collection policies
+        run: python -B -m unittest discover -s pipeline -p 'test_*.py'
+
       - name: Discover public sources
         run: python pipeline/collect.py
 
@@ -43,13 +58,23 @@ jobs:
       - name: Find possible duplicates
         run: python pipeline/deduplicate.py
 
+      - name: Stage reviewable AI drafts
+        run: python pipeline/promote.py
+
+      - name: Build public search index
+        run: python pipeline/build_index.py
+
       - name: Validate formal content
-        run: python pipeline/validate.py
+        run: |
+          python pipeline/validate.py
+          npm run content:validate
+          npm run typecheck
+          npm run build
 
       - name: Open or refresh content review PR
         shell: bash
         run: |
-          if [ -z "$(git status --porcelain -- content/inbox)" ]; then
+          if [ -z "$(git status --porcelain -- content public/data/catalog.json)" ]; then
             echo "No content changes."
             exit 0
           fi
@@ -58,12 +83,15 @@ jobs:
           git config user.name "embedded-interview-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$branch"
-          git add content/inbox
-          git commit -m "content: refresh interview source inbox"
+          git add content public/data/catalog.json
+          git commit -m "content: refresh interview review queue"
           git push --force-with-lease origin "HEAD:$branch"
 
-          if gh pr view "$branch" >/dev/null 2>&1; then
-            gh pr edit "$branch" --title "content: 每日面经候选更新" --body "自动发现并整理的公开面经候选。请检查来源、重复项和 AI 草稿后再并入正式题库。"
+          pr_number="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          pr_title="content: 每日面经与候选题更新"
+          pr_body="自动发现公开面经、提取明确出现的问题并生成 AI 答案草稿。请在 Files changed 中重点检查 content/questions.json、content/sources.json 和 content/inbox/review.json；合并 PR 即表示人工审核通过。"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
           else
-            gh pr create --base main --head "$branch" --title "content: 每日面经候选更新" --body "自动发现并整理的公开面经候选。请检查来源、重复项和 AI 草稿后再并入正式题库。"
+            gh pr create --base main --head "$branch" --title "$pr_title" --body "$pr_body"
           fi

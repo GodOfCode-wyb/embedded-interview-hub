@@ -20,6 +20,7 @@ jobs:
         with:
           python-version: '3.13'
       - run: npm ci
+      - run: python -B -m unittest discover -s pipeline -p 'test_*.py'
       - run: npm run content:validate
       - run: python pipeline/validate.py
       - run: npm run typecheck
