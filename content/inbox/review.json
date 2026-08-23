@@ -1,1 +1,475 @@
-[]
+[
+  {
+    "review_id": "review-ee53e8338bd6503a",
+    "candidate_id": "candidate-f79fb9e5f6e687a5",
+    "source_url": "https://unix.stackexchange.com/questions/248494/how-to-find-the-driver-module-associated-with-sata-device-on-linux",
+    "source_title": "How to find the driver (module) associated with SATA device on Linux?",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 52,
+    "relevance_reason": "标题明确涉及Linux下SATA设备驱动模块查找，属于Linux驱动技术问答，可作为嵌入式面试八股知识参考。",
+    "experience": null,
+    "question": {
+      "title": "如何找到与 SATA 设备关联的内核驱动模块？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备驱动模型与 sysfs",
+      "difficulty": "基础",
+      "question_evidence": "公开问答标题直接询问如何在 Linux 上查找 SATA 设备对应的驱动模块。",
+      "answer_short": "通过 sysfs 接口，查看 /sys/block/<设备名>/device/driver 符号链接，或使用 lsblk、udevadm 等工具定位使用的驱动模块。",
+      "answer_detail": "Linux 设备模型通过 sysfs 暴露设备与驱动的关联关系。对于块设备如 SATA 硬盘，通常可在 /sys/block/sda/device/ 下找到 vendor、model 等属性，而 driver 是 device 目录下的符号链接，指向绑定到该设备的驱动目录名。例如执行 `readlink /sys/block/sda/device/driver` 可得到驱动名称（如 ahci），再通过 `lsmod` 或 `modinfo` 查看驱动模块。另一种方式是使用 `udevadm info --query=all --name=/dev/sda`，它也能输出当前绑定的 DRIVER。在嵌入式系统中，若驱动编译进内核而非模块，则没有对应 .ko 文件，但可通过 `/sys/bus/pci/devices/.../driver_override` 或 `/proc/modules`（仅适用于模块）辅助判断。此外，`lspci -k` 可显示 PCI 设备所使用的驱动并推测对应的 SATA 控制器驱动。",
+      "follow_ups": [
+        "如何区分驱动是编入内核还是加载为模块？",
+        "在设备树中如何描述 SATA 控制器并关联驱动？",
+        "如果驱动未绑定，如何排查设备树或平台驱动注册问题？"
+      ],
+      "pitfalls": [
+        "误认为设备名 sda 固定，实际可能因存储介质顺序而改变。",
+        "混淆控制器驱动（如 ahci）和块设备驱动（如 sd_mod），前者属于 PCI 驱动，后者属于 SCSI 子系统驱动。",
+        "sysfs 路径在不同内核版本上可能略有差异，直接硬编码风险高。"
+      ],
+      "tags": [
+        "SATA",
+        "sysfs",
+        "设备驱动模型",
+        "block-device",
+        "Linux内核"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.2162,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-7ae8d809076cfa7a"
+  },
+  {
+    "review_id": "review-2c8b7ef7d76a5948",
+    "candidate_id": "candidate-0f026c02ac775578",
+    "source_url": "https://stackoverflow.com/questions/28571598/coherently-understand-the-software-hardware-interaction-with-regard-to-dma-and-b",
+    "source_title": "Coherently understand the software-hardware interaction with regard to DMA and buses",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 54,
+    "relevance_reason": "候选页面围绕DMA与总线的软硬件交互，属于嵌入式Linux驱动核心技术，符合面试八股来源。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "DMA 与总线之间的软硬件交互是如何工作的？",
+      "domain": "计算机体系结构",
+      "subtopic": "DMA 与总线",
+      "difficulty": "进阶",
+      "question_evidence": "候选标题为'Coherently understand the software-hardware interaction with regard to DMA and buses'，归属Linux驱动技术问答，标签含dma和amba。",
+      "answer_short": "DMA控制器通过总线(如AMBA)发起读写传输，代替CPU搬运数据，需经过总线仲裁获得总线控制权，并处理地址映射和Cache一致性。",
+      "answer_detail": "DMA是直接内存访问，允许外设直接与内存交换数据，无需CPU逐字干预。在软硬件交互层面，DMA控制器作为总线主设备(master)连接到系统总线（如ARM的AMBA AHB/AXI），能够发起总线请求以访问内存或外设寄存器。软件（驱动）需要配置DMA控制器的源地址、目的地址、传输长度和触发源，然后启动DMA。启动后，DMA控制器向总线仲裁器申请总线使用权，仲裁器根据优先级和当前总线占用情况授予权限。一旦获得总线，DMA就执行地址和数据阶段的传输。传输过程中需注意：1) 总线架构（如AXI支持突发传输）影响效率；2) DMA控制器可能包含FIFO缓冲，需要处理传输完成中断；3) 如果涉及Cache，需进行一致性处理，否则可能读到旧值。嵌入式软件中常用dma_alloc_coherent分配一致缓冲区或使用dma_map_single配合flush/invalidate操作。",
+      "follow_ups": [
+        "DMA 与 Cache 不一致问题是如何产生的？",
+        "在 Linux 中如何配置 DMA 传输？",
+        "AMBA 总线上 AHB 和 APB 的区别是什么？"
+      ],
+      "pitfalls": [
+        "误以为 DMA 传输不消耗 CPU 资源，实际需要CPU配置和中断开销。",
+        "忽略总线仲裁延迟和带宽竞争，可能影响实时性。",
+        "未做 Cache 一致性处理导致数据错误。"
+      ],
+      "tags": [
+        "DMA",
+        "AMBA",
+        "总线",
+        "软硬件交互",
+        "Linux 驱动"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.25,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-3f9eebd9f8394ed0"
+  },
+  {
+    "review_id": "review-d118a0ec4109a93f",
+    "candidate_id": "candidate-d690f217ee05dcb1",
+    "source_url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
+    "source_title": "How to add an SPI device driver, if a device is already accessed by the \"spidev\" driver?",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 54,
+    "relevance_reason": "该来源为Linux SPI驱动开发的技术问答，与嵌入式/Linux驱动相关，可提取一道关于spidev与自定义设备驱动共存的问题。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "如何为一个已经被 spidev 驱动占用的 SPI 设备添加自定义设备驱动？",
+      "domain": "Linux 驱动",
+      "subtopic": "SPI 子系统与设备驱动注册",
+      "difficulty": "进阶",
+      "question_evidence": "Stack Overflow 标题：How to add an SPI device driver, if a device is already accessed by the 'spidev' driver?",
+      "answer_short": "需在设备树中禁用或移除该设备的 spidev 节点，改为绑定自定义驱动，并确保驱动名称与设备树 compatible 匹配；同时考虑 SPI 设备地址和片选冲突。",
+      "answer_detail": "Linux 内核中，spidev 是一个通用的 SPI 用户态驱动，当设备树中 SPI 节点的 compatible 为 \"spidev\"（或类似）时，会绑定 spidev 驱动。若要添加自定义驱动，需要修改设备树：将目标 SPI 设备的 compatible 属性改为自定义驱动中 of_match_table 中定义的字符串，或者在驱动中通过 name 匹配。同时要移除或覆盖 spidev 的兼容项，否则两个驱动会争夺设备。此外，自定义驱动需要实现 spi_driver 的 probe/remove 等回调，并在初始化时注册 driver。要避免与 spidev 冲突，可确保设备树中只有一个 compatible 匹配项。在嵌入式系统中，如果设备已被用户态程序通过 /dev/spidev* 访问，切换为内核驱动时需同步调整用户态程序。还要注意 SPI 设备的片选、模式和时钟频率等配置。",
+      "follow_ups": [
+        "设备树中如何让同一个 SPI 设备在不同阶段绑定不同驱动？",
+        "spidev 驱动和自定义驱动的优先级由什么决定？",
+        "如果设备树中同时存在两个 compatible 会怎样？"
+      ],
+      "pitfalls": [
+        "只添加自定义驱动但忘了修改设备树，导致 probe 不执行。",
+        "错误修改全局 spidev 节点而影响其他设备。",
+        "在驱动中硬编码设备信息而不是使用设备树。"
+      ],
+      "tags": [
+        "Linux 驱动",
+        "SPI",
+        "spidev",
+        "设备树"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.2807,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-9f081ee07efb1ea9"
+  },
+  {
+    "review_id": "review-f597f3212939e392",
+    "candidate_id": "candidate-bcc277846270c87e",
+    "source_url": "https://stackoverflow.com/questions/51637425/getting-linux-irq-number-from-hardware-irq-number",
+    "source_title": "Getting Linux IRQ number from hardware IRQ number",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 50,
+    "relevance_reason": "页面标题涉及 Linux IRQ 映射，属于 Linux 驱动面试常考知识点，与已有问题不重复。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "如何从硬件中断号获取 Linux IRQ 号？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断子系统",
+      "difficulty": "进阶",
+      "question_evidence": "来源标题为 'Getting Linux IRQ number from hardware IRQ number'，公开问答中讨论中断号映射问题。",
+      "answer_short": "在 Linux 中，硬件中断号通过 irq_domain 映射为 Linux IRQ 号。设备树中通常使用 interrupts 属性描述硬件中断号，驱动通过 platform_get_irq() 或 irq_of_parse_and_map() 获取 IRQ 号。",
+      "answer_detail": "Linux 中断子系统通过 irq_domain 将硬件中断号（hwirq）映射到 Linux 的 irq_desc 编号。对于设备树平台，驱动通常不直接操作硬件中断号，而是从设备树节点获取。例如，platform_get_irq(pdev, 0) 内部会通过 irq_of_parse_and_map() 解析 interrupts 属性并返回映射后的虚拟 IRQ 号。对于传统非设备树方式，可能采用 irq_create_mapping() 或 irq_alloc_descs() 等接口。理解 irq_domain 的线性映射、树状映射等有助于排查中断申请失败问题。嵌入式驱动开发中，使用错误的中断号会导致 request_irq 失败或中断不触发。",
+      "follow_ups": [
+        "irq_domain 的线性映射和树状映射有何区别？",
+        "platform_get_irq 与 irq_of_parse_and_map 有什么区别？",
+        "设备树中 interrupts 属性如何与驱动关联？"
+      ],
+      "pitfalls": [
+        "混淆硬件中断号与 Linux IRQ 号，外设寄存器中的中断号需经映射才可使用。",
+        "在共享中断中错误使用 dev_id 导致 free_irq 无法正常释放。"
+      ],
+      "tags": [
+        "Linux 驱动",
+        "IRQ",
+        "irq_domain",
+        "设备树"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.3111,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-24fc2dca5f9dbfb3"
+  },
+  {
+    "review_id": "review-4f6bb960f48d0a8e",
+    "candidate_id": "candidate-e5508e08478a9201",
+    "source_url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
+    "source_title": "Preferred Linux driver architecture for a multi-function PMU device",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 54,
+    "relevance_reason": "候选页面涉及Linux驱动架构设计，属于嵌入式面试相关主题。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "如何设计一个多功能PMU设备的Linux驱动架构？",
+      "domain": "Linux 驱动",
+      "subtopic": "驱动架构设计",
+      "difficulty": "进阶",
+      "question_evidence": "页面标题为 Preferred Linux driver architecture for a multi-function PMU device，直接提出了该问题。",
+      "answer_short": "通常采用平台驱动模型，将设备、驱动和总线分离；根据PMU功能拆分为核心驱动和子功能（如I2C、GPIO、regulator、ADC等）驱动，通过MFD（Multi-Function Device）框架或普通平台驱动管理。",
+      "answer_detail": "多功能PMU设备通常通过I2C或SPI连接，内部集成多个子模块（如电压调节器、GPIO、ADC、充电控制等）。在Linux驱动架构中，推荐如下设计：1. 使用设备树描述硬件连接和配置参数，实现驱动与硬件解耦。2. 采用平台驱动模型，将PMU作为平台设备。3. 对于多功能设备，优先考虑使用MFD（Multi-Function Device）框架：PMU核心驱动注册为主设备，通过mfd_add_devices创建子设备，每个子设备对应一个子模块驱动。4. 子模块驱动使用对应子系统接口（如regulator、gpio、hrtimer等），避免直接操作寄存器。5. 中断处理根据功能划分，使用request_threaded_irq或工作队列处理慢速任务。6. 注意电源管理协同，需实现suspend/resume回调。嵌入式约束：资源受限，需考虑驱动内存占用和启动时间；I2C访问可能阻塞，不能用于原子上下文；不同PMU寄存器映射差异大，驱动需通过设备树参数化。",
+      "follow_ups": [
+        "MFD框架和普通平台驱动相比有什么优势？",
+        "如果PMU的多个子功能共享一个I2C控制器，如何设计驱动以避免总线冲突？",
+        "如何为PMU驱动添加电源管理支持？"
+      ],
+      "pitfalls": [
+        "误以为所有多功能设备都必须用MFD，简单设备可用单个驱动处理。",
+        "在中断处理中直接调用I2C传输，导致阻塞或死锁。",
+        "忽略设备树匹配表，导致驱动无法加载。",
+        "未处理并发共享寄存器的保护，导致数据竞争。"
+      ],
+      "tags": [
+        "Linux驱动",
+        "PMU",
+        "MFD",
+        "I2C",
+        "GPIO"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.3256,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-4394d948800e6eb8"
+  },
+  {
+    "review_id": "review-eea2dfd1d75d402c",
+    "candidate_id": "candidate-9ab55f90a5d6f2ec",
+    "source_url": "https://stackoverflow.com/questions/66361263/linux-custom-device-driver-probe-and-init-functions-are-not-being-called",
+    "source_title": "Linux custom device driver probe and init functions are not being called",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 50,
+    "relevance_reason": "该来源为 Linux 驱动技术问答，主题匹配，可提炼出 probe/init 调用机制与排查方法。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "Linux 设备驱动 probe() 和 init() 函数没有被调用，为什么？如何排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备驱动模型与设备树匹配",
+      "difficulty": "进阶",
+      "question_evidence": "来源标题直接提出自定义设备驱动 probe 和 init 函数未被调用的问题。",
+      "answer_short": "模块的 init 函数在模块加载时调用；probe 函数在驱动核心匹配到设备和驱动时调用。未调用的常见原因是设备树 compatible 与驱动 of_match_table 不匹配、驱动未注册、设备未使能或资源获取失败。",
+      "answer_detail": "在 Linux 中，device_driver 的初始化入口通常用 module_init() 声明，当模块插入（insmod）或内核启动加载时调用，完成驱动注册。probe() 是 device_driver 结构体中的回调，当总线上添加了匹配的设备，或驱动注册时已有设备，驱动核心通过匹配（如 of_driver_match_device 匹配设备树 compatible）成功后调用。probe 未被调用，首要排查驱动是否已注册（查看 /sys/bus/.../drivers），其次检查设备树节点是否有效、状态是否为 \"okay\"、compatible 是否匹配，以及资源和依赖如时钟、电源域是否准备好。另外，若使用 module_init 而驱动未编译/加载，则 init 也执行不到。在 Xilinx/PetaLinux 环境中还需检查内核配置和设备树到底载入的是哪个版本。",
+      "follow_ups": [
+        "probe 函数返回 -EPROBE_DEFER 会怎样？",
+        "如何查看驱动和设备的匹配状态？",
+        "module_init 和 subsys_initcall 有什么区别？"
+      ],
+      "pitfalls": [
+        "误以为驱动只要编译进内核就会自动 probe，实际还需设备节点匹配。",
+        "设备树 compatible 中是否有空格或大小写不匹配。",
+        "把 init 和 probe 混淆。"
+      ],
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "probe",
+        "module_init"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.339,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-08d46cc622684dbd"
+  },
+  {
+    "review_id": "review-6d1c5f918f68b9b6",
+    "candidate_id": "candidate-686944364424dcb0",
+    "source_url": "https://unix.stackexchange.com/questions/110411/observing-a-hard-disk-write-in-kernel-space-with-drivers-modules",
+    "source_title": "Observing a hard-disk write in kernel space (with drivers/modules)",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 52,
+    "relevance_reason": "候选页面主题为 Linux 内核驱动技术问答，涉及内核空间磁盘 I/O 观测，属于嵌入式 Linux 驱动调试常见面试点。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "如何在 Linux 内核空间观察/跟踪硬盘写入？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核调试与跟踪",
+      "difficulty": "进阶",
+      "question_evidence": "公开技术问答页面标题明确为“Observing a hard-disk write in kernel space (with drivers/modules)”，摘要标记为 linux-kernel debugging trace。",
+      "answer_short": "可以使用 blktrace/blkparse、ftrace、tracepoints（如 block:block_rq_insert）和 kprobes 等方式在内核态跟踪磁盘 I/O 请求。",
+      "answer_detail": "内核提供了多种机制观测块设备 I/O：\n1. **blktrace/blkparse**：专门用于跟踪块层请求，可记录插入、合并、完成等事件，适合分析 I/O 性能与路径。\n2. **ftrace**：可动态跟踪内核函数调用，通过 `tracefs` 设置过滤器，例如跟踪 `submit_bio`、`generic_make_request` 等关键函数。\n3. **tracepoints**：内核预置的静态探针，如 `block:block_rq_insert` 事件，无需重编译即可用 `perf trace` 或 `trace-cmd` 采集。\n4. **kprobes**：动态插桩，可探测任意内核函数，但需注意内核版本兼容性和开销。\n在嵌入式环境中，需确认内核开启相关配置（如 CONFIG_BLK_DEV_IO_TRACE、CONFIG_TRACEPOINTS），且注意存储空间和性能影响。",
+      "follow_ups": [
+        "如何区分内核中的 I/O 调度算法对跟踪结果的影响？",
+        "用户态工具 (如 iostat) 和内核态跟踪有什么区别和互补性？"
+      ],
+      "pitfalls": [
+        "误以为通过 /proc 或 /sys 即可直接观察内核 I/O 路径，实际需要 root 和调试接口。",
+        "忽略 kprobes 可能引入的性能开销，在实时嵌入式系统中需谨慎。"
+      ],
+      "tags": [
+        "Linux内核",
+        "磁盘I/O",
+        "调试",
+        "ftrace",
+        "blktrace"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.359,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-f1091ae36adcf4be"
+  },
+  {
+    "review_id": "review-dde9de20772b1bb5",
+    "candidate_id": "candidate-ec8dac07d6bf66e7",
+    "source_url": "https://unix.stackexchange.com/questions/315186/how-does-the-linux-kernel-know-device-major-and-minor-numbers",
+    "source_title": "How does the linux kernel know device major and minor numbers?",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 52,
+    "relevance_reason": "页面主题为 Linux 内核驱动设备号机制，与嵌入式 Linux 驱动面试知识点直接相关。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "Linux 内核如何识别设备的主设备号和次设备号？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备号与 dev_t",
+      "difficulty": "基础",
+      "question_evidence": "候选页面的标题直接提问 Linux 内核如何获知设备的主次设备号。",
+      "answer_short": "内核通过 dev_t 类型和 kdev_t 解析主次设备号，并在 inode 中存储 i_rdev，设备号由 mknod 或 device_create 等注册到 sysfs 和 devtmpfs。",
+      "answer_detail": "Linux 使用 dev_t 表示设备号，其中高 12 位为主设备号，低 20 位为次设备号（不同架构可能有不同编码）。内核在创建设备节点时，通过调用 register_chrdev_region 或 alloc_chrdev_region 分配设备号，并在 inode 的 i_rdev 字段中保存。访问设备时，VFS 通过 inode 中的设备号找到对应驱动。设备号还可从 sysfs 中的 uevent 或 devtmpfs 获取，udev 依赖此信息创建设备节点。嵌入式系统需注意静态分配与动态分配的选择，以及设备号冲突问题。",
+      "follow_ups": [
+        "主设备号和次设备号的作用是什么？",
+        "如何查看系统中已注册的设备号？",
+        "device_create 与 mknod 创建设备节点的区别？"
+      ],
+      "pitfalls": [
+        "误以为设备号是硬件编号，实际上由内核分配并关联驱动。",
+        "混淆 chrdev 和 blkdev 的设备号注册方式。"
+      ],
+      "tags": [
+        "linux-kernel",
+        "device-number",
+        "dev_t",
+        "drivers"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.3636,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-9c1fc7af35060a87"
+  },
+  {
+    "review_id": "review-a09a8445fcdc83e4",
+    "candidate_id": "candidate-a47ca86a61c4b1b4",
+    "source_url": "https://unix.stackexchange.com/questions/156461/determine-driver-for-network-interface",
+    "source_title": "Determine driver for network interface",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 52,
+    "relevance_reason": "页面涉及Linux网络接口驱动的确认方法，属于Linux驱动知识，适合作为面试八股参考。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "如何确定网络接口对应的内核驱动？",
+      "domain": "Linux 驱动",
+      "subtopic": "网络接口驱动",
+      "difficulty": "基础",
+      "question_evidence": "页面标题为'Determine driver for network interface'，摘要涉及Unix内核驱动技术问答。",
+      "answer_short": "使用 ethtool -i <interface> 或查看 /sys/class/net/<interface>/device/driver 路径。",
+      "answer_detail": "在Linux中，可以通过多种方式查看网络接口对应的驱动。例如，ethtool -i eth0 会输出 driver、version、firmware-version 等信息。也可以查看 /sys/class/net/eth0/device/driver 符号链接，获取驱动的名称。此外，/proc/net/dev 只显示接口统计，lspci -k 可以显示PCI设备的驱动。在嵌入式Linux开发中，理解设备树和驱动匹配机制有助于分析网卡驱动。",
+      "follow_ups": [
+        "如何查看驱动模块的加载状态？",
+        "若接口未绑定驱动，如何排查？"
+      ],
+      "pitfalls": [
+        "混淆网络接口名称与驱动名称；误以为每个接口有独立驱动，实际多个接口可共用同一驱动。"
+      ],
+      "tags": [
+        "网络接口",
+        "驱动",
+        "ethtool",
+        "sysfs"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.4,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-0139bb88c0490b9d"
+  },
+  {
+    "review_id": "review-b63b1f39027c121a",
+    "candidate_id": "candidate-6e18ed2d71a52519",
+    "source_url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
+    "source_title": "How to correctly configure interrupt for INT line of Atmel MXT641T touch chip in Android 5 kernel device tree?",
+    "candidate_provider": "stackexchange-search",
+    "candidate_score": 50,
+    "relevance_reason": "候选页面涉及 Linux 设备树中的触摸芯片中断配置，属于 Linux 驱动开发领域，与现有题目不重复。",
+    "experience": {
+      "company": null,
+      "role": null,
+      "round": null,
+      "date": null,
+      "summary": null
+    },
+    "question": {
+      "title": "Linux 设备树中如何配置触摸屏的中断引脚？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树中断配置",
+      "difficulty": "基础",
+      "question_evidence": "Stack Overflow 问题询问在 Android 5 内核设备树中为 Atmel MXT641T 触摸芯片配置 INT 中断线的正确方法。",
+      "answer_short": "在设备树中，通过 interrupts 属性指定中断源和触发类型，并用 interrupt-parent 指定中断控制器；驱动中使用 platform_get_irq() 获取中断号，然后 request_irq() 注册中断处理函数。",
+      "answer_detail": "设备树中，触摸芯片节点通常包含 interrupt-parent（指向中断控制器，如 GPIO 控制器）和 interrupts（如 <&gpioX pin IRQ_TYPE_EDGE_FALLING>）。内核启动时，of_irq_parse_and_map 将设备树中断映射为 Linux 中断号。驱动在 probe 中调用 platform_get_irq 获取 IRQ，然后 request_irq 注册处理函数，并设置触发类型。对于触摸芯片，需要根据芯片手册配置合适的触发条件（边沿或电平），并注意休眠唤醒时可能需要 IRQF_NO_SUSPEND 或相关唤醒源配置。此外，I2C 触摸芯片通常使用 GPIO 中断，需确认 GPIO 控制器支持中断且有对应的 pinctrl 设置。",
+      "follow_ups": [
+        "如果触摸屏在休眠后无法唤醒，如何排查中断配置？",
+        "interrupts 和 interrupts-extended 的区别是什么？",
+        "如何确定 GPIO 中断的触发类型？"
+      ],
+      "pitfalls": [
+        "忘记配置 interrupt-parent 导致中断号映射失败",
+        "中断触发类型与芯片不匹配导致中断丢失或持续触发",
+        "设备树中中断 GPIO 的 pinctrl 配置冲突",
+        "在 probe 中申请中断时设备尚未就绪"
+      ],
+      "tags": [
+        "设备树",
+        "中断",
+        "触摸屏",
+        "Linux 驱动"
+      ],
+      "possible_duplicate_title": null
+    },
+    "duplicate_score": 0.4103,
+    "possible_duplicate_id": null,
+    "possible_duplicate_title": null,
+    "recommendation": "new-draft",
+    "decision": "staged",
+    "staged_question_id": "question-fdf61f240f196013"
+  }
+]

@@ -1,6 +1,151 @@
 {
-  "generated_at": "2026-08-23T11:20:57.271931+00:00",
-  "candidate_count": 51,
-  "failure_count": 0,
-  "failures": []
+  "generated_at": "2026-08-23T13:11:22.021918+00:00",
+  "candidate_count": 1056,
+  "status_counts": {
+    "discovered": 546,
+    "out-of-scope": 7,
+    "reference-only": 503
+  },
+  "provider_counts": {
+    "github-code-search": 83,
+    "github-search": 286,
+    "gitlab-project-search": 500,
+    "stackexchange-search": 136,
+    "unknown": 51
+  },
+  "failure_count": 33,
+  "failures": [
+    {
+      "feed": "Linux 驱动面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "Linux 驱动面经",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "Linux 系统编程面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "STM32 MCU 面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "RTOS FreeRTOS 面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式 C 语言面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式 C++ 面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "操作系统面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "计算机网络面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "外设协议与调试面经",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "物联网岗位面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "机器人岗位面经",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "音视频岗位面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式 AI 岗位面经",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式综合面经",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式综合面试题",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "Linux 内核八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "设备树中断并发面试",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "字符设备总线模型面试",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "C 指针内存八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "C++ 对象模型八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "操作系统并发八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "网络协议八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "MCU 外设八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "RTOS 调度同步八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "ARM 体系结构面试",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式调试构建面试",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "驱动开发面经 site 牛客",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式面经 site 掘金",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式面试题 site 博客园",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "音视频底层八股",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "嵌入式 AI 推理面试",
+      "error": "syntax error: line 1, column 0"
+    },
+    {
+      "feed": "GitHub STM32 面试文档",
+      "error": "HTTP Error 429: Too Many Requests"
+    }
+  ]
 }

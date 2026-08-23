@@ -1,0 +1,242 @@
+[
+  {
+    "url": "https://github.com/Sering-Hong/embedded-interview",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 20,
+    "error": null
+  },
+  {
+    "url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://github.com/lmq6178/Embedded_Interview_hugo",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 6,
+    "error": null
+  },
+  {
+    "url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/28571598/coherently-understand-the-software-hardware-interaction-with-regard-to-dma-and-b",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://github.com/Craftbai/Interview-Question",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 20,
+    "error": null
+  },
+  {
+    "url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/110411/observing-a-hard-disk-write-in-kernel-space-with-drivers-modules",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/315186/how-does-the-linux-kernel-know-device-major-and-minor-numbers",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/156461/determine-driver-for-network-interface",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/248494/how-to-find-the-driver-module-associated-with-sata-device-on-linux",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/51637425/getting-linux-irq-number-from-hardware-irq-number",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/66361263/linux-custom-device-driver-probe-and-init-functions-are-not-being-called",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/41990475/compactpci-system-running-debian-linux-lspci-shows-incorrect-irq-leading-to-gen",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/60914235/cmsis-driver-peripherals",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/39016872/custom-linux-build-on-nanopi-neo-board",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://github.com/GalenDeng/Embedded-Linux/blob/4c3c7edcdf0cf76595b798939524b40e72702401/1.嵌入式编程基础知识/嵌入式面试题汇总/面试题.md",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "'ascii' codec can't encode characters in position 78-86: ordinal not in range(128)"
+  },
+  {
+    "url": "https://github.com/zc110747/build_embed_linux_system/blob/03732ad95cee66b9c45b9c3e5cb5a2170e89ac04/src/end_appendix-03.interview_driver.md",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 1,
+    "error": null
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+    "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

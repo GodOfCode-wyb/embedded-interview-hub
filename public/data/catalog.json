@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-08-23T09:46:59.540388+00:00",
+  "generated_at": "2026-08-23T13:21:36.466458+00:00",
   "stats": {
-    "questions": 40,
+    "questions": 50,
     "experiences": 4,
-    "sources": 21,
+    "sources": 31,
     "domains": {
       "C 语言": 3,
       "C++": 3,
       "Linux 系统编程": 2,
-      "Linux 驱动": 5,
+      "Linux 驱动": 14,
       "RTOS": 3,
       "STM32 / MCU": 3,
       "外设与协议": 3,
@@ -18,7 +18,7 @@
       "机器人": 1,
       "物联网": 1,
       "编译与构建": 2,
-      "计算机体系结构": 2,
+      "计算机体系结构": 3,
       "计算机网络": 3,
       "调试与测试": 2,
       "音视频": 1
@@ -553,6 +553,166 @@
         "端侧推理"
       ],
       "status": "reviewed"
+    },
+    {
+      "id": "question-7ae8d809076cfa7a",
+      "title": "如何找到与 SATA 设备关联的内核驱动模块？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备驱动模型与 sysfs",
+      "difficulty": "基础",
+      "tags": [
+        "SATA",
+        "sysfs",
+        "设备驱动模型",
+        "block-device",
+        "Linux内核",
+        "Linux 驱动",
+        "设备驱动模型与 sysfs"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3f9eebd9f8394ed0",
+      "title": "DMA 与总线之间的软硬件交互是如何工作的？",
+      "domain": "计算机体系结构",
+      "subtopic": "DMA 与总线",
+      "difficulty": "进阶",
+      "tags": [
+        "DMA",
+        "AMBA",
+        "总线",
+        "软硬件交互",
+        "Linux 驱动",
+        "计算机体系结构",
+        "DMA 与总线"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9f081ee07efb1ea9",
+      "title": "如何为一个已经被 spidev 驱动占用的 SPI 设备添加自定义设备驱动？",
+      "domain": "Linux 驱动",
+      "subtopic": "SPI 子系统与设备驱动注册",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "SPI",
+        "spidev",
+        "设备树",
+        "SPI 子系统与设备驱动注册"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-24fc2dca5f9dbfb3",
+      "title": "如何从硬件中断号获取 Linux IRQ 号？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "IRQ",
+        "irq_domain",
+        "设备树",
+        "中断子系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-4394d948800e6eb8",
+      "title": "如何设计一个多功能PMU设备的Linux驱动架构？",
+      "domain": "Linux 驱动",
+      "subtopic": "驱动架构设计",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux驱动",
+        "PMU",
+        "MFD",
+        "I2C",
+        "GPIO",
+        "Linux 驱动",
+        "驱动架构设计"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-08d46cc622684dbd",
+      "title": "Linux 设备驱动 probe() 和 init() 函数没有被调用，为什么？如何排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备驱动模型与设备树匹配",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "probe",
+        "module_init",
+        "设备驱动模型与设备树匹配"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f1091ae36adcf4be",
+      "title": "如何在 Linux 内核空间观察/跟踪硬盘写入？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核调试与跟踪",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux内核",
+        "磁盘I/O",
+        "调试",
+        "ftrace",
+        "blktrace",
+        "Linux 驱动",
+        "内核调试与跟踪"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9c1fc7af35060a87",
+      "title": "Linux 内核如何识别设备的主设备号和次设备号？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备号与 dev_t",
+      "difficulty": "基础",
+      "tags": [
+        "linux-kernel",
+        "device-number",
+        "dev_t",
+        "drivers",
+        "Linux 驱动",
+        "设备号与 dev_t"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-0139bb88c0490b9d",
+      "title": "如何确定网络接口对应的内核驱动？",
+      "domain": "Linux 驱动",
+      "subtopic": "网络接口驱动",
+      "difficulty": "基础",
+      "tags": [
+        "网络接口",
+        "驱动",
+        "ethtool",
+        "sysfs",
+        "Linux 驱动",
+        "网络接口驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fdf61f240f196013",
+      "title": "Linux 设备树中如何配置触摸屏的中断引脚？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树中断配置",
+      "difficulty": "基础",
+      "tags": [
+        "设备树",
+        "中断",
+        "触摸屏",
+        "Linux 驱动",
+        "设备树中断配置"
+      ],
+      "status": "ai-draft"
     }
   ]
 }

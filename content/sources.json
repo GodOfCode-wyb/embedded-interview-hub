@@ -1,23 +1,219 @@
 [
-  {"id":"notes-sharpa","title":"sharpA 嵌软一面","kind":"用户原始笔记","url":null,"trust":"面经原始记录"},
-  {"id":"notes-jingwei","title":"经纬恒润一面","kind":"用户原始笔记","url":null,"trust":"面经原始记录"},
-  {"id":"notes-rtos-linux","title":"RTOS 与 Linux 方向面经","kind":"用户原始笔记","url":null,"trust":"面经原始记录"},
-  {"id":"notes-insta-camera","title":"影石嵌入式 Camera 实习面经","kind":"用户原始笔记","url":null,"trust":"面经原始记录"},
-  {"id":"linux-docs","title":"Linux Kernel Documentation","kind":"官方文档","url":"https://docs.kernel.org/","trust":"权威资料"},
-  {"id":"linux-driver-docs","title":"Linux Driver Implementer's API Guide","kind":"官方文档","url":"https://docs.kernel.org/driver-api/index.html","trust":"权威资料"},
-  {"id":"linux-dma-docs","title":"Dynamic DMA Mapping Guide","kind":"官方文档","url":"https://docs.kernel.org/core-api/dma-api-howto.html","trust":"权威资料"},
-  {"id":"linux-locking-docs","title":"Unreliable Guide To Locking","kind":"官方文档","url":"https://docs.kernel.org/kernel-hacking/locking.html","trust":"权威资料"},
-  {"id":"linux-devicetree-docs","title":"Devicetree Usage Model","kind":"官方文档","url":"https://docs.kernel.org/devicetree/usage-model.html","trust":"权威资料"},
-  {"id":"linux-debug-docs","title":"Linux Kernel Debugging Tools","kind":"官方文档","url":"https://docs.kernel.org/dev-tools/index.html","trust":"权威资料"},
-  {"id":"linux-rt-docs","title":"Real-time preemption","kind":"官方文档","url":"https://docs.kernel.org/core-api/real-time/","trust":"权威资料"},
-  {"id":"linux-man-pages","title":"Linux man-pages project","kind":"上游文档","url":"https://www.kernel.org/doc/man-pages/","trust":"权威资料"},
-  {"id":"arm-docs","title":"Arm Developer Documentation","kind":"官方文档","url":"https://developer.arm.com/documentation","trust":"权威资料"},
-  {"id":"stm32-docs","title":"STM32 MCU documentation","kind":"官方文档","url":"https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html","trust":"权威资料"},
-  {"id":"freertos-docs","title":"FreeRTOS Documentation","kind":"官方文档","url":"https://www.freertos.org/Documentation/RTOS_book.html","trust":"权威资料"},
-  {"id":"rfc-tcp","title":"RFC 9293 — Transmission Control Protocol","kind":"标准","url":"https://www.rfc-editor.org/rfc/rfc9293","trust":"权威资料"},
-  {"id":"mqtt-spec","title":"MQTT Version 5.0","kind":"标准","url":"https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html","trust":"权威资料"},
-  {"id":"ros2-docs","title":"ROS 2 Documentation","kind":"官方文档","url":"https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Different-Middleware-Vendors.html","trust":"权威资料"},
-  {"id":"v4l2-docs","title":"Video4Linux devices","kind":"官方文档","url":"https://docs.kernel.org/userspace-api/media/v4l/v4l2.html","trust":"权威资料"},
-  {"id":"edge-ai-docs","title":"TensorFlow Lite quantization specification","kind":"官方文档","url":"https://www.tensorflow.org/lite/performance/quantization_spec","trust":"权威资料"},
-  {"id":"cmake-docs","title":"CMake Documentation","kind":"官方文档","url":"https://cmake.org/cmake/help/latest/","trust":"权威资料"}
+  {
+    "id": "notes-sharpa",
+    "title": "sharpA 嵌软一面",
+    "kind": "用户原始笔记",
+    "url": null,
+    "trust": "面经原始记录"
+  },
+  {
+    "id": "notes-jingwei",
+    "title": "经纬恒润一面",
+    "kind": "用户原始笔记",
+    "url": null,
+    "trust": "面经原始记录"
+  },
+  {
+    "id": "notes-rtos-linux",
+    "title": "RTOS 与 Linux 方向面经",
+    "kind": "用户原始笔记",
+    "url": null,
+    "trust": "面经原始记录"
+  },
+  {
+    "id": "notes-insta-camera",
+    "title": "影石嵌入式 Camera 实习面经",
+    "kind": "用户原始笔记",
+    "url": null,
+    "trust": "面经原始记录"
+  },
+  {
+    "id": "linux-docs",
+    "title": "Linux Kernel Documentation",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-driver-docs",
+    "title": "Linux Driver Implementer's API Guide",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/driver-api/index.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-dma-docs",
+    "title": "Dynamic DMA Mapping Guide",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/core-api/dma-api-howto.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-locking-docs",
+    "title": "Unreliable Guide To Locking",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/kernel-hacking/locking.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-devicetree-docs",
+    "title": "Devicetree Usage Model",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/devicetree/usage-model.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-debug-docs",
+    "title": "Linux Kernel Debugging Tools",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/dev-tools/index.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-rt-docs",
+    "title": "Real-time preemption",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/core-api/real-time/",
+    "trust": "权威资料"
+  },
+  {
+    "id": "linux-man-pages",
+    "title": "Linux man-pages project",
+    "kind": "上游文档",
+    "url": "https://www.kernel.org/doc/man-pages/",
+    "trust": "权威资料"
+  },
+  {
+    "id": "arm-docs",
+    "title": "Arm Developer Documentation",
+    "kind": "官方文档",
+    "url": "https://developer.arm.com/documentation",
+    "trust": "权威资料"
+  },
+  {
+    "id": "stm32-docs",
+    "title": "STM32 MCU documentation",
+    "kind": "官方文档",
+    "url": "https://www.st.com/en/microcontrollers-microprocessors/stm32-32-bit-arm-cortex-mcus.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "freertos-docs",
+    "title": "FreeRTOS Documentation",
+    "kind": "官方文档",
+    "url": "https://www.freertos.org/Documentation/RTOS_book.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "rfc-tcp",
+    "title": "RFC 9293 — Transmission Control Protocol",
+    "kind": "标准",
+    "url": "https://www.rfc-editor.org/rfc/rfc9293",
+    "trust": "权威资料"
+  },
+  {
+    "id": "mqtt-spec",
+    "title": "MQTT Version 5.0",
+    "kind": "标准",
+    "url": "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "ros2-docs",
+    "title": "ROS 2 Documentation",
+    "kind": "官方文档",
+    "url": "https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Different-Middleware-Vendors.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "v4l2-docs",
+    "title": "Video4Linux devices",
+    "kind": "官方文档",
+    "url": "https://docs.kernel.org/userspace-api/media/v4l/v4l2.html",
+    "trust": "权威资料"
+  },
+  {
+    "id": "edge-ai-docs",
+    "title": "TensorFlow Lite quantization specification",
+    "kind": "官方文档",
+    "url": "https://www.tensorflow.org/lite/performance/quantization_spec",
+    "trust": "权威资料"
+  },
+  {
+    "id": "cmake-docs",
+    "title": "CMake Documentation",
+    "kind": "官方文档",
+    "url": "https://cmake.org/cmake/help/latest/",
+    "trust": "权威资料"
+  },
+  {
+    "id": "source-f79fb9e5f6e687a5",
+    "title": "How to find the driver (module) associated with SATA device on Linux?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/248494/how-to-find-the-driver-module-associated-with-sata-device-on-linux",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-0f026c02ac775578",
+    "title": "Coherently understand the software-hardware interaction with regard to DMA and buses",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/28571598/coherently-understand-the-software-hardware-interaction-with-regard-to-dma-and-b",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-d690f217ee05dcb1",
+    "title": "How to add an SPI device driver, if a device is already accessed by the \"spidev\" driver?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-bcc277846270c87e",
+    "title": "Getting Linux IRQ number from hardware IRQ number",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/51637425/getting-linux-irq-number-from-hardware-irq-number",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-e5508e08478a9201",
+    "title": "Preferred Linux driver architecture for a multi-function PMU device",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-9ab55f90a5d6f2ec",
+    "title": "Linux custom device driver probe and init functions are not being called",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/66361263/linux-custom-device-driver-probe-and-init-functions-are-not-being-called",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-686944364424dcb0",
+    "title": "Observing a hard-disk write in kernel space (with drivers/modules)",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/110411/observing-a-hard-disk-write-in-kernel-space-with-drivers-modules",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-ec8dac07d6bf66e7",
+    "title": "How does the linux kernel know device major and minor numbers?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/315186/how-does-the-linux-kernel-know-device-major-and-minor-numbers",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a47ca86a61c4b1b4",
+    "title": "Determine driver for network interface",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/156461/determine-driver-for-network-interface",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-6e18ed2d71a52519",
+    "title": "How to correctly configure interrupt for INT line of Atmel MXT641T touch chip in Android 5 kernel device tree?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  }
 ]
