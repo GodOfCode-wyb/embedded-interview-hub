@@ -107,6 +107,10 @@ class PageExtractionTests(unittest.TestCase):
         }
         self.assertFalse(deepseek.needs_enrichment(candidate, previous, 30))
 
+    def test_json_parser_repairs_trailing_commas(self) -> None:
+        result = deepseek.parse_json_content('```json\n{"questions": [{"id": "q1",}],}\n```')
+        self.assertEqual(result["questions"][0]["id"], "q1")
+
 
 class LinkDiscoveryTests(unittest.TestCase):
     @classmethod
@@ -310,6 +314,12 @@ class AnswerRefinementTests(unittest.TestCase):
         self.assertEqual(result, {"questions": []})
         self.assertIsNone(error)
         self.assertEqual(call.call_args.kwargs["timeout_seconds"], 45)
+
+    def test_retry_prompt_is_more_compact(self) -> None:
+        regular = refine_answers.build_prompt([{"id": "q1", "title": "测试"}])
+        compact = refine_answers.build_prompt([{"id": "q1", "title": "测试"}], compact=True)
+        self.assertIn("主详解 450 至 1000 字", regular)
+        self.assertIn("失败后的压缩重试", compact)
 
 
 if __name__ == "__main__":

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -210,6 +211,23 @@ def build_prompt(candidate: dict, known_titles: list[str], page_excerpt: str) ->
 9. 输出严格 JSON。"""
 
 
+def parse_json_content(content: str) -> dict:
+    candidate = str(content or "").strip()
+    if candidate.startswith("```"):
+        candidate = re.sub(r"^```(?:json)?\s*", "", candidate, count=1, flags=re.IGNORECASE)
+        candidate = re.sub(r"\s*```$", "", candidate, count=1)
+    start, end = candidate.find("{"), candidate.rfind("}")
+    if start > 0 and end > start:
+        candidate = candidate[start:end + 1]
+    try:
+        return json.loads(candidate, strict=False)
+    except json.JSONDecodeError as original_error:
+        repaired = re.sub(r",\s*([}\]])", r"\1", candidate)
+        if repaired == candidate:
+            raise original_error
+        return json.loads(repaired, strict=False)
+
+
 def call_api(
     api_key: str,
     base_url: str,
@@ -240,10 +258,16 @@ def call_api(
     )
     with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
         body = json.loads(response.read().decode("utf-8"))
-    content = body["choices"][0]["message"]["content"]
+    choice = body["choices"][0]
+    finish_reason = choice.get("finish_reason")
+    content = choice["message"].get("content")
+    if finish_reason == "length":
+        raise ValueError("DeepSeek 输出被截断（finish_reason=length）")
+    if finish_reason in {"content_filter", "insufficient_system_resource"}:
+        raise ValueError(f"DeepSeek 未正常完成（finish_reason={finish_reason}）")
     if not content or not content.strip():
-        raise ValueError("DeepSeek 返回空内容")
-    return json.loads(content)
+        raise ValueError(f"DeepSeek 返回空内容（finish_reason={finish_reason or 'unknown'}）")
+    return parse_json_content(content)
 
 
 def main() -> int:

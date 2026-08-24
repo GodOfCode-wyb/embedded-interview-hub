@@ -68,7 +68,9 @@ npm run import:local -- --stage
 
 `Actions → Refine interview answers with AI → Run workflow`
 
-首次建议 `limit` 填 `50`、`force` 保持关闭。工作流会创建独立审核 PR，不会直接覆盖正式题库；检查并合并后，网页中的追问和踩坑项即可点击阅读完整答案。以后新版题目带有 `answer_version: 2`，不会被重复处理；只有确需重写时才打开 `force`。
+首次建议 `limit` 填 `10`、`force` 保持关闭。工作流会创建独立审核 PR，不会直接覆盖正式题库；检查并合并后，网页中的追问和踩坑项即可点击阅读完整答案。以后新版题目带有 `answer_version: 2`，不会被重复处理；只有确需重写时才打开 `force`。
+
+DeepSeek JSON 模式可能偶发返回空内容或被长度限制截断。脚本会检查 `finish_reason`、修复安全的尾逗号、用更紧凑的提示重试，并把仍失败的题目保留到下一轮；只要本轮至少有一道成功，就会为成功内容创建审核 PR。
 
 ## GitHub Pages
 
