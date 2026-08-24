@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-24T11:39:28.148786+00:00",
+  "generated_at": "2026-08-24T11:52:02.837368+00:00",
   "stats": {
     "questions": 50,
     "experiences": 4,
@@ -169,7 +169,7 @@
         "互斥锁",
         "锁顺序"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-handshake",

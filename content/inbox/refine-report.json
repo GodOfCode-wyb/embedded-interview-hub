@@ -1,42 +1,24 @@
 {
-  "generated_at": "2026-08-24T11:39:28.100026+00:00",
+  "generated_at": "2026-08-24T11:52:02.781350+00:00",
   "model": "deepseek-v4-flash",
   "requested": 10,
-  "updated": 3,
+  "updated": 9,
   "updated_ids": [
-    "cpp-move-semantics",
-    "question-9c1fc7af35060a87",
-    "question-08d46cc622684dbd"
+    "cpp-raii-smart-pointer",
+    "question-24fc2dca5f9dbfb3",
+    "question-3f9eebd9f8394ed0",
+    "question-fdf61f240f196013",
+    "question-f1091ae36adcf4be",
+    "question-9f081ee07efb1ea9",
+    "question-7ae8d809076cfa7a",
+    "question-4394d948800e6eb8",
+    "os-deadlock"
   ],
-  "failure_count": 7,
+  "failure_count": 1,
   "failures": [
     {
-      "question_id": "cpp-raii-smart-pointer",
-      "error": "ValueError: DeepSeek 返回空内容"
-    },
-    {
       "question_id": "question-0139bb88c0490b9d",
-      "error": "ValueError: DeepSeek 返回空内容"
-    },
-    {
-      "question_id": "question-24fc2dca5f9dbfb3",
-      "error": "JSONDecodeError: Unterminated string starting at: line 11 column 28 (char 2075)"
-    },
-    {
-      "question_id": "question-fdf61f240f196013",
-      "error": "JSONDecodeError: Unterminated string starting at: line 6 column 24 (char 414)"
-    },
-    {
-      "question_id": "question-3f9eebd9f8394ed0",
-      "error": "ValueError: DeepSeek 返回空内容"
-    },
-    {
-      "question_id": "question-9f081ee07efb1ea9",
-      "error": "ValueError: DeepSeek 返回空内容"
-    },
-    {
-      "question_id": "question-f1091ae36adcf4be",
-      "error": "ValueError: DeepSeek 返回空内容"
+      "error": "ValueError: DeepSeek 输出被截断（finish_reason=length）"
     }
   ],
   "target_answer_version": 2
