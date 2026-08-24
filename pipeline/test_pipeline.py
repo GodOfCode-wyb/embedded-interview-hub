@@ -4,13 +4,16 @@ import os
 import tempfile
 import unittest
 import urllib.robotparser
+import zipfile
 from pathlib import Path
 from unittest.mock import patch
 
 import collect
 import deepseek
 import discover
+import import_local
 import promote
+import refine_answers
 from common import ROOT, read_json, write_json
 
 
@@ -161,6 +164,37 @@ class PromotionPolicyTests(unittest.TestCase):
         }
         self.assertFalse(promote.is_publishable(item))
 
+    def test_local_import_with_evidence_can_be_staged(self) -> None:
+        item = {
+            "source_url": "local://candidate-example",
+            "source_title": "本地导入面经",
+            "candidate_provider": "local-import",
+            "recommendation": "new-draft",
+            "decision": "pending",
+            "duplicate_score": 0.1,
+            "question": {
+                "title": "Linux 驱动中为什么不能在中断上下文睡眠？",
+                "domain": "Linux 驱动",
+                "question_evidence": "本地面经明确记录了该追问。",
+                "answer_short": "中断上下文没有可供调度恢复的普通进程语义。",
+            },
+        }
+        self.assertTrue(promote.is_publishable(item))
+
+    def test_structured_follow_up_and_pitfall_are_preserved(self) -> None:
+        follow_ups = promote.follow_up_list([{
+            "title": "中断上下文可以用互斥锁吗？",
+            "answer_short": "不能使用可能睡眠的普通互斥锁。",
+            "answer_detail": "中断上下文不能主动调度睡眠，应选择适合上下文的同步原语。",
+        }])
+        pitfalls = promote.pitfall_list([{
+            "title": "任何临界区都使用自旋锁",
+            "explanation": "长时间自旋会浪费 CPU 并增加中断延迟。",
+            "correction": "根据上下文是否允许睡眠和临界区长度选择锁。",
+        }])
+        self.assertIsInstance(follow_ups[0], dict)
+        self.assertIsInstance(pitfalls[0], dict)
+
     def test_main_stages_review_into_formal_content(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             content = Path(temp_dir) / "content"
@@ -207,6 +241,59 @@ class PromotionPolicyTests(unittest.TestCase):
             self.assertEqual(questions[0]["status"], "ai-draft")
             self.assertEqual(review[0]["decision"], "staged")
             self.assertEqual(candidates[0]["status"], "promoted")
+
+
+class LocalImportTests(unittest.TestCase):
+    def test_chunks_long_local_notes_without_losing_text(self) -> None:
+        text = "第一段问题。\n\n" + "第二段内容。" * 40
+        chunks = import_local.chunk_text(text, limit=80)
+        self.assertGreater(len(chunks), 1)
+        self.assertIn("第一段问题", chunks[0])
+        self.assertIn("第二段内容", "".join(chunks))
+
+    def test_reads_docx_with_standard_library(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "interview.docx"
+            document = (
+                '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+                '<w:body><w:p><w:r><w:t>Linux 驱动面试问题：中断上下半部有什么区别，如何选择同步机制？</w:t></w:r></w:p></w:body></w:document>'
+            )
+            with zipfile.ZipFile(path, "w") as archive:
+                archive.writestr("word/document.xml", document)
+            self.assertIn("Linux 驱动面试问题", import_local.read_source_file(path))
+
+
+class AnswerRefinementTests(unittest.TestCase):
+    def test_legacy_string_followups_require_refinement(self) -> None:
+        question = {
+            "answer_version": 2,
+            "answer_detail": "足够长" * 200,
+            "follow_ups": ["为什么？"],
+            "pitfalls": ["误区"],
+        }
+        self.assertTrue(refine_answers.needs_refinement(question))
+
+    def test_applies_complete_structured_refinement(self) -> None:
+        question = {"id": "q1", "status": "verified"}
+        draft = {
+            "id": "q1",
+            "answer_short": "先判断调用上下文是否允许睡眠，再根据临界区长度、竞争程度和实时性要求选择同步原语。",
+            "answer_detail": "详细机制与工程约束。" * 40,
+            "follow_ups": [
+                {"title": "中断上下文如何同步？", "answer_short": "使用适合原子上下文的机制。", "answer_detail": "结合中断状态和锁粒度分析。" * 20},
+                {"title": "何时使用互斥锁？", "answer_short": "允许睡眠且临界区较长时考虑。", "answer_detail": "还要评估优先级反转和持锁路径。" * 20},
+            ],
+            "pitfalls": [{
+                "title": "所有场景都用自旋锁",
+                "explanation": "长临界区会持续占用 CPU。",
+                "correction": "按上下文和临界区特性选择同步原语。",
+            }],
+        }
+        self.assertTrue(refine_answers.apply_refinement(question, draft, "test-model", "2026-08-24"))
+        self.assertEqual(question["answer_version"], 2)
+        self.assertEqual(question["status"], "ai-draft")
+        self.assertIsInstance(question["follow_ups"][0], dict)
 
 
 if __name__ == "__main__":

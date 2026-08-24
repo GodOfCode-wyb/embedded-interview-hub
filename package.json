@@ -12,7 +12,9 @@
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern out",
     "typecheck": "tsc --noEmit",
-    "content:validate": "node scripts/validate-content.mjs"
+    "content:validate": "node scripts/validate-content.mjs",
+    "answers:refine": "python pipeline/refine_answers.py",
+    "import:local": "python pipeline/import_local.py"
   },
   "dependencies": {
     "next": "16.2.6",

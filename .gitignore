@@ -40,3 +40,8 @@ next-env.d.ts
 /.wrangler/
 /outputs/
 /work/
+
+# local interview notes (never commit raw files)
+/imports/*
+!/imports/README.md
+!/imports/.gitkeep

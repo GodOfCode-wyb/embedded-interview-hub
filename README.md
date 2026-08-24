@@ -43,6 +43,33 @@ DeepSeek 会在 robots.txt 允许时读取公开页面的有限正文节选，�
 
 `promote.py` 会把去重后、具有来源证据的候选题以 `ai-draft` 状态加入自动审核 PR。它们不会自动标为已核验；只有人工检查并合并 PR 后，才会进入 `main` 和线上题库。
 
+## 导入本地面经
+
+本地导入使用 DeepSeek 在你的电脑上读取并结构化文件，API 密钥不会进入网页。支持 TXT、Markdown、JSON、HTML 和 DOCX；PDF 可先安装可选依赖 `python -m pip install pypdf`。
+
+可以直接指定文件或目录：
+
+```powershell
+$env:DEEPSEEK_API_KEY = "你的密钥"
+npm run import:local -- "D:\资料\嵌入式面经.md" --stage
+```
+
+也可以把文件临时放入 `imports/`，再执行：
+
+```powershell
+npm run import:local -- --stage
+```
+
+`--stage` 会自动执行去重、草稿入库、索引重建和内容校验。原始文件、绝对路径和文件名不会写入仓库；只保存内容指纹、面经元数据、题目和 AI 答案草稿。提交前仍应检查隐私信息和技术准确性。
+
+## 深化已有答案
+
+新题会按新版答案标准生成：标准简答、原理与工程详解、3 至 5 个带答案追问、2 至 4 个带纠正方案的踩坑项。旧题可在 GitHub 仓库进入：
+
+`Actions → Refine interview answers with AI → Run workflow`
+
+首次建议 `limit` 填 `50`、`force` 保持关闭。工作流会创建独立审核 PR，不会直接覆盖正式题库；检查并合并后，网页中的追问和踩坑项即可点击阅读完整答案。以后新版题目带有 `answer_version: 2`，不会被重复处理；只有确需重写时才打开 `force`。
+
 ## GitHub Pages
 
 1. 将项目推送到 GitHub 仓库的 `main` 分支。
@@ -61,6 +88,8 @@ DeepSeek 会在 robots.txt 允许时读取公开页面的有限正文节选，�
    - Variable：`MAX_LINK_DISCOVERIES`（可选，每轮关联链接新增上限，默认 300）
    - Variable：`LINK_RESCAN_AFTER_DAYS`（可选，关联链接复查周期，默认 30 天）
    - Variable：`LINK_REQUEST_DELAY_SECONDS`（可选，关联页面访问间隔，默认 1 秒）
+   - Variable：`REFINE_BATCH_SIZE`（可选，答案深化每批题数，默认 1，优先保证输出完整）
+   - Variable：`REFINE_REQUEST_DELAY_SECONDS`（可选，答案深化请求间隔，默认 1 秒）
 
 `collect.yml` 默认每天北京时间 21:00 运行，更新候选内容并创建审核 PR。
 

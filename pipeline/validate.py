@@ -26,6 +26,31 @@ def main() -> int:
             errors.append(f"{item.get('id')}: 缺少字段 {sorted(missing)}")
         if item.get("status") not in ALLOWED_STATUS:
             errors.append(f"{item.get('id')}: 非法状态 {item.get('status')}")
+        for follow_up in item.get("follow_ups", []):
+            if isinstance(follow_up, str):
+                continue
+            if not isinstance(follow_up, dict) or not all(
+                follow_up.get(key) for key in ("title", "answer_short", "answer_detail")
+            ):
+                errors.append(f"{item.get('id')}: 结构化追问字段不完整")
+        for pitfall in item.get("pitfalls", []):
+            if isinstance(pitfall, str):
+                continue
+            if not isinstance(pitfall, dict) or not all(
+                pitfall.get(key) for key in ("title", "explanation", "correction")
+            ):
+                errors.append(f"{item.get('id')}: 结构化踩坑字段不完整")
+        if int(item.get("answer_version", 0) or 0) >= 2:
+            if len(str(item.get("answer_detail", ""))) < 250:
+                errors.append(f"{item.get('id')}: 新版详解过短")
+            if len(item.get("follow_ups", [])) < 2 or any(
+                not isinstance(value, dict) for value in item.get("follow_ups", [])
+            ):
+                errors.append(f"{item.get('id')}: 新版答案至少需要 2 个带答案追问")
+            if not item.get("pitfalls") or any(
+                not isinstance(value, dict) for value in item.get("pitfalls", [])
+            ):
+                errors.append(f"{item.get('id')}: 新版答案至少需要 1 个结构化踩坑项")
         for source_id in item.get("source_ids", []):
             if source_id not in source_ids:
                 errors.append(f"{item.get('id')}: 来源不存在 {source_id}")

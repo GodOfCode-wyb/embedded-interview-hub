@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import questionData from '../content/questions.json';
 import experienceData from '../content/experiences.json';
 import sourceData from '../content/sources.json';
@@ -8,6 +8,23 @@ import updateData from '../content/updates.json';
 
 type QuestionStatus = 'source-only' | 'ai-draft' | 'reviewed' | 'verified' | 'outdated';
 type View = 'questions' | 'experiences' | 'sources';
+
+type FollowUpDetail = {
+  title: string;
+  answer_short: string;
+  answer_detail: string;
+};
+
+type PitfallDetail = {
+  title: string;
+  explanation: string;
+  correction: string;
+};
+
+type InsightSelection = {
+  kind: 'follow-up' | 'pitfall';
+  index: number;
+};
 
 type Question = {
   id: string;
@@ -17,12 +34,13 @@ type Question = {
   difficulty: string;
   answer_short: string;
   answer_detail: string;
-  follow_ups: string[];
-  pitfalls: string[];
+  follow_ups: Array<string | FollowUpDetail>;
+  pitfalls: Array<string | PitfallDetail>;
   tags: string[];
   source_ids: string[];
   status: QuestionStatus;
   updated_at: string;
+  answer_version?: number;
 };
 
 type Experience = {
@@ -71,6 +89,8 @@ export default function Home() {
   const [category, setCategory] = useState('全部');
   const [difficulty, setDifficulty] = useState('全部难度');
   const [selectedId, setSelectedId] = useState(questions[0].id);
+  const [selectedInsight, setSelectedInsight] = useState<InsightSelection | null>(null);
+  const answerPanelRef = useRef<HTMLElement | null>(null);
 
   const categories = useMemo(
     () => ['全部', ...Array.from(new Set(questions.map((item) => item.domain)))],
@@ -116,9 +136,32 @@ export default function Home() {
   const selected = filteredQuestions.find((item) => item.id === selectedId) ?? filteredQuestions[0];
   const sourceMap = new Map(sources.map((source) => [source.id, source]));
 
+  const activeFollowUp = selectedInsight?.kind === 'follow-up'
+    ? selected?.follow_ups[selectedInsight.index]
+    : undefined;
+  const activePitfall = selectedInsight?.kind === 'pitfall'
+    ? selected?.pitfalls[selectedInsight.index]
+    : undefined;
+
+  function followUpTitle(item: string | FollowUpDetail) {
+    return typeof item === 'string' ? item : item.title;
+  }
+
+  function pitfallTitle(item: string | PitfallDetail) {
+    return typeof item === 'string' ? item : item.title;
+  }
+
+  function openInsight(kind: InsightSelection['kind'], index: number) {
+    setSelectedInsight({ kind, index });
+    window.requestAnimationFrame(() => {
+      answerPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
   function switchView(nextView: View) {
     setView(nextView);
     setQuery('');
+    setSelectedInsight(null);
   }
 
   return (
@@ -161,7 +204,10 @@ export default function Home() {
           <span className="sr-only">搜索{viewLabel[view]}</span>
           <input
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(event) => {
+              setQuery(event.target.value);
+              setSelectedInsight(null);
+            }}
             placeholder={view === 'questions'
               ? '搜索：中断、DMA、虚函数、TCP……'
               : view === 'experiences'
@@ -191,7 +237,10 @@ export default function Home() {
                   <button
                     className={category === item ? 'category-button active' : 'category-button'}
                     key={item}
-                    onClick={() => setCategory(item)}
+                    onClick={() => {
+                      setCategory(item);
+                      setSelectedInsight(null);
+                    }}
                     type="button"
                   >
                     <span>{item}</span>
@@ -214,7 +263,10 @@ export default function Home() {
               </div>
               <label className="difficulty-filter">
                 <span className="sr-only">难度筛选</span>
-                <select value={difficulty} onChange={(event) => setDifficulty(event.target.value)}>
+                <select value={difficulty} onChange={(event) => {
+                  setDifficulty(event.target.value);
+                  setSelectedInsight(null);
+                }}>
                   <option>全部难度</option>
                   <option>基础</option>
                   <option>进阶</option>
@@ -228,7 +280,10 @@ export default function Home() {
                 <button
                   className={selected?.id === item.id ? 'question-card selected' : 'question-card'}
                   key={item.id}
-                  onClick={() => setSelectedId(item.id)}
+                  onClick={() => {
+                    setSelectedId(item.id);
+                    setSelectedInsight(null);
+                  }}
                   type="button"
                 >
                   <span className="question-index">{String(index + 1).padStart(2, '0')}</span>
@@ -251,33 +306,110 @@ export default function Home() {
             </div>
           </section>
 
-          <aside className="answer-panel" aria-live="polite">
+          <aside className="answer-panel" aria-live="polite" ref={answerPanelRef}>
             {selected ? (
               <>
-                <p className="panel-label">快速复习</p>
+                <div className="answer-navigation">
+                  <p className="panel-label">
+                    {selectedInsight?.kind === 'follow-up'
+                      ? 'FOLLOW-UP ANSWER'
+                      : selectedInsight?.kind === 'pitfall'
+                        ? 'PITFALL REVIEW'
+                        : '快速复习'}
+                  </p>
+                  {selectedInsight && (
+                    <button type="button" onClick={() => setSelectedInsight(null)}>← 返回主问题</button>
+                  )}
+                </div>
                 <div className="answer-badges">
                   <span className="answer-category">{selected.domain}</span>
-                  <span className={`status-badge ${selected.status}`}>{statusLabel[selected.status]}</span>
+                  <span className={`status-badge ${selected.status}`}>
+                    {selectedInsight?.kind === 'follow-up'
+                      ? '追问答案'
+                      : selectedInsight?.kind === 'pitfall'
+                        ? '踩坑解析'
+                        : statusLabel[selected.status]}
+                  </span>
                 </div>
-                <h2>{selected.title}</h2>
-                <div className="answer-block">
-                  <small>30 秒简答</small>
-                  <p>{selected.answer_short}</p>
-                </div>
-                <div className="answer-block detail-section">
-                  <small>展开回答</small>
-                  <p>{selected.answer_detail}</p>
-                </div>
-                <div className="follow-up">
-                  <small>面试官可能追问</small>
-                  <ul>
-                    {selected.follow_ups.map((item) => <li key={item}>{item}</li>)}
-                  </ul>
-                </div>
-                <div className="pitfall-block">
-                  <small>容易踩坑</small>
-                  <p>{selected.pitfalls[0]}</p>
-                </div>
+                {activeFollowUp ? (
+                  <>
+                    <p className="parent-question">来自：{selected.title}</p>
+                    <h2>{followUpTitle(activeFollowUp)}</h2>
+                    <div className="answer-block">
+                      <small>追问简答</small>
+                      <p>{typeof activeFollowUp === 'string'
+                        ? '这条旧版追问正在等待 AI 深化；运行答案深化工作流后会补充标准答案。'
+                        : activeFollowUp.answer_short}</p>
+                    </div>
+                    <div className="answer-block detail-section">
+                      <small>追问详解</small>
+                      <p>{typeof activeFollowUp === 'string'
+                        ? '当前仅保留了追问原文，没有足够依据自动生成答案。请合并答案深化审核 PR 后查看完整的原理、边界与工程说明。'
+                        : activeFollowUp.answer_detail}</p>
+                    </div>
+                  </>
+                ) : activePitfall ? (
+                  <>
+                    <p className="parent-question">来自：{selected.title}</p>
+                    <h2>{pitfallTitle(activePitfall)}</h2>
+                    <div className="answer-block pitfall-explanation">
+                      <small>为什么会错</small>
+                      <p>{typeof activePitfall === 'string'
+                        ? activePitfall
+                        : activePitfall.explanation}</p>
+                    </div>
+                    <div className="answer-block correction-section">
+                      <small>正确做法</small>
+                      <p>{typeof activePitfall === 'string'
+                        ? '这条旧版踩坑项正在等待 AI 深化，完成后会给出可操作的正确判断与排查步骤。'
+                        : activePitfall.correction}</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h2>{selected.title}</h2>
+                    <div className="answer-block">
+                      <small>30 秒简答</small>
+                      <p>{selected.answer_short}</p>
+                    </div>
+                    <div className="answer-block detail-section">
+                      <small>展开回答</small>
+                      <p>{selected.answer_detail}</p>
+                    </div>
+                    <div className="follow-up">
+                      <small>面试官可能追问 · 点击查看答案</small>
+                      <div className="related-answer-list">
+                        {selected.follow_ups.map((item, index) => (
+                          <button
+                            key={`${followUpTitle(item)}-${index}`}
+                            onClick={() => openInsight('follow-up', index)}
+                            type="button"
+                          >
+                            <span>{String(index + 1).padStart(2, '0')}</span>
+                            <strong>{followUpTitle(item)}</strong>
+                            <i>{typeof item === 'string' ? '待深化' : '查看答案'} ↗</i>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="pitfall-block">
+                      <small>容易踩坑 · 点击查看原因与正确做法</small>
+                      <div className="related-answer-list pitfall-list">
+                        {selected.pitfalls.map((item, index) => (
+                          <button
+                            key={`${pitfallTitle(item)}-${index}`}
+                            onClick={() => openInsight('pitfall', index)}
+                            type="button"
+                          >
+                            <span>{String(index + 1).padStart(2, '0')}</span>
+                            <strong>{pitfallTitle(item)}</strong>
+                            <i>{typeof item === 'string' ? '待深化' : '查看解析'} ↗</i>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
                 <footer>
                   <span>来源与参考</span>
                   <div className="source-links">
@@ -337,6 +469,12 @@ export default function Home() {
           </header>
           <div className="source-layout">
             <div className="source-grid">
+              <article className="source-card import-guide-card">
+                <div><span className="source-kind">本地导入</span><small>原文不会提交到仓库</small></div>
+                <h3>把本地面经整理成可审核题目</h3>
+                <p>支持 TXT、Markdown、JSON、HTML 和 DOCX；在项目目录运行：</p>
+                <code>npm run import:local -- &quot;面经文件路径&quot; --stage</code>
+              </article>
               {filteredSources.map((source) => (
                 <article className="source-card" key={source.id}>
                   <div><span className="source-kind">{source.kind}</span><small>{source.trust}</small></div>

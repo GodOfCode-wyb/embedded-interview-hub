@@ -23,10 +23,63 @@ def bounded_text(value, limit: int) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()[:limit]
 
 
+def bounded_detail(value, limit: int) -> str:
+    lines = [bounded_text(line, limit) for line in str(value or "").replace("\r", "").split("\n")]
+    return "\n".join(line for line in lines if line).strip()[:limit]
+
+
 def string_list(value, max_items: int = 10, limit: int = 240) -> list[str]:
     if not isinstance(value, list):
         return []
     return [bounded_text(item, limit) for item in value if bounded_text(item, limit)][:max_items]
+
+
+def follow_up_list(value, max_items: int = 6) -> list[str | dict]:
+    if not isinstance(value, list):
+        return []
+    result: list[str | dict] = []
+    for item in value:
+        if isinstance(item, str):
+            title = bounded_text(item, 240)
+            if title:
+                result.append(title)
+        elif isinstance(item, dict):
+            title = bounded_text(item.get("title") or item.get("question"), 240)
+            answer_short = bounded_text(item.get("answer_short"), 800)
+            answer_detail = bounded_detail(item.get("answer_detail") or answer_short, 3000)
+            if title and answer_short:
+                result.append({
+                    "title": title,
+                    "answer_short": answer_short,
+                    "answer_detail": answer_detail,
+                })
+        if len(result) >= max_items:
+            break
+    return result
+
+
+def pitfall_list(value, max_items: int = 6) -> list[str | dict]:
+    if not isinstance(value, list):
+        return []
+    result: list[str | dict] = []
+    for item in value:
+        if isinstance(item, str):
+            title = bounded_text(item, 280)
+            if title:
+                result.append(title)
+        elif isinstance(item, dict):
+            title = bounded_text(item.get("title") or item.get("mistake"), 280)
+            explanation = bounded_detail(item.get("explanation") or item.get("why_wrong"), 1800)
+            correction = bounded_detail(item.get("correction") or item.get("correct_approach"), 1800)
+            if title and explanation and correction:
+                result.append({
+                    "title": title,
+                    "explanation": explanation,
+                    "correction": correction,
+                })
+        if len(result) >= max_items:
+            break
+    return result
 
 
 def is_publishable(item: dict) -> bool:
@@ -46,7 +99,9 @@ def is_publishable(item: dict) -> bool:
         return False
     if not str(question.get("question_evidence", "")).strip():
         return False
-    if urlsplit(source_url).scheme not in {"http", "https"}:
+    scheme = urlsplit(source_url).scheme
+    is_local_import = item.get("candidate_provider") == "local-import" and scheme == "local"
+    if scheme not in {"http", "https"} and not is_local_import:
         return False
     haystack = f"{title} {source_title}".lower()
     return not any(term.lower() in haystack for term in EXCLUDED_TERMS)
@@ -54,6 +109,7 @@ def is_publishable(item: dict) -> bool:
 
 def main() -> int:
     limit = int(os.environ.get("MAX_STAGE_QUESTIONS", "40"))
+    provider_filter = os.environ.get("PROMOTE_PROVIDER", "").strip()
     today = datetime.now(timezone.utc).date().isoformat()
     review = read_json(INBOX / "review.json", []) or []
     candidates = read_json(INBOX / "candidates.json", []) or []
@@ -67,6 +123,9 @@ def main() -> int:
     existing_source_by_url = {
         item.get("url"): item.get("id") for item in sources if item.get("url")
     }
+    existing_source_by_url.update({
+        item.get("import_key"): item.get("id") for item in sources if item.get("import_key")
+    })
     existing_source_ids = {item.get("id") for item in sources}
     existing_experience_ids = {item.get("id") for item in experiences}
     candidates_by_id = {item.get("id"): item for item in candidates if item.get("id")}
@@ -74,6 +133,8 @@ def main() -> int:
     staged = 0
 
     for item in review:
+        if provider_filter and item.get("candidate_provider") != provider_filter:
+            continue
         if staged >= limit or not is_publishable(item):
             continue
         question = item["question"]
@@ -88,16 +149,26 @@ def main() -> int:
         if source_id not in existing_source_ids:
             provider = item.get("candidate_provider")
             is_technical_qa = provider == "stackexchange-search"
-            sources.append({
+            is_local_import = provider == "local-import"
+            source_record = {
                 "id": source_id,
                 "title": bounded_text(item.get("source_title") or title, 220),
-                "kind": "公开技术问答" if is_technical_qa else "公开面经候选",
-                "url": source_url,
+                "kind": (
+                    "本地导入面经" if is_local_import
+                    else "公开技术问答" if is_technical_qa
+                    else "公开面经候选"
+                ),
+                "url": None if is_local_import else source_url,
                 "trust": (
+                    "用户本地资料的 AI 结构化草稿，原文不进入仓库，需人工核验"
+                    if is_local_import else
                     "公开技术问答的 AI 结构化草稿，需人工核验"
                     if is_technical_qa else "AI 结构化草稿，需人工核验"
                 ),
-            })
+            }
+            if is_local_import:
+                source_record["import_key"] = source_url
+            sources.append(source_record)
             existing_source_ids.add(source_id)
             existing_source_by_url[source_url] = source_id
 
@@ -105,8 +176,16 @@ def main() -> int:
         if question_id in existing_question_ids:
             item["decision"] = "duplicate"
             continue
-        follow_ups = string_list(question.get("follow_ups"), max_items=8, limit=240)
-        pitfalls = string_list(question.get("pitfalls"), max_items=8, limit=280)
+        follow_ups = follow_up_list(question.get("follow_ups"), max_items=6)
+        pitfalls = pitfall_list(question.get("pitfalls"), max_items=6)
+        answer_detail = bounded_detail(question.get("answer_detail") or question["answer_short"], 6000)
+        answer_version = 2 if (
+            len(answer_detail) >= 250
+            and len(follow_ups) >= 2
+            and all(isinstance(item, dict) for item in follow_ups)
+            and pitfalls
+            and all(isinstance(item, dict) for item in pitfalls)
+        ) else 1
         tags = string_list(question.get("tags"), max_items=12, limit=60)
         subtopic = bounded_text(question.get("subtopic") or "待细分", 80)
         for value in (question.get("domain"), subtopic):
@@ -120,12 +199,13 @@ def main() -> int:
             "subtopic": subtopic,
             "difficulty": question.get("difficulty") if question.get("difficulty") in {"基础", "进阶"} else "基础",
             "answer_short": bounded_text(question["answer_short"], 800),
-            "answer_detail": bounded_text(question.get("answer_detail") or question["answer_short"], 3500),
+            "answer_detail": answer_detail,
             "follow_ups": follow_ups,
             "pitfalls": pitfalls,
             "tags": tags,
             "source_ids": [source_id],
             "status": "ai-draft",
+            "answer_version": answer_version,
             "updated_at": today,
         })
         existing_titles.add(title_key)
@@ -148,6 +228,7 @@ def main() -> int:
             continue
         source_url = (first or {}).get("source_url")
         source_id = existing_source_by_url.get(source_url)
+        is_local_import = (first or {}).get("candidate_provider") == "local-import"
         experiences.append({
             "id": experience_id,
             "company": experience.get("company"),
@@ -155,7 +236,10 @@ def main() -> int:
             "round": experience["round"],
             "date": experience.get("date"),
             "summary": bounded_text(
-                experience.get("summary") or "公开面经中的问题已结构化为 AI 草稿，等待人工核验。",
+                experience.get("summary") or (
+                    "本地面经中的问题已结构化为 AI 草稿，等待人工核验。"
+                    if is_local_import else "公开面经中的问题已结构化为 AI 草稿，等待人工核验。"
+                ),
                 600,
             ),
             "question_ids": question_ids,
@@ -167,7 +251,7 @@ def main() -> int:
         updates.insert(0, {
             "date": today,
             "title": f"新增 {staged} 道待审核面试题",
-            "description": "从公开面经和技术问答中提取并去重，答案状态为 AI 草稿，合并前需人工检查来源与技术准确性。",
+            "description": "从面经资料和技术问答中提取并去重，答案状态为 AI 草稿，合并前需人工检查来源、隐私与技术准确性。",
         })
         write_json(CONTENT / "questions.json", questions)
         write_json(CONTENT / "sources.json", sources)

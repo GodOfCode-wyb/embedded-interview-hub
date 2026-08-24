@@ -3,7 +3,6 @@ from __future__ import annotations
 import os
 import re
 import time
-import urllib.error
 import urllib.request
 from collections import Counter
 from datetime import datetime, timezone
@@ -204,7 +203,7 @@ def main() -> int:
                 }
                 discovered += 1
                 added_for_seed += 1
-        except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
+        except Exception as exc:  # A single malformed/partial public response must not abort the daily run.
             error = str(exc)[:240]
             failures.append({"url": seed_url, "error": error})
         frontier_by_url[seed_url] = {

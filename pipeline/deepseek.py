@@ -176,10 +176,22 @@ def build_prompt(candidate: dict, known_titles: list[str], page_excerpt: str) ->
       "subtopic": "知识点",
       "difficulty": "基础|进阶",
       "question_evidence": "来源中出现该问题的简短概述，不得长段引用",
-      "answer_short": "可作为 AI 草稿的准确简答",
-      "answer_detail": "包含关键原理、嵌入式约束和常见取舍的草稿详解",
-      "follow_ups": ["追问"],
-      "pitfalls": ["常见误区"],
+      "answer_short": "100 至 220 字，可在 30 秒内表达的标准简答",
+      "answer_detail": "分层说明定义、机制、实现步骤、嵌入式约束、取舍、示例与排查方法，通常 500 至 1600 字",
+      "follow_ups": [
+        {{
+          "title": "面试官可能继续问的问题",
+          "answer_short": "追问的标准简答",
+          "answer_detail": "追问的原理、边界和工程说明"
+        }}
+      ],
+      "pitfalls": [
+        {{
+          "title": "常见错误说法或错误做法",
+          "explanation": "为什么错误、会造成什么后果",
+          "correction": "正确理解或工程处理方式"
+        }}
+      ],
       "tags": ["标签"],
       "possible_duplicate_title": null
     }}
@@ -188,15 +200,23 @@ def build_prompt(candidate: dict, known_titles: list[str], page_excerpt: str) ->
 
 约束：
 1. 只提取正文或摘要中明确出现、或者页面明确列为面试问题的题目；证据不足时 questions 为空。
-2. 可使用通用技术知识撰写答案草稿，但不得把草稿声称为来源原文或已核验结论。
-3. 每个来源最多整理 8 道最有价值且不重复的题；不得长段复制来源文本。
-4. 只保留 C/C++、操作系统、网络、STM32/MCU、ARM、RTOS、Linux 系统/驱动、协议、构建调试、物联网、机器人、音视频、嵌入式 AI。
-5. 排除汽车电子、车载、AUTOSAR、FPGA、工业控制、PLC、功能安全专项内容。
-6. Stack Overflow 等公开技术问答属于八股知识来源，不得据此虚构公司、岗位、轮次或真实面经。
-7. 输出严格 JSON。"""
+2. 可使用通用技术知识撰写答案草稿，但不得把草稿声称为来源原文或已核验结论；不确定的版本差异和实现细节必须明确边界。
+3. 答案必须达到可面试复述和工程复盘的标准：先给结论，再讲机制、上下文约束、取舍和至少一个实现或排查示例。禁止只写定义或空泛套话。
+4. 每题生成 3 至 5 个不重复追问并分别回答；生成 2 至 4 个可操作的常见误区，分别说明错误原因和正确做法。
+5. 每个来源最多整理 8 道最有价值且不重复的题；不得长段复制来源文本。
+6. 只保留 C/C++、操作系统、网络、STM32/MCU、ARM、RTOS、Linux 系统/驱动、协议、构建调试、物联网、机器人、音视频、嵌入式 AI。
+7. 排除汽车电子、车载、AUTOSAR、FPGA、工业控制、PLC、功能安全专项内容。
+8. Stack Overflow 等公开技术问答属于八股知识来源，不得据此虚构公司、岗位、轮次或真实面经。
+9. 输出严格 JSON。"""
 
 
-def call_api(api_key: str, base_url: str, model: str, prompt: str) -> dict:
+def call_api(
+    api_key: str,
+    base_url: str,
+    model: str,
+    prompt: str,
+    max_tokens: int = 8000,
+) -> dict:
     payload = json.dumps({
         "model": model,
         "messages": [
@@ -205,7 +225,7 @@ def call_api(api_key: str, base_url: str, model: str, prompt: str) -> dict:
         ],
         "response_format": {"type": "json_object"},
         "temperature": 0.1,
-        "max_tokens": 5000,
+        "max_tokens": max_tokens,
     }, ensure_ascii=False).encode("utf-8")
     request = urllib.request.Request(
         f"{base_url.rstrip('/')}/chat/completions",

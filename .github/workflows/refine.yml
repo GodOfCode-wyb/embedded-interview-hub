@@ -1,0 +1,96 @@
+name: Refine interview answers with AI
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: 本次最多深化多少道题
+        required: true
+        default: '50'
+        type: string
+      force:
+        description: 是否重新处理已经达到新版标准的答案
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: answer-refinement
+  cancel-in-progress: false
+
+jobs:
+  refine:
+    runs-on: ubuntu-latest
+    env:
+      DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+      DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL || 'https://api.deepseek.com' }}
+      DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}
+      MAX_REFINE_QUESTIONS: ${{ inputs.limit || '50' }}
+      REFINE_BATCH_SIZE: ${{ vars.REFINE_BATCH_SIZE || '1' }}
+      REFINE_REQUEST_DELAY_SECONDS: ${{ vars.REFINE_REQUEST_DELAY_SECONDS || '1.0' }}
+      FORCE_REFINE: ${{ inputs.force }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install site dependencies
+        run: npm ci
+
+      - name: Test answer policies
+        run: python -B -m unittest discover -s pipeline -p 'test_*.py'
+
+      - name: Refine existing answers
+        run: python pipeline/refine_answers.py
+
+      - name: Rebuild public index
+        run: python pipeline/build_index.py
+
+      - name: Validate refined content
+        run: |
+          python pipeline/validate.py
+          npm run content:validate
+          npm run typecheck
+          npm run build
+
+      - name: Open answer review PR
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- content/questions.json content/updates.json)" ]; then
+            echo "No answer changes."
+            exit 0
+          fi
+
+          branch="automation/answer-refinement"
+          git config user.name "embedded-interview-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add content/questions.json content/updates.json content/inbox/refine-report.json public/data/catalog.json
+          git commit -m "content: deepen interview answers and follow-ups"
+          git push --force-with-lease origin "HEAD:$branch"
+
+          pr_number="$(gh pr list --base main --head "$branch" --state open --json number --jq '.[0].number // empty')"
+          pr_title="content: 深化面试题答案、追问与踩坑说明"
+          pr_body="AI 已按面试复述和工程实践标准重整答案，并为追问与踩坑项补充可点击详解。请重点核对技术准确性、版本边界和来源；所有改写内容仍标记为 AI 草稿。"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" --title "$pr_title" --body "$pr_body"
+          else
+            gh pr create --base main --head "$branch" --title "$pr_title" --body "$pr_body"
+          fi

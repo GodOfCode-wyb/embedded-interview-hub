@@ -159,21 +159,57 @@ button { color: inherit; }
 .question-card:hover .question-arrow { transform: translate(2px, -2px); }
 
 .answer-panel { border-left: 1px solid var(--line); background: var(--card); }
+.answer-navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.answer-navigation button {
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+.answer-navigation button:hover { text-decoration: underline; }
 .answer-badges { display: flex; align-items: center; gap: 7px; margin-top: 25px; }
 .answer-category { display: inline-block; padding: 5px 8px; border: 1px solid #b8c7c2; border-radius: 999px; color: var(--green); font-size: 9px; font-weight: 800; }
 .status-badge { padding: 5px 8px; border-radius: 999px; background: #edf0ed; color: #66736e; font-size: 9px; font-weight: 800; }
 .status-badge.verified { background: #dcebe3; color: #28634f; }
 .status-badge.ai-draft { background: #f6e7d8; color: #9e522f; }
 .answer-panel h2 { margin: 16px 0 30px; font: 600 27px/1.35 Georgia, "Noto Serif SC", serif; }
+.parent-question { margin: 18px 0 -8px; color: var(--muted); font-size: 10px; line-height: 1.6; }
 .answer-block, .follow-up { padding: 20px 0; border-top: 1px solid var(--line); }
 .answer-block small, .follow-up small { color: var(--orange); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
-.answer-block p, .follow-up p { margin: 10px 0 0; color: #3d4c53; font-size: 13px; line-height: 1.85; }
+.answer-block p, .follow-up p { margin: 10px 0 0; color: #3d4c53; font-size: 13px; line-height: 1.85; white-space: pre-line; }
 .detail-section p { color: #57646a; font-size: 12px; }
 .follow-up { margin-top: 8px; padding: 18px; border: 0; border-left: 3px solid var(--green); background: #eef1eb; }
-.follow-up ul { display: grid; gap: 8px; margin: 11px 0 0; padding-left: 18px; color: #3d4c53; font-size: 12px; line-height: 1.6; }
+.related-answer-list { display: grid; gap: 7px; margin-top: 12px; }
+.related-answer-list button {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(47,114,95,.16);
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+.related-answer-list button:last-child { border-bottom: 0; }
+.related-answer-list button > span { color: #81938c; font: 600 9px/1.7 ui-monospace, monospace; }
+.related-answer-list button strong { color: #344840; font-size: 11px; line-height: 1.6; }
+.related-answer-list button i { padding-top: 2px; color: var(--green); font-size: 8px; font-style: normal; white-space: nowrap; }
+.related-answer-list button:hover strong { color: var(--green); }
 .pitfall-block { margin-top: 12px; padding: 15px 17px; border: 1px solid #ead6cb; background: #fff8f3; }
 .pitfall-block small { color: var(--orange); font-size: 9px; font-weight: 800; letter-spacing: .1em; }
 .pitfall-block p { margin: 8px 0 0; color: #6b4e42; font-size: 11px; line-height: 1.65; }
+.pitfall-list button { border-bottom-color: rgba(223,107,62,.18); }
+.pitfall-list button strong { color: #6b4e42; }
+.pitfall-list button i { color: var(--orange); }
+.pitfall-list button:hover strong { color: var(--orange); }
+.pitfall-explanation { border-top-color: #ead6cb; background: #fff8f3; padding-inline: 16px; }
+.correction-section { margin-top: 10px; border-top-color: #bfd6cd; background: #f0f6f2; padding-inline: 16px; }
 .answer-panel footer { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
 .answer-panel footer span { color: var(--green); font-size: 10px; font-weight: 800; }
 .answer-panel footer p { color: var(--muted); font-size: 10px; }
@@ -209,6 +245,18 @@ button { color: inherit; }
 .source-card h3 { margin: 21px 0 15px; font: 600 16px/1.4 Georgia, "Noto Serif SC", serif; }
 .source-card a, .source-card p { color: var(--muted); font-size: 10px; text-decoration: none; }
 .source-card a:hover { color: var(--green); text-decoration: underline; }
+.import-guide-card { border-color: #bcd1c9; background: #f2f7f3; }
+.import-guide-card p { margin: 0 0 12px; line-height: 1.65; }
+.import-guide-card code {
+  display: block;
+  overflow-x: auto;
+  padding: 10px;
+  border-radius: 6px;
+  background: #16333d;
+  color: #dceae5;
+  font: 500 9px/1.55 ui-monospace, monospace;
+  white-space: nowrap;
+}
 .updates { padding: 25px; border-left: 1px solid var(--line); }
 .update-row { padding: 21px 0; border-bottom: 1px solid var(--line); }
 .update-row time { color: var(--orange); font: 600 9px/1 ui-monospace, monospace; }
