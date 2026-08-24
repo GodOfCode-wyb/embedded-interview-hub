@@ -6,7 +6,7 @@ on:
       limit:
         description: 本次最多深化多少道题
         required: true
-        default: '50'
+        default: '10'
         type: string
       force:
         description: 是否重新处理已经达到新版标准的答案
@@ -25,12 +25,16 @@ concurrency:
 jobs:
   refine:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     env:
       DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
       DEEPSEEK_BASE_URL: ${{ vars.DEEPSEEK_BASE_URL || 'https://api.deepseek.com' }}
       DEEPSEEK_MODEL: ${{ vars.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}
       MAX_REFINE_QUESTIONS: ${{ inputs.limit || '50' }}
       REFINE_BATCH_SIZE: ${{ vars.REFINE_BATCH_SIZE || '1' }}
+      REFINE_WORKERS: ${{ vars.REFINE_WORKERS || '2' }}
+      REFINE_MAX_ATTEMPTS: ${{ vars.REFINE_MAX_ATTEMPTS || '2' }}
+      REFINE_REQUEST_TIMEOUT_SECONDS: ${{ vars.REFINE_REQUEST_TIMEOUT_SECONDS || '60' }}
       REFINE_REQUEST_DELAY_SECONDS: ${{ vars.REFINE_REQUEST_DELAY_SECONDS || '1.0' }}
       FORCE_REFINE: ${{ inputs.force }}
       GH_TOKEN: ${{ github.token }}
@@ -58,6 +62,7 @@ jobs:
         run: python -B -m unittest discover -s pipeline -p 'test_*.py'
 
       - name: Refine existing answers
+        timeout-minutes: 25
         run: python pipeline/refine_answers.py
 
       - name: Rebuild public index

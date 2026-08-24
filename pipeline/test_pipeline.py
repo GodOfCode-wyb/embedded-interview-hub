@@ -295,6 +295,22 @@ class AnswerRefinementTests(unittest.TestCase):
         self.assertEqual(question["status"], "ai-draft")
         self.assertIsInstance(question["follow_ups"][0], dict)
 
+    def test_refinement_request_uses_bounded_timeout(self) -> None:
+        with patch.object(refine_answers, "call_api", return_value={"questions": []}) as call:
+            result, error = refine_answers.request_refinement(
+                1,
+                1,
+                [{"id": "q1", "title": "测试问题"}],
+                "key",
+                "https://api.example.com",
+                "model",
+                attempts=1,
+                timeout_seconds=45,
+            )
+        self.assertEqual(result, {"questions": []})
+        self.assertIsNone(error)
+        self.assertEqual(call.call_args.kwargs["timeout_seconds"], 45)
+
 
 if __name__ == "__main__":
     unittest.main()

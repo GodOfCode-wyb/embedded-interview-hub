@@ -4,6 +4,7 @@ import json
 import os
 import time
 import urllib.error
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 
 from common import CONTENT, INBOX, read_json, write_json
@@ -121,6 +122,42 @@ def apply_refinement(question: dict, draft: dict, model: str, today: str) -> boo
     return True
 
 
+def request_refinement(
+    batch_number: int,
+    batch_total: int,
+    input_payload: list[dict],
+    api_key: str,
+    base_url: str,
+    model: str,
+    attempts: int,
+    timeout_seconds: int,
+) -> tuple[dict | None, str | None]:
+    titles = "；".join(str(item.get("title", ""))[:50] for item in input_payload)
+    print(f"[{batch_number}/{batch_total}] 开始深化：{titles}", flush=True)
+    last_error = None
+    for attempt in range(attempts):
+        try:
+            result = call_api(
+                api_key,
+                base_url,
+                model,
+                build_prompt(input_payload),
+                max_tokens=8000,
+                timeout_seconds=timeout_seconds,
+            )
+            print(f"[{batch_number}/{batch_total}] DeepSeek 返回完成，正在校验结构。", flush=True)
+            return result, None
+        except (urllib.error.URLError, TimeoutError, ValueError, KeyError, json.JSONDecodeError) as exc:
+            last_error = f"{type(exc).__name__}: {str(exc)[:320]}"
+            print(
+                f"[{batch_number}/{batch_total}] 第 {attempt + 1}/{attempts} 次失败：{last_error}",
+                flush=True,
+            )
+            if attempt + 1 < attempts:
+                time.sleep(2 ** attempt)
+    return None, last_error
+
+
 def main() -> int:
     api_key = os.environ.get("DEEPSEEK_API_KEY", "").strip()
     if not api_key:
@@ -131,6 +168,9 @@ def main() -> int:
     model = os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-flash")
     limit = max(1, int(os.environ.get("MAX_REFINE_QUESTIONS", "50")))
     batch_size = max(1, min(3, int(os.environ.get("REFINE_BATCH_SIZE", "1"))))
+    workers = max(1, min(4, int(os.environ.get("REFINE_WORKERS", "2"))))
+    attempts = max(1, min(3, int(os.environ.get("REFINE_MAX_ATTEMPTS", "2"))))
+    request_timeout = max(30, min(120, int(os.environ.get("REFINE_REQUEST_TIMEOUT_SECONDS", "60"))))
     delay = max(0.0, float(os.environ.get("REFINE_REQUEST_DELAY_SECONDS", "1.0")))
     force = os.environ.get("FORCE_REFINE", "").lower() in {"1", "true", "yes"}
     today = datetime.now(timezone.utc).date().isoformat()
@@ -148,39 +188,66 @@ def main() -> int:
     pending = pending[:limit]
     updated_ids: list[str] = []
     failures: list[dict] = []
+    batches = [pending[offset:offset + batch_size] for offset in range(0, len(pending), batch_size)]
+    print(
+        f"准备深化 {len(pending)} 道题，共 {len(batches)} 批；并发 {workers}，"
+        f"单次超时 {request_timeout} 秒，最多尝试 {attempts} 次。",
+        flush=True,
+    )
 
-    for offset in range(0, len(pending), batch_size):
-        batch = pending[offset:offset + batch_size]
-        input_payload = [question_payload(item, sources_by_id) for item in batch]
-        last_error = None
-        result = None
-        for attempt in range(3):
+    futures = {}
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        for index, batch in enumerate(batches, start=1):
+            input_payload = [question_payload(item, sources_by_id) for item in batch]
+            future = executor.submit(
+                request_refinement,
+                index,
+                len(batches),
+                input_payload,
+                api_key,
+                base_url,
+                model,
+                attempts,
+                request_timeout,
+            )
+            futures[future] = (index, batch)
+            if index < len(batches):
+                time.sleep(delay)
+
+        completed = 0
+        for future in as_completed(futures):
+            batch_number, batch = futures[future]
+            completed += 1
             try:
-                result = call_api(api_key, base_url, model, build_prompt(input_payload), max_tokens=8000)
-                break
-            except (urllib.error.URLError, TimeoutError, ValueError, KeyError, json.JSONDecodeError) as exc:
-                last_error = str(exc)[:400]
-                time.sleep(2 ** attempt)
-        if result is None:
-            failures.extend({"question_id": item.get("id"), "error": last_error} for item in batch)
-            continue
-
-        drafts = {
-            item.get("id"): item
-            for item in result.get("questions", [])
-            if isinstance(item, dict) and item.get("id")
-        }
-        for question in batch:
-            draft = drafts.get(question.get("id"))
-            if not draft or not apply_refinement(question, draft, model, today):
-                failures.append({
-                    "question_id": question.get("id"),
-                    "error": "AI 返回内容缺失或未达到答案长度/结构要求",
-                })
+                result, last_error = future.result()
+            except Exception as exc:
+                result, last_error = None, f"{type(exc).__name__}: {str(exc)[:320]}"
+            if result is None:
+                failures.extend({"question_id": item.get("id"), "error": last_error} for item in batch)
+                print(f"[{batch_number}/{len(batches)}] 该批失败；总体完成 {completed}/{len(batches)}。", flush=True)
                 continue
-            updated_ids.append(question["id"])
-        if offset + batch_size < len(pending):
-            time.sleep(delay)
+
+            drafts = {
+                item.get("id"): item
+                for item in result.get("questions", [])
+                if isinstance(item, dict) and item.get("id")
+            }
+            accepted = 0
+            for question in batch:
+                draft = drafts.get(question.get("id"))
+                if not draft or not apply_refinement(question, draft, model, today):
+                    failures.append({
+                        "question_id": question.get("id"),
+                        "error": "AI 返回内容缺失或未达到答案长度/结构要求",
+                    })
+                    continue
+                updated_ids.append(question["id"])
+                accepted += 1
+            print(
+                f"[{batch_number}/{len(batches)}] 校验通过 {accepted}/{len(batch)} 道；"
+                f"总体完成 {completed}/{len(batches)}。",
+                flush=True,
+            )
 
     if updated_ids:
         updates.insert(0, {

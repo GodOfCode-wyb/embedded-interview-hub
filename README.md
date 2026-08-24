@@ -89,6 +89,9 @@ npm run import:local -- --stage
    - Variable：`LINK_RESCAN_AFTER_DAYS`（可选，关联链接复查周期，默认 30 天）
    - Variable：`LINK_REQUEST_DELAY_SECONDS`（可选，关联页面访问间隔，默认 1 秒）
    - Variable：`REFINE_BATCH_SIZE`（可选，答案深化每批题数，默认 1，优先保证输出完整）
+   - Variable：`REFINE_WORKERS`（可选，并行请求数，默认 2）
+   - Variable：`REFINE_MAX_ATTEMPTS`（可选，单批失败尝试次数，默认 2）
+   - Variable：`REFINE_REQUEST_TIMEOUT_SECONDS`（可选，单次请求超时，默认 60 秒）
    - Variable：`REFINE_REQUEST_DELAY_SECONDS`（可选，答案深化请求间隔，默认 1 秒）
 
 `collect.yml` 默认每天北京时间 21:00 运行，更新候选内容并创建审核 PR。

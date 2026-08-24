@@ -216,6 +216,7 @@ def call_api(
     model: str,
     prompt: str,
     max_tokens: int = 8000,
+    timeout_seconds: int = 90,
 ) -> dict:
     payload = json.dumps({
         "model": model,
@@ -237,7 +238,7 @@ def call_api(
         },
         method="POST",
     )
-    with urllib.request.urlopen(request, timeout=90) as response:
+    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
         body = json.loads(response.read().decode("utf-8"))
     content = body["choices"][0]["message"]["content"]
     if not content or not content.strip():
