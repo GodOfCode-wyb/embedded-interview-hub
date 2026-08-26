@@ -101,8 +101,8 @@ button { color: inherit; }
 
 .workspace {
   display: grid;
-  grid-template-columns: 210px minmax(360px, 1fr) minmax(300px, 380px);
-  max-width: 1500px;
+  grid-template-columns: 180px minmax(320px, .8fr) minmax(520px, 1.35fr);
+  max-width: 1680px;
   margin: 0 auto;
   border-left: 1px solid var(--line);
   border-right: 1px solid var(--line);
@@ -129,7 +129,7 @@ button { color: inherit; }
 .source-note span { font-size: 10px; font-weight: 800; }
 .source-note p { color: var(--muted); font-size: 11px; line-height: 1.65; }
 
-.question-panel { padding-inline: clamp(24px, 3vw, 46px); }
+.question-panel { padding-inline: clamp(20px, 2.2vw, 34px); }
 .section-heading { display: flex; justify-content: space-between; align-items: end; padding-bottom: 23px; border-bottom: 1px solid var(--line); }
 .section-heading h2 { margin: 7px 0 0; font: 600 25px/1.2 Georgia, "Noto Serif SC", serif; }
 .section-heading > span { color: var(--muted); font-size: 11px; }
@@ -137,28 +137,56 @@ button { color: inherit; }
 .difficulty-filter select { padding: 7px 24px 7px 9px; border: 1px solid var(--line); border-radius: 7px; background: var(--card); color: var(--ink); font-size: 10px; outline: 0; }
 .question-list { display: grid; }
 .question-card {
+  position: relative;
   display: grid;
-  grid-template-columns: 36px 1fr 20px;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
   gap: 10px;
   width: 100%;
-  padding: 22px 5px;
+  margin: 3px 0;
+  padding: 19px 12px;
   border: 0;
   border-bottom: 1px solid var(--line);
+  border-radius: 10px;
   background: transparent;
   cursor: pointer;
   text-align: left;
+  transition: background-color .15s ease, box-shadow .15s ease;
+}
+.question-card:hover { background: rgba(255,255,255,.5); }
+.question-card.selected {
+  background: #e8f1ec;
+  box-shadow: inset 4px 0 0 var(--green), 0 7px 20px rgba(31,75,61,.08);
 }
 .question-card:hover .question-body strong, .question-card.selected .question-body strong { color: var(--green); }
 .question-index { color: #a7aaa6; font: 500 10px/1.5 ui-monospace, monospace; }
+.question-card.selected .question-index { color: var(--green); font-weight: 800; }
 .question-body { display: grid; gap: 8px; }
 .question-body small { color: var(--orange); font-size: 9px; font-weight: 800; letter-spacing: .06em; }
 .question-body strong { font: 600 17px/1.45 Georgia, "Noto Serif SC", serif; transition: color .15s ease; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 9px; }
 .tag-row i { color: #738087; font-size: 10px; font-style: normal; }
-.question-arrow { color: #9da4a2; transition: transform .15s ease; }
+.question-arrow { align-self: start; color: #9da4a2; font-size: 10px; white-space: nowrap; transition: transform .15s ease; }
+.question-card.selected .question-arrow {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: var(--green);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 800;
+}
 .question-card:hover .question-arrow { transform: translate(2px, -2px); }
 
-.answer-panel { border-left: 1px solid var(--line); background: var(--card); }
+.answer-panel {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  overflow-y: auto;
+  max-height: 100vh;
+  padding-inline: clamp(30px, 3vw, 50px);
+  border-left: 1px solid var(--line);
+  background: var(--card);
+  scrollbar-gutter: stable;
+}
 .answer-navigation { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .answer-navigation button {
   padding: 5px 0;
@@ -267,7 +295,14 @@ button { color: inherit; }
   .topbar { grid-template-columns: 1fr auto; }
   .topbar-meta { display: none; }
   .workspace { grid-template-columns: 190px minmax(0, 1fr); }
-  .answer-panel { grid-column: 1 / -1; border-top: 1px solid var(--line); border-left: 0; }
+  .answer-panel {
+    position: static;
+    overflow: visible;
+    max-height: none;
+    grid-column: 1 / -1;
+    border-top: 1px solid var(--line);
+    border-left: 0;
+  }
   .source-layout { grid-template-columns: 1fr; }
   .updates { border-top: 1px solid var(--line); border-left: 0; }
 }
@@ -284,7 +319,7 @@ button { color: inherit; }
   .category-button { flex: 0 0 auto; gap: 12px; width: auto; white-space: nowrap; }
   .source-note { display: none; }
   .question-panel, .answer-panel { padding: 30px 22px; }
-  .question-card { grid-template-columns: 28px 1fr 14px; }
+  .question-card { grid-template-columns: 28px minmax(0, 1fr) auto; }
   .difficulty-filter select { display: none; }
   .content-heading { display: block; }
   .content-heading > p { margin-top: 15px; }

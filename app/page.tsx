@@ -153,11 +153,26 @@ export default function Home() {
     return typeof item === 'string' ? item : item.title;
   }
 
+  function resetAnswerScroll() {
+    window.requestAnimationFrame(() => {
+      answerPanelRef.current?.scrollTo({ top: 0, behavior: 'auto' });
+    });
+  }
+
   function openInsight(kind: InsightSelection['kind'], index: number) {
     setSelectedInsight({ kind, index });
-    window.requestAnimationFrame(() => {
-      answerPanelRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
+    resetAnswerScroll();
+  }
+
+  function returnToMainQuestion() {
+    setSelectedInsight(null);
+    resetAnswerScroll();
+  }
+
+  function selectQuestion(questionId: string) {
+    setSelectedId(questionId);
+    setSelectedInsight(null);
+    resetAnswerScroll();
   }
 
   function switchView(nextView: View) {
@@ -281,11 +296,9 @@ export default function Home() {
               {filteredQuestions.map((item, index) => (
                 <button
                   className={selected?.id === item.id ? 'question-card selected' : 'question-card'}
+                  aria-current={selected?.id === item.id ? 'true' : undefined}
                   key={item.id}
-                  onClick={() => {
-                    setSelectedId(item.id);
-                    setSelectedInsight(null);
-                  }}
+                  onClick={() => selectQuestion(item.id)}
                   type="button"
                 >
                   <span className="question-index">{String(index + 1).padStart(2, '0')}</span>
@@ -296,7 +309,9 @@ export default function Home() {
                       {item.tags.slice(0, 4).map((tag) => <i key={tag}>#{tag}</i>)}
                     </span>
                   </span>
-                  <span className="question-arrow" aria-hidden="true">↗</span>
+                  <span className="question-arrow" aria-hidden="true">
+                    {selected?.id === item.id ? '学习中' : '↗'}
+                  </span>
                 </button>
               ))}
               {filteredQuestions.length === 0 && (
@@ -320,7 +335,7 @@ export default function Home() {
                         : '快速复习'}
                   </p>
                   {selectedInsight && (
-                    <button type="button" onClick={() => setSelectedInsight(null)}>← 返回主问题</button>
+                    <button type="button" onClick={returnToMainQuestion}>← 返回主问题</button>
                   )}
                 </div>
                 <div className="answer-badges">
