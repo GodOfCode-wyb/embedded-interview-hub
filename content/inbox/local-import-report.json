@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-08-26T07:36:39.736674+00:00",
+  "model": "deepseek-v4-flash",
+  "files_considered": 1,
+  "imported": 1,
+  "chunk_chars": 8000,
+  "question_marks_per_chunk": 24,
+  "max_chunks": null,
+  "max_outlines_per_chunk": 60,
+  "expanded_questions_per_chunk": 1,
+  "answer_workers": 2,
+  "answer_attempts": 2,
+  "reports": [
+    {
+      "candidate_id": "candidate-8cc4cdfb242ef675",
+      "status": "partial",
+      "chunks": 16,
+      "total_chunks": 16,
+      "successful_chunks": 16,
+      "failed_chunks": [],
+      "outlines": 883,
+      "unanswered_questions": 1,
+      "questions": 882,
+      "source_questions": 791,
+      "expanded_questions": 91
+    }
+  ],
+  "privacy": "仓库只保存 AI 结构化结果和内容指纹，不保存本地原文、绝对路径或文件名；扩展题会明确标记为知识点推导。"
+}

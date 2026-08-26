@@ -160,7 +160,7 @@ def main() -> int:
                 ),
                 "url": None if is_local_import else source_url,
                 "trust": (
-                    "用户本地资料的 AI 结构化草稿，原文不进入仓库，需人工核验"
+                    "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验"
                     if is_local_import else
                     "公开技术问答的 AI 结构化草稿，需人工核验"
                     if is_technical_qa else "AI 结构化草稿，需人工核验"
@@ -188,11 +188,13 @@ def main() -> int:
         ) else 1
         tags = string_list(question.get("tags"), max_items=12, limit=60)
         subtopic = bounded_text(question.get("subtopic") or "待细分", 80)
+        generation_kind = "expanded" if question.get("generation_kind") == "expanded" else "source"
+        knowledge_basis = bounded_text(question.get("knowledge_basis"), 300)
         for value in (question.get("domain"), subtopic):
             if value and value not in tags:
                 tags.append(value)
 
-        questions.append({
+        staged_question = {
             "id": question_id,
             "title": title,
             "domain": question["domain"],
@@ -207,7 +209,11 @@ def main() -> int:
             "status": "ai-draft",
             "answer_version": answer_version,
             "updated_at": today,
-        })
+            "generation_kind": generation_kind,
+        }
+        if knowledge_basis:
+            staged_question["knowledge_basis"] = knowledge_basis
+        questions.append(staged_question)
         existing_titles.add(title_key)
         existing_question_ids.add(question_id)
         item["decision"] = "staged"

@@ -20,6 +20,24 @@ USER_AGENT = "EmbeddedInterviewKnowledgeBot/2.0 (+public interview source review
 ROBOTS_CACHE: dict[str, urllib.robotparser.RobotFileParser | None] = {}
 
 
+class DeepSeekAPIError(ValueError):
+    """DeepSeek 返回了可识别的 API 错误。"""
+
+
+class DeepSeekAuthenticationError(DeepSeekAPIError):
+    """API Key 缺失、错误或已失效，不应重试。"""
+
+
+def http_error_detail(error: urllib.error.HTTPError) -> str:
+    try:
+        payload = error.read(2_000).decode("utf-8", errors="replace")
+        body = json.loads(payload)
+        detail = body.get("error", {}).get("message") or body.get("message")
+        return re.sub(r"\s+", " ", str(detail or "")).strip()[:300]
+    except (OSError, ValueError, AttributeError):
+        return ""
+
+
 class VisibleTextParser(HTMLParser):
     SKIP_TAGS = {"script", "style", "noscript", "svg", "canvas", "template"}
     BLOCK_TAGS = {"article", "blockquote", "br", "dd", "div", "dl", "dt", "h1", "h2", "h3", "h4", "h5", "h6", "li", "main", "p", "pre", "section", "td", "th", "tr"}
@@ -235,6 +253,7 @@ def call_api(
     prompt: str,
     max_tokens: int = 8000,
     timeout_seconds: int = 90,
+    thinking_enabled: bool = False,
 ) -> dict:
     payload = json.dumps({
         "model": model,
@@ -243,6 +262,10 @@ def call_api(
             {"role": "user", "content": prompt},
         ],
         "response_format": {"type": "json_object"},
+        # This pipeline needs complete machine-readable JSON rather than a long
+        # reasoning trace. DeepSeek V4 defaults to thinking mode, whose reasoning
+        # tokens share the output budget and can truncate the final JSON.
+        "thinking": {"type": "enabled" if thinking_enabled else "disabled"},
         "temperature": 0.1,
         "max_tokens": max_tokens,
     }, ensure_ascii=False).encode("utf-8")
@@ -256,8 +279,19 @@ def call_api(
         },
         method="POST",
     )
-    with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
-        body = json.loads(response.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(request, timeout=timeout_seconds) as response:
+            body = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = http_error_detail(exc)
+        suffix = f"：{detail}" if detail else ""
+        if exc.code == 401:
+            raise DeepSeekAuthenticationError(
+                f"DeepSeek API Key 错误或已失效（HTTP 401）{suffix}"
+            ) from exc
+        if exc.code == 402:
+            raise DeepSeekAPIError(f"DeepSeek 账户余额不足（HTTP 402）{suffix}") from exc
+        raise DeepSeekAPIError(f"DeepSeek API 请求失败（HTTP {exc.code}）{suffix}") from exc
     choice = body["choices"][0]
     finish_reason = choice.get("finish_reason")
     content = choice["message"].get("content")

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import os
+import io
+import json
 import tempfile
 import unittest
+import urllib.error
 import urllib.robotparser
 import zipfile
 from pathlib import Path
@@ -110,6 +113,44 @@ class PageExtractionTests(unittest.TestCase):
     def test_json_parser_repairs_trailing_commas(self) -> None:
         result = deepseek.parse_json_content('```json\n{"questions": [{"id": "q1",}],}\n```')
         self.assertEqual(result["questions"][0]["id"], "q1")
+
+    def test_api_401_is_reported_as_non_retryable_authentication_error(self) -> None:
+        error = urllib.error.HTTPError(
+            "https://api.deepseek.com/chat/completions",
+            401,
+            "Authorization Required",
+            hdrs=None,
+            fp=io.BytesIO(b'{"error":{"message":"Authentication Fails"}}'),
+        )
+        with patch.object(deepseek.urllib.request, "urlopen", side_effect=error):
+            with self.assertRaises(deepseek.DeepSeekAuthenticationError):
+                deepseek.call_api("bad-key", "https://api.deepseek.com", "model", "prompt")
+
+    def test_structured_json_requests_disable_thinking_by_default(self) -> None:
+        class FakeResponse:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_args):
+                return False
+
+            def read(self):
+                return json.dumps({
+                    "choices": [{
+                        "finish_reason": "stop",
+                        "message": {"content": '{"ok": true}'},
+                    }],
+                }).encode("utf-8")
+
+        with patch.object(deepseek.urllib.request, "urlopen", return_value=FakeResponse()) as opener:
+            result = deepseek.call_api(
+                "key", "https://api.example.com", "model", "prompt"
+            )
+
+        request = opener.call_args.args[0]
+        payload = json.loads(request.data.decode("utf-8"))
+        self.assertEqual(result, {"ok": True})
+        self.assertEqual(payload["thinking"], {"type": "disabled"})
 
 
 class LinkDiscoveryTests(unittest.TestCase):
@@ -228,6 +269,8 @@ class PromotionPolicyTests(unittest.TestCase):
                     "follow_ups": ["中断上下文能否使用互斥锁？"],
                     "pitfalls": ["忽略上下文是否允许睡眠。"],
                     "tags": ["锁"],
+                    "generation_kind": "expanded",
+                    "knowledge_basis": "由原文中的驱动同步知识点扩展。",
                 },
             }])
 
@@ -243,17 +286,65 @@ class PromotionPolicyTests(unittest.TestCase):
             candidates = read_json(inbox / "candidates.json", [])
             self.assertEqual(len(questions), 1)
             self.assertEqual(questions[0]["status"], "ai-draft")
+            self.assertEqual(questions[0]["generation_kind"], "expanded")
+            self.assertIn("驱动同步", questions[0]["knowledge_basis"])
             self.assertEqual(review[0]["decision"], "staged")
             self.assertEqual(candidates[0]["status"], "promoted")
 
 
 class LocalImportTests(unittest.TestCase):
+    def test_api_key_input_removes_quotes_and_bearer_prefix(self) -> None:
+        self.assertEqual(import_local.normalize_api_key('  "Bearer key-value"  '), "key-value")
+
+    def test_local_api_key_can_be_saved_and_loaded_without_overriding_environment(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / ".env.local"
+            path.write_text("DEEPSEEK_MODEL=test-model\n", encoding="utf-8")
+            import_local.save_local_api_key("Bearer saved-key", path)
+            values = {"DEEPSEEK_MODEL": "process-model"}
+            import_local.load_local_env(path, values)
+            self.assertEqual(values["DEEPSEEK_API_KEY"], "saved-key")
+            self.assertEqual(values["DEEPSEEK_MODEL"], "process-model")
+            self.assertNotIn("Bearer", path.read_text(encoding="utf-8"))
+
+    def test_project_import_readme_is_not_treated_as_source(self) -> None:
+        files = import_local.collect_input_files([])
+        self.assertNotIn((ROOT / "imports" / "README.md").resolve(), files)
+
     def test_chunks_long_local_notes_without_losing_text(self) -> None:
         text = "第一段问题。\n\n" + "第二段内容。" * 40
         chunks = import_local.chunk_text(text, limit=80)
         self.assertGreater(len(chunks), 1)
         self.assertIn("第一段问题", chunks[0])
         self.assertIn("第二段内容", "".join(chunks))
+
+    def test_chunks_cap_dense_question_sections_without_losing_text(self) -> None:
+        text = "\n\n".join(f"第 {index} 个问题？" for index in range(30))
+        chunks = import_local.chunk_text(text, limit=8_000, question_mark_limit=10)
+        self.assertEqual("".join(chunks).replace("\n", ""), text.replace("\n", ""))
+        self.assertTrue(all(chunk.count("？") <= 10 for chunk in chunks))
+
+    def test_truncated_extraction_is_split_without_reducing_question_count(self) -> None:
+        first = ValueError("DeepSeek 输出被截断（finish_reason=length）")
+        left = {"questions": [{
+            "title": "问题一？",
+            "domain": "C 语言",
+            "generation_kind": "source",
+            "question_evidence": "原文问题一",
+        }]}
+        right = {"questions": [{
+            "title": "问题二？",
+            "domain": "操作系统",
+            "generation_kind": "source",
+            "question_evidence": "原文问题二",
+        }]}
+        with patch.object(import_local, "call_api", side_effect=[first, left, right]) as call:
+            result = import_local.extract_segment(
+                "1", 1, "问题一？\n\n问题二？", "source", [], 0, 60,
+                "key", "https://api.example.com", "model", 1, 30,
+            )
+        self.assertEqual(call.call_count, 3)
+        self.assertEqual(len(result["questions"]), 2)
 
     def test_reads_docx_with_standard_library(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -266,6 +357,104 @@ class LocalImportTests(unittest.TestCase):
             with zipfile.ZipFile(path, "w") as archive:
                 archive.writestr("word/document.xml", document)
             self.assertIn("Linux 驱动面试问题", import_local.read_source_file(path))
+
+    def test_large_docx_archive_is_allowed_when_document_xml_is_bounded(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "illustrated-interview.docx"
+            document = (
+                '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+                '<w:body><w:p><w:r><w:t>STM32 中断优先级如何配置，FreeRTOS 临界区有什么边界？</w:t></w:r></w:p></w:body></w:document>'
+            )
+            with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_STORED) as archive:
+                archive.writestr("word/document.xml", document)
+                archive.writestr("word/media/large.bin", b"0" * (import_local.MAX_TEXT_FILE_BYTES + 1))
+            self.assertGreater(path.stat().st_size, import_local.MAX_TEXT_FILE_BYTES)
+            self.assertIn("FreeRTOS", import_local.read_source_file(path))
+
+    def test_import_prompt_marks_knowledge_expansion_as_inferred(self) -> None:
+        prompt = import_local.build_prompt(
+            "local-1", "原文知识点：volatile。", 1, 1, [], expanded_limit=1
+        )
+        self.assertIn("generation_kind=expanded", prompt)
+        self.assertIn("不能臆造面试官真的问过", prompt)
+        self.assertIn("本阶段只返回题目纲要", prompt)
+        self.assertNotIn('"answer_detail"', prompt)
+
+    def test_expanded_question_without_knowledge_basis_is_rejected(self) -> None:
+        merged = import_local.merge_results([{
+            "questions": [{"title": "扩展问题？", "generation_kind": "expanded"}],
+        }])
+        self.assertEqual(merged["questions"], [])
+
+    def test_answer_normalization_keeps_outline_identity(self) -> None:
+        outline = {
+            "title": "中断上下文为什么不能睡眠？",
+            "domain": "Linux 驱动",
+            "subtopic": "中断上下文",
+            "difficulty": "进阶",
+            "generation_kind": "expanded",
+            "knowledge_basis": "由原文中断知识点推导。",
+            "question_evidence": "非原文直接问题。",
+            "tags": ["中断"],
+        }
+        result = {"question": {
+            "title": "模型擅自改写的标题",
+            "answer_short": "先判断当前执行上下文是否允许调度和阻塞，再选择明确不会睡眠的同步、内存分配及延迟处理接口，并检查完整调用链。",
+            "answer_detail": "中断上下文没有普通进程可供阻塞后恢复的调度语义。" * 30,
+            "follow_ups": [
+                {"title": "哪些接口可能睡眠？", "answer_short": "检查分配标志和锁类型。", "answer_detail": "结合调用链和内核文档确认。" * 20},
+                {"title": "如何排查睡眠告警？", "answer_short": "查看堆栈和上下文标志。", "answer_detail": "使用调试配置定位调用路径。" * 20},
+            ],
+            "pitfalls": [{
+                "title": "只看函数名判断",
+                "explanation": "封装层可能隐藏会睡眠的调用。",
+                "correction": "沿完整调用链检查上下文要求。",
+            }],
+            "tags": ["IRQ"],
+        }}
+        normalized = import_local.normalize_answered_question(outline, result)
+        self.assertIsNotNone(normalized)
+        self.assertEqual(normalized["title"], outline["title"])
+        self.assertEqual(normalized["generation_kind"], "expanded")
+
+    def test_answer_retry_increases_output_allowance(self) -> None:
+        outline = {
+            "title": "中断上下文为什么不能睡眠？",
+            "domain": "Linux 驱动",
+            "subtopic": "中断上下文",
+            "difficulty": "进阶",
+            "generation_kind": "source",
+            "question_evidence": "原文问题。",
+            "tags": ["中断"],
+        }
+        draft = {"question": {
+            "answer_short": "需要先识别当前执行上下文是否允许阻塞与调度，再沿完整调用链选择不会导致睡眠的接口、内存分配标志和同步原语。",
+            "answer_detail": "中断上下文不具备普通进程阻塞后恢复的调度语义。" * 30,
+            "follow_ups": [
+                {"title": "哪些接口可能睡眠？", "answer_short": "检查锁、分配和等待接口。", "answer_detail": "沿完整调用链检查上下文约束。" * 20},
+                {"title": "如何排查？", "answer_short": "查看告警和调用栈。", "answer_detail": "启用调试配置并定位调用路径。" * 20},
+            ],
+            "pitfalls": [{
+                "title": "只检查当前函数",
+                "explanation": "下层封装仍可能睡眠。",
+                "correction": "检查完整调用链。",
+            }],
+            "tags": ["IRQ"],
+        }}
+        with patch.object(
+            import_local,
+            "call_api",
+            side_effect=[ValueError("finish_reason=length"), draft],
+        ) as call:
+            _, question, error = import_local.request_answer(
+                1, 1, outline, "key", "https://api.example.com", "model", 2, 45
+            )
+
+        self.assertIsNone(error)
+        self.assertIsNotNone(question)
+        self.assertEqual(call.call_args_list[0].kwargs["max_tokens"], 8000)
+        self.assertEqual(call.call_args_list[1].kwargs["max_tokens"], 12000)
 
 
 class AnswerRefinementTests(unittest.TestCase):

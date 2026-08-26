@@ -35,7 +35,7 @@ python pipeline/build_index.py
 python pipeline/validate.py
 ```
 
-`deepseek.py` 在未设置 `DEEPSEEK_API_KEY` 时会安全跳过。密钥只应保存在本地环境变量或 GitHub Actions Secret 中。
+`deepseek.py` 在未设置 `DEEPSEEK_API_KEY` 时会安全跳过。密钥只应保存在被 Git 忽略的本机 `.env.local`、本地环境变量或 GitHub Actions Secret 中。
 
 流水线使用免费的公开入口组合搜寻：Bing 搜索 RSS、GitHub 公共仓库与 Markdown 代码搜索、GitLab 公共项目搜索、Stack Overflow 公共技术问答，以及已发现页面中的相关公开链接。搜索会分页进行，并把关联链接维护为可逐日扩张、定期复查的前沿；官方文档和产品主页只作为参考候选。
 
@@ -45,20 +45,27 @@ DeepSeek 会在 robots.txt 允许时读取公开页面的有限正文节选，�
 
 ## 导入本地面经
 
-本地导入使用 DeepSeek 在你的电脑上读取并结构化文件，API 密钥不会进入网页。支持 TXT、Markdown、JSON、HTML 和 DOCX；PDF 可先安装可选依赖 `python -m pip install pypdf`。
+本地导入使用 DeepSeek 在你的电脑上读取并结构化文件，API 密钥不会进入网页。支持 TXT、Markdown、JSON、HTML 和 DOCX；PDF 可先安装可选依赖 `python -m pip install pypdf`。DOCX/PDF 默认支持至 25 MB，纯文本类文件默认支持至 5 MB。
 
 可以直接指定文件或目录：
 
 ```powershell
-$env:DEEPSEEK_API_KEY = "你的密钥"
 npm run import:local -- "D:\资料\嵌入式面经.md" --stage
 ```
+
+若不想每次输入，可先执行 `python -B pipeline/import_local.py --save-api-key`。脚本会安全提示输入，验证成功后保存到项目根目录的 `.env.local`，后续自动读取。该文件被 Git 忽略但在本机是明文，请只在个人电脑使用，不要手动提交或分享。
+
+首次使用或遇到 HTTP 401 时，可先运行 `python -B pipeline/import_local.py --check-api`；它只验证密钥和模型，不处理文档。401 会立即终止，不再对后续分段重复请求。
 
 也可以把文件临时放入 `imports/`，再执行：
 
 ```powershell
 npm run import:local -- --stage
 ```
+
+首次可先执行 `npm run import:local -- --inspect`，它只检查可读性和分段数量，不调用 AI。正式导入采用两阶段全量流程：先遍历所有正文分段，枚举其中全部可独立成题的问题和知识点；再逐题生成标准答案、追问及踩坑说明。默认不限制正文分段数量，并围绕每段中的明确知识点扩展 1 道独立问题；扩展题会保存 `generation_kind: expanded` 和扩写依据，不会伪装成面试官原话。若只想保留原文题，可加 `--no-expand`。
+
+长文档的结构化纲要和已完成答案会保存到被 Git 忽略的 `work/local-import/` 断点文件。网络中断或少量 AI 请求失败时，直接重复同一命令即可继续未完成题目，不会重新处理已完成答案。
 
 `--stage` 会自动执行去重、草稿入库、索引重建和内容校验。原始文件、绝对路径和文件名不会写入仓库；只保存内容指纹、面经元数据、题目和 AI 答案草稿。提交前仍应检查隐私信息和技术准确性。
 

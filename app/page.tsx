@@ -41,6 +41,8 @@ type Question = {
   status: QuestionStatus;
   updated_at: string;
   answer_version?: number;
+  generation_kind?: 'source' | 'expanded';
+  knowledge_basis?: string;
 };
 
 type Experience = {
@@ -323,6 +325,9 @@ export default function Home() {
                 </div>
                 <div className="answer-badges">
                   <span className="answer-category">{selected.domain}</span>
+                  {!selectedInsight && selected.generation_kind === 'expanded' && (
+                    <span className="status-badge ai-draft">知识点扩展</span>
+                  )}
                   <span className={`status-badge ${selected.status}`}>
                     {selectedInsight?.kind === 'follow-up'
                       ? '追问答案'
@@ -422,6 +427,9 @@ export default function Home() {
                     })}
                   </div>
                   <p>更新于 {selected.updated_at}</p>
+                  {selected.generation_kind === 'expanded' && selected.knowledge_basis && (
+                    <p>扩写依据：{selected.knowledge_basis}</p>
+                  )}
                 </footer>
               </>
             ) : (

@@ -215,5 +215,13 @@
     "kind": "公开技术问答",
     "url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
     "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-7585c60bc4d0abaa",
+    "title": "本地导入面经 242ef675",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-8cc4cdfb242ef675"
   }
 ]
