@@ -293,6 +293,14 @@ class PromotionPolicyTests(unittest.TestCase):
 
 
 class LocalImportTests(unittest.TestCase):
+    def test_progress_log_has_local_timestamp(self) -> None:
+        output = io.StringIO()
+        import_local.log("导入开始", file=output)
+        self.assertRegex(
+            output.getvalue(),
+            r"^\[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\] 导入开始\n$",
+        )
+
     def test_api_key_input_removes_quotes_and_bearer_prefix(self) -> None:
         self.assertEqual(import_local.normalize_api_key('  "Bearer key-value"  '), "key-value")
 
@@ -311,6 +319,36 @@ class LocalImportTests(unittest.TestCase):
         files = import_local.collect_input_files([])
         self.assertNotIn((ROOT / "imports" / "README.md").resolve(), files)
 
+    def test_requested_outline_and_scenario_files_are_ignored(self) -> None:
+        self.assertTrue(import_local.is_ignored_input_file(Path("index.md")))
+        self.assertTrue(import_local.is_ignored_input_file(Path("04 嵌入式场景题（示例）.md")))
+        self.assertFalse(import_local.is_ignored_input_file(Path("05bootloader.md")))
+
+    def test_domain_spacing_variant_is_canonicalized(self) -> None:
+        self.assertEqual(promote.canonical_domain("嵌入式AI"), "嵌入式 AI")
+
+    def test_requested_outline_and_scenario_files_are_ignored(self) -> None:
+        self.assertTrue(import_local.is_ignored_input_file(Path("index.md")))
+        self.assertTrue(import_local.is_ignored_input_file(Path("04 嵌入式场景题（示例）.md")))
+        self.assertFalse(import_local.is_ignored_input_file(Path("05bootloader.md")))
+
+    def test_domain_spacing_variant_is_canonicalized(self) -> None:
+        self.assertEqual(promote.canonical_domain("嵌入式AI"), "嵌入式 AI")
+
+    def test_markdown_images_are_ignored_but_qa_text_is_preserved(self) -> None:
+        source = (
+            "问题：DMA 为什么能降低 CPU 负担？\n\n"
+            "答案：外设和内存之间的数据搬运由 DMA 控制器完成。\n"
+            "![时序图](img/dma.png)\n"
+            '<img src="data:image/png;base64,AAAA" alt="截图">\n'
+            "[diagram]: img/dma.webp\n"
+        )
+        cleaned = import_local.strip_markdown_images(source)
+        self.assertIn("DMA 为什么能降低 CPU 负担", cleaned)
+        self.assertIn("由 DMA 控制器完成", cleaned)
+        self.assertNotIn("img/dma", cleaned)
+        self.assertNotIn("data:image", cleaned)
+
     def test_chunks_long_local_notes_without_losing_text(self) -> None:
         text = "第一段问题。\n\n" + "第二段内容。" * 40
         chunks = import_local.chunk_text(text, limit=80)
@@ -323,6 +361,18 @@ class LocalImportTests(unittest.TestCase):
         chunks = import_local.chunk_text(text, limit=8_000, question_mark_limit=10)
         self.assertEqual("".join(chunks).replace("\n", ""), text.replace("\n", ""))
         self.assertTrue(all(chunk.count("？") <= 10 for chunk in chunks))
+
+    def test_output_retry_split_avoids_extremely_unbalanced_paragraphs(self) -> None:
+        halves = import_local.split_text_balanced("A" * 2500 + "\n\n" + "B" * 100)
+        self.assertIsNotNone(halves)
+        left, right = halves
+        self.assertGreater(min(len(left), len(right)), 900)
+
+    def test_output_retry_split_avoids_extremely_unbalanced_paragraphs(self) -> None:
+        halves = import_local.split_text_balanced("A" * 2500 + "\n\n" + "B" * 100)
+        self.assertIsNotNone(halves)
+        left, right = halves
+        self.assertGreater(min(len(left), len(right)), 900)
 
     def test_truncated_extraction_is_split_without_reducing_question_count(self) -> None:
         first = ValueError("DeepSeek 输出被截断（finish_reason=length）")
@@ -378,8 +428,18 @@ class LocalImportTests(unittest.TestCase):
         )
         self.assertIn("generation_kind=expanded", prompt)
         self.assertIn("不能臆造面试官真的问过", prompt)
-        self.assertIn("本阶段只返回题目纲要", prompt)
+        self.assertIn("题目纲要和对应的原文答案摘录", prompt)
+        self.assertIn('"source_answer"', prompt)
         self.assertNotIn('"answer_detail"', prompt)
+
+    def test_answer_prompt_reviews_and_reuses_source_answer(self) -> None:
+        prompt = import_local.build_answer_prompt({
+            "title": "volatile 能否保证线程安全吗？",
+            "source_answer": "volatile 只约束特定访问的优化，不能提供互斥或原子性。",
+        })
+        self.assertIn("先审核题目纲要中的 source_answer", prompt)
+        self.assertIn("不要为了改写而改写", prompt)
+        self.assertIn('"ai_review"', prompt)
 
     def test_expanded_question_without_knowledge_basis_is_rejected(self) -> None:
         merged = import_local.merge_results([{
@@ -400,6 +460,7 @@ class LocalImportTests(unittest.TestCase):
         }
         result = {"question": {
             "title": "模型擅自改写的标题",
+            "ai_review": {"verdict": "expanded", "issues": ["缺少工程边界"], "summary": "保留原结论并补充调用上下文。"},
             "answer_short": "先判断当前执行上下文是否允许调度和阻塞，再选择明确不会睡眠的同步、内存分配及延迟处理接口，并检查完整调用链。",
             "answer_detail": "中断上下文没有普通进程可供阻塞后恢复的调度语义。" * 30,
             "follow_ups": [
@@ -417,6 +478,7 @@ class LocalImportTests(unittest.TestCase):
         self.assertIsNotNone(normalized)
         self.assertEqual(normalized["title"], outline["title"])
         self.assertEqual(normalized["generation_kind"], "expanded")
+        self.assertEqual(normalized["ai_review"]["verdict"], "expanded")
 
     def test_answer_retry_increases_output_allowance(self) -> None:
         outline = {
@@ -429,6 +491,7 @@ class LocalImportTests(unittest.TestCase):
             "tags": ["中断"],
         }
         draft = {"question": {
+            "ai_review": {"verdict": "corrected", "issues": ["原答案缺少上下文"], "summary": "纠正并补充中断上下文限制。"},
             "answer_short": "需要先识别当前执行上下文是否允许阻塞与调度，再沿完整调用链选择不会导致睡眠的接口、内存分配标志和同步原语。",
             "answer_detail": "中断上下文不具备普通进程阻塞后恢复的调度语义。" * 30,
             "follow_ups": [
@@ -467,26 +530,56 @@ class AnswerRefinementTests(unittest.TestCase):
         }
         self.assertTrue(refine_answers.needs_refinement(question))
 
+    def test_shallow_structured_followups_require_refinement(self) -> None:
+        question = {
+            "answer_version": 2,
+            "answer_short": "先给出足够明确的结论和判断条件。" * 4,
+            "answer_detail": "主答案具有足够长度和工程背景。" * 40,
+            "ai_review": {"verdict": "accepted", "issues": [], "summary": "现有内容准确。"},
+            "follow_ups": [{
+                "title": "为什么？",
+                "answer_short": "过短",
+                "answer_detail": "仍然过短",
+            }] * 3,
+            "pitfalls": [{
+                "title": "误区",
+                "explanation": "错误原因和失效上下文。" * 5,
+                "correction": "正确方法和排查步骤。" * 5,
+            }] * 2,
+        }
+        self.assertIn("follow_up_detail", refine_answers.quality_issues(question))
+        self.assertTrue(refine_answers.needs_refinement(question))
+
     def test_applies_complete_structured_refinement(self) -> None:
         question = {"id": "q1", "status": "verified"}
         draft = {
             "id": "q1",
-            "answer_short": "先判断调用上下文是否允许睡眠，再根据临界区长度、竞争程度和实时性要求选择同步原语。",
-            "answer_detail": "详细机制与工程约束。" * 40,
+            "ai_review": {"verdict": "expanded", "issues": ["追问深度不足"], "summary": "保留主结论并扩展追问机制与边界。"},
+            "answer_short": "先判断调用上下文是否允许睡眠，再根据临界区长度、竞争程度、实时性要求、持锁路径和优先级反转风险选择同步原语。" * 2,
+            "answer_detail": "详细说明底层机制、调用上下文、工程约束、实现步骤、平台边界和排查方法。" * 50,
             "follow_ups": [
-                {"title": "中断上下文如何同步？", "answer_short": "使用适合原子上下文的机制。", "answer_detail": "结合中断状态和锁粒度分析。" * 20},
-                {"title": "何时使用互斥锁？", "answer_short": "允许睡眠且临界区较长时考虑。", "answer_detail": "还要评估优先级反转和持锁路径。" * 20},
+                {"title": "中断上下文如何同步？", "answer_short": "使用适合原子上下文且不会引起调度睡眠的同步机制，并控制临界区长度。" * 2, "answer_detail": "结合中断状态、锁粒度、实时性和完整调用链分析同步边界。" * 20},
+                {"title": "何时使用互斥锁？", "answer_short": "允许睡眠且临界区较长时考虑，并评估竞争、持锁路径和优先级反转。" * 2, "answer_detail": "还要结合调度上下文、优先级继承支持和错误恢复路径进行判断。" * 20},
+                {"title": "如何定位锁竞争？", "answer_short": "结合跟踪、统计和调用栈确认竞争位置、持续时间及调度影响。" * 2, "answer_detail": "使用平台可用的跟踪工具记录持锁时间、等待者和上下文，再逐步缩小锁粒度。" * 20},
             ],
-            "pitfalls": [{
-                "title": "所有场景都用自旋锁",
-                "explanation": "长临界区会持续占用 CPU。",
-                "correction": "按上下文和临界区特性选择同步原语。",
-            }],
+            "pitfalls": [
+                {
+                    "title": "所有场景都用自旋锁",
+                    "explanation": "长临界区会持续占用 CPU，并放大中断延迟和实时性抖动。" * 2,
+                    "correction": "按上下文是否允许睡眠、临界区长度和竞争程度选择同步原语。" * 2,
+                },
+                {
+                    "title": "只检查当前函数",
+                    "explanation": "下层封装仍可能获取其他锁或进入睡眠，形成隐藏的上下文违规。" * 2,
+                    "correction": "沿完整调用链检查锁顺序、睡眠点和异常退出路径。" * 2,
+                },
+            ],
         }
         self.assertTrue(refine_answers.apply_refinement(question, draft, "test-model", "2026-08-24"))
         self.assertEqual(question["answer_version"], 2)
         self.assertEqual(question["status"], "ai-draft")
         self.assertIsInstance(question["follow_ups"][0], dict)
+        self.assertEqual(question["ai_review"]["verdict"], "expanded")
 
     def test_refinement_request_uses_bounded_timeout(self) -> None:
         with patch.object(refine_answers, "call_api", return_value={"questions": []}) as call:
@@ -509,6 +602,27 @@ class AnswerRefinementTests(unittest.TestCase):
         compact = refine_answers.build_prompt([{"id": "q1", "title": "测试"}], compact=True)
         self.assertIn("主详解 450 至 1000 字", regular)
         self.assertIn("失败后的压缩重试", compact)
+        self.assertIn("准确且深度、宽度足够的部分应继续使用", regular)
+
+    def test_legacy_followups_are_prioritized_before_audit_only_items(self) -> None:
+        legacy = {
+            "answer_version": 2,
+            "answer_short": "结论和判断条件。" * 10,
+            "answer_detail": "主答案。" * 100,
+            "follow_ups": ["为什么？"],
+            "pitfalls": ["误区"],
+        }
+        audit_only = {
+            "answer_version": 2,
+            "answer_short": "结论和判断条件。" * 10,
+            "answer_detail": "主答案。" * 100,
+            "follow_ups": [{"title": "追问", "answer_short": "简答。" * 20, "answer_detail": "详解。" * 50}] * 3,
+            "pitfalls": [{"title": "误区", "explanation": "原因。" * 20, "correction": "做法。" * 20}] * 2,
+        }
+        self.assertLess(
+            refine_answers.refinement_priority(legacy),
+            refine_answers.refinement_priority(audit_only),
+        )
 
 
 if __name__ == "__main__":

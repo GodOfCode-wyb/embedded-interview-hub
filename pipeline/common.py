@@ -3,12 +3,20 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
 INBOX = CONTENT / "inbox"
+
+
+def log(*values, **kwargs) -> None:
+    """Print an immediately visible progress line prefixed with local time."""
+    timestamp = datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S")
+    kwargs.setdefault("flush", True)
+    print(f"[{timestamp}]", *values, **kwargs)
 
 
 def read_json(path: Path, default=None):

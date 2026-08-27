@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from difflib import SequenceMatcher
 
-from common import CONTENT, INBOX, read_json, stable_id, write_json
+from common import CONTENT, INBOX, log, read_json, stable_id, write_json
 
 DUPLICATE_THRESHOLD = 0.62
 
@@ -91,7 +91,7 @@ def main() -> int:
         1 for item in review
         if item.get("recommendation") == "new-draft" and item.get("decision") == "pending"
     )
-    print(f"去重分析完成：{len(review)} 道候选题，其中 {new_count} 道新草稿可进入审核 PR。")
+    log(f"去重分析完成：{len(review)} 道候选题，其中 {new_count} 道新草稿可进入审核 PR。")
     return 0
 
 

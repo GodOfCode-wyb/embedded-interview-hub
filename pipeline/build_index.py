@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections import Counter
 from datetime import datetime, timezone
 
-from common import CONTENT, ROOT, read_json, write_json
+from common import CONTENT, ROOT, log, read_json, write_json
 
 
 def main() -> int:
@@ -33,7 +33,7 @@ def main() -> int:
         ],
     }
     write_json(ROOT / "public" / "data" / "catalog.json", index)
-    print(f"搜索索引已生成：{len(questions)} 道题。")
+    log(f"搜索索引已生成：{len(questions)} 道题。")
     return 0
 
 

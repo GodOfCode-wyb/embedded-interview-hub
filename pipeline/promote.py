@@ -5,7 +5,7 @@ import re
 from datetime import datetime, timezone
 from urllib.parse import urlsplit
 
-from common import CONTENT, INBOX, read_json, stable_id, write_json
+from common import CONTENT, INBOX, log, read_json, stable_id, write_json
 
 ALLOWED_DOMAINS = {
     "C 语言", "C++", "数据结构与算法", "操作系统", "计算机网络", "计算机体系结构",
@@ -21,6 +21,13 @@ def normalize(value: str) -> str:
 
 def bounded_text(value, limit: int) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip()[:limit]
+
+
+def canonical_domain(value) -> str:
+    """Map harmless spelling and spacing variants to a supported domain."""
+    candidate = bounded_text(value, 60)
+    key = normalize(candidate)
+    return next((domain for domain in ALLOWED_DOMAINS if normalize(domain) == key), candidate)
 
 
 def bounded_detail(value, limit: int) -> str:
@@ -82,6 +89,17 @@ def pitfall_list(value, max_items: int = 6) -> list[str | dict]:
     return result
 
 
+def ai_review_record(value) -> dict | None:
+    if not isinstance(value, dict):
+        return None
+    verdict = bounded_text(value.get("verdict"), 30).lower()
+    if verdict not in {"accepted", "expanded", "corrected", "generated"}:
+        return None
+    issues = string_list(value.get("issues"), max_items=8, limit=240)
+    summary = bounded_text(value.get("summary"), 500)
+    return {"verdict": verdict, "issues": issues, "summary": summary} if summary else None
+
+
 def is_publishable(item: dict) -> bool:
     question = item.get("question") or {}
     title = str(question.get("title", "")).strip()
@@ -135,6 +153,9 @@ def main() -> int:
     for item in review:
         if provider_filter and item.get("candidate_provider") != provider_filter:
             continue
+        question = item.get("question")
+        if isinstance(question, dict):
+            question["domain"] = canonical_domain(question.get("domain"))
         if staged >= limit or not is_publishable(item):
             continue
         question = item["question"]
@@ -190,6 +211,7 @@ def main() -> int:
         subtopic = bounded_text(question.get("subtopic") or "待细分", 80)
         generation_kind = "expanded" if question.get("generation_kind") == "expanded" else "source"
         knowledge_basis = bounded_text(question.get("knowledge_basis"), 300)
+        ai_review = ai_review_record(question.get("ai_review"))
         for value in (question.get("domain"), subtopic):
             if value and value not in tags:
                 tags.append(value)
@@ -213,6 +235,8 @@ def main() -> int:
         }
         if knowledge_basis:
             staged_question["knowledge_basis"] = knowledge_basis
+        if ai_review:
+            staged_question["ai_review"] = ai_review
         questions.append(staged_question)
         existing_titles.add(title_key)
         existing_question_ids.add(question_id)
@@ -266,7 +290,7 @@ def main() -> int:
 
     write_json(INBOX / "review.json", review)
     write_json(INBOX / "candidates.json", candidates)
-    print(f"候选发布准备完成：{staged} 道 AI 草稿已加入审核 PR。")
+    log(f"候选发布准备完成：{staged} 道 AI 草稿已加入审核 PR。")
     return 0
 
 

@@ -223,5 +223,93 @@
     "url": null,
     "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
     "import_key": "local://candidate-8cc4cdfb242ef675"
+  },
+  {
+    "id": "source-24b7cf930caab61d",
+    "title": "本地导入面经 5185758f",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-358d3ca95185758f"
+  },
+  {
+    "id": "source-478b6c95b6e65d7a",
+    "title": "本地导入面经 bf4aa09a",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-342eccedbf4aa09a"
+  },
+  {
+    "id": "source-2f2045b3a083e468",
+    "title": "本地导入面经 d82f6404",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-14d9c36dd82f6404"
+  },
+  {
+    "id": "source-a4a60797192d6a32",
+    "title": "本地导入面经 8d841487",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-070045fc8d841487"
+  },
+  {
+    "id": "source-08fcef3728395434",
+    "title": "本地导入面经 119dd6d8",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-aa833b6e119dd6d8"
+  },
+  {
+    "id": "source-4e97db98a1455d8b",
+    "title": "本地导入面经 3d8961d2",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-f6d134603d8961d2"
+  },
+  {
+    "id": "source-13c44c37358ed5f7",
+    "title": "本地导入面经 f5d197e4",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-7c25adb6f5d197e4"
+  },
+  {
+    "id": "source-1f12be6e866982ad",
+    "title": "本地导入面经 2da6a92e",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-5a9da71f2da6a92e"
+  },
+  {
+    "id": "source-1a029ebd2ef2e7c0",
+    "title": "本地导入面经 5ed4ba12",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-5d6c79ac5ed4ba12"
+  },
+  {
+    "id": "source-e8f6fe761d250a5f",
+    "title": "本地导入面经 d544747c",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-68a32838d544747c"
+  },
+  {
+    "id": "source-acf7068b7d3268d5",
+    "title": "本地导入面经 bd8c568c",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-b7a21037bd8c568c"
   }
 ]

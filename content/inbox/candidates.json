@@ -19463,5 +19463,203 @@
       "scope:嵌入式"
     ],
     "status": "promoted"
+  },
+  {
+    "id": "candidate-342eccedbf4aa09a",
+    "title": "本地导入面经 bf4aa09a",
+    "url": "local://candidate-342eccedbf4aa09a",
+    "summary": "本段为MCU开发面试题总结，包含STM32启动过程、定时器配置、中断机制等高频问题，与嵌入式开发岗位高度相关。；本段包含STM32串口中断配置、GPIO模式、大小端、51与32架构区别等嵌入式面试题，与嵌入式开发相关。；文本包含多个STM32和单片机相关的面试问答，如51与32位单片机区别、PWM调速、CPU寄存器、位带操作、ADC精度、时钟树等。；文本包含多个STM32和嵌入式相关的面试问答，如启动方式、时钟配置、串口接收模式等。；文本包含多个STM32相关面试问题及详细答案，涉及分频配置、ADC配置、Flash划分、系统死机排查、ADC数据存放等，属于嵌入式开发面试资料。；文本包含RTOS与Linux区别、FreeRTOS任务管理、内存管理、中断管理、信息交换等嵌入式面试常见问题，与嵌入式开发面试资料编目高度相关。；文本包含FreeRTOS任务间通信、临界区、互斥锁、实时性评估、调度器设计等面试问答，与RTOS领域直接相关。；本段文本主要涉及FreeRTOS调度器、上下文切换、信号量释放后的调度选择等RTOS面试问题，与嵌入式开发面试资料编目高度相关。；本段包含多个FreeRTOS相关的面试问题及详细答案，属于嵌入式开发面试资料。；本段包含多个RTOS和FreeRTOS相关的面试问题及详细答案，属于嵌入式开发面试资料。；本段包含FreeRTOS移植和低功耗模式两个明确的面试问题",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-14d9c36dd82f6404",
+    "title": "本地导入面经 d82f6404",
+    "url": "local://candidate-14d9c36dd82f6404",
+    "summary": "文本包含设备树、内核模块编译等嵌入式驱动面试题，符合要求。；本段内容为Linux驱动开发面试题，包括驱动编译、设备类型、字符设备驱动编写等，与嵌入式Linux驱动相关。；文本是字符设备驱动初始化代码，涉及设备号申请、cdev注册、设备类与设备节点创建，与Linux驱动相关。；本段为字符设备驱动初始化与退出代码，涉及设备号申请、cdev初始化、类创建、设备节点创建等，与Linux驱动相关。；文本涉及Linux内核模块编译、加载、测试，属于Linux驱动开发面试题。；文本包含字符设备驱动、LED驱动、外部中断按键驱动等嵌入式Linux驱动开发面试题，与嵌入式开发面试高度相关。；文本包含字符设备、块设备、网络设备区别，Platform总线驱动框架、probe、匹配机制等嵌入式Linux驱动面试知识点。；文本包含platform设备驱动、多SoC适配、GPIO子系统等嵌入式驱动面试知识点，与面试资料编目相关。；文本涉及GPIO、Pinctrl、I2C子系统等嵌入式Linux驱动知识点，包含多个面试问答。；文本内容为I2C错误码、适配器结构体、通信方法、上拉电阻等嵌入式驱动面试知识点，与面试资料编目相关。；本段包含SPI和UART驱动子系统的框架、原理和代码示例，属于Linux驱动面试题。；文本包含UART驱动框架的代码和结构体，涉及uart_driver、uart_port、uart_op",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-358d3ca95185758f",
+    "title": "本地导入面经 5185758f",
+    "url": "local://candidate-358d3ca95185758f",
+    "summary": "文本包含嵌入式应用层面试题，涉及C++、QT、音视频等，但未明确公司、岗位、日期、轮次。；文本包含QT相关面试题，属于嵌入式开发范畴。；本段为Qt面试问答，包含信号槽、控件、多线程等嵌入式开发高频考点。；文本包含Qt信号槽、多线程、音视频等嵌入式面试题，与嵌入式开发相关。；文本包含RTSP与HTTP流对比、avcodec参数、AVFrame渲染等音视频面试题，与嵌入式音视频方向相关。；文本包含音视频处理、RTSP协议、视频压缩等面试题，属于音视频领域。；本段包含音视频同步、FFmpeg结构体、YUV格式、网络IO多路复用、socket编程、TCP握手等面试题，属于嵌入式开发面试范围。；文本包含TCP三次握手、四次挥手、拥塞控制、TCP与UDP区别、TCP粘包、DHCP、Ping、TIME_WAIT、线程池、内存池、协程、进程上下文切换、CFS调度、IPC、互斥锁与自旋锁等嵌入式面试常见问题。；文本包含互斥锁与自旋锁对比、条件变量、原子变量、Slab、Buddy、系统调用回调、DMA分配、零拷贝等嵌入式面试常见知识点，且已有题目列表中包含互斥锁和自旋锁的区别，但其他知识点未覆盖。；文本包含写时复制、fork vs pthread_create、protobuf/json/xml对比、单例模式等嵌入式面试常见知识点。；文本包含单例模式（饿汉式）和观察者模式的详细描述，属于嵌入式开发面试",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-aa833b6e119dd6d8",
+    "title": "本地导入面经 119dd6d8",
+    "url": "local://candidate-aa833b6e119dd6d8",
+    "summary": "文本包含操作系统核心概念（进程线程、上下文切换、调度算法、CFS）的详细学习记录，可提取为面试题。；文本包含CFS调度、同步与锁、死锁、虚拟内存等操作系统面试题，与嵌入式开发相关。；文本涉及虚拟内存、页表、MMU、TLB、缺页异常、malloc、mmap、brk/sbrk等操作系统和内存管理知识点，与嵌入式开发面试相关。；文本包含fork写时复制、管道、FIFO、消息队列等操作系统IPC和内存管理面试题，与嵌入式开发面试相关。；文本涉及消息队列、共享内存、信号量、信号、socket等IPC机制，与已有题目相关，可提取面试问题。；文本包含IPC选择题、文件系统、inode、链接、文件描述符等面试知识点，与嵌入式开发面试相关。；本段详细讲解了文件描述符、打开文件表、dup/dup2重定向、删除文件、IO模型等Linux系统编程核心概念，与面试题高度相关。；文本包含IO模型、同步异步、IO多路复用、select/poll/epoll、用户态内核态、中断、DMA等嵌入式面试常见知识点，且明确列出多个问答标题。；文本内容涉及DMA、零拷贝、驱动mmap、cache一致性等嵌入式驱动面试知识点，与面试资料编目相关。；文本包含DMA、零拷贝、V4L2、RDMA、RTOS、优先级反转、内存碎片等嵌入式面试高频知识点，且明确以问答形式呈现。；本段包含 buddy 伙伴系统、slab 分配器、Reac",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-f6d134603d8961d2",
+    "title": "本地导入面经 3d8961d2",
+    "url": "local://candidate-f6d134603d8961d2",
+    "summary": "文本为操作系统面试题总结，包含进程管理、调度、通信、同步、线程池等嵌入式面试高频考点。；文本包含线程池、线程阻塞/等待、绑核、协程、共享内存、临界区、死锁、自旋锁、进程线程区别、fork写时复制等嵌入式面试常见问题，与操作系统和并发编程高度相关。；文本包含线程切换、锁、多线程多进程、协程、内存管理等嵌入式面试常见知识点，与面试资料编目相关。；文本涉及内存管理、虚拟内存、内存碎片、内存分配算法等操作系统核心知识点，与嵌入式开发面试高度相关。；文本包含CPU寄存器、寻址方式、除法实现、线程池、socket、IO多路复用等嵌入式面试常见知识点，与嵌入式开发面试相关。；本段详细讲解了epoll的内核实现、触发模式、Reactor网络模式，并包含多个明确的面试问答。；文本包含Reactor主从多线程模型、Proactor模式、socket参数、零拷贝、系统启动、中断异常系统调用等嵌入式面试常见知识点，且与已有题目不重复。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-7c25adb6f5d197e4",
+    "title": "本地导入面经 f5d197e4",
+    "url": "local://candidate-7c25adb6f5d197e4",
+    "summary": "本段为计算机网络应用层面试题总结，包含HTTP版本区别、多路复用、长连接等高频问题，与嵌入式面试相关。；文本包含HTTP长连接、GET与POST区别、HTTPS建立过程、HTTP方法及状态码等面试题，属于计算机网络领域。；文本包含HTTP状态码、报文结构、加密、HTTPS握手、Cookie/Session、数字证书、缓存、端口、HTTP与HTTPS/RPC/QUIC对比、TCP三次握手等网络面试题。；文本主要涉及TCP协议细节，包括四次挥手、TCP与UDP区别、重传机制、滑动窗口、拥塞控制、粘包拆包、TIME_WAIT、QUIC等，属于计算机网络面试题。；文本包含TCP/UDP协议细节、可靠性机制、tcpdump、DNS、SYN攻击、MTU/MSS、拥塞控制、QUIC、NAT等网络面试题，属于计算机网络领域。；文本包含多个明确的网络协议面试问题及详细答案，如VLAN、ping、ARP、DHCP、NAT等。；文本包含交换机MAC地址表学习、DNS解析、URL解析、OSI七层模型、TCP/IP分层原因、抓包工具等网络面试知识点。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-b7a21037bd8c568c",
+    "title": "本地导入面经 bd8c568c",
+    "url": "local://candidate-b7a21037bd8c568c",
+    "summary": "文本为计算机组成原理高频面试题总结，包含架构、数据运算、CPU、ISA、存储、总线、IO等嵌入式面试常见考点。；文本包含中断系统工作流程、优先级、嵌套以及DMA与中断区别和DMA工作流程，属于嵌入式系统核心知识点。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-68a32838d544747c",
+    "title": "本地导入面经 d544747c",
+    "url": "local://candidate-68a32838d544747c",
+    "summary": "文本为嵌入式面试中数据结构与算法的高频问题总结，包含链表、数组、哈希、排序、位运算等知识点，与嵌入式开发相关。；文本包含位运算取余的代码示例和已有题目标题，其中明确涉及位运算取余问题，且已有题目标题中列出了多个面试问题。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-070045fc8d841487",
+    "title": "本地导入面经 8d841487",
+    "url": "local://candidate-070045fc8d841487",
+    "summary": "文本为C/C++基础面试题总结，包含多个明确问题及解答。；本段为嵌入式C/C++面试知识点，包含多个明确问答，如C与C++区别、初始化列表、struct区别、inline与define等。；文本包含多个C/C++面试问答，如指针常量与常量指针、全局变量初始化、头文件重复引用、指针数组与数组指针、sizeof与strlen、char*与char[]、auto与decltype、const与constexpr、多态、智能指针等。；文本包含C++虚表、智能指针、模板、类型转换、内联函数、引用与指针、菱形继承、多态、析构顺序、虚函数与纯虚函数、重载重写隐藏等面试题，属于嵌入式C++面试范畴。；本段包含多个C++面试问题，如模板元编程、继承与组合、空类、模板嵌套等，均属于嵌入式开发面试常见考点。；文本包含C++模板、拷贝构造、this指针、面向对象等面试问答，属于嵌入式C++面试资料。；文本包含C++对象模型、函数指针、异常处理、拷贝构造、传参方式、move/forward、仿函数等面试题，与嵌入式C++开发相关。；本段包含多个C++面试问题及详细答案，如weak_ptr、虚函数表、静态绑定等。；文本包含C++异常体系、emplace_back底层实现、C语言实现继承、deque底层原理、STL容器对比、lambda表达式等嵌入式C++面试常见知识点。；本段包含STL中pair和tuple的",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-5d6c79ac5ed4ba12",
+    "title": "本地导入面经 5ed4ba12",
+    "url": "local://candidate-5d6c79ac5ed4ba12",
+    "summary": "文本包含git、gdb、ROS、CMake、Shell等嵌入式常用工具的高频面试问题，与嵌入式开发相关。；文本包含Linux命令、shell脚本、Python编程等嵌入式开发面试常见知识点，且与已有题目列表中的Linux三剑客、grep、sed、awk等题目直接相关。；本段包含Python、ADB/Fastboot、Makefile等嵌入式面试常见知识点，且与已有题目不重复。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
+  },
+  {
+    "id": "candidate-5a9da71f2da6a92e",
+    "title": "本地导入面经 2da6a92e",
+    "url": "local://candidate-5a9da71f2da6a92e",
+    "summary": "文本为ARM架构面试题总结，包含大量嵌入式相关面试问题，符合嵌入式开发面试资料编目范围。；文本包含大量嵌入式系统面试题，涉及Cache一致性、DMA、内存管理、中断、安全、电源管理等，与嵌入式开发岗位高度相关。；文本包含嵌入式调试相关面试题，如DWT/ITM/FPB/ETM/SCB模块作用、栈溢出堆溢出定位、DDR带宽瓶颈、AXI总线仲裁、高频中断影响等，属于嵌入式开发面试资料。",
+    "published_at": null,
+    "discovered_by": "用户本地文件导入",
+    "provider": "local-import",
+    "first_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "last_seen_at": "2026-08-26T11:39:47.122860+00:00",
+    "score": 100,
+    "content_kind": "interview",
+    "signals": [
+      "interview:本地面经",
+      "scope:嵌入式"
+    ],
+    "status": "promoted"
   }
 ]

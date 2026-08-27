@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from common import CONTENT, read_json
+from common import CONTENT, log, read_json
 
 ALLOWED_STATUS = {"source-only", "ai-draft", "reviewed", "verified", "outdated"}
 REQUIRED_QUESTION_FIELDS = {
@@ -64,11 +64,11 @@ def main() -> int:
                 errors.append(f"{item.get('id')}: 题目不存在 {question_id}")
 
     if errors:
-        print(f"数据校验失败，共 {len(errors)} 项：")
+        log(f"数据校验失败，共 {len(errors)} 项：")
         for error in errors:
-            print(f"- {error}")
+            log(f"- {error}")
         return 1
-    print(f"数据校验通过：{len(questions)} 道题，{len(experiences)} 组面经，{len(sources)} 个来源。")
+    log(f"数据校验通过：{len(questions)} 道题，{len(experiences)} 组面经，{len(sources)} 个来源。")
     return 0
 
 
