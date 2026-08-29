@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-08-26T11:39:47.122860+00:00",
+  "generated_at": "2026-08-27T16:06:52.196709+00:00",
   "model": "deepseek-v4-flash",
-  "files_considered": 14,
-  "imported": 11,
+  "files_considered": 1,
+  "imported": 1,
   "chunk_chars": 8000,
   "question_marks_per_chunk": 24,
   "max_chunks": null,
@@ -12,172 +12,17 @@
   "answer_attempts": 2,
   "reports": [
     {
-      "candidate_id": "candidate-342eccedbf4aa09a",
-      "status": "imported",
-      "chunks": 15,
-      "total_chunks": 15,
-      "successful_chunks": 15,
-      "failed_chunks": [],
-      "outlines": 195,
-      "unanswered_questions": 0,
-      "questions": 195,
-      "source_questions": 177,
-      "expanded_questions": 18
-    },
-    {
-      "candidate_id": "candidate-14d9c36dd82f6404",
-      "status": "partial",
-      "chunks": 31,
-      "total_chunks": 31,
-      "successful_chunks": 30,
-      "failed_chunks": [
-        {
-          "chunk": 4,
-          "error": "ValueError: 分段 4.2.1.2.2.2 AI 解析失败：DeepSeek 输出被截断（finish_reason=length）"
-        }
-      ],
-      "outlines": 365,
-      "unanswered_questions": 0,
-      "questions": 365,
-      "source_questions": 338,
-      "expanded_questions": 27
-    },
-    {
-      "candidate_id": "candidate-358d3ca95185758f",
-      "status": "imported",
-      "chunks": 6,
-      "total_chunks": 6,
-      "successful_chunks": 6,
-      "failed_chunks": [],
-      "outlines": 125,
-      "unanswered_questions": 0,
-      "questions": 125,
-      "source_questions": 118,
-      "expanded_questions": 7
-    },
-    {
-      "source_number": 4,
-      "status": "failed",
-      "error": "RemoteDisconnected: Remote end closed connection without response"
-    },
-    {
       "candidate_id": "candidate-aa833b6e119dd6d8",
-      "status": "partial",
+      "status": "imported",
       "chunks": 7,
       "total_chunks": 7,
-      "successful_chunks": 6,
-      "failed_chunks": [
-        {
-          "chunk": 6,
-          "error": "ValueError: 分段 6.1.2.2.2.1 AI 解析失败：DeepSeek 输出被截断（finish_reason=length）"
-        }
-      ],
-      "outlines": 201,
-      "unanswered_questions": 0,
-      "questions": 201,
-      "source_questions": 195,
-      "expanded_questions": 6
-    },
-    {
-      "candidate_id": "candidate-f6d134603d8961d2",
-      "status": "imported",
-      "chunks": 6,
-      "total_chunks": 6,
-      "successful_chunks": 6,
+      "successful_chunks": 7,
       "failed_chunks": [],
-      "outlines": 127,
+      "outlines": 226,
       "unanswered_questions": 0,
-      "questions": 127,
-      "source_questions": 122,
-      "expanded_questions": 5
-    },
-    {
-      "candidate_id": "candidate-7c25adb6f5d197e4",
-      "status": "imported",
-      "chunks": 6,
-      "total_chunks": 6,
-      "successful_chunks": 6,
-      "failed_chunks": [],
-      "outlines": 93,
-      "unanswered_questions": 0,
-      "questions": 93,
-      "source_questions": 87,
-      "expanded_questions": 6
-    },
-    {
-      "candidate_id": "candidate-b7a21037bd8c568c",
-      "status": "imported",
-      "chunks": 2,
-      "total_chunks": 2,
-      "successful_chunks": 2,
-      "failed_chunks": [],
-      "outlines": 39,
-      "unanswered_questions": 0,
-      "questions": 39,
-      "source_questions": 37,
-      "expanded_questions": 2
-    },
-    {
-      "candidate_id": "candidate-68a32838d544747c",
-      "status": "imported",
-      "chunks": 2,
-      "total_chunks": 2,
-      "successful_chunks": 2,
-      "failed_chunks": [],
-      "outlines": 13,
-      "unanswered_questions": 0,
-      "questions": 13,
-      "source_questions": 12,
-      "expanded_questions": 1
-    },
-    {
-      "candidate_id": "candidate-070045fc8d841487",
-      "status": "imported",
-      "chunks": 22,
-      "total_chunks": 22,
-      "successful_chunks": 22,
-      "failed_chunks": [],
-      "outlines": 261,
-      "unanswered_questions": 0,
-      "questions": 261,
-      "source_questions": 246,
-      "expanded_questions": 15
-    },
-    {
-      "candidate_id": "candidate-5d6c79ac5ed4ba12",
-      "status": "imported",
-      "chunks": 3,
-      "total_chunks": 3,
-      "successful_chunks": 3,
-      "failed_chunks": [],
-      "outlines": 53,
-      "unanswered_questions": 0,
-      "questions": 53,
-      "source_questions": 51,
-      "expanded_questions": 2
-    },
-    {
-      "candidate_id": "candidate-5a9da71f2da6a92e",
-      "status": "imported",
-      "chunks": 3,
-      "total_chunks": 3,
-      "successful_chunks": 3,
-      "failed_chunks": [],
-      "outlines": 78,
-      "unanswered_questions": 0,
-      "questions": 78,
-      "source_questions": 75,
-      "expanded_questions": 3
-    },
-    {
-      "source_number": 13,
-      "status": "failed",
-      "error": "ValueError: 题目纲要已提取，但所有完整答案均生成失败；可重新运行以从断点继续"
-    },
-    {
-      "source_number": 14,
-      "status": "failed",
-      "error": "ValueError: 所有正文分段均未能完成 AI 解析"
+      "questions": 226,
+      "source_questions": 219,
+      "expanded_questions": 7
     }
   ],
   "privacy": "仓库只保存 AI 结构化结果和内容指纹，不保存本地原文、绝对路径或文件名；扩展题会明确标记为知识点推导。"

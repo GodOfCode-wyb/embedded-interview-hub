@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-08-26T16:27:03.803751+00:00",
+  "generated_at": "2026-08-27T16:15:35.644742+00:00",
   "stats": {
-    "questions": 1835,
+    "questions": 1914,
     "experiences": 4,
-    "sources": 43,
+    "sources": 44,
     "domains": {
       "C 语言": 148,
       "C++": 271,
       "Linux 系统编程": 181,
-      "Linux 驱动": 248,
-      "RTOS": 69,
+      "Linux 驱动": 280,
+      "RTOS": 70,
       "STM32 / MCU": 52,
       "外设与协议": 102,
-      "嵌入式 AI": 2,
-      "操作系统": 288,
+      "嵌入式 AI": 33,
+      "操作系统": 303,
       "数据结构与算法": 87,
       "机器人": 2,
       "物联网": 1,
@@ -28092,6 +28092,1247 @@
         "Linux命令",
         "Linux 系统编程",
         "文本处理工具"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-12ba4525b1e89b6a",
+      "title": "按键状态机如何设计以过滤异常事件？",
+      "domain": "Linux 驱动",
+      "subtopic": "状态机",
+      "difficulty": "进阶",
+      "tags": [
+        "状态机",
+        "按键",
+        "Linux驱动",
+        "去抖",
+        "中断",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c8c26a1f8e9da209",
+      "title": "芯片怎么知道从哪种介质启动？",
+      "domain": "嵌入式 AI",
+      "subtopic": "启动介质检测",
+      "difficulty": "基础",
+      "tags": [
+        "启动介质",
+        "BootROM",
+        "BOOT引脚",
+        "嵌入式系统",
+        "嵌入式 AI",
+        "启动介质检测"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-db6da18580c9c7d4",
+      "title": "扩展题：在按键驱动中，为什么选择工作队列而不是tasklet来处理消抖？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断下半部机制",
+      "difficulty": "进阶",
+      "tags": [
+        "工作队列",
+        "tasklet",
+        "中断下半部",
+        "Linux 驱动",
+        "中断下半部机制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-92d2d40be7945bdb",
+      "title": "板级移植时dtb改哪些内容？",
+      "domain": "嵌入式 AI",
+      "subtopic": "dtb移植",
+      "difficulty": "进阶",
+      "tags": [
+        "dtb",
+        "设备树",
+        "板级移植",
+        "嵌入式Linux",
+        "嵌入式 AI",
+        "dtb移植"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-77e10235968fedb6",
+      "title": "中断触发方式如何选择以减少无效中断？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断触发方式",
+      "difficulty": "进阶",
+      "tags": [
+        "中断触发",
+        "边沿触发",
+        "Linux 驱动",
+        "中断触发方式"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-e8fcc60c32678a79",
+      "title": "如何在中断处理中临时禁用中断以避免重复触发？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断禁用",
+      "difficulty": "进阶",
+      "tags": [
+        "中断禁用",
+        "disable_irq",
+        "disable_irq_nosync",
+        "local_irq_disable",
+        "中断上下文",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-2e5f35af4c6addab",
+      "title": "板级启动失败你怎么定位？",
+      "domain": "嵌入式 AI",
+      "subtopic": "启动失败排查",
+      "difficulty": "进阶",
+      "tags": [
+        "启动失败",
+        "调试",
+        "嵌入式系统",
+        "Bootloader",
+        "硬件排查",
+        "嵌入式 AI",
+        "启动失败排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-32a28be0bb68f153",
+      "title": "软件消抖中如何实现延时采样和多次确认？",
+      "domain": "Linux 驱动",
+      "subtopic": "软件消抖",
+      "difficulty": "进阶",
+      "tags": [
+        "软件消抖",
+        "多次采样",
+        "Linux驱动",
+        "中断上下文",
+        "定时器",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-2994039a888dfd8b",
+      "title": "如何区分长按和短按？",
+      "domain": "Linux 驱动",
+      "subtopic": "长按短按",
+      "difficulty": "进阶",
+      "tags": [
+        "长按",
+        "短按",
+        "Linux驱动",
+        "定时器",
+        "状态机",
+        "Linux 驱动",
+        "长按短按"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-aa01324a16b3bec6",
+      "title": "时钟没配对会怎样？",
+      "domain": "嵌入式 AI",
+      "subtopic": "时钟配置错误",
+      "difficulty": "基础",
+      "tags": [
+        "时钟",
+        "时钟配置",
+        "嵌入式系统",
+        "外设通信",
+        "嵌入式 AI",
+        "时钟配置错误"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-aace7ac54db41362",
+      "title": "为什么开发阶段常用网络启动？",
+      "domain": "嵌入式 AI",
+      "subtopic": "网络启动",
+      "difficulty": "基础",
+      "tags": [
+        "网络启动",
+        "嵌入式 AI"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f6291d375e94fc11",
+      "title": "硬件消抖电路有哪些实现方式？",
+      "domain": "Linux 驱动",
+      "subtopic": "硬件消抖",
+      "difficulty": "基础",
+      "tags": [
+        "硬件消抖",
+        "RC滤波",
+        "施密特触发器",
+        "单稳态触发器",
+        "双稳态触发器",
+        "Linux驱动",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-03685f7e824fe565",
+      "title": "secure boot在boot流程里怎么插入？",
+      "domain": "嵌入式 AI",
+      "subtopic": "安全启动",
+      "difficulty": "进阶",
+      "tags": [
+        "安全启动",
+        "信任链",
+        "Boot ROM",
+        "签名验证",
+        "嵌入式 AI"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-0766363d16b60592",
+      "title": "kmalloc最小内存分配，预期分配128字节实际多少？",
+      "domain": "Linux 驱动",
+      "subtopic": "kmalloc内存分配",
+      "difficulty": "进阶",
+      "tags": [
+        "kmalloc",
+        "slab",
+        "内存分配",
+        "Linux驱动",
+        "Linux 驱动",
+        "kmalloc内存分配"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-eb60178d29518094",
+      "title": "Linux是怎么启动的？为什么uboot地址要放在芯片的cache里面而不是内存里面？",
+      "domain": "嵌入式 AI",
+      "subtopic": "Linux启动流程与Cache as RAM",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux启动",
+        "Cache",
+        "U-Boot",
+        "SPL",
+        "DDR初始化",
+        "嵌入式 AI",
+        "Linux启动流程与Cache as RAM"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-973a1a142166908a",
+      "title": "按键GPIO的上下拉配置有什么作用？",
+      "domain": "Linux 驱动",
+      "subtopic": "GPIO配置",
+      "difficulty": "基础",
+      "tags": [
+        "GPIO",
+        "上下拉",
+        "按键",
+        "Linux驱动",
+        "Linux 驱动",
+        "GPIO配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-4b2ca6124bec3c97",
+      "title": "如果中断printk输出一万个字符会怎么样？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断与printk",
+      "difficulty": "进阶",
+      "tags": [
+        "中断",
+        "printk",
+        "系统稳定性",
+        "Linux 驱动",
+        "中断与printk"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-cb0d986d0e75a9be",
+      "title": "kzalloc带不带cache？",
+      "domain": "Linux 驱动",
+      "subtopic": "kzalloc与cache",
+      "difficulty": "基础",
+      "tags": [
+        "内存分配",
+        "cache",
+        "kzalloc",
+        "DMA",
+        "Linux 驱动",
+        "kzalloc与cache"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c0dba267d41daa81",
+      "title": "tasklet是进程上下文还是中断上下文？",
+      "domain": "Linux 驱动",
+      "subtopic": "tasklet上下文",
+      "difficulty": "基础",
+      "tags": [
+        "tasklet",
+        "上下文",
+        "中断上下文",
+        "软中断",
+        "Linux 驱动",
+        "tasklet上下文"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-8e869bb3e152570e",
+      "title": "驱动mmap如何让用户态直接访问设备或内核buffer？",
+      "domain": "Linux 驱动",
+      "subtopic": "mmap",
+      "difficulty": "进阶",
+      "tags": [
+        "mmap",
+        "页表",
+        "用户态",
+        "remap_pfn_range",
+        "缓存一致性",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f24b13e83bd04a4a",
+      "title": "为什么串口一定最先通？",
+      "domain": "嵌入式 AI",
+      "subtopic": "串口调试",
+      "difficulty": "基础",
+      "tags": [
+        "串口",
+        "UART",
+        "调试",
+        "嵌入式系统",
+        "嵌入式 AI",
+        "串口调试"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9684f2f1a5d5abf5",
+      "title": "讲一下bootargs和bootcmd。",
+      "domain": "嵌入式 AI",
+      "subtopic": "bootargs与bootcmd",
+      "difficulty": "基础",
+      "tags": [
+        "bootargs",
+        "bootcmd",
+        "U-Boot",
+        "内核启动参数",
+        "嵌入式 AI",
+        "bootargs与bootcmd"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3b3f1812b740fa42",
+      "title": "BootROM一般负责哪些功能？",
+      "domain": "嵌入式 AI",
+      "subtopic": "BootROM功能",
+      "difficulty": "基础",
+      "tags": [
+        "BootROM",
+        "启动流程",
+        "嵌入式系统",
+        "安全启动",
+        "嵌入式 AI",
+        "BootROM功能"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-d7a36b974d93ded4",
+      "title": "在Bootloader中，如何实现从不同的启动介质（NAND Flash, SD卡等）启动？",
+      "domain": "嵌入式 AI",
+      "subtopic": "多介质启动",
+      "difficulty": "进阶",
+      "tags": [
+        "多介质启动",
+        "Bootloader",
+        "U-Boot",
+        "NAND",
+        "SD卡",
+        "嵌入式 AI"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c67ed243ba509127",
+      "title": "如果DDR不稳，系统会怎么表现？",
+      "domain": "嵌入式 AI",
+      "subtopic": "DDR不稳定表现",
+      "difficulty": "进阶",
+      "tags": [
+        "DDR",
+        "稳定性",
+        "嵌入式系统",
+        "内存错误",
+        "嵌入式 AI",
+        "DDR不稳定表现"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9b8f7e9d6515d00e",
+      "title": "启动时间怎么优化？",
+      "domain": "嵌入式 AI",
+      "subtopic": "启动优化",
+      "difficulty": "进阶",
+      "tags": [
+        "启动优化",
+        "嵌入式 AI"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-dec566fabf52dbfa",
+      "title": "ISR 中为什么不能使用 mdelay 进行延时？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断上下文限制",
+      "difficulty": "进阶",
+      "tags": [
+        "ISR",
+        "延时",
+        "中断上下文",
+        "Linux 驱动",
+        "中断上下文限制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-082fd1c6709007c2",
+      "title": "为什么U-Boot的SPL阶段使用Cache作为RAM（CAR）而不是直接使用DDR？",
+      "domain": "嵌入式 AI",
+      "subtopic": "Cache as RAM原理",
+      "difficulty": "进阶",
+      "tags": [
+        "Cache",
+        "SPL",
+        "U-Boot",
+        "启动流程",
+        "嵌入式",
+        "嵌入式 AI",
+        "Cache as RAM原理"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-daf5d1f81c55bdf4",
+      "title": "zImage、uImage、Image有什么区别？",
+      "domain": "嵌入式 AI",
+      "subtopic": "内核镜像格式",
+      "difficulty": "基础",
+      "tags": [
+        "内核镜像",
+        "zImage",
+        "uImage",
+        "Image",
+        "嵌入式Linux",
+        "嵌入式 AI",
+        "内核镜像格式"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-986fdf9347ca345d",
+      "title": "U-Boot环境变量存在哪里？",
+      "domain": "嵌入式 AI",
+      "subtopic": "环境变量存储",
+      "difficulty": "基础",
+      "tags": [
+        "环境变量",
+        "U-Boot",
+        "存储",
+        "嵌入式 AI",
+        "环境变量存储"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f488edd22d36c500",
+      "title": "DDR init失败有哪些现象？",
+      "domain": "嵌入式 AI",
+      "subtopic": "DDR初始化失败",
+      "difficulty": "进阶",
+      "tags": [
+        "DDR",
+        "初始化",
+        "故障排查",
+        "嵌入式",
+        "嵌入式 AI",
+        "DDR初始化失败"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-63235e2db8945e4b",
+      "title": "按键状态变量为什么需要用自旋锁保护？",
+      "domain": "Linux 驱动",
+      "subtopic": "并发保护",
+      "difficulty": "进阶",
+      "tags": [
+        "自旋锁",
+        "并发",
+        "中断上下文",
+        "Linux驱动",
+        "Linux 驱动",
+        "并发保护"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-402f510693f6f1a9",
+      "title": "如何过滤重复按键事件？",
+      "domain": "Linux 驱动",
+      "subtopic": "事件过滤",
+      "difficulty": "进阶",
+      "tags": [
+        "事件过滤",
+        "去重",
+        "Linux驱动",
+        "中断上下文",
+        "时间戳",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-23187b6252a33997",
+      "title": "dtb是什么时候传给内核的？",
+      "domain": "嵌入式 AI",
+      "subtopic": "dtb传递时机",
+      "difficulty": "基础",
+      "tags": [
+        "dtb",
+        "设备树",
+        "内核启动",
+        "bootloader",
+        "U-Boot",
+        "嵌入式 AI",
+        "dtb传递时机"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fd079e52ad99ea3d",
+      "title": "请描述U-Boot的启动过程，包括第一阶段和第二阶段分别做什么？",
+      "domain": "嵌入式 AI",
+      "subtopic": "U-Boot启动流程",
+      "difficulty": "基础",
+      "tags": [
+        "U-Boot",
+        "启动流程",
+        "嵌入式 AI",
+        "U-Boot启动流程"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-b1aa670cf3205c19",
+      "title": "如何保证按键事件的可靠性，避免抖动和误触发？",
+      "domain": "Linux 驱动",
+      "subtopic": "按键消抖",
+      "difficulty": "进阶",
+      "tags": [
+        "按键消抖",
+        "可靠性",
+        "Linux驱动",
+        "中断",
+        "定时器",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-86c6d9e3ab74f880",
+      "title": "不同设备对DMA内存的要求和限制是什么？",
+      "domain": "Linux 驱动",
+      "subtopic": "DMA内存",
+      "difficulty": "进阶",
+      "tags": [
+        "DMA",
+        "内存",
+        "Linux驱动",
+        "设备约束",
+        "Linux 驱动",
+        "DMA内存"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-72be501fe7ba7a3b",
+      "title": "eMMC启动和SD卡启动有什么区别？",
+      "domain": "嵌入式 AI",
+      "subtopic": "eMMC vs SD启动",
+      "difficulty": "基础",
+      "tags": [
+        "eMMC",
+        "SD卡",
+        "启动",
+        "U-Boot",
+        "嵌入式",
+        "嵌入式 AI",
+        "eMMC vs SD启动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-91a9bc4f04b1b4aa",
+      "title": "kernel_start函数是什么？",
+      "domain": "Linux 驱动",
+      "subtopic": "kernel_start",
+      "difficulty": "基础",
+      "tags": [
+        "内核启动",
+        "start_kernel",
+        "Linux驱动",
+        "Linux 驱动",
+        "kernel_start"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-82c40f1706c18bed",
+      "title": "bootcmd、bootargs、loadaddr是什么？",
+      "domain": "嵌入式 AI",
+      "subtopic": "U-Boot关键变量",
+      "difficulty": "基础",
+      "tags": [
+        "bootcmd",
+        "bootargs",
+        "loadaddr",
+        "U-Boot",
+        "环境变量",
+        "嵌入式 AI",
+        "U-Boot关键变量"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a0ce43d303a28ffd",
+      "title": "linux驱动开发里中断嵌套可能会发生什么问题？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断嵌套",
+      "difficulty": "进阶",
+      "tags": [
+        "中断嵌套",
+        "死锁",
+        "栈溢出",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-1794c82831f38db2",
+      "title": "pinmux错误有什么表现？",
+      "domain": "嵌入式 AI",
+      "subtopic": "pinmux错误",
+      "difficulty": "基础",
+      "tags": [
+        "pinmux",
+        "引脚复用",
+        "嵌入式",
+        "调试",
+        "嵌入式 AI",
+        "pinmux错误"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a7586581d9c3e184",
+      "title": "升级后变砖怎么定位？",
+      "domain": "嵌入式 AI",
+      "subtopic": "变砖定位",
+      "difficulty": "进阶",
+      "tags": [
+        "变砖",
+        "升级",
+        "引导程序",
+        "恢复",
+        "嵌入式 AI",
+        "变砖定位"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-b1cc549d6132c8ca",
+      "title": "在中断上下文中使用printk输出大量字符会如何影响系统性能？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断与printk性能",
+      "difficulty": "进阶",
+      "tags": [
+        "中断",
+        "printk",
+        "性能",
+        "Linux 驱动",
+        "中断与printk性能"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a5d0bcc9fec8493c",
+      "title": "vmalloc与kmalloc的区别是什么？",
+      "domain": "Linux 驱动",
+      "subtopic": "内存分配对比",
+      "difficulty": "进阶",
+      "tags": [
+        "vmalloc",
+        "kmalloc",
+        "内存管理",
+        "Linux 驱动",
+        "内存分配对比"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-296218c4983c52fd",
+      "title": "与DMA相关的内存分配和管理有哪些？",
+      "domain": "Linux 驱动",
+      "subtopic": "DMA内存管理",
+      "difficulty": "进阶",
+      "tags": [
+        "DMA",
+        "内存管理",
+        "Linux驱动",
+        "一致性映射",
+        "流式映射",
+        "Linux 驱动",
+        "DMA内存管理"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-67e25ebbb8cd31d3",
+      "title": "SPL一般放在哪里执行？",
+      "domain": "嵌入式 AI",
+      "subtopic": "SPL执行位置",
+      "difficulty": "基础",
+      "tags": [
+        "SPL",
+        "U-Boot",
+        "启动流程",
+        "嵌入式系统",
+        "嵌入式 AI",
+        "SPL执行位置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-838a67224914a798",
+      "title": "DDR training是什么？",
+      "domain": "嵌入式 AI",
+      "subtopic": "DDR training",
+      "difficulty": "进阶",
+      "tags": [
+        "DDR",
+        "DDR training",
+        "内存校准",
+        "嵌入式系统",
+        "嵌入式 AI"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-94c4c697697920b1",
+      "title": "V4L2中DQBUF在阻塞和非阻塞模式下的行为有何不同？",
+      "domain": "Linux 驱动",
+      "subtopic": "V4L2",
+      "difficulty": "进阶",
+      "tags": [
+        "V4L2",
+        "阻塞",
+        "非阻塞",
+        "DQBUF",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-412c231f72413634",
+      "title": "bootloader能起来但进不了系统怎么查？",
+      "domain": "嵌入式 AI",
+      "subtopic": "系统无法启动",
+      "difficulty": "进阶",
+      "tags": [
+        "启动排查",
+        "bootloader",
+        "内核启动",
+        "根文件系统",
+        "嵌入式 AI",
+        "系统无法启动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-6413df4f5541ada7",
+      "title": "驱动中DMA一致性问题如何处理？",
+      "domain": "Linux 驱动",
+      "subtopic": "DMA一致性",
+      "difficulty": "基础",
+      "tags": [
+        "DMA",
+        "一致性",
+        "Linux驱动",
+        "缓存同步",
+        "Linux 驱动",
+        "DMA一致性"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a9783ca8e7281e1b",
+      "title": "正常启动和recovery启动有什么区别？",
+      "domain": "嵌入式 AI",
+      "subtopic": "recovery启动",
+      "difficulty": "基础",
+      "tags": [
+        "recovery",
+        "启动模式",
+        "嵌入式系统",
+        "Android",
+        "嵌入式 AI",
+        "recovery启动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-971e8787a9bc7bd6",
+      "title": "芯片上电后第一条指令从哪里执行？",
+      "domain": "嵌入式 AI",
+      "subtopic": "启动地址",
+      "difficulty": "基础",
+      "tags": [
+        "启动流程",
+        "复位向量",
+        "嵌入式系统",
+        "嵌入式 AI",
+        "启动地址"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-1629095d738d2be6",
+      "title": "boot镜像由什么组成？",
+      "domain": "嵌入式 AI",
+      "subtopic": "U-Boot镜像组成",
+      "difficulty": "基础",
+      "tags": [
+        "U-Boot镜像",
+        "SPL",
+        "启动流程",
+        "嵌入式系统",
+        "嵌入式 AI",
+        "U-Boot镜像组成"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-76f7b7eb846cf105",
+      "title": "停在BootROM / SPL / U-Boot / kernel各怎么查？",
+      "domain": "嵌入式 AI",
+      "subtopic": "启动阶段排查",
+      "difficulty": "进阶",
+      "tags": [
+        "启动排查",
+        "BootROM",
+        "SPL",
+        "U-Boot",
+        "Kernel",
+        "嵌入式 AI",
+        "启动阶段排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f0e01e232113314c",
+      "title": "boot“救砖”原理是什么？",
+      "domain": "嵌入式 AI",
+      "subtopic": "救砖原理",
+      "difficulty": "进阶",
+      "tags": [
+        "救砖",
+        "BootROM",
+        "嵌入式系统",
+        "启动流程",
+        "嵌入式 AI",
+        "救砖原理"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3e23d12f572ae654",
+      "title": "互斥锁和自旋锁的特点是什么？",
+      "domain": "操作系统",
+      "subtopic": "互斥锁与自旋锁",
+      "difficulty": "基础",
+      "tags": [
+        "互斥锁",
+        "自旋锁",
+        "同步原语",
+        "操作系统",
+        "互斥锁与自旋锁"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-bd58df151920f81d",
+      "title": "为什么V4L2需要多个buffer？",
+      "domain": "Linux 驱动",
+      "subtopic": "V4L2",
+      "difficulty": "基础",
+      "tags": [
+        "V4L2",
+        "多buffer",
+        "流水线",
+        "videobuf2",
+        "Linux 驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9f6757412301a457",
+      "title": "如何基于i2c-tools辅助调试自定义I2C驱动？",
+      "domain": "Linux 驱动",
+      "subtopic": "I2C驱动调试",
+      "difficulty": "进阶",
+      "tags": [
+        "I2C",
+        "驱动调试",
+        "i2c-tools",
+        "Linux 驱动",
+        "I2C驱动调试"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-701be79f728469b1",
+      "title": "ISR 中为什么不能使用 kmalloc(GFP_KERNEL)？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断上下文内存分配",
+      "difficulty": "进阶",
+      "tags": [
+        "ISR",
+        "内存分配",
+        "GFP_KERNEL",
+        "GFP_ATOMIC",
+        "中断上下文",
+        "Linux 驱动",
+        "中断上下文内存分配"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-4ad5ace935ef81b8",
+      "title": "请解释Linux中DMA的用法。",
+      "domain": "Linux 驱动",
+      "subtopic": "DMA编程",
+      "difficulty": "进阶",
+      "tags": [
+        "DMA",
+        "驱动",
+        "内存",
+        "Linux 驱动",
+        "DMA编程"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-825963e1d09755a7",
+      "title": "ISR 中为什么不能进行用户态交互？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断上下文限制",
+      "difficulty": "进阶",
+      "tags": [
+        "ISR",
+        "用户态交互",
+        "中断上下文",
+        "copy_to_user",
+        "睡眠",
+        "Linux 驱动",
+        "中断上下文限制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-4880641b6a4c82ab",
+      "title": "V4L2摄像头采集的典型流程是什么？",
+      "domain": "Linux 驱动",
+      "subtopic": "V4L2流程",
+      "difficulty": "进阶",
+      "tags": [
+        "V4L2",
+        "流程",
+        "采集",
+        "Linux 驱动",
+        "V4L2流程"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-6e42898665b3029e",
+      "title": "中断下半部机制有哪些？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断下半部",
+      "difficulty": "进阶",
+      "tags": [
+        "中断",
+        "下半部",
+        "软中断",
+        "tasklet",
+        "工作队列",
+        "线程化中断",
+        "Linux 驱动",
+        "中断下半部"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-04a92240f745e3e9",
+      "title": "死锁、饥饿、活锁的区别是什么？",
+      "domain": "操作系统",
+      "subtopic": "死锁与饥饿活锁",
+      "difficulty": "基础",
+      "tags": [
+        "死锁",
+        "饥饿",
+        "活锁",
+        "操作系统",
+        "死锁与饥饿活锁"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9281557b87f8d228",
+      "title": "请整体讲一下操作系统，如何展开？",
+      "domain": "操作系统",
+      "subtopic": "操作系统整体框架",
+      "difficulty": "基础",
+      "tags": [
+        "操作系统",
+        "总述",
+        "面试模板",
+        "操作系统整体框架"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-968d5f11efc202f7",
+      "title": "调度和CFS怎么讲？",
+      "domain": "操作系统",
+      "subtopic": "CFS调度器",
+      "difficulty": "进阶",
+      "tags": [
+        "调度",
+        "CFS",
+        "vruntime",
+        "操作系统",
+        "CFS调度器"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-68ed43cc54fc9f0b",
+      "title": "虚拟内存、缺页、mmap、COW怎么串起来？",
+      "domain": "操作系统",
+      "subtopic": "虚拟内存机制",
+      "difficulty": "进阶",
+      "tags": [
+        "虚拟内存",
+        "缺页",
+        "mmap",
+        "COW",
+        "操作系统",
+        "虚拟内存机制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-b5866b5c9b64e054",
+      "title": "进程、线程、协程怎么一口气讲清楚？",
+      "domain": "操作系统",
+      "subtopic": "进程线程协程区别",
+      "difficulty": "基础",
+      "tags": [
+        "进程",
+        "线程",
+        "协程",
+        "操作系统",
+        "进程线程协程区别"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-825398c0b1e7d25c",
+      "title": "文件系统、inode、fd、VFS、驱动怎么串起来？",
+      "domain": "操作系统",
+      "subtopic": "文件系统与驱动",
+      "difficulty": "进阶",
+      "tags": [
+        "文件系统",
+        "inode",
+        "fd",
+        "VFS",
+        "驱动",
+        "操作系统",
+        "文件系统与驱动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-532fae3ae2dadccf",
+      "title": "什么是Reactor和Proactor模式？",
+      "domain": "操作系统",
+      "subtopic": "IO模式",
+      "difficulty": "进阶",
+      "tags": [
+        "Reactor",
+        "Proactor",
+        "IO模式",
+        "事件驱动",
+        "异步IO",
+        "同步IO",
+        "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-e1ad4b62fb101ec4",
+      "title": "锁和死锁怎么讲？",
+      "domain": "操作系统",
+      "subtopic": "锁与死锁",
+      "difficulty": "基础",
+      "tags": [
+        "锁",
+        "死锁",
+        "互斥锁",
+        "自旋锁",
+        "操作系统",
+        "锁与死锁"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c9cdb5d57cd75726",
+      "title": "上下文切换怎么讲？",
+      "domain": "操作系统",
+      "subtopic": "上下文切换",
+      "difficulty": "基础",
+      "tags": [
+        "上下文切换",
+        "寄存器",
+        "调度",
+        "线程",
+        "进程",
+        "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9092c34fac1cf03b",
+      "title": "IO模型和epoll怎么讲？",
+      "domain": "操作系统",
+      "subtopic": "IO多路复用",
+      "difficulty": "进阶",
+      "tags": [
+        "IO模型",
+        "epoll",
+        "select",
+        "poll",
+        "操作系统",
+        "IO多路复用"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-7c080795a5e21214",
+      "title": "IPC怎么讲？",
+      "domain": "操作系统",
+      "subtopic": "进程间通信",
+      "difficulty": "基础",
+      "tags": [
+        "IPC",
+        "管道",
+        "共享内存",
+        "socket",
+        "操作系统",
+        "进程间通信"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-516f60c9301ff423",
+      "title": "线程阻塞和线程等待有什么区别？",
+      "domain": "操作系统",
+      "subtopic": "线程状态",
+      "difficulty": "基础",
+      "tags": [
+        "线程阻塞",
+        "线程等待",
+        "线程状态",
+        "忙等",
+        "条件变量",
+        "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a4d4aca7e4a86616",
+      "title": "RTOS和嵌入式怎么讲？",
+      "domain": "RTOS",
+      "subtopic": "RTOS实时性",
+      "difficulty": "基础",
+      "tags": [
+        "RTOS",
+        "实时性",
+        "优先级反转",
+        "内存碎片",
+        "RTOS实时性"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-2a4df9e22e058198",
+      "title": "什么是僵尸进程？如何产生和解决？",
+      "domain": "操作系统",
+      "subtopic": "僵尸进程",
+      "difficulty": "基础",
+      "tags": [
+        "僵尸进程",
+        "wait",
+        "SIGCHLD",
+        "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-7b1575a324463098",
+      "title": "线程池是什么？",
+      "domain": "操作系统",
+      "subtopic": "线程池",
+      "difficulty": "基础",
+      "tags": [
+        "线程池",
+        "任务队列",
+        "并发",
+        "操作系统"
       ],
       "status": "ai-draft"
     }

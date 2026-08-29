@@ -368,11 +368,12 @@ class LocalImportTests(unittest.TestCase):
         left, right = halves
         self.assertGreater(min(len(left), len(right)), 900)
 
-    def test_output_retry_split_avoids_extremely_unbalanced_paragraphs(self) -> None:
-        halves = import_local.split_text_balanced("A" * 2500 + "\n\n" + "B" * 100)
-        self.assertIsNotNone(halves)
-        left, right = halves
-        self.assertGreater(min(len(left), len(right)), 900)
+    def test_tiny_recursive_segment_is_not_split_again(self) -> None:
+        self.assertIsNone(import_local.split_text_balanced("### IPC 怎么选？\n\n回答模板："))
+
+    def test_tiny_segment_has_small_outline_limit(self) -> None:
+        self.assertEqual(import_local.segment_outline_limit("### IPC 怎么选？", 60, 1), 3)
+        self.assertEqual(import_local.segment_outline_limit("A" * 2_000, 60, 1), 60)
 
     def test_truncated_extraction_is_split_without_reducing_question_count(self) -> None:
         first = ValueError("DeepSeek 输出被截断（finish_reason=length）")
@@ -388,12 +389,57 @@ class LocalImportTests(unittest.TestCase):
             "generation_kind": "source",
             "question_evidence": "原文问题二",
         }]}
+        source = "问题一？\n" + "A" * 300 + "\n\n问题二？\n" + "B" * 300
         with patch.object(import_local, "call_api", side_effect=[first, left, right]) as call:
             result = import_local.extract_segment(
-                "1", 1, "问题一？\n\n问题二？", "source", [], 0, 60,
+                "1", 1, source, "source", ["绝不能输出的旧题"], 0, 60,
                 "key", "https://api.example.com", "model", 1, 30,
             )
         self.assertEqual(call.call_count, 3)
+        self.assertEqual(len(result["questions"]), 2)
+        self.assertIn("绝不能输出的旧题", call.call_args_list[0].args[3])
+        self.assertNotIn("绝不能输出的旧题", call.call_args_list[1].args[3])
+        self.assertNotIn("绝不能输出的旧题", call.call_args_list[2].args[3])
+
+    def test_recursive_extraction_resumes_successful_child(self) -> None:
+        truncated = ValueError("DeepSeek 输出被截断（finish_reason=length）")
+        interrupted = urllib.error.URLError("temporary network failure")
+        left = {"questions": [{
+            "title": "问题一？", "domain": "C 语言", "generation_kind": "source",
+            "question_evidence": "原文问题一",
+        }]}
+        right = {"questions": [{
+            "title": "问题二？", "domain": "操作系统", "generation_kind": "source",
+            "question_evidence": "原文问题二",
+        }]}
+        source = "问题一？\n" + "A" * 300 + "\n\n问题二？\n" + "B" * 300
+        segment_results: dict[str, dict] = {}
+        split_segments: dict[str, bool] = {}
+        saves = []
+
+        with patch.object(import_local, "call_api", side_effect=[truncated, left, interrupted]) as first_call:
+            with self.assertRaises(ValueError):
+                import_local.extract_segment(
+                    "1", 1, source, "source", [], 0, 60,
+                    "key", "https://api.example.com", "model", 1, 30,
+                    segment_results=segment_results,
+                    split_segments=split_segments,
+                    save_progress=lambda: saves.append(True),
+                )
+        self.assertEqual(first_call.call_count, 3)
+        self.assertIn("1.1", segment_results)
+        self.assertTrue(split_segments["1"])
+        self.assertGreaterEqual(len(saves), 2)
+
+        with patch.object(import_local, "call_api", return_value=right) as resumed_call:
+            result = import_local.extract_segment(
+                "1", 1, source, "source", [], 0, 60,
+                "key", "https://api.example.com", "model", 1, 30,
+                segment_results=segment_results,
+                split_segments=split_segments,
+                save_progress=lambda: saves.append(True),
+            )
+        self.assertEqual(resumed_call.call_count, 1)
         self.assertEqual(len(result["questions"]), 2)
 
     def test_reads_docx_with_standard_library(self) -> None:

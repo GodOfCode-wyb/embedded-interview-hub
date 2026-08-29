@@ -39,6 +39,7 @@ IGNORED_IMPORT_FILENAMES = {"index.md"}
 IGNORED_IMPORT_STEM_PREFIXES = {"04嵌入式场景题"}
 MAX_EXTRACTION_SPLIT_DEPTH = 8
 MIN_EXTRACTION_SPLIT_CHARS = 400
+MAX_NEARBY_TITLES = 20
 
 
 def normalize_api_key(value: str) -> str:
@@ -225,7 +226,7 @@ def build_extraction_prompt(
     expanded_limit: int = 1,
     outline_limit: int = 40,
 ) -> str:
-    nearby = "\n".join(f"- {title}" for title in known_titles[-120:])
+    nearby = "\n".join(f"- {title}" for title in known_titles[-MAX_NEARBY_TITLES:]) or "（无）"
     expansion_rule = (
         f"在直接题之外，最多生成 {expanded_limit} 道知识点扩展题。"
         "扩展题必须由原文中明确出现的技术知识点推导，考查机制、边界、调试、取舍或场景迁移，"
@@ -239,7 +240,7 @@ def build_extraction_prompt(
 本地面经文本：
 {chunk}
 
-已有题目标题，用于避免重复：
+已有题目标题，仅用于避免重复；它们不是待处理原文，绝对禁止据此生成或返回题目：
 {nearby}
 
 返回严格 JSON：
@@ -294,6 +295,8 @@ def build_prompt(
 
 
 def split_text_balanced(text: str) -> tuple[str, str] | None:
+    if len(text) < MIN_EXTRACTION_SPLIT_CHARS:
+        return None
     paragraphs = [value.strip() for value in re.split(r"\n\s*\n", text) if value.strip()]
     if len(paragraphs) >= 2:
         target = len(text) // 2
@@ -305,15 +308,23 @@ def split_text_balanced(text: str) -> tuple[str, str] | None:
         split_at = min(positions)[1]
         left = "\n\n".join(paragraphs[:split_at]).strip()
         right = "\n\n".join(paragraphs[split_at:]).strip()
-        if min(len(left), len(right)) < len(text) // 5 and len(text) >= MIN_EXTRACTION_SPLIT_CHARS:
+        if min(len(left), len(right)) < len(text) // 5:
             midpoint = len(text) // 2
             left, right = text[:midpoint].strip(), text[midpoint:].strip()
-    elif len(text) >= MIN_EXTRACTION_SPLIT_CHARS:
+    else:
         midpoint = len(text) // 2
         left, right = text[:midpoint].strip(), text[midpoint:].strip()
-    else:
-        return None
     return (left, right) if left and right else None
+
+
+def segment_outline_limit(chunk: str, requested_limit: int, expanded_limit: int) -> int:
+    """Keep tiny recursive segments from producing unrelated oversized outlines."""
+    if len(chunk) >= 2_000:
+        return requested_limit
+    headings = len(re.findall(r"(?m)^\s{0,3}#{1,6}\s+\S", chunk))
+    questions = chunk.count("?") + chunk.count("？")
+    evidence_count = max(headings, questions)
+    return min(requested_limit, max(2, evidence_count + expanded_limit + 1))
 
 
 def extract_segment(
@@ -330,11 +341,59 @@ def extract_segment(
     attempts: int,
     timeout_seconds: int,
     depth: int = 0,
+    segment_results: dict[str, dict] | None = None,
+    split_segments: dict[str, bool] | None = None,
+    save_progress=None,
 ) -> dict:
+    if segment_results is not None and label in segment_results:
+        log(f"  [提取 {label}/{total}] 使用递归断点结果。")
+        return segment_results[label]
+
+    def remember(result: dict) -> dict:
+        if segment_results is not None:
+            segment_results[label] = result
+            if save_progress is not None:
+                save_progress()
+        return result
+
+    def extract_halves(halves: tuple[str, str]) -> dict:
+        if split_segments is not None:
+            split_segments[label] = True
+            if save_progress is not None:
+                save_progress()
+        children = []
+        for child_number, child in enumerate(halves, start=1):
+            result = extract_segment(
+                f"{label}.{child_number}",
+                total,
+                child,
+                source_id,
+                [],
+                expanded_limit,
+                outline_limit,
+                api_key,
+                base_url,
+                model,
+                attempts,
+                timeout_seconds,
+                depth + 1,
+                segment_results,
+                split_segments,
+                save_progress,
+            )
+            children.append(result)
+        return remember(merge_results(children))
+
+    if split_segments is not None and split_segments.get(label):
+        halves = split_text_balanced(chunk)
+        if halves:
+            log(f"  [提取 {label}/{total}] 沿用递归拆分断点。")
+            return extract_halves(halves)
+
     last_error: Exception | None = None
     for attempt in range(1, attempts + 1):
         try:
-            return call_api(
+            result = call_api(
                 api_key,
                 base_url,
                 model,
@@ -345,11 +404,12 @@ def extract_segment(
                     total,
                     known_titles,
                     expanded_limit,
-                    outline_limit,
+                    segment_outline_limit(chunk, outline_limit, expanded_limit),
                 ),
                 max_tokens=8000,
                 timeout_seconds=timeout_seconds,
             )
+            return remember(result)
         except DeepSeekAuthenticationError:
             raise
         except (urllib.error.URLError, TimeoutError, ValueError, KeyError, json.JSONDecodeError) as exc:
@@ -362,30 +422,7 @@ def extract_segment(
                         f"  [提取 {label}/{total}] 输出过长，自动二分为 {label}.1 和 {label}.2，"
                         "不会减少题目数量。"
                     )
-                    children = []
-                    for child_number, child in enumerate(halves, start=1):
-                        result = extract_segment(
-                            f"{label}.{child_number}",
-                            total,
-                            child,
-                            source_id,
-                            known_titles,
-                            expanded_limit,
-                            outline_limit,
-                            api_key,
-                            base_url,
-                            model,
-                            attempts,
-                            timeout_seconds,
-                            depth + 1,
-                        )
-                        children.append(result)
-                        known_titles.extend(
-                            str(question.get("title", "")).strip()
-                            for question in result.get("questions", [])
-                            if isinstance(question, dict) and question.get("title")
-                        )
-                    return merge_results(children)
+                    return extract_halves(halves)
             log(
                 f"  [提取 {label}/{total}] 第 {attempt}/{attempts} 次失败：{error_text}"
             )
@@ -726,6 +763,16 @@ def main() -> int:
             extraction_results = checkpoint.setdefault("extraction_results", {})
             answers_by_key = checkpoint.setdefault("answers", {})
             answer_failures = checkpoint.setdefault("answer_failures", {})
+            recursive_results = checkpoint.setdefault("recursive_extraction_results", {})
+            recursive_splits = checkpoint.setdefault("recursive_extraction_splits", {})
+            if not isinstance(recursive_results, dict):
+                recursive_results = checkpoint["recursive_extraction_results"] = {}
+            if not isinstance(recursive_splits, dict):
+                recursive_splits = checkpoint["recursive_extraction_splits"] = {}
+
+            def save_recursive_progress() -> None:
+                write_json(checkpoint_path, checkpoint)
+
             log(
                 f"[{file_index + 1}/{len(files)}] 全量处理 {len(chunks)} 段正文："
                 f"先提取全部题目纲要，再逐题生成完整答案；每段最多扩展 {expanded_limit} 道题。"
@@ -759,6 +806,9 @@ def main() -> int:
                         model,
                         attempts,
                         request_timeout,
+                        segment_results=recursive_results,
+                        split_segments=recursive_splits,
+                        save_progress=save_recursive_progress,
                     )
                 except DeepSeekAuthenticationError:
                     raise
@@ -770,6 +820,13 @@ def main() -> int:
                     continue
                 extraction_results[chunk_key] = result
                 checkpoint.setdefault("extraction_failures", {}).pop(chunk_key, None)
+                recursive_prefix = f"{chunk_key}."
+                for recursive_key in list(recursive_results):
+                    if recursive_key == chunk_key or recursive_key.startswith(recursive_prefix):
+                        recursive_results.pop(recursive_key, None)
+                for recursive_key in list(recursive_splits):
+                    if recursive_key == chunk_key or recursive_key.startswith(recursive_prefix):
+                        recursive_splits.pop(recursive_key, None)
                 new_titles = [
                     str(question.get("title", "")).strip()
                     for question in result.get("questions", [])

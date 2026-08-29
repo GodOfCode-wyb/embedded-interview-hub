@@ -311,5 +311,13 @@
     "url": null,
     "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
     "import_key": "local://candidate-b7a21037bd8c568c"
+  },
+  {
+    "id": "source-d7a2435f71db88cc",
+    "title": "本地导入面经 ef3829a0",
+    "kind": "本地导入面经",
+    "url": null,
+    "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
+    "import_key": "local://candidate-12b5f1a8ef3829a0"
   }
 ]
