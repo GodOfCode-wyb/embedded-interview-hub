@@ -319,5 +319,138 @@
     "url": null,
     "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
     "import_key": "local://candidate-12b5f1a8ef3829a0"
+  },
+  {
+    "id": "source-058af9777311e648",
+    "title": "zc110747/build_embed_linux_system/src/end_appendix-03.interview_driver.md",
+    "kind": "公开面经候选",
+    "url": "https://github.com/zc110747/build_embed_linux_system/blob/03732ad95cee66b9c45b9c3e5cb5a2170e89ac04/src/end_appendix-03.interview_driver.md",
+    "trust": "AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-7e13612a9925105e",
+    "title": "RPI-arduino communication without UART",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a3f032c40ae9793f",
+    "title": "How can I get xrandr to detect both nvidia cards: 2 x GTX480, triple-head?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/123862/how-can-i-get-xrandr-to-detect-both-nvidia-cards-2-x-gtx480-triple-head",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-7aff51e592b03910",
+    "title": "Can v4l2 be used to read audio and video from the same device?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-8c594fc9c6a3ae51",
+    "title": "Which microcontrollers that can I buy to learn such an USART, UART, RS232, USB, SPI, I2C, TTL communication?",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-34277a4d2420fde3",
+    "title": "I2C high speed mode",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/612192/i2c-high-speed-mode",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-80a61a7d1d48d306",
+    "title": "Linux hangs at [random: nonblocking pool is initialized]",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a79e9f438f8a87d1",
+    "title": "Can I detect if my custom made kernel was built with module support?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/43164/can-i-detect-if-my-custom-made-kernel-was-built-with-module-support",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a6a0a339a6445122",
+    "title": "Are binaries portable across different CPU architectures?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/298281/are-binaries-portable-across-different-cpu-architectures",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-6c5592644a6cf7d8",
+    "title": "How can we create multiple dummy interfaces on Linux?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/335284/how-can-we-create-multiple-dummy-interfaces-on-linux",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-ad9d433aca801884",
+    "title": "How does ethernet connection relate to communication protocols like SPI, I2C, UART, USB?",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/555475/how-does-ethernet-connection-relate-to-communication-protocols-like-spi-i2c-ua",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-f8179a84116528e5",
+    "title": "Xorg broken xf86EnableIOPorts: failed to set IOPL for I/O (Operation not permitted) No devices detected",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/457491/xorg-broken-xf86enableioports-failed-to-set-iopl-for-i-o-operation-not-permitt",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-3d50627b876ccef1",
+    "title": "CMSIS-Driver peripherals",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/60914235/cmsis-driver-peripherals",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-9279f000aaf8f533",
+    "title": "Linux, how to change HDD state from ReadOnly after temporarly crash?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/74090/linux-how-to-change-hdd-state-from-readonly-after-temporarly-crash",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-c6543d3b3dc615fa",
+    "title": "How to configure a GPIO button with interrupt in the Device Tree on BeagleBone Black?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-4908b31a137594b3",
+    "title": "Silent disk errors and reliability of Linux swap",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/269098/silent-disk-errors-and-reliability-of-linux-swap",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-40f6b471c6a664b2",
+    "title": "Communication between micro controllers - I2C, SPI, UART?",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-ff9b5ae9d60894b9",
+    "title": "How does Linux load the 'initrd' image?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/89923/how-does-linux-load-the-initrd-image",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-35078da57960db73",
+    "title": "Sering-Hong/embedded-interview",
+    "kind": "公开面经候选",
+    "url": "https://github.com/Sering-Hong/embedded-interview",
+    "trust": "AI 结构化草稿，需人工核验"
   }
 ]

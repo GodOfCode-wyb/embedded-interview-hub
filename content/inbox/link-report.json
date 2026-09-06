@@ -1,157 +1,170 @@
 {
-  "generated_at": "2026-08-23T13:14:34.218647+00:00",
+  "generated_at": "2026-09-06T16:02:12.587168+00:00",
   "seed_pages_scanned": 40,
-  "new_candidates": 47,
-  "candidate_count": 1103,
+  "new_candidates": 8,
+  "candidate_count": 1360,
   "status_counts": {
-    "discovered": 573,
+    "discovered": 692,
     "out-of-scope": 7,
-    "reference-only": 523
+    "promoted": 23,
+    "reference-only": 638
   },
-  "failure_count": 36,
+  "failure_count": 39,
   "failures": [
     {
-      "url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-8cc4cdfb242ef675",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-aa833b6e119dd6d8",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-14d9c36dd82f6404",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-342eccedbf4aa09a",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-358d3ca95185758f",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-f6d134603d8961d2",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/28571598/coherently-understand-the-software-hardware-interaction-with-regard-to-dma-and-b",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-7c25adb6f5d197e4",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-b7a21037bd8c568c",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-68a32838d544747c",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-070045fc8d841487",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-5d6c79ac5ed4ba12",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
-      "error": "HTTP Error 403: Forbidden"
+      "url": "local://candidate-5a9da71f2da6a92e",
+      "error": "<urlopen error unknown url type: local>"
     },
     {
-      "url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
+      "url": "local://candidate-12b5f1a8ef3829a0",
+      "error": "<urlopen error unknown url type: local>"
+    },
+    {
+      "url": "https://github.com/Ambition66/interview_knowledge_base/blob/5d425da4847222e7ba4523119016f52ffdca9820/interview_questions/12_嵌入式硬件基础面试题.md",
       "error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)"
     },
     {
-      "url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
+      "url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://unix.stackexchange.com/questions/110411/observing-a-hard-disk-write-in-kernel-space-with-drivers-modules",
+      "url": "https://electronics.stackexchange.com/questions/555475/how-does-ethernet-connection-relate-to-communication-protocols-like-spi-i2c-ua",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://unix.stackexchange.com/questions/315186/how-does-the-linux-kernel-know-device-major-and-minor-numbers",
+      "url": "https://electronics.stackexchange.com/questions/612192/i2c-high-speed-mode",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://unix.stackexchange.com/questions/156461/determine-driver-for-network-interface",
+      "url": "https://electronics.stackexchange.com/questions/667119/smart-esc-controlled-over-uart-spi-i2c-to-control-an-e-bike-wheel-at-very-low-s",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://unix.stackexchange.com/questions/248494/how-to-find-the-driver-module-associated-with-sata-device-on-linux",
+      "url": "https://unix.stackexchange.com/questions/74090/linux-how-to-change-hdd-state-from-readonly-after-temporarly-crash",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/51637425/getting-linux-irq-number-from-hardware-irq-number",
+      "url": "https://unix.stackexchange.com/questions/89923/how-does-linux-load-the-initrd-image",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
+      "url": "https://unix.stackexchange.com/questions/298281/are-binaries-portable-across-different-cpu-architectures",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
+      "url": "https://unix.stackexchange.com/questions/335284/how-can-we-create-multiple-dummy-interfaces-on-linux",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
+      "url": "https://unix.stackexchange.com/questions/269098/silent-disk-errors-and-reliability-of-linux-swap",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
+      "url": "https://unix.stackexchange.com/questions/211637/how-do-i-get-x-to-start-without-a-monitor-attached-while-using-nvidia-drivers",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
+      "url": "https://unix.stackexchange.com/questions/59497/alsa-asoc-how-to-correctly-load-devices-drivers",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
+      "url": "https://unix.stackexchange.com/questions/123862/how-can-i-get-xrandr-to-detect-both-nvidia-cards-2-x-gtx480-triple-head",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
+      "url": "https://unix.stackexchange.com/questions/477107/what-is-the-state-of-linux-kernel-support-for-intel-quiet-system-technology-int",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/66361263/linux-custom-device-driver-probe-and-init-functions-are-not-being-called",
+      "url": "https://unix.stackexchange.com/questions/366805/how-to-get-linux-to-recognize-an-unidentified-touchpad",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/41990475/compactpci-system-running-debian-linux-lspci-shows-incorrect-irq-leading-to-gen",
+      "url": "https://unix.stackexchange.com/questions/457491/xorg-broken-xf86enableioports-failed-to-set-iopl-for-i-o-operation-not-permitt",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+      "url": "https://unix.stackexchange.com/questions/43164/can-i-detect-if-my-custom-made-kernel-was-built-with-module-support",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+      "url": "https://unix.stackexchange.com/questions/63216/how-to-configure-xorg-conf-for-widescreen-vnc-on-headless-linux-ubuntu",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/60914235/cmsis-driver-peripherals",
+      "url": "https://unix.stackexchange.com/questions/192460/bluetooth-firmware-not-loading-for-intel-7260",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/39016872/custom-linux-build-on-nanopi-neo-board",
+      "url": "https://unix.stackexchange.com/questions/297332/less-ram-available-than-installed-on-centos-7",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+      "url": "https://unix.stackexchange.com/questions/554438/what-is-maximum-loop-devices-for-linux-kernel",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://github.com/GalenDeng/Embedded-Linux/blob/4c3c7edcdf0cf76595b798939524b40e72702401/1.嵌入式编程基础知识/嵌入式面试题汇总/面试题.md",
-      "error": "'ascii' codec can't encode characters in position 78-86: ordinal not in range(128)"
-    },
-    {
-      "url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+      "url": "https://unix.stackexchange.com/questions/71384/would-someone-please-explain-lspci-vv-output",
       "error": "HTTP Error 403: Forbidden"
     },
     {
-      "url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+      "url": "https://unix.stackexchange.com/questions/78169/how-can-i-prevent-drivers-from-binding-usb-devices-on-a-certain-bus",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://unix.stackexchange.com/questions/175437/pcie-bus-error-filling-logs-fast",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://stackoverflow.com/questions/5810273/linux-kernel-userspace-multicast-streaming-datagrams",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://stackoverflow.com/questions/32261719/linux-device-tree-gpio-interrupt",
       "error": "HTTP Error 403: Forbidden"
     }
   ],
