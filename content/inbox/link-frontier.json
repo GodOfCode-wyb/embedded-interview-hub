@@ -1,5 +1,245 @@
 [
   {
+    "url": "local://candidate-8cc4cdfb242ef675",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-aa833b6e119dd6d8",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-14d9c36dd82f6404",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-342eccedbf4aa09a",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-358d3ca95185758f",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-f6d134603d8961d2",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-7c25adb6f5d197e4",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-b7a21037bd8c568c",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-68a32838d544747c",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-070045fc8d841487",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-5d6c79ac5ed4ba12",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-5a9da71f2da6a92e",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "local://candidate-12b5f1a8ef3829a0",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "<urlopen error unknown url type: local>"
+  },
+  {
+    "url": "https://github.com/Ambition66/interview_knowledge_base/blob/5d425da4847222e7ba4523119016f52ffdca9820/interview_questions/12_嵌入式硬件基础面试题.md",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)"
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/555475/how-does-ethernet-connection-relate-to-communication-protocols-like-spi-i2c-ua",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/612192/i2c-high-speed-mode",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://electronics.stackexchange.com/questions/667119/smart-esc-controlled-over-uart-spi-i2c-to-control-an-e-bike-wheel-at-very-low-s",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/74090/linux-how-to-change-hdd-state-from-readonly-after-temporarly-crash",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/89923/how-does-linux-load-the-initrd-image",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/298281/are-binaries-portable-across-different-cpu-architectures",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/335284/how-can-we-create-multiple-dummy-interfaces-on-linux",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/269098/silent-disk-errors-and-reliability-of-linux-swap",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/211637/how-do-i-get-x-to-start-without-a-monitor-attached-while-using-nvidia-drivers",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/59497/alsa-asoc-how-to-correctly-load-devices-drivers",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/123862/how-can-i-get-xrandr-to-detect-both-nvidia-cards-2-x-gtx480-triple-head",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/477107/what-is-the-state-of-linux-kernel-support-for-intel-quiet-system-technology-int",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/366805/how-to-get-linux-to-recognize-an-unidentified-touchpad",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/457491/xorg-broken-xf86enableioports-failed-to-set-iopl-for-i-o-operation-not-permitt",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/43164/can-i-detect-if-my-custom-made-kernel-was-built-with-module-support",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/63216/how-to-configure-xorg-conf-for-widescreen-vnc-on-headless-linux-ubuntu",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/192460/bluetooth-firmware-not-loading-for-intel-7260",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/297332/less-ram-available-than-installed-on-centos-7",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/554438/what-is-maximum-loop-devices-for-linux-kernel",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/71384/would-someone-please-explain-lspci-vv-output",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/78169/how-can-i-prevent-drivers-from-binding-usb-devices-on-a-certain-bus",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://unix.stackexchange.com/questions/175437/pcie-bus-error-filling-logs-fast",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://github.com/X-Gen-Lab/knowledge-os/blob/0ead6ff6180fa9451c355cecadf515ab082bf643/knowledge/02-technologies/embedded/10-cross-cutting-concerns/04-project-management-career/intermediate/06-interview-preparation.md",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 8,
+    "error": null
+  },
+  {
+    "url": "https://stackoverflow.com/questions/5810273/linux-kernel-userspace-multicast-streaming-datagrams",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://stackoverflow.com/questions/32261719/linux-device-tree-gpio-interrupt",
+    "last_checked_at": "2026-09-06T16:02:12.587168+00:00",
+    "discovered_count": 0,
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
     "url": "https://github.com/Sering-Hong/embedded-interview",
     "last_checked_at": "2026-08-23T13:14:34.218647+00:00",
     "discovered_count": 20,
