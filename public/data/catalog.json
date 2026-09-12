@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-08-27T16:15:35.644742+00:00",
+  "generated_at": "2026-09-12T16:15:59.380792+00:00",
   "stats": {
-    "questions": 1914,
+    "questions": 1941,
     "experiences": 4,
-    "sources": 44,
+    "sources": 65,
     "domains": {
       "C 语言": 148,
       "C++": 271,
-      "Linux 系统编程": 181,
-      "Linux 驱动": 280,
+      "Linux 系统编程": 183,
+      "Linux 驱动": 292,
       "RTOS": 70,
-      "STM32 / MCU": 52,
-      "外设与协议": 102,
+      "STM32 / MCU": 53,
+      "外设与协议": 110,
       "嵌入式 AI": 33,
-      "操作系统": 303,
+      "操作系统": 304,
       "数据结构与算法": 87,
       "机器人": 2,
       "物联网": 1,
-      "编译与构建": 43,
+      "编译与构建": 44,
       "计算机体系结构": 170,
       "计算机网络": 130,
       "调试与测试": 20,
-      "音视频": 21
+      "音视频": 23
     }
   },
   "questions": [
@@ -37,7 +37,7 @@
         "栈",
         "链接"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-return-local-address",
@@ -50,7 +50,7 @@
         "悬空指针",
         "未定义行为"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-function-pointer",
@@ -63,7 +63,7 @@
         "回调",
         "typedef"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-virtual-dispatch",
@@ -77,7 +77,7 @@
         "多态",
         "虚表"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-raii-smart-pointer",
@@ -116,7 +116,7 @@
         "链表",
         "内存碎片"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "ds-hash-table",
@@ -129,7 +129,7 @@
         "冲突",
         "复杂度"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-process-thread",
@@ -142,7 +142,7 @@
         "线程",
         "上下文切换"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-virtual-memory",
@@ -156,7 +156,7 @@
         "页表",
         "缺页"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "os-deadlock",
@@ -169,7 +169,7 @@
         "互斥锁",
         "锁顺序"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-handshake",
@@ -182,7 +182,7 @@
         "握手",
         "序列号"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-sticky-packet",
@@ -195,7 +195,7 @@
         "协议设计",
         "缓冲区"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-epoll",
@@ -208,7 +208,7 @@
         "poll",
         "epoll"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-cache-coherency",
@@ -221,7 +221,7 @@
         "Cache",
         "一致性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-memory-barrier",
@@ -234,7 +234,7 @@
         "原子操作",
         "内存屏障"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-cortexm-startup",
@@ -247,7 +247,7 @@
         "向量表",
         "Reset_Handler"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-clock-tree",
@@ -261,7 +261,7 @@
         "AHB",
         "APB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-adc-dma",
@@ -275,7 +275,7 @@
         "定时器",
         "双缓冲"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-priority-inversion",
@@ -288,7 +288,7 @@
         "互斥锁",
         "实时性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-isr-api",
@@ -301,7 +301,7 @@
         "FromISR",
         "中断延迟"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-linux-latency",
@@ -314,7 +314,7 @@
         "调度延迟",
         "确定性"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-ipc",
@@ -327,7 +327,7 @@
         "共享内存",
         "Socket"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-segfault",
@@ -340,7 +340,7 @@
         "Core Dump",
         "GDB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "driver-ioremap",
@@ -353,7 +353,7 @@
         "MMIO",
         "寄存器"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-interrupt-bottom-half",
@@ -367,7 +367,7 @@
         "工作队列",
         "线程化中断"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-spinlock-mutex",
@@ -380,7 +380,7 @@
         "mutex",
         "irqsave"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-device-tree",
@@ -393,7 +393,7 @@
         "compatible",
         "platform_driver"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-kernel-panic",
@@ -407,7 +407,7 @@
         "crash",
         "KASAN"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-i2c",
@@ -420,7 +420,7 @@
         "上拉电阻",
         "总线恢复"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-spi-modes",
@@ -433,7 +433,7 @@
         "CPOL",
         "CPHA"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-can-fd",
@@ -446,7 +446,7 @@
         "CAN FD",
         "仲裁"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-static-dynamic-library",
@@ -460,7 +460,7 @@
         "链接器",
         "ABI"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-make-cmake",
@@ -473,7 +473,7 @@
         "CMake",
         "交叉编译"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-i2c-layering",
@@ -486,7 +486,7 @@
         "逻辑分析仪",
         "I2C"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-reentrant-function",
@@ -499,7 +499,7 @@
         "线程安全",
         "共享状态"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "iot-mqtt-qos",
@@ -512,7 +512,7 @@
         "QoS",
         "幂等"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "robotics-ros2-dds",
@@ -525,7 +525,7 @@
         "DDS",
         "QoS"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "media-yuv420",
@@ -538,7 +538,7 @@
         "NV12",
         "Camera"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "edge-ai-quantization",
@@ -552,7 +552,7 @@
         "NPU",
         "端侧推理"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "question-7ae8d809076cfa7a",
@@ -29333,6 +29333,455 @@
         "任务队列",
         "并发",
         "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f29e6a5324b0d23e",
+      "title": "在没有连接显示器的情况下，如何让 Xorg 使用 NVIDIA 专有驱动正常启动？",
+      "domain": "Linux 驱动",
+      "subtopic": "Xorg 与 NVIDIA 驱动的无头启动",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "Xorg",
+        "NVIDIA",
+        "无头启动",
+        "CentOS",
+        "Xorg 与 NVIDIA 驱动的无头启动"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-46ba3046eef3c52a",
+      "title": "V4L2 能否从同一设备同时读取音频和视频？",
+      "domain": "音视频",
+      "subtopic": "V4L2 与 ALSA 的职责边界",
+      "difficulty": "进阶",
+      "tags": [
+        "V4L2",
+        "ALSA",
+        "音视频采集",
+        "Linux 驱动",
+        "时间戳同步",
+        "音视频",
+        "V4L2 与 ALSA 的职责边界"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3514019a0a2e2c6b",
+      "title": "Linux 内核对 Intel QST（Quiet System Technology）的支持现状如何？",
+      "domain": "Linux 驱动",
+      "subtopic": "平台传感器与风扇控制子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "hwmon",
+        "Intel QST",
+        "风扇控制",
+        "传感器",
+        "平台传感器与风扇控制子系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-af91cd865b48b19f",
+      "title": "Raspberry Pi 与 Arduino 之间不通过 UART 通信，有哪些可选方案？",
+      "domain": "外设与协议",
+      "subtopic": "板间通信接口选型",
+      "difficulty": "基础",
+      "tags": [
+        "I2C",
+        "SPI",
+        "UART",
+        "Raspberry Pi",
+        "Arduino",
+        "板间通信",
+        "外设与协议",
+        "板间通信接口选型"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-944e22b1275ed6d2",
+      "title": "在嵌入式电机控制中，UART、SPI、I2C 三种外设接口应如何选型？",
+      "domain": "外设与协议",
+      "subtopic": "UART/SPI/I2C 选型与对比",
+      "difficulty": "基础",
+      "tags": [
+        "UART",
+        "SPI",
+        "I2C",
+        "电机控制",
+        "外设选型",
+        "外设与协议",
+        "UART/SPI/I2C 选型与对比"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-dec6a9ead728ef9a",
+      "title": "Linux 启动时卡在 \"random: nonblocking pool is initialized\" 附近，可能的原因和排查思路是什么？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核启动与随机数子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "内核调试",
+        "随机数子系统",
+        "嵌入式 Linux",
+        "i.MX6",
+        "Linux 驱动",
+        "内核启动与随机数子系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3146afa934787c34",
+      "title": "ALSA 与 ASoC 是什么关系？ASoC 如何组织音频驱动？",
+      "domain": "音视频",
+      "subtopic": "Linux 音频子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "ALSA",
+        "ASoC",
+        "音频驱动",
+        "DAPM",
+        "设备树",
+        "音视频",
+        "Linux 音频子系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-6f32cf6f6ccc9a69",
+      "title": "多显卡或多显示设备场景下，Linux 图形栈如何枚举和分配显示输出？",
+      "domain": "Linux 驱动",
+      "subtopic": "DRM/KMS 与多设备显示",
+      "difficulty": "进阶",
+      "tags": [
+        "DRM",
+        "KMS",
+        "xrandr",
+        "多显卡",
+        "Xorg",
+        "Linux 驱动",
+        "DRM/KMS 与多设备显示"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f8385f5735f362b2",
+      "title": "Xorg 报 No devices detected 应如何分层排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "显卡设备探测",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux",
+        "Xorg",
+        "DRM",
+        "设备探测",
+        "排查",
+        "Linux 驱动",
+        "显卡设备探测"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-0b922bd0f4f67879",
+      "title": "如何为一块 ARM 开发板（如 NanoPi Neo）做自定义 Linux 构建？",
+      "domain": "编译与构建",
+      "subtopic": "嵌入式 Linux 系统构建与板级移植",
+      "difficulty": "进阶",
+      "tags": [
+        "嵌入式 Linux",
+        "Buildroot",
+        "ARM",
+        "板级移植",
+        "交叉编译",
+        "编译与构建",
+        "嵌入式 Linux 系统构建与板级移植"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fed2137d6a8749bc",
+      "title": "Xorg 启动时报 xf86EnableIOPorts: failed to set IOPL for I/O (Operation not permitted) 是什么原因？",
+      "domain": "Linux 系统编程",
+      "subtopic": "I/O 权限与 IOPL",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux",
+        "Xorg",
+        "IOPL",
+        "权限",
+        "容器",
+        "Linux 系统编程",
+        "I/O 权限与 IOPL"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-976c8796a69e7723",
+      "title": "USART、UART、RS232、TTL、USB、SPI、I2C 这些通信方式之间是什么关系？",
+      "domain": "外设与协议",
+      "subtopic": "串行通信协议分层与电气标准",
+      "difficulty": "基础",
+      "tags": [
+        "UART",
+        "USART",
+        "RS232",
+        "TTL",
+        "SPI",
+        "I2C",
+        "外设协议",
+        "外设与协议",
+        "串行通信协议分层与电气标准"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fe81ecfd91c7e94f",
+      "title": "如何实现电机在极低转速下的平稳控制？",
+      "domain": "外设与协议",
+      "subtopic": "低速电机控制与换相",
+      "difficulty": "进阶",
+      "tags": [
+        "低速控制",
+        "FOC",
+        "无感控制",
+        "电机驱动",
+        "外设与协议",
+        "低速电机控制与换相"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-12cdc8e9fe36bd8f",
+      "title": "如何在 Linux 上创建多个 dummy 网络接口？",
+      "domain": "Linux 系统编程",
+      "subtopic": "虚拟网络接口与内核模块",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux",
+        "网络接口",
+        "dummy",
+        "内核模块",
+        "网络命名空间",
+        "Linux 系统编程",
+        "虚拟网络接口与内核模块"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-388960f4d3c92fa3",
+      "title": "Linux 无法识别触摸板时，应从哪些层面排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "输入设备识别与排查",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "输入子系统",
+        "触摸板",
+        "设备排查",
+        "输入设备识别与排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-1852fe45135ca839",
+      "title": "Linux 内核模块是如何被加载和卸载的？insmod、modprobe 与 rmmod 有什么区别？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核模块加载机制",
+      "difficulty": "基础",
+      "tags": [
+        "Linux 驱动",
+        "内核模块",
+        "insmod",
+        "modprobe",
+        "嵌入式",
+        "内核模块加载机制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-0a420dd347cdf506",
+      "title": "Linux 内核启动时如何加载并切换到 initrd/initramfs？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核启动与 initrd/initramfs",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核启动",
+        "initramfs",
+        "initrd",
+        "switch_root",
+        "嵌入式启动",
+        "Linux 驱动",
+        "内核启动与 initrd/initramfs"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-8dad0afd749a108b",
+      "title": "I²C 高速模式（High-speed mode）与标准/快速模式有什么区别？",
+      "domain": "外设与协议",
+      "subtopic": "I²C 高速模式",
+      "difficulty": "进阶",
+      "tags": [
+        "I2C",
+        "高速模式",
+        "外设协议",
+        "信号完整性",
+        "外设与协议",
+        "I²C 高速模式"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-e1f428b00afc10bb",
+      "title": "Linux 上为什么可用内存少于物理安装的内存？",
+      "domain": "操作系统",
+      "subtopic": "Linux 物理内存管理与内存占用来源",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内存管理",
+        "MemTotal",
+        "crashkernel",
+        "CMA",
+        "dmesg",
+        "操作系统",
+        "Linux 物理内存管理与内存占用来源"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-b1bd00dc40d0e386",
+      "title": "lspci 显示的 IRQ 与驱动实际申请的中断不一致，可能是什么原因？",
+      "domain": "Linux 驱动",
+      "subtopic": "PCI/PCIe 中断与 IRQ 映射",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "PCI",
+        "中断",
+        "IRQ",
+        "lspci",
+        "MSI",
+        "PCI/PCIe 中断与 IRQ 映射"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-91ab45e1b0600d91",
+      "title": "以太网与 SPI、I2C、UART、USB 在通信协议层次上是什么关系？",
+      "domain": "外设与协议",
+      "subtopic": "协议分层与总线定位",
+      "difficulty": "基础",
+      "tags": [
+        "外设与协议",
+        "SPI",
+        "I2C",
+        "UART",
+        "USB",
+        "以太网",
+        "协议分层与总线定位"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-1f6f621929b21bd1",
+      "title": "Linux 下如何确认一个硬件设备被哪个内核驱动接管？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备与驱动绑定关系排查",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备枚举",
+        "sysfs",
+        "lspci",
+        "设备树",
+        "设备与驱动绑定关系排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-8f0f1cc5730109f0",
+      "title": "CMSIS-Driver 中 USART、SPI、I2C 等外设接口的通用调用流程是怎样的？",
+      "domain": "外设与协议",
+      "subtopic": "CMSIS-Driver 外设调用模型",
+      "difficulty": "进阶",
+      "tags": [
+        "CMSIS-Driver",
+        "USART",
+        "SPI",
+        "I2C",
+        "外设协议",
+        "外设与协议",
+        "CMSIS-Driver 外设调用模型"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c545ccf3659ae54c",
+      "title": "CMSIS-Driver 是什么？它在外设驱动开发中解决什么问题？",
+      "domain": "STM32 / MCU",
+      "subtopic": "CMSIS-Driver 外设抽象层",
+      "difficulty": "基础",
+      "tags": [
+        "CMSIS-Driver",
+        "STM32",
+        "外设驱动",
+        "ARM",
+        "STM32 / MCU",
+        "CMSIS-Driver 外设抽象层"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a17226c7f8543ed9",
+      "title": "在设备树中如何配置一个带中断的 GPIO 按键？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树 GPIO 与中断配置",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "GPIO 中断",
+        "BeagleBone Black",
+        "input 子系统",
+        "设备树 GPIO 与中断配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fe0bc076eba025ef",
+      "title": "Linux 输入子系统从设备驱动到用户态的事件通路是怎样的？",
+      "domain": "Linux 驱动",
+      "subtopic": "输入子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "输入子系统",
+        "evdev",
+        "libinput"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-ca0a0ba1f65310ed",
+      "title": "I²C、SPI、UART 三种通信方式如何对比与选型？",
+      "domain": "外设与协议",
+      "subtopic": "MCU 间通信总线对比",
+      "difficulty": "基础",
+      "tags": [
+        "I2C",
+        "SPI",
+        "UART",
+        "总线选型",
+        "MCU 通信",
+        "外设与协议",
+        "MCU 间通信总线对比"
       ],
       "status": "ai-draft"
     }
