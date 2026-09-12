@@ -1,19 +1,22 @@
 {
-  "generated_at": "2026-08-23T13:11:22.021918+00:00",
-  "candidate_count": 1056,
+  "generated_at": "2026-09-12T15:59:38.538204+00:00",
+  "candidate_count": 1419,
   "status_counts": {
-    "discovered": 546,
+    "discovered": 697,
     "out-of-scope": 7,
-    "reference-only": 503
+    "promoted": 23,
+    "reference-only": 692
   },
   "provider_counts": {
     "github-code-search": 83,
-    "github-search": 286,
-    "gitlab-project-search": 500,
+    "github-search": 417,
+    "gitlab-project-search": 672,
+    "local-import": 13,
+    "public-link-discovery": 47,
     "stackexchange-search": 136,
     "unknown": 51
   },
-  "failure_count": 33,
+  "failure_count": 37,
   "failures": [
     {
       "feed": "Linux 驱动面试题",
@@ -144,7 +147,23 @@
       "error": "syntax error: line 1, column 0"
     },
     {
+      "feed": "GitHub 嵌入式面试文档",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "feed": "GitHub Linux 驱动面试文档",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
       "feed": "GitHub STM32 面试文档",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "feed": "GitHub FreeRTOS 面试文档",
+      "error": "HTTP Error 429: Too Many Requests"
+    },
+    {
+      "feed": "GitHub Embedded Interview 文档",
       "error": "HTTP Error 429: Too Many Requests"
     }
   ]
