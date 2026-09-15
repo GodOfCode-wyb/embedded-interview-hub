@@ -1,19 +1,22 @@
 {
-  "generated_at": "2026-08-23T13:11:22.021918+00:00",
-  "candidate_count": 1056,
+  "generated_at": "2026-09-15T17:28:36.089481+00:00",
+  "candidate_count": 1450,
   "status_counts": {
-    "discovered": 546,
+    "discovered": 712,
     "out-of-scope": 7,
-    "reference-only": 503
+    "promoted": 23,
+    "reference-only": 708
   },
   "provider_counts": {
-    "github-code-search": 83,
-    "github-search": 286,
-    "gitlab-project-search": 500,
+    "github-code-search": 93,
+    "github-search": 419,
+    "gitlab-project-search": 691,
+    "local-import": 13,
+    "public-link-discovery": 47,
     "stackexchange-search": 136,
     "unknown": 51
   },
-  "failure_count": 33,
+  "failure_count": 32,
   "failures": [
     {
       "feed": "Linux 驱动面试题",
@@ -133,7 +136,7 @@
     },
     {
       "feed": "嵌入式面试题 site 博客园",
-      "error": "syntax error: line 1, column 0"
+      "error": "no element found: line 1, column 0"
     },
     {
       "feed": "音视频底层八股",
@@ -142,10 +145,6 @@
     {
       "feed": "嵌入式 AI 推理面试",
       "error": "syntax error: line 1, column 0"
-    },
-    {
-      "feed": "GitHub STM32 面试文档",
-      "error": "HTTP Error 429: Too Many Requests"
     }
   ]
 }
