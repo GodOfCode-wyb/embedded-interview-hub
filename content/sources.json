@@ -319,5 +319,138 @@
     "url": null,
     "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
     "import_key": "local://candidate-12b5f1a8ef3829a0"
+  },
+  {
+    "id": "source-dd113c9fe805b55b",
+    "title": "Craftbai/Interview-Question",
+    "kind": "公开面经候选",
+    "url": "https://github.com/Craftbai/Interview-Question",
+    "trust": "AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-7aff51e592b03910",
+    "title": "Can v4l2 be used to read audio and video from the same device?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-7e13612a9925105e",
+    "title": "RPI-arduino communication without UART",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a73081da8f7115b1",
+    "title": "SPI slave-mode on imx8qmlpddr4arm2 board using yocto",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-80a61a7d1d48d306",
+    "title": "Linux hangs at [random: nonblocking pool is initialized]",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a82b7b893a49157d",
+    "title": "How do I run XEN on arm64 and Qemu 6.0.0 with Linux 4.20.11 as Dom0",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-8c594fc9c6a3ae51",
+    "title": "Which microcontrollers that can I buy to learn such an USART, UART, RS232, USB, SPI, I2C, TTL communication?",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-bf7d5d06f53e4c1a",
+    "title": "Error in booting from uSD-card - No filesystem could mount root, tried:Ext4",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-9e54ea15d105cdd7",
+    "title": "Device-Tree Issues with ROCKPro64 PCIe Endpoint",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-54c512c84e55a6f7",
+    "title": "How to work with UIO drivers with my network card",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-0b0def94fb5ca731",
+    "title": "freescale imx6 with mpu9250",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-8a97d5225576adae",
+    "title": "CompactPCI system running Debian linux: lspci shows incorrect IRQ leading to gen_irq flags mismatch and IRQ conflict",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/41990475/compactpci-system-running-debian-linux-lspci-shows-incorrect-irq-leading-to-gen",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-86883e4ce8fc3e8b",
+    "title": "Linux Kernel Boot Error: reserving fdt memory region failed",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-8e9e4fce2bfa9c60",
+    "title": "ARM stucks at \"Starting kernel image ...\" sometimes",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-c4df82f37be62837",
+    "title": "IRQCHIP_DECLARE: init function is not being run",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-1aa3f240fad92df9",
+    "title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-557eafdbca123e04",
+    "title": "rk3328 soc boot stuck at waiting for root device /dev/mmcblk1p2",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-c6543d3b3dc615fa",
+    "title": "How to configure a GPIO button with interrupt in the Device Tree on BeagleBone Black?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-a0ebfddc2da74630",
+    "title": "How do I implement a file system driver driver in Linux?",
+    "kind": "公开技术问答",
+    "url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
   }
 ]
