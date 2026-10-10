@@ -1,19 +1,22 @@
 {
-  "generated_at": "2026-08-23T13:11:22.021918+00:00",
-  "candidate_count": 1056,
+  "generated_at": "2026-10-10T17:39:01.796198+00:00",
+  "candidate_count": 1672,
   "status_counts": {
-    "discovered": 546,
-    "out-of-scope": 7,
-    "reference-only": 503
+    "discovered": 756,
+    "out-of-scope": 8,
+    "promoted": 23,
+    "reference-only": 885
   },
   "provider_counts": {
-    "github-code-search": 83,
-    "github-search": 286,
-    "gitlab-project-search": 500,
+    "github-code-search": 99,
+    "github-search": 448,
+    "gitlab-project-search": 878,
+    "local-import": 13,
+    "public-link-discovery": 47,
     "stackexchange-search": 136,
     "unknown": 51
   },
-  "failure_count": 33,
+  "failure_count": 32,
   "failures": [
     {
       "feed": "Linux 驱动面试题",
@@ -142,10 +145,6 @@
     {
       "feed": "嵌入式 AI 推理面试",
       "error": "syntax error: line 1, column 0"
-    },
-    {
-      "feed": "GitHub STM32 面试文档",
-      "error": "HTTP Error 429: Too Many Requests"
     }
   ]
 }

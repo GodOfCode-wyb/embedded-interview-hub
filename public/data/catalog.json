@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-08-27T16:15:35.644742+00:00",
+  "generated_at": "2026-10-10T17:57:50.138882+00:00",
   "stats": {
-    "questions": 1914,
+    "questions": 1934,
     "experiences": 4,
-    "sources": 44,
+    "sources": 58,
     "domains": {
       "C 语言": 148,
       "C++": 271,
       "Linux 系统编程": 181,
-      "Linux 驱动": 280,
+      "Linux 驱动": 293,
       "RTOS": 70,
       "STM32 / MCU": 52,
-      "外设与协议": 102,
+      "外设与协议": 105,
       "嵌入式 AI": 33,
       "操作系统": 303,
       "数据结构与算法": 87,
       "机器人": 2,
       "物联网": 1,
-      "编译与构建": 43,
-      "计算机体系结构": 170,
+      "编译与构建": 45,
+      "计算机体系结构": 171,
       "计算机网络": 130,
       "调试与测试": 20,
-      "音视频": 21
+      "音视频": 22
     }
   },
   "questions": [
@@ -37,7 +37,7 @@
         "栈",
         "链接"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-return-local-address",
@@ -50,7 +50,7 @@
         "悬空指针",
         "未定义行为"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-function-pointer",
@@ -63,7 +63,7 @@
         "回调",
         "typedef"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-virtual-dispatch",
@@ -77,7 +77,7 @@
         "多态",
         "虚表"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-raii-smart-pointer",
@@ -116,7 +116,7 @@
         "链表",
         "内存碎片"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "ds-hash-table",
@@ -129,7 +129,7 @@
         "冲突",
         "复杂度"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-process-thread",
@@ -142,7 +142,7 @@
         "线程",
         "上下文切换"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-virtual-memory",
@@ -156,7 +156,7 @@
         "页表",
         "缺页"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "os-deadlock",
@@ -169,7 +169,7 @@
         "互斥锁",
         "锁顺序"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-handshake",
@@ -182,7 +182,7 @@
         "握手",
         "序列号"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-sticky-packet",
@@ -195,7 +195,7 @@
         "协议设计",
         "缓冲区"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-epoll",
@@ -208,7 +208,7 @@
         "poll",
         "epoll"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-cache-coherency",
@@ -221,7 +221,7 @@
         "Cache",
         "一致性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-memory-barrier",
@@ -234,7 +234,7 @@
         "原子操作",
         "内存屏障"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-cortexm-startup",
@@ -247,7 +247,7 @@
         "向量表",
         "Reset_Handler"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-clock-tree",
@@ -261,7 +261,7 @@
         "AHB",
         "APB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-adc-dma",
@@ -275,7 +275,7 @@
         "定时器",
         "双缓冲"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-priority-inversion",
@@ -288,7 +288,7 @@
         "互斥锁",
         "实时性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-isr-api",
@@ -301,7 +301,7 @@
         "FromISR",
         "中断延迟"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-linux-latency",
@@ -314,7 +314,7 @@
         "调度延迟",
         "确定性"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-ipc",
@@ -327,7 +327,7 @@
         "共享内存",
         "Socket"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-segfault",
@@ -340,7 +340,7 @@
         "Core Dump",
         "GDB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "driver-ioremap",
@@ -353,7 +353,7 @@
         "MMIO",
         "寄存器"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-interrupt-bottom-half",
@@ -367,7 +367,7 @@
         "工作队列",
         "线程化中断"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-spinlock-mutex",
@@ -380,7 +380,7 @@
         "mutex",
         "irqsave"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-device-tree",
@@ -393,7 +393,7 @@
         "compatible",
         "platform_driver"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-kernel-panic",
@@ -407,7 +407,7 @@
         "crash",
         "KASAN"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-i2c",
@@ -420,7 +420,7 @@
         "上拉电阻",
         "总线恢复"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-spi-modes",
@@ -433,7 +433,7 @@
         "CPOL",
         "CPHA"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-can-fd",
@@ -446,7 +446,7 @@
         "CAN FD",
         "仲裁"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-static-dynamic-library",
@@ -460,7 +460,7 @@
         "链接器",
         "ABI"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-make-cmake",
@@ -473,7 +473,7 @@
         "CMake",
         "交叉编译"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-i2c-layering",
@@ -486,7 +486,7 @@
         "逻辑分析仪",
         "I2C"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-reentrant-function",
@@ -499,7 +499,7 @@
         "线程安全",
         "共享状态"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "iot-mqtt-qos",
@@ -512,7 +512,7 @@
         "QoS",
         "幂等"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "robotics-ros2-dds",
@@ -525,7 +525,7 @@
         "DDS",
         "QoS"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "media-yuv420",
@@ -538,7 +538,7 @@
         "NV12",
         "Camera"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "edge-ai-quantization",
@@ -552,7 +552,7 @@
         "NPU",
         "端侧推理"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "question-7ae8d809076cfa7a",
@@ -29333,6 +29333,339 @@
         "任务队列",
         "并发",
         "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-74a3dae0fef1adb4",
+      "title": "在 Yocto 中为特定板卡启用 SPI 从机功能需要改哪些地方？",
+      "domain": "编译与构建",
+      "subtopic": "Yocto 板级配置",
+      "difficulty": "进阶",
+      "tags": [
+        "Yocto",
+        "设备树",
+        "内核配置",
+        "i.MX8",
+        "SPI",
+        "编译与构建",
+        "Yocto 板级配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-aa95eed5a85968b1",
+      "title": "设备树中 PCIe 控制器与端点（Endpoint）节点通常需要描述哪些关键属性？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树与 PCIe 端点",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "PCIe",
+        "ROCKPro64",
+        "设备树与 PCIe 端点"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-46ba3046eef3c52a",
+      "title": "V4L2 能否从同一设备同时读取音频和视频？",
+      "domain": "音视频",
+      "subtopic": "V4L2 与音视频采集接口边界",
+      "difficulty": "进阶",
+      "tags": [
+        "V4L2",
+        "ALSA",
+        "音视频采集",
+        "Linux 驱动",
+        "USB 复合设备",
+        "音视频",
+        "V4L2 与音视频采集接口边界"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-48832f0a1ff354d5",
+      "title": "Linux 内核启动时提示 “No filesystem could mount root, tried: ext4” 应如何定位？",
+      "domain": "Linux 驱动",
+      "subtopic": "根文件系统挂载失败排查",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "根文件系统",
+        "ext4",
+        "SD 卡",
+        "U-Boot",
+        "Buildroot",
+        "Linux 驱动",
+        "根文件系统挂载失败排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fde35e611221c94e",
+      "title": "在 STM32H743 这类 Cortex-M 平台上运行 Linux 内核崩溃，应从哪些方向定位？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核崩溃定位与平台适配",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核",
+        "STM32H743",
+        "Cortex-M7",
+        "内核崩溃",
+        "启动调试",
+        "Linux 驱动",
+        "内核崩溃定位与平台适配"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-cc5a900a94d75e87",
+      "title": "如何为 NanoPi Neo 这类 ARM 开发板构建自定义 Linux 系统？",
+      "domain": "编译与构建",
+      "subtopic": "嵌入式 Linux 系统构建（Buildroot）",
+      "difficulty": "进阶",
+      "tags": [
+        "Buildroot",
+        "嵌入式 Linux",
+        "ARM",
+        "NanoPi",
+        "板级移植",
+        "编译与构建",
+        "嵌入式 Linux 系统构建（Buildroot）"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-5ca84941cc237f33",
+      "title": "SPI 从机模式下如何用中断和 DMA 提高接收可靠性？",
+      "domain": "外设与协议",
+      "subtopic": "SPI 从机数据接收",
+      "difficulty": "进阶",
+      "tags": [
+        "SPI",
+        "从机模式",
+        "DMA",
+        "中断",
+        "环形缓冲",
+        "外设与协议",
+        "SPI 从机数据接收"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-f25c10950a097a79",
+      "title": "lspci 显示的 IRQ 与驱动实际申请的中断号不一致，可能是什么原因？",
+      "domain": "Linux 驱动",
+      "subtopic": "PCI/PCIe 中断与 IRQ 映射",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "PCI",
+        "中断",
+        "IRQ",
+        "lspci",
+        "PCI/PCIe 中断与 IRQ 映射"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c01bcd8702e9f867",
+      "title": "IRQCHIP_DECLARE 声明的中断控制器初始化函数为什么没有被执行？",
+      "domain": "Linux 驱动",
+      "subtopic": "中断控制器驱动与 IRQCHIP_DECLARE 匹配机制",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核",
+        "中断控制器",
+        "IRQCHIP_DECLARE",
+        "设备树",
+        "of_irq_init",
+        "Xilinx",
+        "Linux 驱动",
+        "中断控制器驱动与 IRQCHIP_DECLARE 匹配机制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-7f4e66085aa1e57d",
+      "title": "Linux 下 SPI 从机（slave/target）模式与主机模式有什么区别？",
+      "domain": "Linux 驱动",
+      "subtopic": "SPI 从机模式",
+      "difficulty": "进阶",
+      "tags": [
+        "SPI",
+        "Linux 驱动",
+        "i.MX8",
+        "Yocto",
+        "从机模式",
+        "SPI 从机模式"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3530bc290a3fe99f",
+      "title": "MMU 与 MPU 的区别是什么？为什么 Cortex-M 上运行 Linux 受限？",
+      "domain": "计算机体系结构",
+      "subtopic": "MMU/MPU 与地址空间",
+      "difficulty": "进阶",
+      "tags": [
+        "MMU",
+        "MPU",
+        "Cortex-M",
+        "虚拟内存",
+        "地址空间",
+        "计算机体系结构",
+        "MMU/MPU 与地址空间"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3b7a43051f72cf7e",
+      "title": "如何设计一个同时支持 I2C、SPI、UART 的主机接口抽象层？",
+      "domain": "外设与协议",
+      "subtopic": "多协议驱动抽象层设计",
+      "difficulty": "进阶",
+      "tags": [
+        "I2C",
+        "SPI",
+        "UART",
+        "驱动抽象层",
+        "嵌入式架构",
+        "外设与协议",
+        "多协议驱动抽象层设计"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-ede468766ddafbe9",
+      "title": "Linux 设备树中 I2C 从设备节点通常包含哪些关键属性？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树 I2C 子节点",
+      "difficulty": "进阶",
+      "tags": [
+        "设备树",
+        "I2C",
+        "compatible",
+        "中断",
+        "pinctrl",
+        "Linux 驱动",
+        "设备树 I2C 子节点"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a17226c7f8543ed9",
+      "title": "在设备树中如何配置一个带中断的 GPIO 按键？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树 GPIO 与中断配置",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "GPIO",
+        "中断",
+        "BeagleBone Black",
+        "设备树 GPIO 与中断配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-d183f27868f7f6f7",
+      "title": "I2C、SPI、UART 三种微控制器通信方式应如何对比与选型？",
+      "domain": "外设与协议",
+      "subtopic": "串行通信协议对比",
+      "difficulty": "基础",
+      "tags": [
+        "I2C",
+        "SPI",
+        "UART",
+        "外设协议",
+        "选型",
+        "外设与协议",
+        "串行通信协议对比"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a0fc70f1ae7aa5be",
+      "title": "在 i.MX6 平台上接入 MPU9250 这类 I2C 传感器，Linux 驱动侧通常需要做哪些工作？",
+      "domain": "Linux 驱动",
+      "subtopic": "I2C 设备驱动与设备树匹配",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "I2C",
+        "设备树",
+        "IIO",
+        "i.MX6",
+        "MPU9250",
+        "I2C 设备驱动与设备树匹配"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a061a85ffc964273",
+      "title": "Linux I2C 驱动 probe 中常用的读写接口有哪些，如何选择？",
+      "domain": "Linux 驱动",
+      "subtopic": "I2C 传输 API",
+      "difficulty": "进阶",
+      "tags": [
+        "I2C",
+        "Linux 驱动",
+        "i2c_transfer",
+        "i2c_smbus",
+        "probe",
+        "I2C 传输 API"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-29d1056bb4b1e4c4",
+      "title": "Linux 启动时卡在 waiting for root device 应如何定位？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核启动与根文件系统挂载",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核启动",
+        "根文件系统",
+        "MMC/eMMC",
+        "设备树",
+        "嵌入式调试",
+        "Linux 驱动",
+        "内核启动与根文件系统挂载"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-b7627c18912d6ba9",
+      "title": "Linux SPI 子系统中 spidev 与自定义驱动有什么区别？",
+      "domain": "Linux 驱动",
+      "subtopic": "SPI 子系统",
+      "difficulty": "进阶",
+      "tags": [
+        "SPI",
+        "spidev",
+        "Linux 驱动",
+        "DMA",
+        "设备树",
+        "SPI 子系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-77f88cfb19d19a51",
+      "title": "在 Linux 中实现一个文件系统驱动需要哪些核心组件？",
+      "domain": "Linux 驱动",
+      "subtopic": "文件系统驱动框架",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "文件系统",
+        "VFS",
+        "内核模块",
+        "文件系统驱动框架"
       ],
       "status": "ai-draft"
     }
