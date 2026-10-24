@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-08-27T16:15:35.644742+00:00",
+  "generated_at": "2026-10-24T16:41:17.147430+00:00",
   "stats": {
-    "questions": 1914,
+    "questions": 1922,
     "experiences": 4,
-    "sources": 44,
+    "sources": 51,
     "domains": {
       "C 语言": 148,
       "C++": 271,
-      "Linux 系统编程": 181,
-      "Linux 驱动": 280,
+      "Linux 系统编程": 182,
+      "Linux 驱动": 286,
       "RTOS": 70,
       "STM32 / MCU": 52,
-      "外设与协议": 102,
+      "外设与协议": 103,
       "嵌入式 AI": 33,
       "操作系统": 303,
       "数据结构与算法": 87,
@@ -37,7 +37,7 @@
         "栈",
         "链接"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-return-local-address",
@@ -50,7 +50,7 @@
         "悬空指针",
         "未定义行为"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-function-pointer",
@@ -63,7 +63,7 @@
         "回调",
         "typedef"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-virtual-dispatch",
@@ -77,7 +77,7 @@
         "多态",
         "虚表"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-raii-smart-pointer",
@@ -116,7 +116,7 @@
         "链表",
         "内存碎片"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "ds-hash-table",
@@ -129,7 +129,7 @@
         "冲突",
         "复杂度"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-process-thread",
@@ -142,7 +142,7 @@
         "线程",
         "上下文切换"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-virtual-memory",
@@ -156,7 +156,7 @@
         "页表",
         "缺页"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "os-deadlock",
@@ -169,7 +169,7 @@
         "互斥锁",
         "锁顺序"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-handshake",
@@ -182,7 +182,7 @@
         "握手",
         "序列号"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-sticky-packet",
@@ -195,7 +195,7 @@
         "协议设计",
         "缓冲区"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-epoll",
@@ -208,7 +208,7 @@
         "poll",
         "epoll"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-cache-coherency",
@@ -221,7 +221,7 @@
         "Cache",
         "一致性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-memory-barrier",
@@ -234,7 +234,7 @@
         "原子操作",
         "内存屏障"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-cortexm-startup",
@@ -247,7 +247,7 @@
         "向量表",
         "Reset_Handler"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-clock-tree",
@@ -261,7 +261,7 @@
         "AHB",
         "APB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-adc-dma",
@@ -275,7 +275,7 @@
         "定时器",
         "双缓冲"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-priority-inversion",
@@ -288,7 +288,7 @@
         "互斥锁",
         "实时性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-isr-api",
@@ -301,7 +301,7 @@
         "FromISR",
         "中断延迟"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-linux-latency",
@@ -314,7 +314,7 @@
         "调度延迟",
         "确定性"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-ipc",
@@ -327,7 +327,7 @@
         "共享内存",
         "Socket"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-segfault",
@@ -340,7 +340,7 @@
         "Core Dump",
         "GDB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "driver-ioremap",
@@ -353,7 +353,7 @@
         "MMIO",
         "寄存器"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-interrupt-bottom-half",
@@ -367,7 +367,7 @@
         "工作队列",
         "线程化中断"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-spinlock-mutex",
@@ -380,7 +380,7 @@
         "mutex",
         "irqsave"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-device-tree",
@@ -393,7 +393,7 @@
         "compatible",
         "platform_driver"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-kernel-panic",
@@ -407,7 +407,7 @@
         "crash",
         "KASAN"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-i2c",
@@ -420,7 +420,7 @@
         "上拉电阻",
         "总线恢复"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-spi-modes",
@@ -433,7 +433,7 @@
         "CPOL",
         "CPHA"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-can-fd",
@@ -446,7 +446,7 @@
         "CAN FD",
         "仲裁"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-static-dynamic-library",
@@ -460,7 +460,7 @@
         "链接器",
         "ABI"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-make-cmake",
@@ -473,7 +473,7 @@
         "CMake",
         "交叉编译"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-i2c-layering",
@@ -486,7 +486,7 @@
         "逻辑分析仪",
         "I2C"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-reentrant-function",
@@ -499,7 +499,7 @@
         "线程安全",
         "共享状态"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "iot-mqtt-qos",
@@ -512,7 +512,7 @@
         "QoS",
         "幂等"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "robotics-ros2-dds",
@@ -525,7 +525,7 @@
         "DDS",
         "QoS"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "media-yuv420",
@@ -538,7 +538,7 @@
         "NV12",
         "Camera"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "edge-ai-quantization",
@@ -552,7 +552,7 @@
         "NPU",
         "端侧推理"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "question-7ae8d809076cfa7a",
@@ -29333,6 +29333,140 @@
         "任务队列",
         "并发",
         "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3cfbc51afb9a0538",
+      "title": "在 Cortex-M 类 MCU（如 STM32H743）上运行 Linux 内核崩溃，应从哪些层面分析可行性并定位？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核崩溃定位与平台可行性",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核",
+        "Cortex-M",
+        "STM32H743",
+        "NOMMU",
+        "Kernel Panic",
+        "Linux 驱动",
+        "内核崩溃定位与平台可行性"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-50626cb1d2e083fd",
+      "title": "Linux 启动时卡在“random: nonblocking pool is initialized”附近，可能的原因和排查思路是什么？",
+      "domain": "Linux 系统编程",
+      "subtopic": "内核启动与随机数熵池初始化",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "随机数熵池",
+        "initcall",
+        "嵌入式 Linux",
+        "启动调试",
+        "Linux 系统编程",
+        "内核启动与随机数熵池初始化"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9f2173e07a5bd3d5",
+      "title": "Linux 内核在嵌入式平台上崩溃时，如何结合异常信息与调用栈定位根因？",
+      "domain": "Linux 驱动",
+      "subtopic": "内核崩溃日志分析",
+      "difficulty": "进阶",
+      "tags": [
+        "Kernel Panic",
+        "Oops",
+        "调用栈",
+        "addr2line",
+        "pstore",
+        "Linux 驱动",
+        "内核崩溃日志分析"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-1b3fd2874784bb25",
+      "title": "如何设计一个可同时支持 I2C、SPI、UART 等多种串行协议的嵌入式主机接口抽象层？",
+      "domain": "外设与协议",
+      "subtopic": "多协议驱动抽象层设计",
+      "difficulty": "进阶",
+      "tags": [
+        "外设与协议",
+        "驱动架构",
+        "I2C",
+        "SPI",
+        "UART",
+        "抽象层设计",
+        "多协议驱动抽象层设计"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-cc6cd856878bab8e",
+      "title": "Linux 内核启动时报 “No filesystem could mount root, tried: ext4” 应如何分层排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "根文件系统挂载失败排查",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "根文件系统",
+        "ext4",
+        "MMC/SD",
+        "U-Boot",
+        "Linux 驱动",
+        "根文件系统挂载失败排查"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-57897a126138ec0e",
+      "title": "如何在设备树中配置一个带中断的 GPIO 按键？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树 GPIO 与中断配置",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "GPIO",
+        "中断",
+        "BeagleBone Black",
+        "设备树 GPIO 与中断配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-e6f019341d019c23",
+      "title": "Linux 设备树中一个设备节点如何指定多个中断父节点（interrupt-parent）？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树中断描述与 interrupt-parent 继承",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "中断",
+        "interrupt-parent",
+        "interrupts-extended",
+        "设备树中断描述与 interrupt-parent 继承"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-fb766a8dcd9f65d4",
+      "title": "Linux 启动卡在 waiting for root device 应如何分层排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "根文件系统与块设备识别",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "根文件系统",
+        "eMMC",
+        "设备树",
+        "启动排查",
+        "Linux 驱动",
+        "根文件系统与块设备识别"
       ],
       "status": "ai-draft"
     }
