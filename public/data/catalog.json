@@ -1,27 +1,27 @@
 {
-  "generated_at": "2026-08-27T16:15:35.644742+00:00",
+  "generated_at": "2026-10-31T17:43:59.920277+00:00",
   "stats": {
-    "questions": 1914,
+    "questions": 1929,
     "experiences": 4,
-    "sources": 44,
+    "sources": 53,
     "domains": {
-      "C 语言": 148,
+      "C 语言": 150,
       "C++": 271,
-      "Linux 系统编程": 181,
-      "Linux 驱动": 280,
+      "Linux 系统编程": 183,
+      "Linux 驱动": 286,
       "RTOS": 70,
-      "STM32 / MCU": 52,
-      "外设与协议": 102,
+      "STM32 / MCU": 54,
+      "外设与协议": 103,
       "嵌入式 AI": 33,
       "操作系统": 303,
       "数据结构与算法": 87,
-      "机器人": 2,
+      "机器人": 3,
       "物联网": 1,
       "编译与构建": 43,
       "计算机体系结构": 170,
       "计算机网络": 130,
       "调试与测试": 20,
-      "音视频": 21
+      "音视频": 22
     }
   },
   "questions": [
@@ -37,7 +37,7 @@
         "栈",
         "链接"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-return-local-address",
@@ -50,7 +50,7 @@
         "悬空指针",
         "未定义行为"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "c-function-pointer",
@@ -63,7 +63,7 @@
         "回调",
         "typedef"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-virtual-dispatch",
@@ -77,7 +77,7 @@
         "多态",
         "虚表"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "cpp-raii-smart-pointer",
@@ -116,7 +116,7 @@
         "链表",
         "内存碎片"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "ds-hash-table",
@@ -129,7 +129,7 @@
         "冲突",
         "复杂度"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-process-thread",
@@ -142,7 +142,7 @@
         "线程",
         "上下文切换"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "os-virtual-memory",
@@ -156,7 +156,7 @@
         "页表",
         "缺页"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "os-deadlock",
@@ -169,7 +169,7 @@
         "互斥锁",
         "锁顺序"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-handshake",
@@ -182,7 +182,7 @@
         "握手",
         "序列号"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "net-tcp-sticky-packet",
@@ -195,7 +195,7 @@
         "协议设计",
         "缓冲区"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "net-epoll",
@@ -208,7 +208,7 @@
         "poll",
         "epoll"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-cache-coherency",
@@ -221,7 +221,7 @@
         "Cache",
         "一致性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "arch-memory-barrier",
@@ -234,7 +234,7 @@
         "原子操作",
         "内存屏障"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-cortexm-startup",
@@ -247,7 +247,7 @@
         "向量表",
         "Reset_Handler"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-clock-tree",
@@ -261,7 +261,7 @@
         "AHB",
         "APB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "mcu-adc-dma",
@@ -275,7 +275,7 @@
         "定时器",
         "双缓冲"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-priority-inversion",
@@ -288,7 +288,7 @@
         "互斥锁",
         "实时性"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-isr-api",
@@ -301,7 +301,7 @@
         "FromISR",
         "中断延迟"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "rtos-linux-latency",
@@ -314,7 +314,7 @@
         "调度延迟",
         "确定性"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-ipc",
@@ -327,7 +327,7 @@
         "共享内存",
         "Socket"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "linux-segfault",
@@ -340,7 +340,7 @@
         "Core Dump",
         "GDB"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "driver-ioremap",
@@ -353,7 +353,7 @@
         "MMIO",
         "寄存器"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-interrupt-bottom-half",
@@ -367,7 +367,7 @@
         "工作队列",
         "线程化中断"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-spinlock-mutex",
@@ -380,7 +380,7 @@
         "mutex",
         "irqsave"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-device-tree",
@@ -393,7 +393,7 @@
         "compatible",
         "platform_driver"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "driver-kernel-panic",
@@ -407,7 +407,7 @@
         "crash",
         "KASAN"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-i2c",
@@ -420,7 +420,7 @@
         "上拉电阻",
         "总线恢复"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-spi-modes",
@@ -433,7 +433,7 @@
         "CPOL",
         "CPHA"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "protocol-can-fd",
@@ -446,7 +446,7 @@
         "CAN FD",
         "仲裁"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-static-dynamic-library",
@@ -460,7 +460,7 @@
         "链接器",
         "ABI"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "build-make-cmake",
@@ -473,7 +473,7 @@
         "CMake",
         "交叉编译"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-i2c-layering",
@@ -486,7 +486,7 @@
         "逻辑分析仪",
         "I2C"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "debug-reentrant-function",
@@ -499,7 +499,7 @@
         "线程安全",
         "共享状态"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "iot-mqtt-qos",
@@ -512,7 +512,7 @@
         "QoS",
         "幂等"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "robotics-ros2-dds",
@@ -525,7 +525,7 @@
         "DDS",
         "QoS"
       ],
-      "status": "verified"
+      "status": "ai-draft"
     },
     {
       "id": "media-yuv420",
@@ -538,7 +538,7 @@
         "NV12",
         "Camera"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "edge-ai-quantization",
@@ -552,7 +552,7 @@
         "NPU",
         "端侧推理"
       ],
-      "status": "reviewed"
+      "status": "ai-draft"
     },
     {
       "id": "question-7ae8d809076cfa7a",
@@ -29333,6 +29333,246 @@
         "任务队列",
         "并发",
         "操作系统"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-c6c6abb2f5dd2414",
+      "title": "V4L2 能否用于从同一设备同时读取音频和视频？",
+      "domain": "音视频",
+      "subtopic": "V4L2 与 ALSA 的职责边界",
+      "difficulty": "进阶",
+      "tags": [
+        "V4L2",
+        "ALSA",
+        "音视频采集",
+        "Linux 驱动",
+        "时间同步",
+        "音视频",
+        "V4L2 与 ALSA 的职责边界"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a275b53f10aa6432",
+      "title": "Linux 内核启动时提示“No filesystem could mount root, tried: ext4”应如何分层排查？",
+      "domain": "Linux 系统编程",
+      "subtopic": "内核启动与根文件系统挂载",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 启动",
+        "根文件系统",
+        "u-boot",
+        "ext4",
+        "SD 卡",
+        "Linux 系统编程",
+        "内核启动与根文件系统挂载"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-83de6996f852df22",
+      "title": "PID 中 Kp、Ki、Kd 各自起什么作用？位置式和增量式有何区别？",
+      "domain": "机器人",
+      "subtopic": "PID 控制",
+      "difficulty": "进阶",
+      "tags": [
+        "PID",
+        "控制",
+        "嵌入式",
+        "参数整定",
+        "机器人",
+        "PID 控制"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-4f72e43b1cb5502b",
+      "title": "设备树中如何描述一个 PCIe 控制器及其 endpoint 设备？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树与 PCIe 控制器描述",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "PCIe",
+        "ROCKPro64",
+        "设备树与 PCIe 控制器描述"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-e6e06e0e3a7b51d0",
+      "title": "如何在设备树中配置一个带中断的 GPIO 按键，并在驱动中获取并使用该中断？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树 GPIO 与中断配置",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "GPIO 中断",
+        "BeagleBone Black",
+        "设备树 GPIO 与中断配置"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-0b8b8aafcc3fb6fe",
+      "title": "Buildroot 构建的根文件系统在目标板上挂载失败，应从哪些方面核查？",
+      "domain": "Linux 系统编程",
+      "subtopic": "根文件系统构建与部署",
+      "difficulty": "进阶",
+      "tags": [
+        "Buildroot",
+        "根文件系统",
+        "镜像烧写",
+        "squashfs",
+        "Linux 系统编程",
+        "根文件系统构建与部署"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-57fec880fb2ed965",
+      "title": "UIO 驱动是什么？如何用 UIO 让用户态程序访问网卡等设备的寄存器与中断？",
+      "domain": "Linux 驱动",
+      "subtopic": "UIO 用户态 I/O 驱动框架",
+      "difficulty": "进阶",
+      "tags": [
+        "UIO",
+        "Linux 驱动",
+        "用户态驱动",
+        "mmap",
+        "中断",
+        "UIO 用户态 I/O 驱动框架"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-9e23b23bc3c3150b",
+      "title": "嵌入式 Linux 中 SD 卡或 eMMC 设备枚举顺序变化会导致什么问题，如何规避？",
+      "domain": "Linux 驱动",
+      "subtopic": "块设备枚举与命名",
+      "difficulty": "进阶",
+      "tags": [
+        "块设备",
+        "SD 卡",
+        "eMMC",
+        "根文件系统",
+        "Linux 驱动",
+        "块设备枚举与命名"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-a1e5770826572b2c",
+      "title": "Linux 内核启动时报 reserving fdt memory region failed 应如何理解与排查？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树与内核启动内存保留",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 内核启动",
+        "设备树",
+        "reserved-memory",
+        "U-Boot",
+        "Xilinx",
+        "Linux 驱动",
+        "设备树与内核启动内存保留"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-bc15a3d122464678",
+      "title": "如何设计一个同时支持 I2C、SPI、UART 的嵌入式主机接口抽象层？",
+      "domain": "外设与协议",
+      "subtopic": "多协议驱动抽象与分层设计",
+      "difficulty": "进阶",
+      "tags": [
+        "外设与协议",
+        "驱动架构",
+        "I2C",
+        "SPI",
+        "UART",
+        "抽象层设计",
+        "多协议驱动抽象与分层设计"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-226f3dca6d644f8a",
+      "title": "Linux 设备树中一个节点如何指定多个中断父节点（interrupt-parent）？",
+      "domain": "Linux 驱动",
+      "subtopic": "设备树中断描述与 interrupt-parent 继承",
+      "difficulty": "进阶",
+      "tags": [
+        "Linux 驱动",
+        "设备树",
+        "中断",
+        "interrupt-parent",
+        "interrupts-extended",
+        "设备树中断描述与 interrupt-parent 继承"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-648dcb84c7b8b690",
+      "title": "static 关键字有哪几种用法？",
+      "domain": "C 语言",
+      "subtopic": "存储类与链接属性",
+      "difficulty": "基础",
+      "tags": [
+        "C 语言",
+        "static",
+        "链接属性",
+        "可重入",
+        "存储类与链接属性"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-8c51aeeb48add8f1",
+      "title": "STM32 中断优先级分组与抢占、响应优先级如何理解？",
+      "domain": "STM32 / MCU",
+      "subtopic": "NVIC 中断优先级",
+      "difficulty": "进阶",
+      "tags": [
+        "STM32",
+        "NVIC",
+        "中断优先级",
+        "Cortex-M",
+        "STM32 / MCU",
+        "NVIC 中断优先级"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-585bced86cf6764c",
+      "title": "嵌入式中为什么通常不建议使用 malloc？",
+      "domain": "C 语言",
+      "subtopic": "动态内存管理",
+      "difficulty": "进阶",
+      "tags": [
+        "C 语言",
+        "malloc",
+        "内存碎片",
+        "FreeRTOS",
+        "动态内存管理"
+      ],
+      "status": "ai-draft"
+    },
+    {
+      "id": "question-3923e574b3d1db26",
+      "title": "DMA 的作用是什么？使用时需要注意哪些问题？",
+      "domain": "STM32 / MCU",
+      "subtopic": "DMA 传输",
+      "difficulty": "进阶",
+      "tags": [
+        "STM32",
+        "DMA",
+        "Cache 一致性",
+        "嵌入式",
+        "STM32 / MCU",
+        "DMA 传输"
       ],
       "status": "ai-draft"
     }
