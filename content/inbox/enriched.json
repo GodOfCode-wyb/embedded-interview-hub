@@ -1,5 +1,2171 @@
 [
   {
+    "candidate_id": "candidate-7e13612a9925105e",
+    "source_url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
+    "source_title": "RPI-arduino communication without UART",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2024-11-23T06:02:35+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:09:07.168801+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是电子工程外设协议问答，主题为树莓派与 Arduino 在不用 UART 时的通信方式，属于嵌入式外设与协议范畴；但正文不可用，仅有标题和摘要，无法提取具体面试问题，因此 questions 为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-8c594fc9c6a3ae51",
+    "source_url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+    "source_title": "Which microcontrollers that can I buy to learn such an USART, UART, RS232, USB, SPI, I2C, TTL communication?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2013-07-25T15:00:17+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:09:04.528072+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "该候选为电子工程外设协议问答，主题与嵌入式外设与协议相关，但正文不可用，仅标题和摘要可作弱证据；可围绕标题涉及的 USART/UART/RS232/USB/SPI/I2C/TTL 学习选型整理通用协议题，不虚构来源细节。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "USART、UART、RS232、TTL、USB、SPI、I2C 这些通信方式应如何分类和区分？",
+          "domain": "外设与协议",
+          "subtopic": "串行通信协议分类与电气层区别",
+          "difficulty": "基础",
+          "question_evidence": "候选标题直接列出 USART、UART、RS232、USB、SPI、I2C、TTL 等通信名词，询问可用于学习这些通信方式的微控制器。",
+          "answer_short": "先按层次分：UART/USART 是异步串行控制器，TTL 与 RS232 是电气层标准，USB 是复杂的主从总线协议，SPI 与 I2C 是同步板级总线。USART 比 UART 多同步模式；TTL 电平不能直连 RS232；SPI 四线高速、I2C 两线带地址；USB 协议栈最重。选 MCU 时看外设数量、电平转换和调试便利性。",
+          "answer_detail": "定义上，UART 是通用异步收发器，靠起始位、数据位、校验位、停止位和约定波特率同步，无独立时钟线；USART 是通用同步/异步收发器，额外支持同步时钟模式，常与 UART 兼容使用。TTL 指 MCU 引脚常见的单端电平接口，逻辑电平随供电变化，例如 3.3V 或 5V，不能直接等同于 RS232。RS232 是电气标准，使用负逻辑和较大摆幅，与 TTL 之间需要电平转换芯片。SPI 是同步全双工四线总线，含 SCLK、MOSI、MISO、CS，速率高、无地址、靠片选选择从机。I2C 是同步半双工两线总线，SCL 与 SDA 开漏加外部上拉，靠 7 位或 10 位地址寻址，支持多主多从和总线仲裁。USB 是分层的主机控制器协议，涉及枚举、端点、描述符和差分信号，通常需要专用控制器和协议栈。\n\n工程上，学习选型应关注：MCU 是否具备多个 UART/USART、SPI、I2C 控制器；是否带 USB Device 或 Host；引脚电平与目标器件是否匹配；是否有 DMA 减轻 CPU 负担；是否有逻辑分析仪或串口调试手段。例如用 STM32 一类带多路 USART、SPI、I2C 和 USB 的 MCU，可覆盖大部分学习场景；连接 RS232 设备时加 MAX3232 类电平转换；连接 5V 器件时注意电平兼容或加转换。\n\n取舍上，SPI 适合高速短距离板内通信，但引脚多、无标准应答；I2C 省引脚、可挂多器件，但速率较低、总线电容受限、需要处理总线死锁恢复；UART 简单可靠，适合调试和点对点，但无时钟线，波特率误差需控制；USB 功能强但协议复杂，调试成本高。回答时应强调“协议层”和“电气层”分开看，避免把 TTL 与 RS232 混为一谈。",
+          "follow_ups": [
+            {
+              "title": "为什么 TTL 电平的 UART 不能直接连接 RS232 接口？",
+              "answer_short": "因为两者电气规范不同：TTL 是单端逻辑电平，RS232 使用负逻辑和更高摆幅，直接连接可能无法识别甚至损坏引脚，需要电平转换芯片。",
+              "answer_detail": "RS232 的逻辑 1 通常为负电压、逻辑 0 为正电压，摆幅远大于 3.3V TTL；MCU 引脚耐压和驱动能力也不符合 RS232 规范。工程上使用 MAX3232 等收发器完成电平转换和驱动，同时注意共地、线缆长度和波特率限制。若只是两块 TTL 板通信，则无需 RS232 转换，直接交叉 TX/RX 并共地即可。"
+            },
+            {
+              "title": "USART 相比 UART 多了什么能力？",
+              "answer_short": "USART 增加同步模式，可输出或接收时钟信号，支持同步串行通信；UART 仅支持异步通信。很多 MCU 的 USART 可配置为异步 UART 使用。",
+              "answer_detail": "同步模式下时钟由主设备提供，收发双方不需要依赖波特率误差积累，适合较高速度或特定外设。异步模式仍依赖双方波特率一致。实际配置时要查参考手册确认该 USART 是否支持同步模式、时钟引脚复用和最大速率，不能默认所有 USART 都等价。"
+            },
+            {
+              "title": "SPI 和 I2C 在板级选型时如何取舍？",
+              "answer_short": "SPI 速率高、全双工、无地址，适合高速短距离和少量从机；I2C 两线、带地址、可挂多器件，适合低速控制和传感器，但总线电容和仲裁恢复更复杂。",
+              "answer_detail": "SPI 每个从机通常需要独立片选，引脚数随从机增加；I2C 共享两线，靠地址区分，但地址冲突、上拉阻值、总线电容和死锁恢复需要设计。工程上高速 ADC、Flash 常用 SPI；温度传感器、EEPROM 常用 I2C。还要考虑 MCU 外设数量、DMA 支持和中断开销。"
+            },
+            {
+              "title": "学习这些协议时，为什么建议同时准备逻辑分析仪？",
+              "answer_short": "因为协议问题常出在时序、电平、片选和上拉等物理层，逻辑分析仪能同时观察多根信号线，快速判断是配置错误还是硬件问题。",
+              "answer_detail": "串口乱码可能是波特率或电平问题；SPI 无数据可能是模式、片选或接线问题；I2C 无应答可能是地址、上拉或总线被拉死。逻辑分析仪可解码协议并对照时序图，比仅靠打印更直接。使用时注意采样率、探头接地和阈值电压设置。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "把 TTL 和 RS232 当成同一种串口",
+              "explanation": "两者分属逻辑电平和电气标准，直接互连可能通信失败或损坏接口。",
+              "correction": "明确协议层与电气层，RS232 与 TTL 之间使用电平转换收发器。"
+            },
+            {
+              "title": "认为 UART 和 USART 完全等价",
+              "explanation": "USART 支持同步模式，配置寄存器和时钟需求可能不同。",
+              "correction": "查手册确认工作模式，异步使用时按 UART 参数配置。"
+            },
+            {
+              "title": "I2C 不加外部上拉或上拉阻值随意",
+              "explanation": "I2C 为开漏总线，无上拉无法输出高电平，阻值过大导致上升沿变慢。",
+              "correction": "按总线电容和速率计算上拉阻值，并用示波器验证波形。"
+            }
+          ],
+          "tags": [
+            "USART",
+            "UART",
+            "RS232",
+            "TTL",
+            "SPI",
+            "I2C",
+            "USB",
+            "外设协议"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "UART 异步通信中波特率误差为什么会导致乱码？如何控制误差？",
+          "domain": "外设与协议",
+          "subtopic": "UART 波特率与采样",
+          "difficulty": "基础",
+          "question_evidence": "候选标题涉及 UART/USART 学习，摘要标签含 uart protocol，属于该主题的基础问题。",
+          "answer_short": "UART 无时钟线，收发双方靠各自波特率定时采样。若双方波特率偏差累积到采样点偏移超过半个位时间，就会采错位，表现为乱码或帧错误。控制方法是选用合适时钟源和分频、双方使用同一标称波特率、降低波特率或提高时钟精度，并检查实际波形。",
+          "answer_detail": "UART 帧以起始位下降沿作为同步参考，接收方在起始位后按约定间隔采样数据位。理想情况下采样点位于每位中间。若发送方与接收方波特率存在相对误差，采样点会逐位偏移；当偏移接近半个位周期时，某一位可能被采到相邻位，导致数据错误。一般要求总误差控制在几个百分点以内，具体取决于帧长和采样策略，工程上常按不超过 2% 到 3% 设计并留余量。\n\n误差来源包括：MCU 时钟源精度、分频系数取整误差、温漂、以及对方设备时钟偏差。例如某 MCU 外设时钟不能整除目标波特率时，实际波特率与标称值有偏差；若双方偏差同向叠加，风险更大。\n\n工程控制步骤：第一，优先选择能整除目标波特率的外设时钟；第二，使用晶振而非内部 RC 作为高精度通信时钟；第三，降低波特率以增加位时间容错；第四，用示波器或逻辑分析仪测量实际位宽，计算误差；第五，检查帧格式是否一致，包括数据位、校验位、停止位和电平极性。\n\n边界上，不同 MCU 的波特率寄存器有不同小数分频机制，不能直接套用公式；过采样倍数也会影响抗噪能力。回答时应把“波特率误差”和“帧格式不一致”“电平不匹配”区分开，避免把所有乱码都归因于波特率。",
+          "follow_ups": [
+            {
+              "title": "UART 接收方如何确定采样时刻？",
+              "answer_short": "通常检测起始位下降沿后，在起始位中间确认，再按位时间间隔在每位中间采样；多数 MCU 使用 16 倍过采样提高抗噪能力。",
+              "answer_detail": "过采样会在每位内多次采样并做多数判决，降低毛刺影响。具体采样点和过采样倍数由 MCU 参考手册定义，配置时需保证波特率寄存器与过采样设置匹配。"
+            },
+            {
+              "title": "波特率误差和帧格式错误如何区分排查？",
+              "answer_short": "先确认双方数据位、校验位、停止位和电平一致，再测实际波特率；若固定位置出错多为格式或电平问题，若随机出错且随帧长增加更可能是波特率误差。",
+              "answer_detail": "可用逻辑分析仪解码看帧结构，用示波器测位宽。若发送短帧正常、长帧出错，常提示时钟累积误差；若首字节就错，优先查接线、电平和格式。"
+            },
+            {
+              "title": "为什么高波特率下更容易出现通信不稳定？",
+              "answer_short": "高波特率位时间短，同样的绝对时钟偏差占比更大，采样点更容易偏移；同时线缆电容和驱动能力对信号边沿影响更明显。",
+              "answer_detail": "高波特率要求更精确的时钟和更好的信号完整性。工程上缩短线缆、降低上拉或串联电阻匹配、使用差分收发器可改善，但需结合具体电气标准。"
+            },
+            {
+              "title": "内部 RC 振荡器能否用于 UART 通信？",
+              "answer_short": "可以用于低速、短帧和对成本敏感的场景，但精度和温漂通常不如晶振，高波特率或长帧时风险较高，需评估总误差。",
+              "answer_detail": "很多 MCU 内部 RC 在常温校准后精度尚可，但随温度和电压变化。若产品要求可靠通信，优先外部晶振；若必须使用内部时钟，应降低波特率并留足误差余量。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只改波特率数值而不检查外设时钟",
+              "explanation": "实际波特率由外设时钟分频得到，时钟配置错误会导致实际波特率与设定不符。",
+              "correction": "核对时钟树、外设时钟源和分频寄存器，测量实际位宽。"
+            },
+            {
+              "title": "把乱码全部归因于波特率",
+              "explanation": "电平不匹配、TX/RX 未交叉、共地缺失、帧格式不一致同样会导致乱码。",
+              "correction": "按电气连接、电平、帧格式、波特率顺序分层排查。"
+            },
+            {
+              "title": "忽略双方停止位和校验位配置",
+              "explanation": "帧格式不一致会导致接收方解析错位，表现为持续错误。",
+              "correction": "确保数据位、校验位、停止位和极性完全一致。"
+            }
+          ],
+          "tags": [
+            "UART",
+            "波特率",
+            "串口",
+            "采样"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "SPI 的时钟极性 CPOL 和时钟相位 CPHA 如何决定四种模式？",
+          "domain": "外设与协议",
+          "subtopic": "SPI 时序模式",
+          "difficulty": "基础",
+          "question_evidence": "候选标题列出 SPI 学习需求，已有题目标题中也出现 SPI 模式相关问题，但本候选主题为外设协议学习，可整理 SPI 模式基础题。",
+          "answer_short": "CPOL 决定空闲时 SCLK 电平：0 为空闲低，1 为空闲高。CPHA 决定在第一个还是第二个时钟边沿采样：0 在第一个边沿采样，1 在第二个边沿采样。两者组合成模式 0 到 3。主从双方必须使用相同模式，否则数据错位。",
+          "answer_detail": "SPI 是同步全双工总线，主机产生 SCLK，数据在 MOSI 和 MISO 上按位传输。CPOL 定义时钟空闲电平，也决定哪个边沿是上升沿或下降沿；CPHA 定义数据采样边沿相对于数据变化边沿的位置。模式 0 为 CPOL=0、CPHA=0，空闲低，第一个边沿采样；模式 1 为 CPOL=0、CPHA=1，第二个边沿采样；模式 2 为 CPOL=1、CPHA=0；模式 3 为 CPOL=1、CPHA=1。\n\n理解关键是区分“采样边沿”和“移位边沿”。CPHA=0 时，数据在第一个边沿被采样，通常在片选有效后、第一个时钟边沿前就要准备好；CPHA=1 时，第一个边沿用于移位，第二个边沿采样。主从模式不一致时，接收方会在数据尚未稳定或已变化时采样，表现为读到错位或全 0/全 1。\n\n工程配置步骤：查从机数据手册确认其支持的 SPI 模式；在 MCU 的 SPI 控制器中设置 CPOL、CPHA、数据位宽、位序和时钟分频；用逻辑分析仪同时抓 SCLK、MOSI、MISO、CS，对照时序图确认采样点；若从机只支持一种模式，主机必须匹配。\n\n边界上，不同厂商对模式编号命名一致，但个别器件手册可能用“时钟边沿”描述，需要以时序图为准。多从机时每个从机模式可能不同，主机需在切换片选时重新配置模式。高速时还要考虑建立保持时间和 PCB 走线。",
+          "follow_ups": [
+            {
+              "title": "SPI 模式 0 和模式 3 有什么区别？",
+              "answer_short": "两者都在第一个边沿采样，但模式 0 空闲低、模式 3 空闲高，采样边沿分别为上升沿和下降沿，从机必须匹配。",
+              "answer_detail": "模式 0 的 SCLK 空闲低，第一个上升沿采样；模式 3 空闲高，第一个下降沿采样。若从机要求模式 3 而主机配成模式 0，数据相位会错位。"
+            },
+            {
+              "title": "为什么 SPI 片选 CS 的时序也很重要？",
+              "answer_short": "CS 有效到第一个时钟边沿需要满足建立时间，最后一个时钟到 CS 释放需要满足保持时间，否则从机可能漏采或误判帧边界。",
+              "answer_detail": "部分从机在 CS 下降沿锁存命令或复位移位寄存器，CS 抖动会导致帧错位。工程上要保证 CS 由硬件或软件正确控制，并在高速时留足建立保持时间。"
+            },
+            {
+              "title": "SPI 的位序 MSB first 和 LSB first 如何影响通信？",
+              "answer_short": "位序决定先发送最高位还是最低位，主从必须一致；不一致时数据位会镜像错位，表现为数值错误。",
+              "answer_detail": "多数器件默认 MSB first，但部分芯片可配置。配置时应查手册，并在逻辑分析仪上确认首字节位序。"
+            },
+            {
+              "title": "多从机 SPI 如何连接？",
+              "answer_short": "通常共享 SCLK、MOSI、MISO，每个从机使用独立 CS；也可采用菊花链，但需要器件支持。",
+              "answer_detail": "独立片选方式简单可靠，但引脚随从机增加。菊花链节省片选但数据经过多级移位，时序和协议要求更高。MISO 共享时从机未选中应高阻，否则会总线冲突。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只配主机模式而不核对从机模式",
+              "explanation": "CPOL/CPHA 不匹配会导致采样错位，数据看似有波形但内容错误。",
+              "correction": "以从机手册时序图为准配置主机，并用逻辑分析仪验证。"
+            },
+            {
+              "title": "忽略 CS 建立和保持时间",
+              "explanation": "CS 过早或过晚变化会使从机漏掉首尾位或误判命令。",
+              "correction": "检查时序参数，必要时降低时钟或调整软件片选时序。"
+            },
+            {
+              "title": "多从机共享 MISO 但未选中从机未高阻",
+              "explanation": "多个从机同时驱动 MISO 会造成总线冲突和读数错误。",
+              "correction": "确认从机 CS 无效时 MISO 为高阻，必要时加缓冲器。"
+            }
+          ],
+          "tags": [
+            "SPI",
+            "CPOL",
+            "CPHA",
+            "时序"
+          ],
+          "possible_duplicate_title": "SPI 四种模式由什么决定？"
+        },
+        {
+          "title": "I2C 总线为什么需要上拉电阻？上拉阻值如何影响通信？",
+          "domain": "外设与协议",
+          "subtopic": "I2C 开漏总线与上拉",
+          "difficulty": "基础",
+          "question_evidence": "候选标题列出 I2C 学习需求，摘要标签含 protocol，属于外设协议基础问题。",
+          "answer_short": "I2C 的 SCL 和 SDA 是开漏结构，器件只能拉低、不能主动输出高，必须靠外部上拉电阻把总线拉高。上拉阻值过大会使上升沿变慢、高速时无法建立高电平；过小会增加低电平灌电流和功耗。阻值需按总线电容、速率和器件灌电流能力折中。",
+          "answer_detail": "I2C 采用开漏输出是为了支持多主多从和线与仲裁：任一器件拉低总线即为低，所有器件释放后由上拉拉高。若没有上拉，总线无法回到高电平。上拉电阻与总线电容构成 RC 充电回路，上升时间约为时间常数相关量；总线电容包括引脚电容、PCB 走线和器件电容，标准对最大总线电容和上升时间有约束。\n\n阻值选择要同时满足：上升时间不超过规范；低电平时灌电流不超过器件允许值；功耗可接受。速率越高、电容越大，上拉应越小；但阻值过小会增加功耗，并可能使低电平电压升高。工程上常见 4.7kΩ 或 2.2kΩ 等取值，但必须结合具体总线电容和速率计算，不能盲目套用。\n\n排查时，若 I2C 无应答，先用示波器看 SCL/SDA 是否有正常高低电平和上升沿；若上升沿明显变缓，考虑减小上拉或缩短总线；若低电平不够低，检查上拉是否过强或器件灌电流能力。总线被某器件持续拉低时，可尝试发送时钟脉冲进行总线恢复。\n\n边界上，不同速率模式对上升时间要求不同，长线或多器件场景可能需要 I2C 缓冲器或中继器。上拉电阻位置和电源域也要一致，避免不同电压域直接相连。",
+          "follow_ups": [
+            {
+              "title": "I2C 总线死锁如何恢复？",
+              "answer_short": "常见原因是从机在传输中复位导致 SDA 被持续拉低。可在 SCL 上手动发送最多 9 个时钟脉冲，直到 SDA 释放，再发送停止条件。",
+              "answer_detail": "恢复前应确认没有主机正在通信。若从机仍不释放，可能需要复位从机电源。工程上可在驱动初始化时加入总线恢复流程，并避免主机在从机忙时异常复位。"
+            },
+            {
+              "title": "为什么 I2C 需要地址？地址冲突怎么办？",
+              "answer_short": "I2C 多器件共享总线，靠地址区分从机。地址冲突时可通过地址选择引脚、I2C 多路复用器或更换器件解决。",
+              "answer_detail": "7 位地址空间有限，同型号传感器常提供地址引脚。若无法改地址，可用 I2C 开关或多总线分段。软件上要扫描总线确认实际地址。"
+            },
+            {
+              "title": "I2C 的时钟拉伸是什么？",
+              "answer_short": "从机在未准备好时可拉低 SCL 迫使主机等待，称为时钟拉伸。主机必须支持并正确处理，否则会误判超时。",
+              "answer_detail": "时钟拉伸用于从机流控。若主机不支持，可能采样到错误数据。调试时观察 SCL 是否被从机长时间拉低，并检查主机超时配置。"
+            },
+            {
+              "title": "I2C 和 SPI 在抗干扰和距离上有什么差异？",
+              "answer_short": "两者都适合板内短距离。I2C 开漏加较慢边沿，抗干扰相对好但速率低；SPI 推挽高速，长线时更容易受反射和串扰影响。",
+              "answer_detail": "长距离或强干扰环境通常需要差分总线或缓冲器。I2C 总线电容限制明显，SPI 则要注意时钟完整性和片选走线。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为 I2C 引脚可以主动输出高电平",
+              "explanation": "I2C 是开漏结构，输出高实际是释放总线，靠上拉拉高。",
+              "correction": "配置为开漏复用功能，并加外部上拉电阻。"
+            },
+            {
+              "title": "上拉电阻随意选 10kΩ 导致高速通信失败",
+              "explanation": "阻值过大时上升沿变慢，高速下高电平来不及建立。",
+              "correction": "按总线电容和速率计算上升时间，必要时减小阻值或加缓冲器。"
+            },
+            {
+              "title": "总线异常时只反复重启软件",
+              "explanation": "从机拉死 SDA 时软件重启主机未必能释放总线。",
+              "correction": "执行总线恢复时钟脉冲，必要时复位从机电源。"
+            }
+          ],
+          "tags": [
+            "I2C",
+            "上拉电阻",
+            "开漏",
+            "总线恢复"
+          ],
+          "possible_duplicate_title": "I²C 基本时序、上拉电阻和总线恢复如何理解？"
+        },
+        {
+          "title": "学习 USB 通信时，为什么说 USB 比 UART、SPI、I2C 复杂得多？",
+          "domain": "外设与协议",
+          "subtopic": "USB 协议分层与枚举",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题将 USB 与 UART、SPI、I2C 并列作为学习目标，摘要标签含 protocol，可整理 USB 复杂度对比题。",
+          "answer_short": "UART、SPI、I2C 主要是物理层加简单帧格式，配置寄存器即可收发；USB 是完整的主从总线协议，包含差分信号、包结构、端点、描述符、枚举、类驱动和主机控制器调度。设备必须被主机枚举并加载驱动后才能通信，因此学习门槛和调试成本更高。",
+          "answer_detail": "USB 的复杂性来自分层：物理层使用差分信号和特定电气规范；链路层有包、令牌、握手和错误检测；事务层有控制传输、批量传输、中断传输和等时传输；设备层通过描述符描述厂商、产品、配置、接口和端点；主机侧需要主机控制器和类驱动。设备插入后要经历复位、地址分配、读取描述符、选择配置等枚举过程，主机才能识别。\n\n对比来看，UART 只需双方波特率和帧格式一致；SPI 只需模式、位序和片选；I2C 只需地址和时序。它们通常由 MCU 外设直接完成字节收发，软件负担小。USB 则需要协议栈管理端点缓冲、事务调度和标准请求，MCU 通常需要专用 USB 控制器，甚至外部 PHY。\n\n学习路径建议：先理解 USB 的差分信号和主机主导模型；再理解端点与传输类型；然后看枚举流程和描述符；最后用现成类库实现 HID 或 CDC 设备，借助 USB 分析仪观察枚举。工程上要区分 Device、Host、OTG 角色，注意供电、VBUS 检测和差分走线。\n\n边界上，USB 2.0 与 USB 3.x 在速率和链路层差异很大，不能一概而论；不同 MCU 的 USB 控制器和库差异也大。回答时应强调 USB 是协议栈级复杂度，而不是单纯“多一根线”。",
+          "follow_ups": [
+            {
+              "title": "USB 枚举过程大致包括哪些步骤？",
+              "answer_short": "主机检测设备插入后复位设备，读取设备描述符并分配地址，再读取配置和接口描述符，选择配置并加载对应驱动，设备进入可用状态。",
+              "answer_detail": "枚举使用控制传输，标准请求包括 GET_DESCRIPTOR、SET_ADDRESS、SET_CONFIGURATION 等。调试时可用 USB 分析仪看请求和响应，确认描述符长度和配置是否正确。"
+            },
+            {
+              "title": "USB 的四种传输类型分别适合什么场景？",
+              "answer_short": "控制传输用于枚举和命令；批量传输用于大容量可靠数据；中断传输用于小量周期性数据；等时传输用于实时音视频，保证带宽但不重传。",
+              "answer_detail": "批量传输有重传但无带宽保证；中断传输有轮询间隔；等时传输对丢包容忍但要求时序。选择传输类型要结合实时性和可靠性需求。"
+            },
+            {
+              "title": "USB Device 和 USB Host 有什么区别？",
+              "answer_short": "Host 负责总线调度、供电和枚举；Device 被动响应主机请求。OTG 设备可在两种角色间切换。",
+              "answer_detail": "MCU 常作为 Device 接入 PC；若要接 U 盘或键鼠，需要 Host 或 OTG 能力。角色不同，硬件和协议栈要求不同。"
+            },
+            {
+              "title": "为什么 USB 差分走线和阻抗控制重要？",
+              "answer_short": "USB 使用高速差分信号，阻抗不连续和走线不对称会引起反射和共模噪声，导致枚举失败或误码。",
+              "answer_detail": "工程上要求差分对等长、靠近、参考平面完整，并按规范控制阻抗。低速设备要求较低，但高速设备必须严格。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "把 USB 当成普通串口直接收发字节",
+              "explanation": "USB 设备必须先枚举并配置端点，不能像 UART 那样上电即发。",
+              "correction": "理解枚举和端点模型，使用协议栈和类驱动。"
+            },
+            {
+              "title": "忽略 VBUS 检测和供电设计",
+              "explanation": "Device 插入检测和供电异常会导致无法枚举。",
+              "correction": "按控制器要求设计 VBUS 检测、限流和电源。"
+            },
+            {
+              "title": "认为所有 USB 版本协议相同",
+              "explanation": "USB 2.0 与 3.x 在链路层和速率上差异明显。",
+              "correction": "明确目标版本和控制器能力，再选择协议栈和调试工具。"
+            }
+          ],
+          "tags": [
+            "USB",
+            "枚举",
+            "端点",
+            "协议栈"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-40f6b471c6a664b2",
+    "source_url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+    "source_title": "Communication between micro controllers - I2C, SPI, UART?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-02-07T21:33:03+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:08:17.028176+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是电子工程外设协议问答，主题为 MCU 间 I2C/SPI/UART 通信对比，属于嵌入式外设与协议范围；但正文不可用，仅有标题与摘要，无法确认具体面试问题，故不生成题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-7aff51e592b03910",
+    "source_url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+    "source_title": "Can v4l2 be used to read audio and video from the same device?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2015-08-30T08:14:02+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:08:14.137099+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题明确询问 V4L2 能否从同一设备读取音视频，属于音视频与 Linux 驱动交叉知识点；但正文不可用，仅能依据标题与摘要提取一个可核验的问题，答案以通用技术知识撰写并标注边界。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "V4L2 能否用于从同一设备同时读取音频和视频？",
+          "domain": "音视频",
+          "subtopic": "V4L2 与 ALSA 的职责边界",
+          "difficulty": "进阶",
+          "question_evidence": "来源标题直接询问 V4L2 是否可用于从同一设备读取音频和视频，摘要标注为音视频底层技术问答。",
+          "answer_short": "不能。V4L2 是 Linux 的视频采集/输出框架，只负责视频类节点（如 /dev/videoX），音频由 ALSA（/dev/snd/*）负责。同一物理设备（如 USB 摄像头、SoC 摄像头+麦克风组合）通常注册为两个独立子系统节点，应用需分别用 V4L2 和 ALSA 打开，再按时间戳对齐。少数驱动可通过 V4L2 的 metadata 或专用接口传递音频相关控制，但标准做法不是用 V4L2 读音频。",
+          "answer_detail": "结论：V4L2（Video for Linux 2）从命名和内核子系统划分上就只处理视频流，音频走 ALSA 或 SoC 的 ASoC 框架。\n\n机制层面：一个复合设备在内核里往往由多个驱动实例描述。以 USB UVC 摄像头为例，UVC 驱动注册 /dev/videoX 提供视频流，若设备带麦克风，则由 USB audio class 驱动注册 ALSA PCM 设备；两者共享 USB 接口但分属不同子系统。SoC 平台上，摄像头走 CSI/MIPI 接收并注册 V4L2 节点，麦克风走 I2S/PDM 注册 ASoC DAI 和 PCM 设备。\n\n应用层实现步骤：1）用 V4L2 的 VIDIOC_QUERYCAP、VIDIOC_S_FMT、VIDIOC_REQBUFS、VIDIOC_QBUF/DQBUF 完成视频采集；2）用 ALSA 的 snd_pcm_open、snd_pcm_hw_params、snd_pcm_readi 完成音频采集；3）用 CLOCK_MONOTONIC 或驱动提供的 buffer timestamp 做音视频同步，必要时做重采样和缓冲。\n\n边界与取舍：V4L2 有 control 框架（VIDIOC_S_CTRL）可控制曝光、增益等，但不传输音频采样；某些厂商私有驱动可能暴露非标准 ioctl，但不可移植。若设备是“音视频一体”的编码芯片，可能只暴露一个 V4L2 压缩流节点，音频被复用在码流中，此时需解析容器而非用 V4L2 单独读音频。\n\n排查示例：用 v4l2-ctl --list-devices 和 arecord -l 分别确认视频与音频节点是否存在；若只有 /dev/videoX 无 /dev/snd，说明音频驱动未加载或设备无音频功能，而不是 V4L2 用法错误。",
+          "follow_ups": [
+            {
+              "title": "V4L2 和 ALSA 在应用层如何做音视频同步？",
+              "answer_short": "以同一时钟源（如 CLOCK_MONOTONIC）为基准，给每个视频帧和音频块打时间戳，按时间戳对齐；常用音频为主时钟、视频按差值丢帧或等待。",
+              "answer_detail": "采集端在 DQBUF 和 snd_pcm_readi 返回时记录单调时钟时间戳，或使用驱动 buffer 的 timestamp 字段。播放端维护音频环形缓冲作为主时钟，视频渲染前比较 PTS 与音频播放位置，超前则等待、落后则丢帧。嵌入式上要注意音频周期（period）大小影响同步粒度，过小增加中断开销，过大增加延迟。"
+            },
+            {
+              "title": "一个 USB 摄像头同时带麦克风，内核里是如何枚举成两个设备的？",
+              "answer_short": "USB 描述符中视频接口由 uvcvideo 驱动绑定，音频接口由 snd-usb-audio 驱动绑定，二者按接口 class 分别 probe，注册 /dev/videoX 和 ALSA 声卡。",
+              "answer_detail": "USB 复合设备通过 Interface Association 或多个 interface 描述功能。内核 USB 核心按 interface 的 class/subclass 匹配驱动：video class 匹配 uvcvideo，audio class 匹配 snd-usb-audio。因此同一物理设备出现两个子系统节点，应用需分别打开。可用 lsusb -t 查看接口与驱动绑定关系。"
+            },
+            {
+              "title": "V4L2 的 buffer 时间戳字段有什么用途？",
+              "answer_short": "v4l2_buffer 的 timestamp 记录帧采集时刻，可用于音视频同步、延迟统计和帧率分析，需注意其时钟源由驱动 flags 标明。",
+              "answer_detail": "timestamp 配合 V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC 等标志说明时钟基准。应用应统一到同一时钟域再与音频时间戳比较；若驱动使用不同时钟源，需要做偏移校准，否则同步会出现系统性漂移。"
+            },
+            {
+              "title": "如果设备只暴露一个 V4L2 节点但包含音频，应用该怎么处理？",
+              "answer_short": "说明音频被复用在压缩码流中，应按容器/码流格式解析解复用，而不是用 V4L2 单独读音频；需确认驱动是否提供额外音频节点。",
+              "answer_detail": "部分编码芯片输出 MPEG-TS 或私有容器，音频作为其中一路 elementary stream。此时 V4L2 只负责取压缩帧，应用需实现解复用。若厂商提供私有 ioctl 或额外字符设备，应查驱动文档；不可假定标准 V4L2 能取 PCM。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为 V4L2 是“音视频统一框架”",
+              "explanation": "V4L2 名称含 Video，内核中音频由 ALSA/ASoC 负责，混为一谈会导致选错 API、找不到音频节点。",
+              "correction": "视频用 V4L2，音频用 ALSA/ASoC，复合设备分别打开两个节点。"
+            },
+            {
+              "title": "用 VIDIOC_* ioctl 去读音频采样",
+              "explanation": "V4L2 ioctl 不定义 PCM 数据通路，调用会返回 EINVAL 或行为未定义。",
+              "correction": "音频采样通过 snd_pcm_readi 等 ALSA 接口获取。"
+            },
+            {
+              "title": "忽略时间戳时钟源直接比较音视频时间",
+              "explanation": "不同子系统时间戳基准可能不同，直接比较会造成同步漂移。",
+              "correction": "统一到 CLOCK_MONOTONIC 或做偏移校准后再对齐。"
+            }
+          ],
+          "tags": [
+            "V4L2",
+            "ALSA",
+            "音视频同步",
+            "Linux 驱动"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-4f74a1ca3e90f5ad",
+    "source_url": "https://stackoverflow.com/questions/39016872/custom-linux-build-on-nanopi-neo-board",
+    "source_title": "Custom Linux Build on NanoPi Neo Board",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2017-12-13T18:59:41+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:08:01.431142+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题和搜索摘要；标题为 NanoPi Neo 板卡自定义 Linux 构建，摘要仅标注外设协议技术问答标签，未出现任何明确面试问题或可提取的技术问答内容，证据不足。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-3d50627b876ccef1",
+    "source_url": "https://stackoverflow.com/questions/60914235/cmsis-driver-peripherals",
+    "source_title": "CMSIS-Driver peripherals",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-04-07T14:58:53+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:58.810878+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题和摘要；标题为 CMSIS-Driver peripherals，摘要仅说明是外设协议技术问答，未给出任何明确问题或可核验事实，证据不足，无法整理题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-c6543d3b3dc615fa",
+    "source_url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "source_title": "How to configure a GPIO button with interrupt in the Device Tree on BeagleBone Black?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2025-06-30T22:43:13+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:56.632190+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题明确涉及 BeagleBone Black 上通过设备树配置 GPIO 按键中断，属于 Linux 驱动/设备树主题，与已有题目不重复；但正文不可用，仅能依据标题与摘要提取一道题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "如何在设备树中配置一个带中断的 GPIO 按键，并在驱动中获取并使用该中断？",
+          "domain": "Linux 驱动",
+          "subtopic": "设备树 GPIO 与中断配置",
+          "difficulty": "进阶",
+          "question_evidence": "来源标题询问在 BeagleBone Black 的设备树中如何配置带中断的 GPIO 按键，摘要标注为 Linux 内核/设备树技术问答。",
+          "answer_short": "在设备树中把按键节点挂在对应 GPIO 控制器下，用 gpios 属性描述引脚与有效电平，用 interrupt-parent 指向该 GPIO 控制器（或使用 interrupts-extended），并用 interrupts 描述触发类型（如 IRQ_TYPE_EDGE_FALLING）。驱动中用 gpiod_get 获取 GPIO，用 platform_get_irq 或 gpiod_to_irq 取得 Linux 虚拟中断号，再 request_irq/request_threaded_irq 注册处理函数，最后在 probe 中完成注册、在 remove 中释放。",
+          "answer_detail": "结论：设备树负责描述“哪个引脚、什么电平有效、什么边沿触发”，驱动只负责按名字取资源并注册中断，二者通过标准绑定解耦。\n\n机制与步骤：\n1. 设备树节点：在按键节点中写 compatible、pinctrl-0（复用为 GPIO 输入）、gpios = <&gpioX pin GPIO_ACTIVE_LOW>、interrupt-parent = <&gpioX>、interrupts = <pin IRQ_TYPE_EDGE_FALLING>。不同 SoC 的 GPIO 控制器中断单元格式不同，需查对应 binding 文档，不能照搬。\n2. 驱动侧：probe 中用 devm_gpiod_get(dev, \"button\", GPIOD_IN) 获取 GPIO；用 platform_get_irq() 或 gpiod_to_irq() 得到 Linux 中断号；用 devm_request_threaded_irq() 注册，硬中断里只做去抖标记与唤醒，耗时处理放到线程化下半部。\n3. 去抖：硬件 RC 或驱动内定时器/时间戳判断，避免机械抖动产生多次中断。\n4. 唤醒：若需按键唤醒系统，配置 wakeup-source 并在 suspend 路径中 enable_irq_wake。\n\n嵌入式约束与取舍：中断上下文不能睡眠，I2C 读键值等操作必须放线程化处理；共享中断需判断返回值 IRQ_HANDLED/IRQ_NONE；GPIO 与中断号在旧内核用整数编号、新内核用描述符，移植时注意 API 差异。\n\n排查示例：按键无反应时依次确认 pinctrl 是否被其他节点占用、gpios 的 ACTIVE_LOW 是否与实际电路一致、/proc/interrupts 中中断计数是否增长、dmesg 中 request_irq 是否返回 -EBUSY。",
+          "follow_ups": [
+            {
+              "title": "gpiod_to_irq 与 platform_get_irq 有什么区别，何时用哪个？",
+              "answer_short": "platform_get_irq 从设备树 interrupts 属性解析中断号；gpiod_to_irq 把已获取的 GPIO 描述符映射为中断号。若设备树已写 interrupts 用前者，若只写了 gpios 可用后者。",
+              "answer_detail": "platform_get_irq 依赖节点的 interrupts/interrupts-extended 属性，返回解析后的虚拟中断号，适合标准中断绑定。gpiod_to_irq 依赖 GPIO 控制器实现 to_irq 回调，适合只声明了 gpios 的场景。两者都要求中断控制器已就绪，probe 中应使用 devm_ 版本并检查负返回值；若返回 -EPROBE_DEFER 需让 probe 延迟重试。"
+            },
+            {
+              "title": "为什么按键中断处理常使用线程化中断（threaded IRQ）？",
+              "answer_short": "硬中断上下文不能睡眠，而按键处理常需去抖延时、读 I2C 扩展芯片或上报 input 事件，这些可能睡眠，因此把耗时部分放到线程化下半部。",
+              "answer_detail": "request_threaded_irq 的 handler 在硬中断上下文运行，只做清中断标志、记录时间戳、判断是否有效边沿；thread_fn 在内核线程中运行，可睡眠、可加 mutex。这样既保证中断响应延迟，又避免在原子上下文调用可能睡眠的 API。若处理极短且不睡眠，用普通 request_irq 即可，减少线程开销。"
+            },
+            {
+              "title": "设备树中 GPIO_ACTIVE_LOW 的作用是什么？配置错误会怎样？",
+              "answer_short": "它声明该 GPIO 低电平为有效状态，gpiod_get_value 等 API 会据此做逻辑反转。配错会导致按键按下被识别为释放，边沿触发类型也可能与实际相反。",
+              "answer_detail": "GPIO_ACTIVE_LOW 是极性描述，不是电气配置。驱动通过 gpiod_get_value 得到的是逻辑值，框架自动取反。若硬件是低有效却写成 ACTIVE_HIGH，则按下时读到 0，逻辑判断全部反掉；配合 IRQ_TYPE_EDGE_FALLING 时可能触发在释放沿。正确做法是对照原理图确认上拉/下拉与按键接法，并在设备树中如实标注。"
+            },
+            {
+              "title": "多个按键共享一个 GPIO 控制器中断线时如何处理？",
+              "answer_short": "可使用共享中断（IRQF_SHARED），每个处理函数读取自己的 GPIO 状态，若确认是自己的中断返回 IRQ_HANDLED，否则返回 IRQ_NONE。",
+              "answer_detail": "共享中断要求所有处理函数都能快速判断中断归属。GPIO 控制器通常有中断状态寄存器，驱动应先读状态再分发。若无法区分，会误报 IRQ_NONE 导致内核关闭该中断线。工程上更常见的是每个按键独立中断号，或使用 gpio-keys 标准驱动由框架统一处理。"
+            },
+            {
+              "title": "如何验证设备树中的按键中断确实生效？",
+              "answer_short": "查看 /proc/interrupts 中对应中断计数是否随按键增长，用 dmesg 确认 probe 与 request_irq 成功，必要时用 gpioinfo、evtest 或示波器确认电平与边沿。",
+              "answer_detail": "先确认设备树已编译进 dtb 且节点状态为 okay；再检查 pinctrl 是否与其他外设冲突；然后看 /proc/interrupts 计数。若计数增长但应用无事件，问题在上报路径（input 子系统或字符设备）；若计数不增长，问题在引脚复用、极性或触发类型。用示波器观察实际波形可区分硬件抖动与软件配置错误。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只写 gpios 不写 interrupt-parent/interrupts 就期望能收到中断",
+              "explanation": "GPIO 描述符本身不携带中断触发信息，缺少中断属性时 platform_get_irq 返回错误，驱动无法注册中断。",
+              "correction": "按 SoC 的 GPIO 控制器 binding 补全 interrupt-parent 与 interrupts（含触发类型），或确认控制器支持 gpiod_to_irq 并正确实现。"
+            },
+            {
+              "title": "在硬中断处理函数里做延时去抖或调用可能睡眠的 API",
+              "explanation": "硬中断上下文不能睡眠，msleep、mutex_lock、I2C 传输都会触发内核告警甚至崩溃。",
+              "correction": "硬中断只做最小工作，去抖与慢速访问放到线程化中断、工作队列或定时器中。"
+            },
+            {
+              "title": "忽略机械按键抖动，认为一次按下只产生一次中断",
+              "explanation": "机械触点抖动会在毫秒级产生多个边沿，导致重复上报或计数错误。",
+              "correction": "硬件加 RC 滤波，或软件用时间戳间隔判断、定时器去抖，并在设备树中选用合适的边沿触发类型。"
+            },
+            {
+              "title": "把 GPIO 编号直接当 Linux 中断号使用",
+              "explanation": "GPIO 编号与虚拟中断号是两套编号空间，直接传 GPIO 号给 request_irq 会注册失败或注册到错误中断。",
+              "correction": "通过 platform_get_irq 或 gpiod_to_irq 获取映射后的中断号，并检查返回值。"
+            }
+          ],
+          "tags": [
+            "Linux 驱动",
+            "设备树",
+            "GPIO",
+            "中断",
+            "BeagleBone Black"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-80a61a7d1d48d306",
+    "source_url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "source_title": "Linux hangs at [random: nonblocking pool is initialized]",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-04-12T10:28:49+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:41.306238+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及 Linux 启动阶段随机数熵池初始化导致挂起，属于 Linux 系统/驱动启动调试范畴，与已有题目不重复；但正文不可用，仅能依据标题与摘要提取一道与启动卡死定位相关的题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "Linux 启动时卡在 random: nonblocking pool is initialized 附近，应如何理解并定位？",
+          "domain": "Linux 系统编程",
+          "subtopic": "内核启动与随机数熵池初始化",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题为 Linux hangs at [random: nonblocking pool is initialized]，摘要标注 embedded-linux boot 与 imx6 标签，指向启动阶段打印该随机数初始化信息后挂起的排查问题。",
+          "answer_short": "该打印表示内核随机数子系统的 nonblocking 熵池已完成初始化，本身是正常日志，不是错误。卡在其后通常说明后续初始化步骤阻塞，例如等待根文件系统、存储设备探测、驱动 probe 卡死、控制台输出阻塞或 init 进程未启动。定位思路是打开 earlycon/串口日志、提高 loglevel、用 initcall_debug 观察最后执行的初始化函数，并检查存储与时钟驱动。",
+          "answer_detail": "先明确语义：内核启动时 crng/random 子系统会打印熵池初始化相关日志，nonblocking pool is initialized 只说明非阻塞熵池可用，属于信息级日志。它出现在启动早期，因此“卡在这行”往往不是随机数子系统本身的问题，而是这行之后没有新的日志输出，真实阻塞点被日志级别、控制台缓冲或驱动静默等待掩盖。\n\n机制层面：启动流程大致为解压内核、早期控制台、核心初始化、驱动 initcall、挂载根文件系统、执行 init。随机数初始化位于较早阶段，之后会继续执行大量 initcall。若某个驱动在 probe 中等待硬件就绪、等待时钟稳定、等待 DMA 完成或访问不存在的寄存器，就会表现为长时间无输出。若根文件系统所在存储（eMMC/SD/NAND）驱动未就绪或分区表异常，也会在挂载阶段停住。\n\n排查步骤：一，确认串口控制台本身正常，尝试 earlycon 与提高 loglevel，排除日志被缓冲；二，加 initcall_debug 观察最后进入和未返回的 initcall；三，用 sysrq 或看门狗确认是死循环还是死等；四，检查设备树中存储、时钟、电源、引脚配置是否与板级一致；五，对比正常板与异常板的启动日志差异；六，必要时在可疑驱动 probe 中加打印或使用 ftrace 定位。\n\n嵌入式约束：imx6 一类平台常见诱因包括 DDR 初始化参数、时钟树配置、eMMC 供电与复位时序、看门狗提前复位导致日志截断。若日志在固定位置反复出现，应优先怀疑硬件时序与设备树配置，而不是内核随机数代码。\n\n取舍：加打印定位直观但会改变时序，可能掩盖竞争问题；用 ftrace/initcall_debug 侵入小但需要内核配置支持。工程上应保留一份带完整调试选项的启动镜像用于复盘。",
+          "follow_ups": [
+            {
+              "title": "为什么说这行日志本身通常不是故障点？",
+              "answer_short": "它是随机数子系统完成初始化的信息级输出，属于正常启动日志；卡住说明其后的初始化步骤没有完成，需要看最后一条有效日志之后的执行路径。",
+              "answer_detail": "内核日志按时间顺序输出，某条信息级日志之后长时间无输出，只说明后续代码没有产生日志或日志未送达控制台。随机数初始化完成后内核还要执行大量 initcall、挂载根文件系统并启动 init，任何一步阻塞都会表现为停在这行。因此应把该行当作时间锚点，而不是错误码。"
+            },
+            {
+              "title": "initcall_debug 能提供什么信息？",
+              "answer_short": "它会在每个初始化函数进入和返回时打印耗时与函数名，从而看出最后一个进入但未返回的 initcall，缩小阻塞驱动范围。",
+              "answer_detail": "开启后内核会输出 initcall 的调用与返回记录。若某函数只有进入没有返回，说明它内部阻塞；若返回耗时异常大，说明该驱动初始化慢。需要注意它增加日志量并改变时序，适合调试镜像，不宜长期开启。"
+            },
+            {
+              "title": "如何区分是内核死等还是日志输出被阻塞？",
+              "answer_short": "可尝试 earlycon、提高 loglevel、换用轮询式控制台，或触发 sysrq 查看任务栈；若系统仍有响应说明只是日志通道问题，否则是内核执行阻塞。",
+              "answer_detail": "串口驱动若依赖中断或 DMA，在中断未使能或时钟异常时可能丢日志。earlycon 使用早期轮询输出可绕过该问题。sysrq 能打印任务状态，若可触发说明内核仍在调度，问题偏向某个任务或驱动等待；完全无响应则更可能是死循环、关中断或硬件挂死。"
+            },
+            {
+              "title": "存储驱动未就绪会怎样表现？",
+              "answer_short": "内核可能在等待根设备出现或挂载根文件系统时停住，日志停在存储探测之后，最终出现无法挂载根文件系统的提示或直接无输出。",
+              "answer_detail": "根文件系统挂载依赖块设备驱动完成 probe。若 eMMC/SD 的供电、复位、时钟或设备树节点配置错误，设备不会被枚举，内核会等待或报错。排查应确认分区表、root= 参数、驱动是否编入内核而非模块，以及硬件时序是否满足。"
+            },
+            {
+              "title": "看门狗复位导致日志截断时如何判断？",
+              "answer_short": "若日志总在同一位置中断且无后续错误，应检查看门狗是否在启动早期被使能而未及时喂狗，可通过延长超时或临时关闭看门狗验证。",
+              "answer_detail": "启动早期看门狗若已由 bootloader 使能，内核在长耗时初始化期间可能来不及喂狗而复位，表现为日志突然中断并重新开始。可对比复位计数、观察是否周期性重启，并在验证阶段延长超时定位真正的慢初始化点。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "把该日志当成内核报错并去修改随机数配置",
+              "explanation": "该行是信息级日志，随机数子系统通常不是阻塞原因，改配置会偏离真正故障点，浪费排查时间。",
+              "correction": "把它作为时间锚点，重点检查其后执行的 initcall、存储探测与根文件系统挂载。"
+            },
+            {
+              "title": "只依赖默认串口日志判断卡死位置",
+              "explanation": "默认 loglevel 可能过滤信息，控制台驱动依赖中断或 DMA 时早期日志可能丢失，导致误判卡死点。",
+              "correction": "使用 earlycon、提高 loglevel，并配合 initcall_debug 或 ftrace 获取更完整的启动轨迹。"
+            },
+            {
+              "title": "忽略硬件时序与设备树配置直接怀疑内核代码",
+              "explanation": "嵌入式启动卡死常由 DDR 参数、时钟、供电复位时序或设备树节点错误引起，只改内核难以解决。",
+              "correction": "对照正常板日志，核查设备树、时钟与电源配置，并用最小系统逐步排除硬件因素。"
+            }
+          ],
+          "tags": [
+            "Linux 启动",
+            "内核日志",
+            "initcall",
+            "嵌入式调试",
+            "imx6"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-8a97d5225576adae",
+    "source_url": "https://stackoverflow.com/questions/41990475/compactpci-system-running-debian-linux-lspci-shows-incorrect-irq-leading-to-gen",
+    "source_title": "CompactPCI system running Debian linux: lspci shows incorrect IRQ leading to gen_irq flags mismatch and IRQ conflict",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2017-02-02T16:35:52+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:26.073757+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面为 Linux 内核驱动 IRQ 相关技术问答，属于 Linux 驱动主题；但正文不可用，仅有标题与摘要，无法提取明确面试问题，故不生成题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-54c512c84e55a6f7",
+    "source_url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
+    "source_title": "How to work with UIO drivers with my network card",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-01-31T09:17:40+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:23.790535+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及 Linux UIO 驱动与网卡，属于 Linux 驱动技术问答范畴，与已有题目不重复；但正文不可用，仅能依据标题和摘要提取有限事实，因此只整理与 UIO 驱动机制直接相关且可由标题支撑的题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "UIO 驱动框架是什么？它适合哪些设备场景？",
+          "domain": "Linux 驱动",
+          "subtopic": "UIO 用户态驱动框架",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题为 How to work with UIO drivers with my network card，摘要标签含 linux-device-driver、mmap，指向 UIO 驱动使用问题。",
+          "answer_short": "UIO 是 Linux 内核提供的用户态 I/O 驱动框架：内核侧只做最小化工作，如注册设备、映射寄存器、注册中断，把设备内存通过 mmap 暴露给用户态，由用户态程序完成大部分设备逻辑。它适合寄存器操作简单、中断处理不复杂、对性能要求不极端、希望快速迭代或闭源实现的设备；不适合需要内核协议栈深度集成、DMA 复杂或中断高频的场景。",
+          "answer_detail": "结论：UIO 把驱动拆成内核小模块加用户态大程序，用 mmap 暴露寄存器、用 read/poll 或 eventfd 上报中断。机制上，内核 uio 核心提供 uio_info 结构，驱动填写 name、version、mem[]（物理地址与大小）、irq 及 handler；注册后生成 /dev/uioN，用户态 mmap 对应 mem 区域访问寄存器，read /dev/uioN 阻塞等待中断计数，或通过 uio 的 irqcontrol 使能/屏蔽中断。内核侧 handler 通常只确认中断源并返回 IRQ_HANDLED，把实际处理放到用户态。嵌入式约束：UIO 不参与内核网络协议栈，因此网卡若要用标准 socket 收发，必须走内核 netdev 驱动，UIO 只适合做旁路抓包、裸包收发或专用数据面；DMA 缓冲区需要用户态自行分配并用大页或 CMA 保证物理连续，cache 一致性要自行处理。取舍：开发快、可调试、可闭源，但中断延迟高于内核驱动，且无法直接复用内核子系统。排查示例：mmap 失败先确认 mem 地址与长度是否与设备树 reg 一致；read 一直阻塞先确认 irq 是否注册成功、是否被 uio 的 irqcontrol 屏蔽。",
+          "follow_ups": [
+            {
+              "title": "UIO 驱动中用户态如何感知设备中断？",
+              "answer_short": "用户态对 /dev/uioN 做 read 或 poll，内核在中断 handler 中递增中断计数并唤醒等待者；也可用 irqcontrol 写 1/0 使能或屏蔽中断。",
+              "answer_detail": "内核 uio 核心维护中断计数，用户态 read 返回计数值，poll 在计数变化时返回可读。用户态处理完设备后通常写 irqcontrol 重新使能中断，形成先屏蔽、处理、再使能的流程，避免中断风暴。若设备中断共享或无法确认中断源，handler 必须返回 IRQ_NONE，否则会误报中断。"
+            },
+            {
+              "title": "UIO 与内核 netdev 驱动在网卡场景下如何取舍？",
+              "answer_short": "需要标准 socket、协议栈、路由和网卡管理时用 netdev 驱动；只需裸包收发、旁路处理或快速原型时可用 UIO 加用户态协议栈。",
+              "answer_detail": "netdev 驱动接入内核网络子系统，能复用 TCP/IP、防火墙、网桥等；UIO 方案把收发包逻辑放用户态，延迟可控但需自实现协议栈和缓冲区管理，且无法被 ip 命令直接管理。工程上常用 DPDK 类方案而非裸 UIO，因为其提供更完整的轮询与内存管理。"
+            },
+            {
+              "title": "UIO 设备的寄存器映射在设备树中如何描述？",
+              "answer_short": "通常用 reg 属性描述寄存器物理地址与长度，驱动在 probe 中读取并填入 uio_info 的 mem 数组，用户态再 mmap 该区域。",
+              "answer_detail": "设备树节点需有 compatible 与 reg，驱动通过 platform_get_resource 获取地址，ioremap 后或直接以物理地址填入 uio mem。用户态 mmap 的偏移对应 mem 索引乘以页大小，长度不能超过注册大小，否则 mmap 返回 EINVAL。"
+            },
+            {
+              "title": "UIO 方案下 DMA 和 cache 一致性由谁负责？",
+              "answer_short": "UIO 内核侧几乎不代管 DMA，用户态需自行分配连续内存并处理 cache 刷新或使用非缓存映射，否则会出现数据不一致。",
+              "answer_detail": "内核驱动可用 dma_alloc_coherent 分配一致性内存，但 UIO 用户态通常只能通过大页、CMA 或 hugetlbfs 获取连续物理页，再用 /dev/mem 或 uio mmap 映射。若映射为可缓存，CPU 与设备读写同一缓冲区时必须显式 clean/invalidate，否则读到旧数据。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为 UIO 驱动可以直接替代网卡内核驱动",
+              "explanation": "UIO 不接入内核网络协议栈，标准 socket 无法使用该设备，误判会导致上层应用完全收不到包。",
+              "correction": "明确需求：要标准网络栈就用 netdev 驱动；要旁路或裸包处理才考虑 UIO 或 DPDK 类方案。"
+            },
+            {
+              "title": "在用户态直接操作寄存器却不做内存屏障",
+              "explanation": "编译器和 CPU 可能重排寄存器读写顺序，导致设备状态机时序错乱。",
+              "correction": "对寄存器访问使用 volatile 加必要屏障，或使用内核提供的 readl/writel 语义封装，确保顺序与宽度正确。"
+            },
+            {
+              "title": "中断 handler 中做大量工作",
+              "explanation": "UIO 内核 handler 应尽量短，否则会拉高中断延迟并可能造成中断丢失。",
+              "correction": "handler 只确认中断源并唤醒用户态，实际处理放到用户态线程完成。"
+            }
+          ],
+          "tags": [
+            "UIO",
+            "Linux 驱动",
+            "mmap",
+            "用户态驱动"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-bf7d5d06f53e4c1a",
+    "source_url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
+    "source_title": "Error in booting from uSD-card - No filesystem could mount root, tried:Ext4",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-05-08T01:24:03+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:07:10.554773+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面为 Stack Overflow 上关于 uSD 卡启动时内核无法挂载根文件系统的技术问答，属于 Linux 启动与驱动/文件系统排查范畴，与嵌入式 Linux 面试知识相关；但正文不可用，仅能依据标题与摘要提取有限事实。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "Linux 内核启动时出现“No filesystem could mount root, tried: ext4”应如何分层排查？",
+          "domain": "Linux 驱动",
+          "subtopic": "根文件系统挂载失败排查",
+          "difficulty": "进阶",
+          "question_evidence": "来源标题为从 uSD 卡启动时报错“No filesystem could mount root, tried: Ext4”，属于内核挂载根文件系统失败的典型现象。",
+          "answer_short": "先确认内核是否识别到存储设备（如 mmcblk0），再核对 root= 参数、分区号与文件系统类型；然后检查内核是否编入对应文件系统驱动（ext4 是否内建而非仅模块）、MMC/SD 控制器驱动是否加载、设备树中 SD 节点是否使能；最后用 initramfs 或救援 shell 验证分区表与文件系统完整性。",
+          "answer_detail": "结论：该报错表示内核已走到挂载根文件系统阶段，但所有候选文件系统类型都挂载失败，问题通常出在“设备没被识别、root 参数不对、文件系统驱动缺失、分区/镜像损坏”四类之一。\n\n机制：内核启动流程为 bootloader 传参（bootargs 中的 root=、rootfstype=、rootwait）→ 初始化存储控制器驱动 → 枚举块设备 → 按 root 参数定位设备 → 调用对应文件系统 mount。任一步失败都会打印 tried 列表。\n\n排查步骤：1) 看启动日志中 MMC/SD 控制器是否 probe 成功，是否出现 mmc0: new SD card、mmcblk0 及 mmcblk0p1；2) 核对 root=/dev/mmcblk0p1 是否与实际分区一致，必要时加 rootwait 等待设备就绪；3) 确认 CONFIG_EXT4_FS=y（内建），若为 =m 且无 initramfs 则无法挂载；4) 检查设备树中 SD 控制器节点 status 与引脚复用；5) 用 fdisk/blkid 在主机侧验证镜像分区与文件系统；6) 临时用 initramfs 进入 shell 手工 mount 验证。\n\n嵌入式约束：Buildroot/Yocto 生成的镜像常把 ext4 编成模块，或 root 参数写死为旧设备名；eMMC 与 SD 同时存在时设备编号可能变化，建议用 PARTUUID 或 LABEL。\n\n取舍：rootwait 能解决枚举时序问题但会延长启动；用 UUID 更稳健但依赖 initramfs 或内核支持。",
+          "follow_ups": [
+            {
+              "title": "rootwait 和 rootdelay 有什么区别，何时使用？",
+              "answer_short": "rootwait 让内核无限等待根设备出现，rootdelay 是固定延时若干秒后再尝试；前者更适合 SD/eMMC 枚举时间不确定的场景。",
+              "answer_detail": "rootdelay 只是盲目等待固定时间，设备慢于该时间仍会失败，设备快则浪费启动时间；rootwait 基于设备就绪事件等待，更可靠。工程上优先 rootwait，并配合正确的 root= 参数。"
+            },
+            {
+              "title": "为什么 ext4 驱动编成模块时无法挂载根文件系统？",
+              "answer_short": "挂载根文件系统发生在用户空间和模块加载机制可用之前，模块位于根文件系统自身，形成先有鸡还是先有蛋的问题。",
+              "answer_detail": "内核挂载 rootfs 时尚未运行 init，无法从 /lib/modules 加载模块。解决办法是将根文件系统所需驱动（ext4、MMC 控制器）编入内核（=y），或使用 initramfs 先加载模块再 switch_root。"
+            },
+            {
+              "title": "设备树中 SD 卡节点未使能会有什么表现？",
+              "answer_short": "控制器驱动不会 probe，日志中看不到 mmc 设备枚举，块设备节点不存在，最终表现为找不到 root 设备。",
+              "answer_detail": "需检查 sdhci/mmc 节点 status = \"okay\"、时钟与引脚复用配置、卡检测引脚。可用 /proc/device-tree 或启动日志确认驱动是否绑定。"
+            },
+            {
+              "title": "如何用 initramfs 辅助定位根文件系统挂载问题？",
+              "answer_short": "构建一个最小 initramfs，启动后进入 shell，手工执行 blkid、fdisk -l、mount 验证设备与文件系统，从而区分是驱动问题还是镜像问题。",
+              "answer_detail": "initramfs 内可放置 busybox 与必要模块，通过 rdinit=/bin/sh 进入交互。若手工 mount 成功，说明是启动参数或时序问题；若设备都看不到，则是驱动或硬件问题。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只改 root= 参数而不确认设备是否被枚举",
+              "explanation": "若 MMC 驱动未 probe，任何 root 参数都无效，反复改参数会浪费时间。",
+              "correction": "先看日志确认 mmcblk 设备出现，再核对分区号。"
+            },
+            {
+              "title": "认为报错 tried: ext4 就一定是文件系统损坏",
+              "explanation": "tried 列表只是内核尝试过的类型，驱动缺失或设备不存在同样会打印。",
+              "correction": "按设备识别、参数、驱动、镜像四层依次排除。"
+            },
+            {
+              "title": "忽略 eMMC 与 SD 并存时设备编号变化",
+              "explanation": "mmcblk0 可能是 eMMC 而非 SD，导致挂载到错误设备。",
+              "correction": "使用 PARTUUID/LABEL 或固定 aliases 保证稳定。"
+            }
+          ],
+          "tags": [
+            "Linux 启动",
+            "根文件系统",
+            "ext4",
+            "SD 卡",
+            "U-Boot"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "U-Boot 如何把内核、设备树和根文件系统参数传递给 Linux 内核？",
+          "domain": "Linux 驱动",
+          "subtopic": "bootloader 与内核交接",
+          "difficulty": "进阶",
+          "question_evidence": "来源标签包含 u-boot 与 buildroot，且问题场景为从 uSD 卡启动，涉及 bootloader 向内核传参。",
+          "answer_short": "U-Boot 通过 bootargs 环境变量构造内核命令行（含 root=、console=、rootfstype 等），加载内核镜像与设备树到内存，再以 bootz/booti 跳转，按 ARM 启动协议把设备树地址和机器信息放入寄存器（如 x0/r2）传给内核；内核解析命令行与 DTB 完成后续初始化。",
+          "answer_detail": "结论：U-Boot 与内核的交接核心是“镜像加载 + 参数传递 + 跳转”，参数分两类：命令行字符串（bootargs）和设备树二进制（DTB）。\n\n机制：以 ARM64 为例，booti 要求 x0 指向 DTB；ARM32 的 bootz 通过 r2 传 DTB 地址。bootargs 由 U-Boot 写入 DTB 的 /chosen/bootargs 节点，内核 early param 解析 root=、console=、init= 等。\n\n典型流程：mmc dev 0 → fatload/ext4load 加载 Image、dtb、rootfs（若为 ramdisk）→ setenv bootargs 'console=ttyS0,115200 root=/dev/mmcblk0p2 rootwait rw' → booti ${kernel_addr} - ${dtb_addr}。\n\n嵌入式约束：地址不能与 U-Boot 自身重定位区冲突；DTB 必须与板级硬件匹配；rootfs 在 SD 上时需 rootwait。\n\n排查：若内核无输出，先查 console 参数与串口；若挂载失败，查 bootargs 中 root 与驱动。可用 fdt print /chosen 在 U-Boot 中确认参数已写入。",
+          "follow_ups": [
+            {
+              "title": "bootargs 与设备树 /chosen 节点是什么关系？",
+              "answer_short": "U-Boot 会把 bootargs 写入 DTB 的 /chosen/bootargs，内核从该节点读取命令行；也可直接在 DTS 中写死。",
+              "answer_detail": "优先级上 U-Boot 传入的 bootargs 通常覆盖 DTS 默认值，便于同一镜像适配不同启动介质。"
+            },
+            {
+              "title": "为什么有时需要 separate 的 ramdisk 地址参数？",
+              "answer_short": "bootm/bootz 的第三个参数用于指定 initrd/ramdisk 地址，内核据此挂载 initramfs 或 initrd。",
+              "answer_detail": "若使用 initramfs 内建则无需该参数；使用独立 ramdisk 镜像时必须正确传入，否则内核找不到初始根文件系统。"
+            },
+            {
+              "title": "U-Boot 环境变量保存在哪里，掉电会丢失吗？",
+              "answer_short": "通常保存在 eMMC/SD 的 env 分区、SPI Flash 或 EEPROM 中，配置正确时掉电不丢失；未配置则使用编译默认值。",
+              "answer_detail": "需确认 CONFIG_ENV_IS_IN_MMC 等配置与偏移地址，错误的偏移可能覆盖其他数据。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "bootargs 中 root 设备名与实际不符",
+              "explanation": "设备编号随枚举顺序变化，写死 mmcblk0p1 可能指向错误设备。",
+              "correction": "使用 PARTUUID 或确认枚举顺序后固定。"
+            },
+            {
+              "title": "忘记传 DTB 地址",
+              "answer_short": "",
+              "explanation": "部分平台不传 DTB 会导致内核无法识别硬件，表现为早期挂起。",
+              "correction": "按平台启动协议在正确寄存器/参数位置传入 DTB。"
+            }
+          ],
+          "tags": [
+            "U-Boot",
+            "bootargs",
+            "设备树",
+            "启动流程"
+          ],
+          "possible_duplicate_title": "U-Boot启动过程做了哪些事？"
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-c4df82f37be62837",
+    "source_url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
+    "source_title": "IRQCHIP_DECLARE: init function is not being run",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-06-14T11:10:33+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:53.612979+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是 Linux 内核驱动相关的公开技术问答，主题为 IRQCHIP_DECLARE 宏与中断控制器初始化，属于 Linux 驱动范畴；但正文不可用，仅有标题和摘要，证据不足以整理具体题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-86883e4ce8fc3e8b",
+    "source_url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
+    "source_title": "Linux Kernel Boot Error: reserving fdt memory region failed",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2023-04-20T23:45:07+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:51.145813+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面为 Linux 内核启动时 FDT 内存保留失败的技术问答，属于 Linux 驱动/内核启动主题，与已有题目不重复；但正文不可用，仅标题与摘要，证据不足以提取具体面试题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-a82b7b893a49157d",
+    "source_url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
+    "source_title": "How do I run XEN on arm64 and Qemu 6.0.0 with Linux 4.20.11 as Dom0",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2021-11-08T21:27:19+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:48.777358+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题和搜索摘要；标题是关于在 arm64 上运行 XEN 与 QEMU 的环境搭建问题，摘要仅给出标签和主题，未明确列出可提取的面试问题，证据不足。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-70978abc5fbf5f48",
+    "source_url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
+    "source_title": "Linux Device tree, node with multiple interrupt parents",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-02-07T13:39:04+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:46.543337+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及 Linux 设备树中一个节点拥有多个中断父节点的问题，属于 Linux 驱动与设备树知识点，与已有题目不重复；但正文不可用，仅能依据标题与摘要提取一道题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "Linux 设备树中一个设备节点如何声明多个中断父节点（interrupt-parent）？",
+          "domain": "Linux 驱动",
+          "subtopic": "设备树中断描述与 interrupt-parent 继承机制",
+          "difficulty": "进阶",
+          "question_evidence": "来源标题为“Linux Device tree, node with multiple interrupt parents”，摘要标注为 Linux 内核、设备驱动、设备树相关的技术问答。",
+          "answer_short": "设备树中 interrupt-parent 是单值属性，表示中断号的解析归属，一个节点只能有一个生效的 interrupt-parent，通常由父节点继承而来。若一个设备的中断实际连接到不同中断控制器，标准做法是把设备拆成多个子节点（或用多个 phandle 引用不同控制器的 interrupts-extended 属性），每个子节点各自指定 interrupt-parent，再由驱动分别申请中断。",
+          "answer_detail": "结论：interrupt-parent 不是“可并列多个”的属性，它是中断说明符解析的上下文；一个节点在解析 interrupts 时只能有一个中断控制器作为父。机制上，内核在解析节点中断时按以下顺序确定控制器：节点自身的 interrupt-parent；若没有则沿父节点向上继承，直到根节点；根节点通常通过 /chosen 或 SoC 级 interrupt-parent 指定默认控制器。interrupts 属性中的每个 cell 组都按该控制器的 #interrupt-cells 解释。因此“一个节点多个中断父”在标准绑定下不成立。工程做法：1) 若设备有多个中断线分别接到不同控制器（如一路接 GIC、一路接 GPIO 控制器做唤醒），把设备节点拆为多个子节点，每个子节点写自己的 interrupt-parent 与 interrupts，驱动用 platform_get_irq_byname 或 of_irq_get_byname 按名字取；2) 使用 interrupts-extended 属性，每个条目是 <&controller irq-spec...>，可显式引用不同控制器，避免依赖继承；3) 若只是同一控制器的多路中断，则一个 interrupt-parent 加多个 interrupts 条目即可，用中断名区分。约束与排查：不同内核版本对 interrupts-extended 的支持程度需以目标内核文档（Documentation/devicetree/bindings）为准；调试时看 /proc/interrupts 是否出现预期中断、dmesg 中 of_irq_parse 相关报错，以及 dtc 反编译确认属性是否被正确合并。",
+          "follow_ups": [
+            {
+              "title": "interrupt-parent 的继承规则是什么？",
+              "answer_short": "节点未定义 interrupt-parent 时沿父节点向上继承，直到找到定义者；根节点通常有默认值。",
+              "answer_detail": "解析 interrupts 时，内核先查本节点的 interrupt-parent，缺失则逐级向上查找父节点属性，最终落到根节点或 /chosen 指定的默认控制器。因此同一父节点下的兄弟节点可共享继承来的控制器，减少重复书写；但一旦某节点显式覆盖，其子树默认跟随新值，容易造成“以为继承自根、实际被中间节点改写”的问题，排查时应逐级检查 dtsi 合并结果。"
+            },
+            {
+              "title": "interrupts 与 interrupts-extended 有什么区别？",
+              "answer_short": "interrupts 依赖 interrupt-parent 提供控制器；interrupts-extended 在每个条目内直接写控制器 phandle，可混合多个控制器。",
+              "answer_detail": "interrupts 的每个条目只含中断说明符，控制器由 interrupt-parent 决定，适合单一控制器场景。interrupts-extended 的每个条目形如 <&ctrl spec...>，控制器与说明符成对出现，天然支持一个节点引用多个不同控制器，也免去继承歧义。二者不应同时出现在同一节点；使用时需确认目标内核版本与绑定文档支持，并用 dtc 反编译验证最终展开结果。"
+            },
+            {
+              "title": "驱动中如何按名字获取多个中断？",
+              "answer_short": "在设备树中给每个 interrupts 条目配 interrupt-names，驱动用 platform_get_irq_byname() 或 of_irq_get_byname() 按名获取。",
+              "answer_detail": "interrupt-names 的顺序必须与 interrupts（或 interrupts-extended）条目一一对应，否则名字与中断号错位。驱动侧 platform_get_irq_byname 返回对应 virq，失败返回负错误码，应检查返回值而非直接 request_irq。若设备拆成子节点，则需遍历子节点分别 of_irq_get，或让子节点各自绑定子驱动，避免在一个驱动里硬编码索引。"
+            },
+            {
+              "title": "多个中断源共享一个中断线时如何处理？",
+              "answer_short": "使用共享中断标志 IRQF_SHARED，并在中断处理函数中读取硬件状态寄存器判断是否为本设备中断。",
+              "answer_detail": "共享中断要求所有参与者都传 IRQF_SHARED 且 dev_id 唯一；处理函数必须先读状态寄存器确认中断源，不是自己产生的中断要快速返回 IRQ_NONE，否则内核会误判中断风暴。设备树侧通常用 shared 相关绑定或驱动内 flags 指定。若硬件支持独立中断线，优先拆分而非共享，以降低延迟与误判风险。"
+            },
+            {
+              "title": "设备树中断配置错误时如何定位？",
+              "answer_short": "先看 dmesg 中 of_irq 解析报错与 request_irq 返回值，再看 /proc/interrupts 是否注册成功，最后用 dtc 反编译核对属性。",
+              "answer_detail": "典型错误包括 #interrupt-cells 数量不匹配、interrupt-parent 指向错误控制器、interrupt-names 与条目数不一致。排查顺序：dtc -I dtb -O dts 反编译确认最终树；检查目标控制器的 #interrupt-cells 与 interrupts 条目 cell 数是否一致；驱动中打印 platform_get_irq 返回值；注册后查看 /proc/interrupts 计数是否随硬件事件增长，以区分“注册成功但没触发”和“根本没注册”。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为一个节点可以写多个 interrupt-parent",
+              "explanation": "interrupt-parent 是单值 phandle 属性，写多个值不符合绑定，解析时只会取第一个或直接报错，导致部分中断号被错误控制器解释。",
+              "correction": "需要多控制器时改用 interrupts-extended，或把设备拆成多个子节点分别指定 interrupt-parent。"
+            },
+            {
+              "title": "忽略 #interrupt-cells 导致 cell 数错位",
+              "explanation": "不同中断控制器的说明符长度不同（如 GIC 常为 3 个 cell，GPIO 控制器常为 2 个），按错误长度书写会让后续条目整体错位，解析出错误中断号。",
+              "correction": "先查目标控制器节点的 #interrupt-cells，再按该长度书写每个条目，并用 dtc 反编译核对。"
+            },
+            {
+              "title": "interrupt-names 与 interrupts 条目顺序不一致",
+              "explanation": "按名获取中断时依赖顺序对应，错位会让驱动申请到错误的中断号，表现为中断不触发或触发到错误处理函数。",
+              "correction": "保持 interrupt-names 与 interrupts 条目严格同序，并在驱动中校验 platform_get_irq_byname 返回值。"
+            },
+            {
+              "title": "把中断父节点与中断控制器驱动混为一谈",
+              "explanation": "interrupt-parent 只是解析上下文，真正注册 irq_domain 的是中断控制器驱动；若控制器驱动未就绪，中断号无法映射。",
+              "correction": "确认中断控制器驱动已 probe 并建立 irq_domain，再排查设备节点属性；必要时检查 probe 顺序与依赖。"
+            }
+          ],
+          "tags": [
+            "Linux 驱动",
+            "设备树",
+            "中断",
+            "interrupt-parent",
+            "irq_domain"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-dcca46534d4a5401",
+    "source_url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
+    "source_title": "Ambition66/interview_knowledge_base/interview_questions/12_嵌入式硬件基础面试题.md",
+    "source_provider": "github-code-search",
+    "source_published_at": null,
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:31.333722+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题和搜索摘要，无法提取任何明确出现的面试问题；按约束证据不足时 questions 必须为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-a0ebfddc2da74630",
+    "source_url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
+    "source_title": "How do I implement a file system driver driver in Linux?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-03-24T23:07:56+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:29.099843+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及 Linux 文件系统驱动实现，属于 Linux 驱动主题；但正文不可用，仅有标题与摘要，证据不足以提取具体面试问题，故 questions 为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-dd113c9fe805b55b",
+    "source_url": "https://github.com/Craftbai/Interview-Question",
+    "source_title": "Craftbai/Interview-Question",
+    "source_provider": "github-search",
+    "source_published_at": "2026-09-16T12:23:00Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:06:26.470765+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": true,
+    "page_excerpt_chars": 6130,
+    "page_fetch_error": null,
+    "result": {
+      "is_relevant": true,
+      "reason": "该页面是 GitHub 上的嵌入式面试题库仓库，README 明确列出 476 题、19 个分类及刷题机制，属于嵌入式面试资料整理范围；但正文仅给出分类与题量统计，未逐题列出题干，故只能依据明确出现的分类主题与已有题目标题做去重判断，可提取的独立题目有限。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-7292ed02071bab84",
+    "source_url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
+    "source_title": "Embedded Buildroot and Yocto Linux crash 50% of the time",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-11-04T18:22:50+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:04:19.516502+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题和摘要；标题描述的是 Buildroot/Yocto 嵌入式 Linux 崩溃问题，属于具体故障求助，摘要未给出可提取的面试问题或明确技术问答内容，证据不足。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-557eafdbca123e04",
+    "source_url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
+    "source_title": "rk3328 soc boot stuck at waiting for root device /dev/mmcblk1p2",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2023-09-04T16:14:46+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:04:17.050746+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是公开技术问答，标题涉及 Linux 内核启动时等待根设备 /dev/mmcblk1p2 的问题，属于 Linux 驱动与系统启动排查范畴；但正文不可用，仅有标题和摘要，证据不足以提取具体面试题，因此 questions 为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-9e54ea15d105cdd7",
+    "source_url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
+    "source_title": "Device-Tree Issues with ROCKPro64 PCIe Endpoint",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2022-10-17T01:47:01+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:04:14.827258+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面为 Stack Overflow 上关于 ROCKPro64 PCIe Endpoint 设备树配置的技术问答，属于 Linux 驱动与设备树主题，与已有题目不重复，可作为八股知识来源；但正文不可用，仅能依据标题与摘要提取有限事实。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "在设备树中配置 PCIe Endpoint 控制器时，需要关注哪些关键节点与属性？",
+          "domain": "Linux 驱动",
+          "subtopic": "设备树与 PCIe 控制器配置",
+          "difficulty": "进阶",
+          "question_evidence": "来源标题为 Device-Tree Issues with ROCKPro64 PCIe Endpoint，摘要标签含 device-tree 与 pci-e，指向设备树中 PCIe Endpoint 配置问题。",
+          "answer_short": "核心是确认 PCIe 控制器节点被使能、reg 地址范围与总线号映射正确、中断与复位/时钟/电源属性齐全，并保证 Endpoint 侧与 Root Complex 侧设备树描述一致。常见问题多源于地址空间不匹配、缺少 phys/clock/reset 引用或状态未置为 okay。",
+          "answer_detail": "先给结论：设备树中 PCIe Endpoint 配置问题通常不是单一属性错误，而是地址空间、中断、时钟/复位/PHY 引用和使能状态四类信息不一致。机制上，Linux PCIe 主机控制器驱动在 probe 时解析设备树节点，读取 reg 得到配置空间与内存窗口，读取 ranges 建立 CPU 地址到 PCI 地址的映射，读取 interrupts 建立 INTx/MSI 中断，读取 clocks、resets、phys、vcc 等 phandle 完成上电与链路初始化。若 ranges 缺失或与控制器窗口不符，枚举时 BAR 分配会失败；若 status 不是 okay，控制器不会被注册；若 reset-gpios 或 phy 引用错误，链路训练可能超时。工程上排查顺序建议：1) 用 dtc 反编译 dtb 确认节点存在且 status=okay；2) 检查 reg 与 ranges 是否覆盖控制器手册给出的窗口；3) 查看 dmesg 中 PCIe 控制器 probe 与链路训练日志；4) 用 lspci 确认枚举结果；5) 检查时钟、复位、电源 regulator 是否被正确引用。边界说明：不同 SoC 的 PCIe 绑定文档不同，属性名以对应内核版本的 binding 文档为准，不能跨平台照搬。",
+          "follow_ups": [
+            {
+              "title": "设备树中 ranges 属性对 PCIe 起什么作用？",
+              "answer_short": "ranges 描述子总线地址空间到父总线地址空间的映射，PCIe 控制器用它把 CPU 物理地址映射到 PCI 内存/IO 窗口，缺失或错误会导致 BAR 分配失败。",
+              "answer_detail": "ranges 由子地址、父地址和长度三元组组成，PCIe 节点中通常包含配置空间、32 位内存窗口和可能的 64 位预取窗口。内核在枚举设备时依据该映射为 BAR 分配地址。若 ranges 与控制器硬件窗口不一致，会出现资源分配失败或访问异常。排查时对照 SoC 手册的 outbound 窗口配置与 dmesg 中的 resource 分配日志。"
+            },
+            {
+              "title": "PCIe 链路训练失败时如何定位是设备树问题还是硬件问题？",
+              "answer_short": "先看 dmesg 中控制器 probe 与 link up 日志，再确认设备树中时钟、复位、PHY、电源引用是否齐全；若这些正确仍无 link，则转向硬件信号与参考时钟检查。",
+              "answer_detail": "软件侧可通过控制器驱动日志判断是否进入链路训练阶段、是否超时。设备树侧重点检查 clocks、resets、phys、vcc 等 phandle 是否指向正确节点，status 是否为 okay。硬件侧检查参考时钟、复位时序、供电和差分对连接。两者需分开验证，避免把硬件问题误判为设备树错误。"
+            },
+            {
+              "title": "Endpoint 模式与 Root Complex 模式在设备树描述上有何区别？",
+              "answer_short": "Root Complex 模式描述主机控制器及其下游总线窗口；Endpoint 模式描述本端作为从设备的配置空间、BAR 和中断，通常由独立驱动或 configfs 管理。",
+              "answer_detail": "Root Complex 节点侧重 ranges、bus-range、中断控制器映射；Endpoint 节点侧重 reg 表示的配置空间、BAR 大小与地址、以及 doorbell/MSI 中断。部分平台通过 configfs 的 pci_epf 框架动态配置功能，而非完全静态设备树。具体以平台 binding 为准。"
+            },
+            {
+              "title": "如何确认设备树改动已真正生效？",
+              "answer_short": "通过 /proc/device-tree 或 dtc 反编译运行中的 dtb，确认节点与属性；再结合驱动 probe 日志和 lspci 等工具验证行为。",
+              "answer_detail": "常见错误是改了源 dts 但未重新编译 dtb，或启动时加载了旧 dtb。可在板端读取 /proc/device-tree 下对应节点属性，与预期比对；也可用 dmesg 查看驱动解析到的资源。确认生效后再判断功能问题。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只改 dts 不重新编译或未替换启动 dtb",
+              "explanation": "设备树改动不会自动生效，启动加载的仍是旧 dtb，导致排查方向错误。",
+              "correction": "重新编译 dtb 并确认启动介质中的文件已更新，板端用 /proc/device-tree 核对。"
+            },
+            {
+              "title": "照搬其他平台的 PCIe 节点属性",
+              "explanation": "不同 SoC 的 PCIe 绑定属性名和窗口定义不同，照搬会导致解析失败或资源冲突。",
+              "correction": "以当前内核版本的 binding 文档和 SoC 手册为准逐项核对。"
+            },
+            {
+              "title": "忽略 status 属性",
+              "explanation": "节点存在但 status 为 disabled 时驱动不会 probe，容易被误认为属性错误。",
+              "correction": "确认目标节点 status 为 okay，并检查父节点是否被禁用。"
+            }
+          ],
+          "tags": [
+            "Linux 驱动",
+            "设备树",
+            "PCIe",
+            "ROCKPro64"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-f56a85082efe07fc",
+    "source_url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
+    "source_title": "Linux kernel crashes on the stm32h743i",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-09-01T10:28:35+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:04:02.792044+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及 STM32H743 上 Linux 内核崩溃，属于 Linux 内核/驱动与 MCU 交叉的调试主题，与已有题目中 Kernel Panic 定位、Cortex-M 启动等有部分重叠但角度不同；正文不可用，仅能依据标题与摘要提取有限事实，故只整理与标题直接相关且证据可支撑的题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "在 Cortex-M 类 MCU（如 STM32H743）上运行 Linux 内核为什么会崩溃？",
+          "domain": "Linux 驱动",
+          "subtopic": "Linux 在无 MMU 的 MCU 上的可行性",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题为“Linux kernel crashes on the stm32h743i”，摘要标签含 linux、embedded、stm32、cortex-m，指向在 Cortex-M MCU 上启动 Linux 失败的问题。",
+          "answer_short": "标准 Linux 内核依赖 MMU 实现虚拟内存、用户/内核地址空间隔离和按需分页，而 Cortex-M（含 STM32H743）通常没有 MMU，只有 MPU。主线 Linux 无法直接在其上启动，强行移植会在内存管理初始化阶段崩溃。可行路线是使用 uClinux 类无 MMU 变体、或改用 RTOS/Linux 协处理器方案。",
+          "answer_detail": "先给结论：STM32H743 是 Cortex-M7，带 MPU 但不带 MMU，主存通常为几百 KB 到 1 MB 的 SRAM，而主线 Linux 的启动前提是 MMU 可用、有足够 RAM 建立页表与内核镜像。崩溃的典型机制有三类：一是内存管理子系统初始化时访问页表相关寄存器或指令（如 TTBR、页表遍历）在 Cortex-M 上不存在或行为不同，触发 HardFault；二是内核镜像与 initramfs 体积超过可用 SRAM，链接或解压阶段就失败；三是缺少必要的异常模型支持，Cortex-M 的异常向量与 ARMv7-A 的异常模式差异导致早期启动代码无法接管。工程上的取舍：若必须用 Linux，应选择带 MMU 的 Cortex-A 芯片；若必须用 STM32H743，应使用 FreeRTOS、Zephyr、NuttX 等 RTOS，NuttX 还提供类 POSIX 接口。排查示例：先确认芯片是否带 MMU（查参考手册 Memory Protection Unit 章节），再看启动日志停在哪一阶段（解压、early printk、内存初始化），用调试器读 HardFault 状态寄存器 CFSR/HFSR 判断是总线错误还是未定义指令。边界说明：uClinux 等无 MMU 移植存在但生态与主线差异大，具体支持程度需以对应版本文档为准，不能一概而论。",
+          "follow_ups": [
+            {
+              "title": "MMU 和 MPU 的核心区别是什么？",
+              "answer_short": "MMU 做地址转换并支持虚拟内存与权限保护；MPU 只做区域权限与属性检查，不做地址转换。",
+              "answer_detail": "MMU 通过页表把虚拟地址映射为物理地址，支持按需分页、进程地址空间隔离和 swap；MPU 把物理地址划分为若干区域，为每个区域配置可读/可写/可执行和缓存属性，越权访问触发异常。Cortex-M 一般只有 MPU，因此无法运行依赖虚拟内存的通用 Linux；Cortex-A 有 MMU。RTOS 用 MPU 实现任务间内存隔离，成本低但区域数量有限（常见 8 或 16 个）。"
+            },
+            {
+              "title": "无 MMU 的 Linux 变体主要牺牲了什么？",
+              "answer_short": "牺牲进程地址空间隔离和按需分页，所有进程共享同一物理地址空间，内存不足时无法换出。",
+              "answer_detail": "无 MMU 方案中用户程序直接使用物理地址，fork 需要整体复制或使用特殊机制，无法实现写时复制；缺少页保护导致野指针更容易破坏其他进程；也无法使用 swap。优点是省去 TLB 和页表开销，适合小内存设备。工程上需要重新编译带 no-MMU 配置的内核，并注意二进制格式（如 bFLT）与栈大小限制。"
+            },
+            {
+              "title": "STM32H743 的 SRAM 规模对运行操作系统意味着什么？",
+              "answer_short": "其内部 SRAM 总量在 MB 以下量级，适合 RTOS 与裸机程序，不足以承载常规 Linux 内核加根文件系统。",
+              "answer_detail": "Linux 内核镜像加 initramfs 通常需要数 MB 到数十 MB 内存，还要为页表、slab、进程栈预留空间。STM32H743 的 SRAM 分布在多个域（如 DTCM、AXI SRAM、SRAM1-4），总量远小于此，且部分区域访问属性不同。因此即使解决 MMU 问题，内存也是硬约束。可行做法是外扩 SDRAM，但仍受无 MMU 限制。"
+            },
+            {
+              "title": "如何判断崩溃发生在内核早期启动的哪个阶段？",
+              "answer_short": "依靠 early printk、调试器读取 PC/LR 与故障状态寄存器、以及启动各阶段的标志输出逐段缩小范围。",
+              "answer_detail": "先确认串口是否有任何输出：无输出说明卡在解压或更早；有输出则看最后一条日志对应的子系统。用 JTAG/SWD 连接后读 PC 判断停在哪段代码，读 CFSR 的 MMFSR/BFSR/UFSR 位判断是取指错误、总线错误还是未定义指令。对 Cortex-M 还要看 HFSR 与 BFAR。逐步注释或替换启动代码做二分定位。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为只要裁剪内核就能在任意 MCU 上跑 Linux",
+              "explanation": "裁剪只减少体积和功能，不能弥补缺少 MMU 这一架构前提，启动仍会在内存管理初始化处失败。",
+              "correction": "先确认芯片是否具备 MMU 与足够 RAM，再决定用 Linux 还是 RTOS；不要以体积为唯一判断标准。"
+            },
+            {
+              "title": "把 HardFault 一律当成代码 bug",
+              "explanation": "在移植场景中 HardFault 常由访问不存在的系统寄存器或非法指令引起，属于架构不匹配而非普通逻辑错误。",
+              "correction": "先读 CFSR/HFSR 分类故障原因，再对照芯片架构手册确认该指令或寄存器是否存在。"
+            },
+            {
+              "title": "忽略内存域属性差异",
+              "explanation": "STM32H7 的 DTCM 与 AXI SRAM 在缓存和 DMA 可见性上不同，把内核数据放到错误区域会导致难以解释的崩溃。",
+              "correction": "按链接脚本明确各段所在内存域，DMA 缓冲区避开不可见区域或做 cache 维护。"
+            }
+          ],
+          "tags": [
+            "Linux",
+            "Cortex-M",
+            "STM32H743",
+            "MMU",
+            "启动调试"
+          ],
+          "possible_duplicate_title": "Kernel Panic 应如何定位？"
+        },
+        {
+          "title": "Linux 内核崩溃（Kernel Panic / Oops）应如何系统定位？",
+          "domain": "Linux 驱动",
+          "subtopic": "内核崩溃日志分析与定位",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题直接描述“Linux kernel crashes”，属于内核崩溃定位问题；已有题目含“Kernel Panic 应如何定位？”，本题从崩溃日志与调用栈角度补充，标注潜在重复。",
+          "answer_short": "先抓完整日志：Oops/Panic 会打印故障类型、出错地址、调用栈和寄存器。用 addr2line 或 gdb 结合 vmlinux 与 System.map 把地址还原为函数和行号，判断是空指针、越界还是非法指令；再看是否可复现、是否与特定驱动或中断上下文相关，最后用 KASAN、lockdep、ftrace 等工具缩小范围。",
+          "answer_detail": "结论先行：内核崩溃定位的核心是把“地址”翻译成“代码位置”，再结合上下文判断触发条件。步骤一，保留完整串口或 pstore/ramoops 日志，注意 Oops 头部的 BUG、Unable to handle kernel paging request、general protection fault 等关键字，以及 PC、LR、SP 和 Call Trace。步骤二，用 scripts/faddr2line 或 addr2line -e vmlinux 还原地址；若开启了 KASLR，需先关闭或按偏移修正。步骤三，判断故障类型：空指针解引用看地址是否接近 0；越界看是否落在 slab 红区；非法指令看是否调用了不支持的指令或函数指针被踩。步骤四，结合场景：是否在中断上下文（看 in_interrupt 标志）、是否持有锁（看 lockdep 报告）、是否刚加载某模块（对比加载前后）。工具方面，KASAN 抓越界和 use-after-free，lockdep 抓锁顺序问题，ftrace 抓函数调用路径，crash 工具分析 vmcore。嵌入式约束：很多板子没有持久化存储，需配置 ramoops 或串口全量抓取；内核需带调试符号。示例：日志显示 PC 在 foo_write+0x2c/0x80，反汇编该函数发现偏移处是对结构体成员的写操作，而该结构体指针来自 probe 失败后未置空的全局变量，即可定位为 probe 错误路径未清理。",
+          "follow_ups": [
+            {
+              "title": "KASLR 开启时如何正确还原崩溃地址？",
+              "answer_short": "从日志中的内核基址偏移或 /proc/kallsyms 取实际加载基址，减去偏移后再用 vmlinux 符号还原。",
+              "answer_detail": "KASLR 使内核加载地址随机化，addr2line 直接使用会错位。可在启动参数加 nokaslr 复现，或从 dmesg 中读取 Kernel Offset 字段，把崩溃地址减去该偏移得到链接地址。生产环境建议保留带符号的 vmlinux 与对应 System.map，并记录每次启动的偏移。"
+            },
+            {
+              "title": "Oops 和 Panic 有什么区别？",
+              "answer_short": "Oops 表示当前进程或上下文出错但内核可能继续运行；Panic 是内核判定无法继续而主动停机。",
+              "answer_detail": "Oops 通常由非法内存访问或 BUG() 触发，会杀死当前进程并打印调用栈，但若发生在中断上下文或持有锁时可能升级为 Panic。Panic 由 panic() 调用或 panic_on_oops 配置触发，会停止调度并可能重启。定位时 Oops 日志同样关键，不能因为系统没挂就忽略。"
+            },
+            {
+              "title": "如何在嵌入式板子上保留崩溃现场？",
+              "answer_short": "配置 pstore/ramoops 把日志写入预留内存，重启后从 /sys/fs/pstore 读取；或使用串口全量记录。",
+              "answer_detail": "ramoops 需要在设备树中预留一块不被内核使用的内存区域，并配置 record-size 等参数；崩溃后重启，内核会把上次日志导出到 /sys/fs/pstore。没有持久存储时，用高波特率串口加日志服务器抓取。注意预留区域不能被其他驱动占用，且掉电会丢失。"
+            },
+            {
+              "title": "函数指针被破坏导致的崩溃如何排查？",
+              "answer_short": "看崩溃 PC 是否落在合法函数范围外，结合 KASAN 或内存断点定位谁改写了该指针。",
+              "answer_detail": "若 Call Trace 出现异常地址或 PC 指向数据段，常见原因是函数指针所在结构体被越界写。可用 KASAN 抓越界写，或在调试器中对该地址设硬件写断点。也可在关键结构体前后加魔数校验，周期性检查是否被踩。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "只看最后一行日志就下结论",
+              "explanation": "最后一行往往只是 panic 的收尾信息，真正的根因在更早的 Oops 头部和调用栈中。",
+              "correction": "从第一条 BUG 或 fault 信息开始读，完整保留 Call Trace 与寄存器。"
+            },
+            {
+              "title": "用未带符号的内核做 addr2line",
+              "explanation": "裁剪或 strip 过的内核无法还原行号，只能得到错误或空结果。",
+              "correction": "保留与运行内核完全一致的 vmlinux（含调试信息）和 System.map。"
+            },
+            {
+              "title": "忽略中断上下文限制",
+              "explanation": "在中断上下文睡眠或调用可能睡眠的函数会触发 scheduling while atomic，被误判为普通崩溃。",
+              "correction": "先看日志中的上下文标志，再判断是否属于原子上下文违规。"
+            }
+          ],
+          "tags": [
+            "Linux",
+            "Kernel Panic",
+            "Oops",
+            "调试"
+          ],
+          "possible_duplicate_title": "Kernel Panic 应如何定位？"
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-0b0def94fb5ca731",
+    "source_url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
+    "source_title": "freescale imx6 with mpu9250",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-08-05T13:47:34+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:39.290389+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面为 Stack Overflow 技术问答，主题是 i.MX6 平台上的 MPU9250 传感器驱动，属于 Linux 驱动、I2C、设备树与 IIO 子系统范畴，与已有题目不重复；但正文不可用，仅有标题和摘要，无法提取具体问题，因此 questions 为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-d03d31f3d150ab77",
+    "source_url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
+    "source_title": "Endless kernel (5.10.204) loading",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2025-02-18T15:10:22+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:36.878884+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": false,
+      "reason": "候选页面正文不可用，仅有标题与摘要；标题描述的是内核加载卡住的现象，未明确给出可提取的面试问题，证据不足。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-8e9e4fce2bfa9c60",
+    "source_url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
+    "source_title": "ARM stucks at \"Starting kernel image ...\" sometimes",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-03-26T08:04:31+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:34.460004+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是公开技术问答，主题为 ARM 启动时卡在 Starting kernel image，属于 Linux 内核启动与驱动调试范畴，与已有题目不重复；但正文不可用，仅有标题和摘要，证据不足以提取具体面试题。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-658e01b85df02535",
+    "source_url": "https://github.com/lmq6178/Embedded_Interview_hugo",
+    "source_title": "lmq6178/Embedded_Interview_hugo",
+    "source_provider": "github-search",
+    "source_published_at": "2025-07-07T17:10:30Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:31.948884+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": true,
+    "page_excerpt_chars": 2837,
+    "page_fetch_error": null,
+    "result": {
+      "is_relevant": true,
+      "reason": "该仓库标题与摘要明确为嵌入式面试笔试题集合，属于嵌入式面试资料；但正文节选仅为 GitHub 页面框架，未列出具体题目，故仅能依据标题与摘要确认相关性，无法提取具体题目。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-1aa3f240fad92df9",
+    "source_url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
+    "source_title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-09-27T13:40:34+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:28.854544+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面标题涉及多串行协议（I2C/SPI/UART）的嵌入式主机接口层抽象设计，属于外设与协议及驱动架构范畴；但正文不可用，仅有标题与摘要，无法确认具体面试问题，故仅基于标题可明确指向的接口层抽象设计整理有限题目，其余留空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "如何设计一个同时支持 I2C、SPI、UART 的主机接口抽象层？",
+          "domain": "外设与协议",
+          "subtopic": "多协议主机接口层抽象设计",
+          "difficulty": "进阶",
+          "question_evidence": "候选标题明确提出要构建可配合多种串行协议（I2C、SPI、UART）工作的嵌入式主机接口层。",
+          "answer_short": "核心是把“传输语义”与“物理协议”解耦：定义统一的设备句柄与操作集（open/close/transfer/ioctl），每种协议实现自己的 transfer，上层只面向统一接口。用函数指针表（类似 Linux 的 file_operations）做多态，用配置结构描述速率、模式、地址等差异，用返回值统一错误码。差异大的语义（如 I2C 的重复起始、SPI 的全双工、UART 的流控）通过可选能力标志和协议私有 ioctl 暴露，避免接口被最小公倍数化。",
+          "answer_detail": "分层思路：1）传输抽象层：定义 struct bus_ops { int (*xfer)(dev, msg[], n); int (*ioctl)(dev, cmd, arg); }，上层业务只调用 xfer。2）协议适配层：i2c_xfer 把通用 msg 翻译为起始/地址/读写/停止序列；spi_xfer 处理片选、时钟极性相位、全双工收发缓冲；uart_xfer 处理字节流与超时。3）设备描述层：用配置结构或表描述总线号、从地址、速率、模式，便于板级替换。4）能力协商：用 capability 位图声明是否支持重复起始、10 位地址、DMA、半双工等，上层按能力分支而非按协议类型分支。\n\n嵌入式约束：中断上下文不能阻塞，xfer 需区分同步/异步；缓冲区对齐与 DMA 一致性；错误码要能区分 NAK、超时、总线错误以便重试策略。取舍：接口过通用会退化为“万能 ioctl”，过专用则上层需感知协议。工程上常用“通用 msg 数组 + 少量协议私有 ioctl”折中。排查示例：某设备在 SPI 下偶发错位，检查发现适配层未在每次传输前重新拉低片选，属于抽象层遗漏协议时序细节。",
+          "follow_ups": [
+            {
+              "title": "统一接口应该用函数指针表还是 switch 分支？",
+              "answer_short": "函数指针表更利于扩展新协议且调用点稳定；switch 更简单、可静态分析、无间接调用开销。资源极紧的 MCU 可用编译期 switch 或宏生成。",
+              "answer_detail": "函数指针表把协议差异收敛到注册处，新增协议不改上层；缺点是间接调用影响可预测性与内联，且需注意空指针校验。switch 分支代码集中、易调试，但每加协议要改核心文件。折中：用编译期配置裁剪未使用协议，或用宏把表展开为直接调用。"
+            },
+            {
+              "title": "如何处理 I2C 重复起始与 SPI 全双工这类语义差异？",
+              "answer_short": "在通用消息结构里保留标志位（如 no_stop、read_write 组合），由各协议适配层解释；无法映射的能力通过能力位声明不支持。",
+              "answer_detail": "I2C 读寄存器需要“写地址+重复起始+读”，可在 msg 数组中用连续两条消息加 no_stop 标志表达；SPI 天然全双工，用 tx/rx 双缓冲表达；UART 半双工需方向切换。关键是让通用层只表达意图，协议层负责时序合法性校验，不支持时返回明确错误而非静默降级。"
+            },
+            {
+              "title": "错误处理与重试应放在哪一层？",
+              "answer_short": "底层只上报精确错误（NAK、超时、总线错误、仲裁丢失），重试策略放在协议适配层或更上层，按错误类型决定是否重试及次数。",
+              "answer_detail": "总线错误与 NAK 语义不同：NAK 可能是设备忙，可短延时重试；总线错误常需复位总线。重试放底层会掩盖问题且难配置。建议底层返回结构化错误码，适配层实现有限次重试与总线恢复（如 I2C 时钟脉冲恢复），上层决定业务级降级。"
+            },
+            {
+              "title": "如何保证接口层在中断与线程上下文都安全？",
+              "answer_short": "明确 xfer 是否可阻塞：阻塞式仅线程上下文调用，异步式提交后回调；共享总线加互斥或队列化，中断上下文只做入队。",
+              "answer_detail": "同一总线多设备共享时需总线锁；中断中调用阻塞传输会导致死锁或超时。常见做法是提供 async 提交接口，由工作队列或 DMA 完成回调；同步接口内部加锁并检查上下文，非法上下文直接返回错误，便于早期发现误用。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "把接口设计成所有协议的最小公倍数",
+              "explanation": "只保留最通用的读写，会丢失重复起始、片选时序、流控等关键语义，导致上层不得不绕过抽象直接操作寄存器。",
+              "correction": "通用消息 + 能力位 + 协议私有 ioctl 组合，既保持上层稳定又保留协议特性。"
+            },
+            {
+              "title": "在抽象层里硬编码具体芯片时序",
+              "explanation": "把某型号传感器的延时、地址写进通用层，换器件就要改公共代码，破坏可复用性。",
+              "correction": "器件差异放设备描述表或驱动私有数据，抽象层只处理协议级语义。"
+            },
+            {
+              "title": "忽略 DMA 与缓冲对齐约束",
+              "explanation": "统一接口若默认接受任意缓冲，SPI/I2C DMA 传输可能因非对齐或位于不可 DMA 区域而失败或静默出错。",
+              "correction": "接口文档声明缓冲要求，适配层检测对齐并回退到 PIO 或拷贝到内部缓冲。"
+            }
+          ],
+          "tags": [
+            "外设与协议",
+            "驱动架构",
+            "接口抽象",
+            "I2C",
+            "SPI",
+            "UART"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
+    "candidate_id": "candidate-a73081da8f7115b1",
+    "source_url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
+    "source_title": "SPI slave-mode on imx8qmlpddr4arm2 board using yocto",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-02-12T23:09:18+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:15.225442+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": false,
+    "page_excerpt_chars": 0,
+    "page_fetch_error": "HTTP Error 403: Forbidden",
+    "result": {
+      "is_relevant": true,
+      "reason": "候选页面是 Stack Overflow 上关于在 i.MX8QM 板卡上通过 Yocto 配置 SPI 从模式的公开技术问答，属于 Linux 驱动与外设协议范畴；但正文不可用，仅有标题与摘要，无法提取具体面试问题，故 questions 为空。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-70c59a5f1e9256ea",
+    "source_url": "https://github.com/master869/interview-notes",
+    "source_title": "master869/interview-notes",
+    "source_provider": "github-search",
+    "source_published_at": "2026-11-06T01:17:47Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:13.005142+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": true,
+    "page_excerpt_chars": 2875,
+    "page_fetch_error": null,
+    "result": {
+      "is_relevant": true,
+      "reason": "该仓库是嵌入式面试题与八股文整理仓库，正文仅显示仓库结构与简介，未包含具体题目原文，因此只能依据仓库主题与已有题目标题判断相关性；无公司、岗位、轮次、日期等面经事实可提取。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": []
+    }
+  },
+  {
+    "candidate_id": "candidate-35078da57960db73",
+    "source_url": "https://github.com/Sering-Hong/embedded-interview",
+    "source_title": "Sering-Hong/embedded-interview",
+    "source_provider": "github-search",
+    "source_published_at": "2026-11-07T15:03:37Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-07T18:03:09.955877+00:00",
+    "review_status": "ai-draft",
+    "page_excerpt_used": true,
+    "page_excerpt_chars": 5397,
+    "page_fetch_error": null,
+    "result": {
+      "is_relevant": true,
+      "reason": "该页面是嵌入式面试题库仓库，正文明确列出 C 语言、STM32、FreeRTOS、通信协议、PID 等主题下的面试问题，属于嵌入式面试资料整理范围。",
+      "experience": {
+        "company": null,
+        "role": null,
+        "round": null,
+        "date": null,
+        "summary": null
+      },
+      "questions": [
+        {
+          "title": "volatile 的作用是什么？在嵌入式中如何使用？",
+          "domain": "C 语言",
+          "subtopic": "volatile 与编译器优化",
+          "difficulty": "基础",
+          "question_evidence": "来源高频题中列出“volatile 的作用”，并提到用于 ISR 共享变量和硬件寄存器。",
+          "answer_short": "volatile 告诉编译器该对象可能被程序之外的因素改变，每次访问都必须真正读写内存，不能缓存到寄存器或删除看似冗余的访问。它常用于硬件寄存器、中断服务程序与主循环共享的标志变量。但 volatile 不保证原子性，也不提供内存序，多核或并发场景仍需原子操作或屏障配合。",
+          "answer_detail": "定义层面：volatile 是类型限定符，约束的是编译器优化行为，而不是运行时同步语义。机制：编译器对 volatile 对象的每次读都生成加载指令、每次写都生成存储指令，且不合并、不重排相邻的 volatile 访问（相对顺序在编译器层面保持）。嵌入式约束：内存映射寄存器必须用 volatile 指针访问，否则优化可能把轮询循环变成死循环；ISR 修改的全局标志也应加 volatile，避免主循环读到寄存器缓存值。取舍：滥用 volatile 会降低优化效果，且容易让人误以为它等价于线程安全。示例：`volatile uint32_t *reg = (volatile uint32_t *)0x40020000; while ((*reg & 1) == 0) {}`。排查：若轮询不退出，先检查指针是否缺 volatile；若多字节共享数据出现撕裂，应改用临界区或原子类型。",
+          "follow_ups": [
+            {
+              "title": "volatile 能保证多线程可见性和原子性吗？",
+              "answer_short": "不能。volatile 只阻止编译器优化访问，不提供 CPU 级内存屏障，也不保证读改写原子性。",
+              "answer_detail": "多核或抢占式并发下，CPU 可能重排普通访存，缓存一致性协议虽保证一致性但不保证顺序；`counter++` 仍是读改写三步。正确做法是用原子类型、互斥锁或带屏障的同步原语，volatile 仅用于寄存器与简单标志。"
+            },
+            {
+              "title": "const 和 volatile 可以同时修饰一个变量吗？",
+              "answer_short": "可以，表示程序不修改但可能被外部改变，典型如只读状态寄存器。",
+              "answer_detail": "`const volatile uint32_t *p` 表示通过该指针不能写，但硬件可能改变其值，每次读都要重新加载。常见于状态寄存器映射，编译器不能把多次读合并。"
+            },
+            {
+              "title": "为什么中断里修改的变量主循环读不到新值？",
+              "answer_short": "因为变量未加 volatile，编译器把读操作提升到循环外或缓存在寄存器中。",
+              "answer_detail": "编译器看不到 ISR 的副作用，认为循环内变量不变。加 volatile 后每次循环重新加载。若变量宽度大于总线宽度，还需临界区保护避免读到中间态。"
+            },
+            {
+              "title": "内存屏障和 volatile 有什么区别？",
+              "answer_short": "volatile 约束编译器对单个对象的访问，屏障约束访存顺序，覆盖编译器和 CPU 重排。",
+              "answer_detail": "屏障（如 `__DMB()`、`atomic_thread_fence`）用于保证前后访存的可见顺序，常见于 DMA 描述符、外设配置后触发传输等场景；volatile 不提供这种顺序保证。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为加了 volatile 就线程安全",
+              "explanation": "volatile 不保证原子性和顺序，多线程自增仍会丢更新。",
+              "correction": "并发共享数据使用原子操作或锁，volatile 只用于寄存器与单写单读标志。"
+            },
+            {
+              "title": "对普通局部变量滥用 volatile",
+              "explanation": "局部变量不会被外部改变，加 volatile 只会阻止优化、降低性能。",
+              "correction": "只在对象可能被 ISR、硬件或其他执行流改变时使用。"
+            },
+            {
+              "title": "用非 volatile 指针访问寄存器",
+              "explanation": "编译器可能合并或删除访问，轮询循环可能被优化成死循环。",
+              "correction": "寄存器映射统一使用 volatile 指针，并在头文件中集中定义。"
+            }
+          ],
+          "tags": [
+            "volatile",
+            "C 语言",
+            "寄存器",
+            "ISR"
+          ],
+          "possible_duplicate_title": "volatile、原子操作和内存屏障分别解决什么问题？"
+        },
+        {
+          "title": "指针和数组名有什么区别？",
+          "domain": "C 语言",
+          "subtopic": "指针与数组",
+          "difficulty": "基础",
+          "question_evidence": "来源高频题列出“指针和数组名的区别”，提到数组名是常量不能赋值、sizeof 结果不同。",
+          "answer_short": "数组名在多数表达式中退化为指向首元素的指针，但它本身不是指针变量：不能被赋值，sizeof 得到整个数组大小，&数组名得到数组指针类型。指针是独立变量，可重新指向，sizeof 得到指针宽度。函数形参写成数组形式实际退化为指针，因此函数内无法用 sizeof 求数组长度。",
+          "answer_detail": "类型层面：`int a[10]` 中 a 的类型是 `int[10]`，在值语境退化为 `int*`；`&a` 类型是 `int(*)[10]`，加一偏移整个数组。指针 `int *p` 是对象，占 4 或 8 字节，可自增、可赋新地址。机制：数组名是编译器符号，没有存储位置存放“数组地址”，因此不可作为左值。嵌入式约束：传数组给函数必须同时传长度，或用宏 `ARRAY_SIZE(a)` 在定义作用域内计算。示例：`sizeof(a)` 为 40，`sizeof(p)` 为 4/8；`p+1` 前进一个 int，`&a+1` 前进 40 字节。排查：函数内 sizeof 结果异常小，通常是形参退化。",
+          "follow_ups": [
+            {
+              "title": "为什么函数形参中的数组会退化为指针？",
+              "answer_short": "C 语言按值传参，数组无法整体复制，标准规定形参数组调整为指针。",
+              "answer_detail": "因此 `void f(int a[10])` 与 `void f(int *a)` 等价，函数内 sizeof(a) 是指针大小。需要长度时显式传参或用结构体包裹数组。"
+            },
+            {
+              "title": "&a 和 a 的值相同，区别在哪？",
+              "answer_short": "值相同但类型不同，&a 是数组指针，加一偏移整个数组。",
+              "answer_detail": "`a` 退化为 `int*`，`a+1` 偏移一个元素；`&a` 为 `int(*)[N]`，`&a+1` 偏移 N 个元素。类型决定指针算术步长。"
+            },
+            {
+              "title": "如何安全获取数组元素个数？",
+              "answer_short": "在数组定义所在作用域用 sizeof(a)/sizeof(a[0])，或封装为宏。",
+              "answer_detail": "宏 `#define ARRAY_SIZE(a) (sizeof(a)/sizeof((a)[0]))` 只在数组未退化时有效；对指针使用会得到错误结果，可加编译期断言防护。"
+            },
+            {
+              "title": "二维数组 a[3][4] 中 a、a[0]、&a[0] 各是什么类型？",
+              "answer_short": "a 是 int(*)[4]，a[0] 是 int*，&a[0] 是 int(*)[4]。",
+              "answer_detail": "a 指向第一行，加一偏移一行 16 字节；a[0] 指向首元素，加一偏移 4 字节；&a[0] 与 a 值相同类型相同。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "对数组名赋值",
+              "explanation": "数组名不是可修改左值，赋值会编译错误。",
+              "correction": "需要可移动的游标时使用独立指针变量。"
+            },
+            {
+              "title": "在函数内用 sizeof 求传入数组长度",
+              "explanation": "形参已退化为指针，sizeof 得到指针大小而非数组大小。",
+              "correction": "显式传长度参数，或使用带长度字段的结构体。"
+            },
+            {
+              "title": "认为数组和指针完全等价",
+              "explanation": "二者在 sizeof、赋值、& 运算和存储上不同，混淆会导致越界和类型错误。",
+              "correction": "记住退化规则，涉及类型和大小计算时区分数组类型与指针类型。"
+            }
+          ],
+          "tags": [
+            "指针",
+            "数组",
+            "sizeof",
+            "C 语言"
+          ],
+          "possible_duplicate_title": "指针和数组在类型、赋值、内存分配、字节大小和修改内容方面有哪些区别？"
+        },
+        {
+          "title": "static 关键字有哪几种用法？",
+          "domain": "C 语言",
+          "subtopic": "存储类与链接属性",
+          "difficulty": "基础",
+          "question_evidence": "来源高频题列出“static 的三种用法”，包括局部变量延长生命周期、全局变量限制作用域、文件内部链接。",
+          "answer_short": "static 有三种典型用法：修饰局部变量使其生命周期延长到整个程序、只初始化一次；修饰全局变量或函数使其仅在本编译单元可见，避免命名冲突；在 C++ 中还用于类的静态成员。嵌入式项目常用文件内 static 函数实现模块私有接口，减少符号暴露和链接冲突。",
+          "answer_detail": "机制：static 局部变量存放在静态存储区而非栈上，程序启动时零初始化，函数多次调用共享同一份。文件作用域的 static 改变链接属性为内部链接，链接器不会把它与其他文件的同名符号合并。C++ 中类静态成员属于类而非对象，需在类外定义（C++17 起可用 inline 变量简化）。嵌入式约束：静态区大小在链接时确定，大量 static 缓冲会推高 RAM 占用，需关注 map 文件。取舍：模块私有化提升封装性，但不利于单元测试打桩。示例：`static int count;` 在函数内计数；`static void helper(void)` 作为文件私有函数。排查：多文件同名符号冲突时，检查是否缺少 static。",
+          "follow_ups": [
+            {
+              "title": "static 局部变量是线程安全的吗？",
+              "answer_short": "不是。多个线程或中断共享同一份静态变量，需要额外同步。",
+              "answer_detail": "静态变量只有一份实例，并发读写会产生竞态。RTOS 中应加互斥锁或临界区，或改为每任务独立上下文。"
+            },
+            {
+              "title": "static 函数和普通函数在链接阶段有何区别？",
+              "answer_short": "static 函数为内部链接，不进入全局符号表，其他编译单元无法引用。",
+              "answer_detail": "这减少符号冲突并利于内联优化，但也意味着无法跨文件复用，测试时需通过公开接口间接覆盖。"
+            },
+            {
+              "title": "C++ 类静态成员变量如何初始化？",
+              "answer_short": "传统上在类外定义并初始化，C++17 起可用 inline static 在类内定义。",
+              "answer_detail": "类内声明只是声明，需在某个 .cpp 中 `int A::x = 0;` 提供唯一定义，否则链接报未定义符号。C++17 的 inline 变量允许头文件内定义。"
+            },
+            {
+              "title": "static 变量未显式初始化时值是多少？",
+              "answer_short": "零初始化，指针为 NULL，算术类型为 0。",
+              "answer_detail": "静态存储期对象在程序加载时被清零，这与栈上局部变量的不确定值不同，但不应依赖此特性表达业务初值。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "在头文件中定义 static 变量",
+              "explanation": "每个包含该头文件的编译单元都会生成独立副本，造成数据不一致和空间浪费。",
+              "correction": "头文件只放声明，定义放在 .c 文件中；需要共享时用 extern 声明。"
+            },
+            {
+              "title": "认为 static 局部变量每次调用都重新初始化",
+              "explanation": "静态变量只初始化一次，后续调用保留上次的值。",
+              "correction": "需要每次重置时显式赋值，或改用普通局部变量。"
+            },
+            {
+              "title": "用 static 隐藏符号后仍期望跨文件调用",
+              "explanation": "内部链接使符号对其他编译单元不可见，链接会失败。",
+              "correction": "需要跨文件使用时去掉 static，并在头文件中声明。"
+            }
+          ],
+          "tags": [
+            "static",
+            "链接属性",
+            "存储类",
+            "C 语言"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "嵌入式中为什么通常不建议使用 malloc？",
+          "domain": "C 语言",
+          "subtopic": "动态内存管理",
+          "difficulty": "进阶",
+          "question_evidence": "来源高频题列出“嵌入式中为什么不用 malloc”，提到碎片化、执行时间不确定、FreeRTOS heap 方案限制。",
+          "answer_short": "主要原因是堆分配时间不确定、长期运行产生碎片、失败路径难处理，且很多 RTOS 堆方案不支持 free。嵌入式系统强调确定性和长稳运行，通常改用静态分配、内存池或启动时一次性分配。若必须动态分配，应选择支持合并碎片的 heap_4/heap_5 或专用内存池，并做上限与失败处理。",
+          "answer_detail": "机制：通用 malloc 需在空闲链表中搜索合适块，最坏时间不确定；反复分配释放不同大小块会产生外部碎片，最终分配失败。嵌入式约束：RAM 有限、无 MMU 或仅有 MPU，分配失败可能导致系统崩溃；中断上下文通常不允许调用 malloc。取舍：静态分配简单可预测但灵活性差；内存池按固定块分配，时间 O(1) 且无碎片，适合协议栈和消息缓冲。示例：FreeRTOS 中 heap_1 只分配不释放，heap_4 支持合并相邻空闲块，heap_5 支持非连续内存。排查：用高水位统计和分配失败钩子定位泄漏；用 map 文件核对堆区大小。",
+          "follow_ups": [
+            {
+              "title": "FreeRTOS 的 heap_1 到 heap_5 有什么区别？",
+              "answer_short": "heap_1 只分配不释放；heap_2 可释放但不合并；heap_4 合并相邻空闲块；heap_5 支持多段非连续内存。",
+              "answer_detail": "选择取决于是否需要释放和内存布局。长期运行且频繁分配释放推荐 heap_4；外部 SDRAM 与内部 RAM 混合时用 heap_5。"
+            },
+            {
+              "title": "内存池相比 malloc 的优势是什么？",
+              "answer_short": "固定块分配时间确定、无外部碎片、实现简单，适合实时系统。",
+              "answer_detail": "内存池预先划分等大块，分配释放只是链表操作。代价是块大小固定可能浪费空间，需按业务设计多级池。"
+            },
+            {
+              "title": "如何检测堆内存泄漏？",
+              "answer_short": "记录分配释放配对、统计剩余量与高水位，或用带标签的封装分配器。",
+              "answer_detail": "可在 malloc/free 外包一层记录调用点和大小，定期打印剩余堆空间；结合分配失败钩子和长时间压测观察趋势。"
+            },
+            {
+              "title": "中断中能调用 malloc 吗？",
+              "answer_short": "一般不能，malloc 非可重入且耗时不确定，可能破坏堆或超时。",
+              "answer_detail": "中断上下文应使用预分配缓冲或专用无锁内存池，避免阻塞和不可预测延迟。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "认为只要内存够大就不会分配失败",
+              "explanation": "碎片化会使总空闲量足够但无连续块可用。",
+              "correction": "使用合并碎片的分配器或固定块内存池，并监控最大连续空闲块。"
+            },
+            {
+              "title": "分配后不检查返回值",
+              "explanation": "嵌入式堆很小，分配失败返回 NULL，直接解引用会 HardFault。",
+              "correction": "每次分配后判空并走降级路径，配置分配失败钩子记录现场。"
+            },
+            {
+              "title": "在中断和高优先级任务中随意分配释放",
+              "explanation": "破坏实时性并可能引发竞态。",
+              "correction": "关键路径使用静态或池化内存，动态分配集中在初始化阶段。"
+            }
+          ],
+          "tags": [
+            "malloc",
+            "内存池",
+            "FreeRTOS",
+            "碎片"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "STM32 中断优先级分组和抢占机制如何理解？",
+          "domain": "STM32 / MCU",
+          "subtopic": "NVIC 中断优先级",
+          "difficulty": "进阶",
+          "question_evidence": "来源高频题列出“中断优先级分组”，提到抢占与响应、NVIC_PriorityGroupConfig 设置。",
+          "answer_short": "Cortex-M 的 NVIC 把优先级分为抢占优先级和子优先级，分组决定两者各占几位。抢占优先级高的可打断低优先级中断形成嵌套；子优先级只在同时挂起时决定谁先执行，不影响嵌套。配置时先设定分组，再为每个中断设置优先级，并注意 RTOS 的 syscall 优先级和临界区屏蔽范围。",
+          "answer_detail": "机制：优先级数值越小越高。抢占发生时 CPU 压栈现场并跳转新向量，返回时恢复。分组通过 SCB->AIRCR 的 PRIGROUP 字段设置，常见分组如 4 位全抢占、2 位抢占 2 位子优先级。嵌入式约束：优先级数量有限，分组一旦确定全局生效；FreeRTOS 中高于 configMAX_SYSCALL_INTERRUPT_PRIORITY 的中断不能调用 FromISR API。取舍：抢占多则响应快但嵌套深、栈开销大；子优先级多则减少嵌套但同抢占级内不能打断。示例：串口接收用较高抢占级，低速按键用低抢占级。排查：中断不嵌套检查分组和优先级数值；RTOS 断言失败检查是否在临界区调用 API。",
+          "follow_ups": [
+            {
+              "title": "抢占优先级和子优先级的区别？",
+              "answer_short": "抢占决定能否嵌套打断，子优先级只在同时挂起时决定先后。",
+              "answer_detail": "两个中断抢占级不同时，高者立即打断低者；抢占级相同时，子优先级高者先执行，但不会打断正在执行的同抢占级中断。"
+            },
+            {
+              "title": "为什么 FreeRTOS 要求中断优先级数值不能太小？",
+              "answer_short": "数值太小表示优先级过高，高于 syscall 阈值的中断不受 RTOS 临界区屏蔽，不能调用 FromISR API。",
+              "answer_detail": "RTOS 通过 BASEPRI 屏蔽一定优先级以下的中断来保护临界区。高于阈值的中断仍可执行，若调用内核 API 会破坏内核数据结构。"
+            },
+            {
+              "title": "如何配置一个中断的优先级？",
+              "answer_short": "先设置优先级分组，再用 NVIC_SetPriority 设置抢占与子优先级，最后使能中断。",
+              "answer_detail": "HAL 中可用 HAL_NVIC_SetPriority 和 HAL_NVIC_EnableIRQ；需保证同一工程内分组一致，避免不同模块各自设置。"
+            },
+            {
+              "title": "中断嵌套过深有什么风险？",
+              "answer_short": "栈空间消耗增大，可能栈溢出；同时增加延迟不确定性。",
+              "answer_detail": "每次嵌套都压栈现场，主栈需预留足够空间。应限制高抢占级中断数量，把耗时处理放到任务中。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "把子优先级当成可以嵌套",
+              "explanation": "子优先级不产生嵌套，只影响同时挂起时的仲裁。",
+              "correction": "需要嵌套时提高抢占优先级，而不是调子优先级。"
+            },
+            {
+              "title": "不同模块重复设置优先级分组",
+              "explanation": "分组是全局配置，后设置会改变已有中断的解析方式。",
+              "correction": "在系统初始化时统一设置一次分组，其余模块只设优先级。"
+            },
+            {
+              "title": "在过高优先级中断中调用 RTOS API",
+              "explanation": "该中断不受内核临界区保护，会破坏内核数据。",
+              "correction": "确保调用 FromISR API 的中断优先级数值不低于 syscall 阈值。"
+            }
+          ],
+          "tags": [
+            "NVIC",
+            "中断优先级",
+            "STM32",
+            "FreeRTOS"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "DMA 的作用是什么？使用时要注意什么？",
+          "domain": "STM32 / MCU",
+          "subtopic": "DMA 传输",
+          "difficulty": "进阶",
+          "question_evidence": "来源高频题列出“DMA 的作用”，说明外设与内存直接传输不经过 CPU。",
+          "answer_short": "DMA 让外设与内存之间直接搬运数据，CPU 只做配置和收尾，从而降低占用、提高吞吐并改善实时性。使用时要注意传输完成与半完成中断、缓冲区对齐与大小、Cache 一致性、传输期间缓冲区不可被改写，以及错误标志处理。多缓冲区场景常用双缓冲或乒乓缓冲避免覆盖。",
+          "answer_detail": "机制：DMA 控制器持有源地址、目的地址、传输长度和触发源，按配置宽度搬运并在完成时产生中断。嵌入式约束：带 D-Cache 的 MCU 需在 DMA 读前 clean、写后 invalidate，否则 CPU 读到旧数据；地址和长度需满足对齐要求。取舍：DMA 减少 CPU 负载但增加配置复杂度和调试难度；小数据量用 CPU 搬运可能更简单。示例：ADC 连续采样配合定时器触发和 DMA 环形缓冲，任务侧按半满/全满处理。排查：数据错乱先查 Cache 和缓冲区生命周期；传输不启动查触发源、使能位和错误标志。",
+          "follow_ups": [
+            {
+              "title": "DMA 与 Cache 不一致如何产生？",
+              "answer_short": "CPU 写数据留在 Cache 未写回，DMA 从内存读到旧值；或 DMA 写内存后 CPU 读到 Cache 旧副本。",
+              "answer_detail": "解决方式是在 DMA 读前 clean 对应 Cache 行，DMA 写后 invalidate，或把缓冲区放在非缓存区。注意按 Cache 行对齐避免误伤相邻数据。"
+            },
+            {
+              "title": "什么是 DMA 双缓冲？",
+              "answer_short": "使用两块缓冲区交替传输和处理，避免处理期间被新数据覆盖。",
+              "answer_detail": "DMA 填缓冲 A 时 CPU 处理 B，半完成和完成中断切换角色。适合连续采样和串口高速接收。"
+            },
+            {
+              "title": "DMA 传输完成中断里应该做什么？",
+              "answer_short": "只做标志置位、计数更新等轻量操作，把数据处理交给任务。",
+              "answer_detail": "中断中避免耗时拷贝和复杂解析，可通过队列或任务通知唤醒处理任务，保证实时性。"
+            },
+            {
+              "title": "DMA 传输长度和地址如何设置？",
+              "answer_short": "按数据宽度设置传输数量，地址自增模式要与外设和内存布局匹配。",
+              "answer_detail": "外设寄存器通常地址不自增，内存侧自增；宽度不匹配会导致数据错位。环形模式下长度即缓冲区大小。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "忽略 Cache 一致性",
+              "explanation": "带 Cache 的芯片上 DMA 与 CPU 看到的数据可能不同。",
+              "correction": "按方向做 clean/invalidate，或使用非缓存内存并正确对齐。"
+            },
+            {
+              "title": "在 DMA 传输期间修改缓冲区",
+              "explanation": "会造成数据竞争和内容错乱。",
+              "correction": "用双缓冲或等传输完成后再复用缓冲区。"
+            },
+            {
+              "title": "把耗时处理放在 DMA 完成中断里",
+              "explanation": "长时间占用中断会阻塞其他中断，破坏实时性。",
+              "correction": "中断只置标志，处理放到任务上下文。"
+            }
+          ],
+          "tags": [
+            "DMA",
+            "Cache",
+            "STM32",
+            "双缓冲"
+          ],
+          "possible_duplicate_title": "DMA 与 Cache 不一致问题是怎样产生的？"
+        },
+        {
+          "title": "FreeRTOS 中队列和信号量有什么区别？",
+          "domain": "RTOS",
+          "subtopic": "任务间通信",
+          "difficulty": "基础",
+          "question_evidence": "来源高频题列出“队列和信号量的区别”，说明队列传递数据、信号量只有计数。",
+          "answer_short": "队列用于在任务或中断之间传递数据，带拷贝语义和长度限制，可阻塞等待；信号量只传递计数或状态，不携带数据，用于同步和资源计数。二值信号量类似长度为 1、消息为空的队列，互斥量则额外带优先级继承。选择依据是是否需要传数据以及是否需要优先级继承。",
+          "answer_detail": "机制：队列内部有存储区和等待列表，发送时拷贝数据，接收时拷贝出；满或空时可带超时阻塞。信号量基于计数，give 增加、take 减少，计数为零时阻塞。嵌入式约束：队列拷贝大结构体开销大，可改为传指针并管理生命周期；中断中必须用 FromISR 版本。取舍：队列通用但占内存；信号量轻量但无数据；互斥量解决优先级反转但有持有者限制。示例：串口接收用队列传字节块，任务同步用二值信号量，共享外设用互斥量。排查：队列满导致丢数据检查消费者优先级和长度；信号量计数错乱检查是否重复 give。",
+          "follow_ups": [
+            {
+              "title": "二值信号量和互斥量有什么区别？",
+              "answer_short": "互斥量带优先级继承和持有者概念，二值信号量没有。",
+              "answer_detail": "互斥量只能由持有者释放，用于保护共享资源；二值信号量可用于任务与中断同步，任何上下文都可 give。"
+            },
+            {
+              "title": "队列传递指针要注意什么？",
+              "answer_short": "要保证指针指向的内存在消费完成前有效，避免悬空和覆盖。",
+              "answer_detail": "常用静态缓冲池分配消息块，消费后归还；避免传栈上变量地址。"
+            },
+            {
+              "title": "中断中如何向队列发送数据？",
+              "answer_short": "使用 xQueueSendFromISR，并根据返回值决定是否触发上下文切换。",
+              "answer_detail": "若唤醒更高优先级任务，需在中断退出前调用 portYIELD_FROM_ISR，保证及时调度。"
+            },
+            {
+              "title": "队列长度如何确定？",
+              "answer_short": "按峰值生产速率与消费速率差估算，并留余量，结合水位统计调整。",
+              "answer_detail": "过短会丢数据，过长浪费 RAM 且增加延迟。可在调试时记录最大占用数。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "用二值信号量传递数据",
+              "explanation": "信号量不携带数据，接收方无法获得具体内容。",
+              "correction": "需要传数据时使用队列或邮箱。"
+            },
+            {
+              "title": "在中断中使用非 FromISR 版本 API",
+              "answer_short": "",
+              "explanation": "普通版本可能阻塞并操作调度器，在中断中调用会破坏内核状态。",
+              "correction": "中断上下文统一使用带 FromISR 后缀的接口。"
+            },
+            {
+              "title": "用互斥量做中断同步",
+              "explanation": "互斥量有持有者语义，中断不能持有和释放。",
+              "correction": "中断与任务同步使用二值信号量或任务通知。"
+            }
+          ],
+          "tags": [
+            "FreeRTOS",
+            "队列",
+            "信号量",
+            "互斥量"
+          ],
+          "possible_duplicate_title": null
+        },
+        {
+          "title": "什么是优先级反转？如何缓解？",
+          "domain": "RTOS",
+          "subtopic": "调度与同步",
+          "difficulty": "进阶",
+          "question_evidence": "来源高频题列出“优先级反转”，说明低优先级持锁被中优先级抢占导致高优先级间接阻塞，用优先级继承解决。",
+          "answer_short": "优先级反转指高优先级任务因等待被低优先级任务持有的锁而阻塞，而低优先级任务又被中优先级任务抢占，导致高优先级任务被间接延迟。缓解手段包括优先级继承（持锁者临时提升到等待者优先级）、优先级天花板（锁的优先级设为可能使用者的最高值）以及缩短临界区、避免嵌套锁。",
+          "answer_detail": "机制：高优先级任务 H 等待低优先级任务 L 持有的互斥量，中优先级任务 M 就绪后抢占 L，L 无法及时释放锁，H 被 M 间接阻塞。优先级继承在 H 阻塞时把 L 提升到 H 的优先级，使其尽快执行并释放锁，释放后恢复原优先级。嵌入式约束：继承只解决持有者被抢占的问题，不能解决多锁嵌套死锁；中断上下文不能使用互斥量。取舍：继承实现简单但有链式继承开销；天花板协议可预防但需静态分析所有使用者。示例：FreeRTOS 互斥量默认支持优先级继承，二值信号量不支持。排查：用跟踪工具观察任务阻塞时间，检查是否用信号量代替互斥量保护共享资源。",
+          "follow_ups": [
+            {
+              "title": "优先级继承和优先级天花板有什么区别？",
+              "answer_short": "继承在阻塞发生时临时提升持锁者；天花板在加锁时就把优先级提到预设上限。",
+              "answer_detail": "继承是反应式，可能发生一次反转后才缓解；天花板是预防式，但需要预先知道所有可能使用者并配置上限。"
+            },
+            {
+              "title": "为什么二值信号量不能解决优先级反转？",
+              "answer_short": "二值信号量没有持有者概念，无法做优先级继承。",
+              "answer_detail": "任何任务都能 give，内核不知道谁持有，因此不能提升持锁者优先级。保护共享资源应使用互斥量。"
+            },
+            {
+              "title": "优先级反转会导致什么后果？",
+              "answer_short": "高优先级任务响应时间不可预测，可能错过截止期。",
+              "answer_detail": "在实时系统中表现为偶发超时，难以复现。需通过锁设计和调度分析消除。"
+            },
+            {
+              "title": "如何从设计上减少优先级反转？",
+              "answer_short": "缩短临界区、减少共享资源、避免嵌套锁，必要时用无锁队列。",
+              "answer_detail": "把耗时操作移出临界区，用消息传递替代共享内存，可显著降低锁竞争和反转概率。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "用二值信号量保护共享资源",
+              "explanation": "缺少优先级继承，容易发生优先级反转。",
+              "correction": "共享资源保护使用互斥量，信号量只用于同步。"
+            },
+            {
+              "title": "在临界区内做耗时操作",
+              "explanation": "延长持锁时间，放大反转影响。",
+              "correction": "临界区只保护必要数据，耗时处理移到锁外。"
+            },
+            {
+              "title": "认为优先级继承能消除所有延迟",
+              "explanation": "继承只缓解持有者被抢占，不能解决死锁和长临界区。",
+              "correction": "结合锁粒度设计和死锁预防，必要时做最坏响应时间分析。"
+            }
+          ],
+          "tags": [
+            "优先级反转",
+            "互斥量",
+            "优先级继承",
+            "RTOS"
+          ],
+          "possible_duplicate_title": "什么是优先级反转？如何缓解？"
+        },
+        {
+          "title": "PID 中 Kp、Ki、Kd 各自起什么作用？",
+          "domain": "机器人",
+          "subtopic": "PID 控制",
+          "difficulty": "基础",
+          "question_evidence": "来源高频题列出“Kp/Ki/Kd 各自作用”，说明比例响应误差、积分消除稳态误差、微分预测趋势。",
+          "answer_short": "Kp 按当前误差成比例输出，增大加快响应但过大引起振荡；Ki 累积历史误差消除稳态误差，过大会超调和积分饱和；Kd 按误差变化率抑制超调、增加阻尼，但对噪声敏感。工程上先调 Kp 建立响应，再加 Ki 消静差，最后加 Kd 抑制超调，并结合限幅和滤波。",
+          "answer_detail": "机制：位置式输出 u = Kp·e + Ki·∫e dt + Kd·de/dt。比例项提供即时纠正；积分项在存在持续偏差时累积输出直到偏差为零；微分项预测趋势，提前制动。嵌入式约束：采样周期固定且与积分、微分系数匹配；微分对编码器噪声敏感，常加低通滤波或用测量值微分避免设定值突变冲击。取舍：积分消除静差但引入相位滞后；微分改善动态但放大噪声。示例：电机速度环先给 Kp 使阶跃响应无静差趋势，再加 Ki 消除稳态误差，Kd 小幅抑制超调。排查：持续振荡查 Kp 过大或采样延迟；静差查 Ki 过小或输出限幅。",
+          "follow_ups": [
+            {
+              "title": "为什么微分项容易放大噪声？",
+              "answer_short": "微分对误差变化率敏感，高频噪声被放大。",
+              "answer_detail": "可用一阶低通滤波后的误差做微分，或对测量值微分并限制微分增益。"
+            },
+            {
+              "title": "积分饱和如何产生？",
+              "answer_short": "误差长期存在使积分项持续累积，输出达到限幅后仍继续增长。",
+              "answer_detail": "退出饱和时需要长时间反向积分才能恢复。可用积分限幅、积分分离或抗饱和反馈。"
+            },
+            {
+              "title": "采样周期对 PID 有什么影响？",
+              "answer_short": "周期过长会引入延迟、降低稳定性；过短则噪声影响增大。",
+              "answer_detail": "通常取系统响应时间的十分之一到二十分之一，并保证周期抖动小。"
+            },
+            {
+              "title": "如何整定 PID 参数？",
+              "answer_short": "可用试凑法、齐格勒-尼科尔斯法或基于模型的整定，先比例后积分再微分。",
+              "answer_detail": "试凑法直观但耗时；ZN 法通过临界增益和振荡周期估算；工程中常结合阶跃响应观察超调和调节时间。"
+            }
+          ],
+          "pitfalls": [
+            {
+              "title": "一开始就同时调三个参数",
+              "explanation": "参数相互耦合，难以判断哪个起作用。",
+              "correction": "按 Kp、Ki、Kd 顺序逐步整定，每次只改一个。"
+            },
+            {
+              "title": "忽略输出限幅和积分抗饱和",
+              "explanation": "执行器饱和后积分继续累积，导致大幅超调。",
+              "answer_detail": "",
+              "correction": "对输出限幅并实现积分限幅或反算抗饱和。"
+            },
+            {
+              "title": "对含噪信号直接微分",
+              "explanation": "微分项剧烈抖动，输出不稳。",
+              "correction": "先滤波再微分，或降低 Kd 并提高采样质量。"
+            }
+          ],
+          "tags": [
+            "PID",
+            "Kp",
+            "Ki",
+            "Kd",
+            "参数整定"
+          ],
+          "possible_duplicate_title": null
+        }
+      ]
+    }
+  },
+  {
     "candidate_id": "candidate-aa833b6e119dd6d8",
     "source_url": "local://candidate-aa833b6e119dd6d8",
     "source_title": "本地导入面经 119dd6d8",
@@ -144147,81 +146313,6 @@
     }
   },
   {
-    "candidate_id": "candidate-54c512c84e55a6f7",
-    "source_url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
-    "source_title": "How to work with UIO drivers with my network card",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-01-31T09:17:40+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:17.891536+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "主题匹配Linux驱动，但页面仅涉及具体UIO使用问题，未明确列出面试八股题目，且正文不可用，证据不足。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-bf7d5d06f53e4c1a",
-    "source_url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
-    "source_title": "Error in booting from uSD-card - No filesystem could mount root, tried:Ext4",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-05-08T01:24:03+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:12.139178+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面涉及嵌入式Linux启动时根文件系统挂载失败的问题，属于Linux驱动/系统启动相关技术问答。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-c4df82f37be62837",
-    "source_url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
-    "source_title": "IRQCHIP_DECLARE: init function is not being run",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-06-14T11:10:33+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:05.595963+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面属于Linux驱动技术问答，但仅标题和摘要可用，无正文证据，无法提取具体面试题目。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-6e18ed2d71a52519",
     "source_url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
     "source_title": "How to correctly configure interrupt for INT line of Atmel MXT641T touch chip in Android 5 kernel device tree?",
@@ -144272,81 +146363,6 @@
           "possible_duplicate_title": null
         }
       ]
-    }
-  },
-  {
-    "candidate_id": "candidate-86883e4ce8fc3e8b",
-    "source_url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
-    "source_title": "Linux Kernel Boot Error: reserving fdt memory region failed",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2023-04-20T23:45:07+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:47.681460+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "内容涉及 Linux 内核启动与 FDT 内存保留，属于 Linux 驱动/嵌入式技术问答，但正文不可用且无明确面试问题，故 questions 为空。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-a82b7b893a49157d",
-    "source_url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
-    "source_title": "How do I run XEN on arm64 and Qemu 6.0.0 with Linux 4.20.11 as Dom0",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2021-11-08T21:27:19+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:41.714162+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": false,
-      "reason": "该页面为 XEN/QEMU 在 arm64 上的运行问题，不属于嵌入式面试常见方向，且无明确面试题证据。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-70978abc5fbf5f48",
-    "source_url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
-    "source_title": "Linux Device tree, node with multiple interrupt parents",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-02-07T13:39:04+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:34.453677+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "该来源是关于Linux设备树中断的公开技术问答，属于Linux驱动领域，但页面正文不可用，未能提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
     }
   },
   {
@@ -144599,81 +146615,6 @@
     }
   },
   {
-    "candidate_id": "candidate-a0ebfddc2da74630",
-    "source_url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
-    "source_title": "How do I implement a file system driver driver in Linux?",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-03-24T23:07:56+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:28.074091+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面涉及Linux文件系统驱动实现，属于Linux驱动领域，与嵌入式面试相关，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-dcca46534d4a5401",
-    "source_url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
-    "source_title": "Ambition66/interview_knowledge_base/interview_questions/12_嵌入式硬件基础面试题.md",
-    "source_provider": "github-code-search",
-    "source_published_at": null,
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:23.589921+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面为嵌入式硬件基础面试题文档，属于嵌入式面试资料，但正文不可用，证据不足，无法提取具体问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-dd113c9fe805b55b",
-    "source_url": "https://github.com/Craftbai/Interview-Question",
-    "source_title": "Craftbai/Interview-Question",
-    "source_provider": "github-search",
-    "source_published_at": "2026-08-16T08:27:21Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:17.782004+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": true,
-    "page_excerpt_chars": 6158,
-    "page_fetch_error": null,
-    "result": {
-      "is_relevant": true,
-      "reason": "页面为嵌入式面试题库仓库，主题相关，但未列出具体面试题目，仅提供分类和题量，无法提取具体问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-e5508e08478a9201",
     "source_url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
     "source_title": "Preferred Linux driver architecture for a multi-function PMU device",
@@ -144725,106 +146666,6 @@
           "possible_duplicate_title": null
         }
       ]
-    }
-  },
-  {
-    "candidate_id": "candidate-7292ed02071bab84",
-    "source_url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
-    "source_title": "Embedded Buildroot and Yocto Linux crash 50% of the time",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-11-04T18:22:50+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:58.032593+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题涉及嵌入式Linux（Buildroot/Yocto）崩溃问题，属于Linux驱动/系统领域，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-557eafdbca123e04",
-    "source_url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
-    "source_title": "rk3328 soc boot stuck at waiting for root device /dev/mmcblk1p2",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2023-09-04T16:14:46+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:53.209598+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面是Linux内核启动相关技术问答，属于嵌入式Linux驱动/系统启动范畴，可作为八股知识参考；但页面正文不可用，且标题和摘要未明确列出具体面试问题，因此不提取任何问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-9e54ea15d105cdd7",
-    "source_url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
-    "source_title": "Device-Tree Issues with ROCKPro64 PCIe Endpoint",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2022-10-17T01:47:01+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:49.100991+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "来源涉及Linux驱动和设备树主题，符合嵌入式Linux面试知识范围，但未提供具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-f56a85082efe07fc",
-    "source_url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
-    "source_title": "Linux kernel crashes on the stm32h743i",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-09-01T10:28:35+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:41.240989+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题和摘要涉及Linux驱动在STM32上的崩溃问题，属于Linux驱动技术问答范畴，但页面正文不可用，未提取到具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
     }
   },
   {
@@ -144881,56 +146722,6 @@
     }
   },
   {
-    "candidate_id": "candidate-0b0def94fb5ca731",
-    "source_url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
-    "source_title": "freescale imx6 with mpu9250",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2016-08-05T13:47:34+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:15.955162+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面主题为Linux驱动技术问答，涉及I2C、设备树、IIO等嵌入式驱动知识，但正文不可用，无明确面试题目。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-d03d31f3d150ab77",
-    "source_url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
-    "source_title": "Endless kernel (5.10.204) loading",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2025-02-18T15:10:22+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:11.312684+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面主题为Linux驱动/内核技术问答，属于嵌入式面试相关领域，但具体问题证据不足。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-d690f217ee05dcb1",
     "source_url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
     "source_title": "How to add an SPI device driver, if a device is already accessed by the \"spidev\" driver?",
@@ -144981,118 +146772,6 @@
         }
       ]
     }
-  },
-  {
-    "candidate_id": "candidate-8e9e4fce2bfa9c60",
-    "source_url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
-    "source_title": "ARM stucks at \"Starting kernel image ...\" sometimes",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2016-03-26T08:04:31+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:52.088251+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面涉及 ARM 嵌入式 Linux 启动卡在 Starting kernel image 的问题，属于 Linux 驱动/嵌入式 Linux 范畴。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-658e01b85df02535",
-    "source_url": "https://github.com/lmq6178/Embedded_Interview_hugo",
-    "source_title": "lmq6178/Embedded_Interview_hugo",
-    "source_provider": "github-search",
-    "source_published_at": "2025-07-07T17:10:30Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:46.927104+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": true,
-    "page_excerpt_chars": 2923,
-    "page_fetch_error": null,
-    "result": {
-      "is_relevant": true,
-      "reason": "该页面为嵌入式面试笔试题仓库，但正文未列出具体题目，无法提取问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-1aa3f240fad92df9",
-    "source_url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
-    "source_title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-09-27T13:40:34+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:42.615538+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选标题和摘要明确涉及嵌入式外设协议（I2C、SPI、UART）的接口层设计，属于外设与协议领域的公开技术问答，可作为知识参考。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-a73081da8f7115b1",
-    "source_url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
-    "source_title": "SPI slave-mode on imx8qmlpddr4arm2 board using yocto",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-02-12T23:09:18+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:38.288006+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题和摘要涉及Linux驱动和SPI，属于嵌入式Linux驱动面试常考主题，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-35078da57960db73",
-    "source_url": "https://github.com/Sering-Hong/embedded-interview",
-    "source_title": "Sering-Hong/embedded-interview",
-    "source_provider": "github-search",
-    "source_published_at": "2026-07-31T05:23:55Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:33.987497+00:00",
-    "review_status": "failed",
-    "error": "DeepSeek 返回空内容",
-    "page_fetch_error": null
   },
   {
     "candidate_id": "candidate-8e712054715df460",
