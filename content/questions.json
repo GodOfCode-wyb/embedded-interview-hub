@@ -124336,5 +124336,547 @@
       "issues": [],
       "summary": "保留原文核心定义，补充了线程池的组成、工作流程、适用场景、与多线程直接创建的对比、以及工程实现中的注意事项。"
     }
+  },
+  {
+    "id": "question-4c9a76865866d037",
+    "title": "题库新增题目时如何设计数据校验，避免 id 重复和分类未登记？",
+    "domain": "调试与测试",
+    "subtopic": "数据校验与题库维护",
+    "difficulty": "基础",
+    "answer_short": "题目以扁平数组存于 questions.json，每题含 id、cat、type、level、tags、q、options、answer、a、followup、resume 字段。新增只追加不改已有 id，因为进度按 id 索引。加完跑解析器校验：id 重复、分类未在 categories.json 登记、选择题 answer 下标越界都会报出具体题号；设置面板底部也有自检状态。",
+    "answer_detail": "数据结构：type 取 single、multi、bool、qa；level 取 1 基础、2 进阶、3 深入；选择题 answer 填下标数组，判断题填 true/false，简答题留空；resume 为 true 标记简历高危题。校验点：第一，id 唯一性，重复 id 会导致进度索引冲突，必须报错并指出题号；第二，分类登记，cat 必须在 categories.json 的 cats 数组里存在，否则筛选和统计会漏题；第三，选项下标越界，answer 中的下标必须落在 options 长度内，否则判卷时越界访问；第四，类型与答案形态匹配，single 只能一个下标，multi 可多个，bool 只能是 true/false。工程约束：id 一旦用过不能改，改了等于丢掉该题记录，所以只追加不动已有；新增分类只需在 categories.json 登记 id、name、desc，不需要改页面骨架。排查示例：校验报出某题 id 重复，定位到数组末尾新增项与旧题冲突，改新题 id 后重跑校验通过。取舍：把校验放在构建期而非运行期，能在提交前拦住脏数据，但要求每次改数据都跑测试，需要把校验命令写进流程。",
+    "follow_ups": [
+      {
+        "title": "为什么 id 不能复用或修改？",
+        "answer_short": "进度、错题本、统计都按 id 索引，改 id 会让历史记录对不上，等于该题记录丢失。",
+        "answer_detail": "存储层以 id 为键保存掌握状态和复习盒号。改 id 后旧记录成为孤儿，新 id 没有历史，统计掌握率会失真。正确做法是废弃旧 id 不再使用，新增题用新 id。"
+      },
+      {
+        "title": "选择题 answer 下标越界会在什么时候暴露？",
+        "answer_short": "判卷时访问 options 越界，可能抛异常或静默判错，最好在解析阶段就拦截。",
+        "answer_detail": "运行期越界在 Rust 中会 panic 或返回错误，在 JS 中可能得到 undefined 导致判卷逻辑异常。解析阶段校验下标范围并报出题号，能把问题挡在数据提交前。"
+      },
+      {
+        "title": "新增分类需要改页面代码吗？",
+        "answer_short": "不需要，只要在 categories.json 的 cats 数组登记 id、name、desc，筛选和统计会自动读取。",
+        "answer_detail": "分类是数据驱动而非硬编码，页面从 categories.json 构建筛选面板。硬编码分类会导致新增分类要改多处代码，容易遗漏。"
+      },
+      {
+        "title": "简答题和选择题的答案字段形态有何不同？",
+        "answer_short": "选择题 answer 是下标数组，判断题是布尔值，简答题留空并靠自评（会了、模糊、不会）记录掌握度。",
+        "answer_detail": "统一字段但按 type 解释，解析器要按类型校验形态。简答题没有客观答案，用自评三档映射到 Leitner 盒号，避免把主观题当客观题判卷。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "新增题目时修改已有题目的 id 或顺序",
+        "explanation": "进度按 id 索引，改 id 丢记录；重排数组本身不影响 id 索引，但改 id 会。",
+        "correction": "只追加新对象，已有对象保持 id 不变。"
+      },
+      {
+        "title": "分类名直接写字符串而不登记",
+        "explanation": "未登记的分类不会出现在筛选面板，题目在统计中被漏算。",
+        "correction": "先在 categories.json 登记分类，再在题目中引用该 cat。"
+      },
+      {
+        "title": "不跑校验直接提交数据",
+        "explanation": "id 重复、下标越界等问题在运行期才暴露，排查成本高。",
+        "correction": "把解析器校验作为提交前必跑步骤，报错信息带具体题号。"
+      }
+    ],
+    "tags": [
+      "数据校验",
+      "题库维护",
+      "JSON",
+      "解析器",
+      "调试与测试",
+      "数据校验与题库维护"
+    ],
+    "source_ids": [
+      "source-dd113c9fe805b55b"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-aea245c7e0299194",
+    "title": "为什么嵌入式题库要把核心逻辑用 Rust 编译成 WASM，而 Markdown 渲染留在 TypeScript？",
+    "domain": "编译与构建",
+    "subtopic": "WASM 与前后端职责划分",
+    "difficulty": "进阶",
+    "answer_short": "核心逻辑（调度、判卷、统计、解析校验）用 Rust 写成纯函数、零 IO，编译成 WASM 后网页版和 Tauri 桌面版共用同一套代码，且能被单元测试完整覆盖。Markdown 渲染留在 TypeScript，因为它输出 HTML 字符串直接喂 innerHTML，本质是 UI 层的事，搬进 Rust 只会多一次跨边界拷贝。边界上 Rust 只负责把状态序列化成字符串，读写全交给 TypeScript。",
+    "answer_detail": "分层动机：第一，可测试性。Rust 侧不碰任何 IO，只做纯函数变换，调度算法、判卷、统计能被单元测试完整覆盖，这是测试能跑起来的前提；一旦混入文件或网络 IO，测试就要 mock，覆盖率下降。第二，跨端复用。网页版和 Tauri 桌面版共用同一套 src/，核心逻辑编译成 WASM 后两端行为一致，避免两套实现漂移。第三，边界成本。WASM 与 JS 之间每次调用都有序列化和拷贝开销，所以边界要粗：Rust 暴露 QuizEngine，输入输出都是字符串，而不是高频细粒度调用。第四，职责归属。Markdown 渲染输出 HTML 字符串直接喂 innerHTML，属于 UI 层，放 TypeScript 侧零拷贝；搬进 Rust 要多一次跨边界字符串拷贝，收益为负。工程约束：改了 src-rust/ 之后必须重新跑 wasm 编译，TypeScript 侧的类型定义由 wasm-bindgen 生成，否则类型不同步；构建流程是 npm run wasm 产出 pkg/，再 npm run dev 或 npm run build。取舍：WASM 带来跨端一致和性能，但增加构建链复杂度（Rust 工具链、wasm 目标、类型生成），小项目可能不值得。",
+    "follow_ups": [
+      {
+        "title": "WASM 与 JS 边界为什么适合粗粒度调用？",
+        "answer_short": "每次跨边界调用都有参数序列化和内存拷贝开销，细粒度高频调用会抵消 WASM 的性能优势，粗粒度批量接口更划算。",
+        "answer_detail": "WASM 线性内存与 JS 堆是隔离的，传字符串或结构体需要编码解码。若每道题、每个字段都跨边界调用，开销累积可能超过计算本身。做法是把一次操作（如提交答案并返回下一题状态）合并成一次调用，输入输出用 JSON 字符串。"
+      },
+      {
+        "title": "为什么纯函数、零 IO 的设计更容易测试？",
+        "answer_short": "纯函数输出只依赖输入、无副作用，测试无需 mock 文件和网络，断言直接、可重复。",
+        "answer_detail": "有 IO 的代码测试要准备临时文件、模拟存储、处理时序，测试脆弱且慢。纯函数把状态变换和持久化分离，持久化交给 TypeScript 的 IndexedDB 层，Rust 侧只做变换，测试就是输入输出对照。"
+      },
+      {
+        "title": "改了 Rust 代码后忘记重新编译 WASM 会怎样？",
+        "answer_short": "TypeScript 侧仍调用旧 WASM 和旧类型定义，出现行为不一致或类型检查通过但运行时结果错误。",
+        "answer_detail": "wasm-bindgen 生成的类型定义来自当前 Rust 代码，不重新编译则类型和实现都停留在旧版本。表现为改了逻辑但页面行为不变，或新增字段类型报错。应在构建脚本里把 wasm 编译作为前置步骤。"
+      },
+      {
+        "title": "桌面版和网页版共用一套代码有什么风险？",
+        "answer_short": "平台差异（文件系统、窗口、存储配额）可能被共用代码掩盖，需要在边界层做能力探测和降级。",
+        "answer_detail": "网页版受浏览器存储配额和 PWA 限制，桌面版有本地文件系统。共用核心逻辑没问题，但存储、导入导出、离线能力要按平台分支，并在测试中覆盖两端。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "把 Markdown 渲染搬进 Rust 以追求“全 Rust”",
+        "explanation": "渲染结果最终要作为 HTML 字符串交给 DOM，搬进 Rust 只增加一次跨边界拷贝，没有性能收益。",
+        "correction": "按职责划分：纯计算和状态变换放 Rust，UI 相关的字符串生成留在 TypeScript。"
+      },
+      {
+        "title": "在 Rust 核心层直接读写存储",
+        "explanation": "混入 IO 后单元测试需要 mock，覆盖率下降，且网页版和桌面版存储 API 不同。",
+        "correction": "Rust 侧只做纯函数变换并序列化状态，读写统一交给 TypeScript 存储层。"
+      },
+      {
+        "title": "细粒度跨 WASM 边界调用",
+        "explanation": "高频小调用累积序列化开销，可能比纯 JS 实现更慢。",
+        "correction": "合并为批量接口，一次调用完成一组操作并返回完整状态。"
+      }
+    ],
+    "tags": [
+      "WASM",
+      "Rust",
+      "TypeScript",
+      "架构分层",
+      "编译与构建",
+      "WASM 与前后端职责划分"
+    ],
+    "source_ids": [
+      "source-dd113c9fe805b55b"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-8aec34ea00b43a2e",
+    "title": "Linux 启动时卡在 \"random: nonblocking pool is initialized\" 附近，可能的原因和排查思路是什么？",
+    "domain": "Linux 系统编程",
+    "subtopic": "内核启动与随机数熵池初始化",
+    "difficulty": "进阶",
+    "answer_short": "该打印本身只是内核随机数子系统初始化完成的提示，通常不是卡死根因。真正卡住往往发生在它之后的下一步：等待根文件系统、等待某个驱动 probe、等待硬件就绪或控制台无输出。排查应先确认最后一条打印与卡住位置，打开 earlycon/console 与 initcall_debug，检查 rootfs、存储驱动、时钟与电源、看门狗，并用 sysrq 或 JTAG 观察内核是否仍在运行。",
+    "answer_detail": "结论：\"random: nonblocking pool is initialized\" 是 random 子系统在启动早期完成 nonblocking 熵池初始化的日志，本身不代表错误；把它当作卡死点通常是误判，因为之后内核可能继续运行但控制台没有输出，或阻塞在后续初始化步骤。\n机制与上下文：Linux 启动早期需要为 random 设备准备熵源，nonblocking 池初始化完成后会打印该行。之后内核继续执行 initcall、挂载根文件系统、启动 init。嵌入式板（如 i.MX6）常见卡点包括：存储控制器或 MMC/NAND 驱动 probe 卡住、时钟或电源管理未就绪、设备树描述与实际硬件不符、串口控制台在某个阶段被重新初始化导致丢日志、根文件系统挂载失败后 panic 但控制台未配置、看门狗提前复位导致反复重启。\n排查步骤：1) 确认串口参数、console= 与 earlycon 配置，尽量保留早期日志；2) 在 cmdline 加 initcall_debug、ignore_loglevel、loglevel=8，观察最后执行的 initcall；3) 加 no_console_suspend、关闭 quiet，排除日志被抑制；4) 检查 root= 与 rootfstype 是否正确，单独验证存储驱动能否识别设备；5) 用 SysRq（若已启用）查看任务栈，或用 JTAG/调试器读 PC 判断内核是否在跑；6) 对比正常板与异常板的设备树、时钟、供电和启动介质差异；7) 若怀疑熵池阻塞用户态读取 /dev/random，可确认是否在 init 脚本中同步读取随机数，必要时用 haveged 或内核参数缓解，但这属于用户态问题而非该打印本身。\n取舍与边界：不同内核版本的日志顺序和 random 子系统实现有差异，不能把该行当作固定分界点；嵌入式板缺少完整控制台时，优先保证早期串口输出而不是盲目改内核配置。",
+    "follow_ups": [
+      {
+        "title": "为什么这条 random 日志不能直接判定为卡死点？",
+        "answer_short": "它只是初始化完成提示，之后内核还会继续执行大量 initcall 和挂载流程，日志缺失可能只是控制台问题。",
+        "answer_detail": "内核日志是异步输出的，串口驱动重新初始化、console 切换、loglevel 过滤都会造成后续日志丢失。判断卡死应看内核是否仍在推进（initcall_debug、SysRq、JTAG），而不是只看最后一行打印。"
+      },
+      {
+        "title": "initcall_debug 能提供什么信息？",
+        "answer_short": "它会在每个 initcall 前后打印耗时与函数名，帮助定位卡在哪个驱动初始化。",
+        "answer_detail": "开启后内核按顺序打印 initcall 开始与结束，若某条只有开始没有结束，说明该初始化函数阻塞，可结合驱动代码检查等待硬件、时钟、复位或互斥锁的位置。"
+      },
+      {
+        "title": "根文件系统挂载失败会表现成什么？",
+        "answer_short": "通常出现 VFS 相关错误并触发 Kernel Panic，但若控制台未配置可能只看到启动停住。",
+        "answer_detail": "常见原因是 root= 分区名错误、存储驱动未加载、文件系统类型不匹配、设备树节点缺失。应检查内核命令行、驱动是否内建、分区表与文件系统镜像是否一致。"
+      },
+      {
+        "title": "嵌入式板启动卡住时如何区分硬件与软件问题？",
+        "answer_short": "用 JTAG 读 PC、对比正常板、最小系统启动、替换启动介质，可快速缩小范围。",
+        "answer_detail": "若内核 PC 停在忙等或异常向量，多为驱动或硬件就绪问题；若反复复位，检查看门狗与供电；若换正常镜像仍卡，倾向硬件或板级配置差异。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "把最后一条内核日志当作卡死根因",
+        "explanation": "日志输出受控制台、loglevel 和驱动重初始化影响，最后一行往往不是真正阻塞点，据此改 random 相关配置会偏离问题。",
+        "correction": "用 initcall_debug、earlycon、SysRq 或调试器确认内核实际执行位置，再定位阻塞的驱动或挂载步骤。"
+      },
+      {
+        "title": "直接关闭随机数子系统或删除相关配置",
+        "explanation": "random 子系统是内核基础设施，随意裁剪可能影响安全性和其他依赖熵源的组件，且不能解决真正的启动阻塞。",
+        "correction": "先确认阻塞点；若确实是用户态同步读取 /dev/random 导致等待，再考虑熵源补充或调整启动脚本。"
+      },
+      {
+        "title": "忽略设备树与硬件版本差异",
+        "explanation": "同一 SoC 不同板级的时钟、供电、存储接口可能不同，设备树不匹配会导致驱动 probe 卡住或超时。",
+        "correction": "对比正常板设备树与硬件原理图，逐项核对存储、时钟、复位和电源节点。"
+      }
+    ],
+    "tags": [
+      "Linux 启动",
+      "内核日志",
+      "initcall",
+      "嵌入式调试",
+      "i.MX6",
+      "Linux 系统编程",
+      "内核启动与随机数熵池初始化"
+    ],
+    "source_ids": [
+      "source-80a61a7d1d48d306"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-16c2436d1164335a",
+    "title": "在 BeagleBone Black 的设备树中如何配置一个带中断的 GPIO 按键？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备树 GPIO 中断配置",
+    "difficulty": "进阶",
+    "answer_short": "核心是在设备树节点中声明按键的 GPIO 与中断触发方式：用 gpios 属性引用 GPIO 控制器和引脚，用 interrupt-parent 指向该 GPIO 控制器（或使用 interrupts-extended），用 interrupts 描述中断号和触发类型（如 IRQ_TYPE_EDGE_FALLING），并加 pinctrl 把引脚复用为 GPIO 输入、配置上拉。驱动侧通过 gpiod_get 获取 GPIO、用 request_threaded_irq 或 devm_request_irq 注册中断，配合 debounce 属性做消抖。具体属性名与控制器编号随 SoC 和内核版本不同，需查对应绑定文档。",
+    "answer_detail": "结论：设备树负责描述“哪个引脚、什么电平/边沿触发、是否上拉和消抖”，驱动负责申请 GPIO、注册中断并处理事件，二者通过标准绑定解耦。\n机制与步骤：\n1. 引脚复用：在 pinctrl 子节点中把目标引脚配置为 GPIO 输入模式，设置内部上拉或下拉（如 pinctrl-single 或 SoC 专用 pinctrl 驱动），并在设备节点用 pinctrl-names = \"default\" 与 pinctrl-0 引用。\n2. GPIO 引用：用 gpios = <&gpioX N GPIO_ACTIVE_LOW> 形式引用控制器与引脚号，极性标志决定驱动读到的逻辑电平。\n3. 中断描述：interrupt-parent = <&gpioX> 加 interrupts = <N IRQ_TYPE_EDGE_FALLING>；也可用 interrupts-extended 直接写控制器与中断号，避免继承关系歧义。触发类型可选上升沿、下降沿、双边沿或电平触发，按键通常用下降沿或双边沿。\n4. 消抖：部分 GPIO 控制器支持 debounce 属性（单位通常为微秒），也可在驱动里用定时器或 input 子系统的 debounce 机制软件消抖。\n5. 驱动侧：用 devm_gpiod_get 获取 GPIO，devm_request_threaded_irq 注册中断；在中断处理里读取电平、记录时间戳，通过 input_report_key 上报，或用工作队列/定时器做长按与双击识别。\n嵌入式约束与取舍：\n- 中断上下文不能睡眠，按键消抖和事件上报应放到线程化中断或工作队列。\n- 电平触发在共享中断线上更安全，边沿触发可能丢失快速脉冲；按键场景边沿加消抖更常见。\n- 引脚被其他外设复用时，pinctrl 冲突会导致申请失败，需检查 pinmux 与已加载 overlay。\n- BeagleBone Black 常用 cape overlay 方式追加节点，需确认内核版本对应的绑定文档（Documentation/devicetree/bindings）中属性名，不同版本 gpio 与 interrupt 绑定存在差异。\n排查示例：若 probe 报 -EBUSY，先 cat /sys/kernel/debug/pinctrl/*/pinmux-pins 看引脚是否被占用；若中断不触发，用 cat /proc/interrupts 确认中断号与计数是否增长，再检查触发类型与上拉配置是否与硬件按键电路匹配。",
+    "follow_ups": [
+      {
+        "title": "设备树中 interrupts 与 gpios 两个属性是什么关系？",
+        "answer_short": "gpios 描述引脚归属与极性，供驱动用 GPIO 接口读写；interrupts 描述该引脚作为中断源时的中断号与触发类型，供内核注册中断。二者可同时存在，也可只用 interrupts-extended 表达中断连接。",
+        "answer_detail": "GPIO 控制器通常同时是中断控制器，引脚号映射为控制器内的中断号。gpios 让驱动能主动读电平或做输出；interrupts 让驱动能被动接收边沿/电平事件。若驱动只做中断上报，仍需 gpios 或至少 pinctrl 保证引脚方向与上拉正确。interrupt-parent 决定 interrupts 中数字的解释域，写错会导致申请到错误中断或失败。"
+      },
+      {
+        "title": "按键中断为什么常配合线程化中断或工作队列？",
+        "answer_short": "因为硬中断上下文不能睡眠，而消抖延时、input 上报、可能的内存分配都不适合在硬中断里做。线程化中断把耗时处理放到可调度的内核线程，降低关中断时间并提升系统实时性。",
+        "answer_detail": "request_threaded_irq 的 handler 做最小确认（如清中断标志），thread_fn 做消抖与事件处理。若用工作队列，则硬中断只调度 work。取舍是线程化中断引入调度延迟，对极低延迟场景可保留顶半部做时间戳记录，底半部做上报。"
+      },
+      {
+        "title": "如何验证设备树中的按键中断确实生效？",
+        "answer_short": "查看 /proc/interrupts 中对应中断计数是否随按键增长；用 evtest 或 input 子系统节点确认事件上报；用 gpioinfo/gpioget 检查引脚电平与方向；必要时开 dynamic debug 看驱动 probe 日志。",
+        "answer_detail": "先确认驱动 probe 成功（dmesg 无 -EBUSY/-ENOENT），再确认中断号与触发类型。若计数不增长，检查 pinctrl 是否把引脚复用为 GPIO、上拉是否与按键电路匹配、触发边沿是否选反。若计数增长但无事件，检查驱动是否在中断里正确读取并上报。"
+      },
+      {
+        "title": "BeagleBone Black 上修改设备树常用什么方式？",
+        "answer_short": "常用 cape overlay：编写 .dts overlay 片段，用 dtc 编译为 .dtbo，放入 /lib/firmware 并在 uEnv.txt 或 configfs 中加载；也可直接修改板级 dts 重新编译 dtb。具体路径与加载方式随内核版本不同。",
+        "answer_detail": "overlay 通过 &ocp、&am33xx_pinmux 等标签向已有节点追加 pinctrl 与设备节点，避免整体替换 dtb。加载后检查 /proc/device-tree 下是否出现新节点，以及 dmesg 中 overlay 应用是否报错。版本差异较大，需以所用内核的绑定文档为准。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "只写 interrupts 不配置 pinctrl",
+        "explanation": "引脚可能仍处于默认复用功能（如某个外设），GPIO 控制器收不到电平变化，中断永远不触发。",
+        "correction": "在 pinctrl 子节点中显式把引脚设为 GPIO 输入并配置上下拉，再用 pinctrl-0 引用。"
+      },
+      {
+        "title": "触发类型与硬件电路不匹配",
+        "explanation": "按键按下拉低却配置为上升沿，或电平触发未清标志导致中断风暴，表现为无响应或系统卡顿。",
+        "correction": "根据电路确定有效电平与边沿，按键常用下降沿或双边沿；电平触发必须确保中断源可被清除。"
+      },
+      {
+        "title": "在硬中断里做消抖延时",
+        "explanation": "中断上下文不能睡眠，调用 msleep 等会触发内核告警甚至崩溃。",
+        "correction": "用线程化中断、工作队列或定时器做延时消抖，硬中断只做最小确认。"
+      },
+      {
+        "title": "忽略内核版本与绑定差异",
+        "explanation": "不同内核版本 GPIO 与中断绑定属性名、编号方式可能变化，照搬旧例程会 probe 失败。",
+        "correction": "以当前内核 Documentation/devicetree/bindings 下的绑定文档为准，并在目标板上实测验证。"
+      }
+    ],
+    "tags": [
+      "Linux 驱动",
+      "设备树",
+      "GPIO 中断",
+      "BeagleBone Black",
+      "pinctrl",
+      "设备树 GPIO 中断配置"
+    ],
+    "source_ids": [
+      "source-c6543d3b3dc615fa"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-e6f019341d019c23",
+    "title": "Linux 设备树中一个设备节点如何指定多个中断父节点（interrupt-parent）？",
+    "domain": "Linux 驱动",
+    "subtopic": "设备树中断描述与 interrupt-parent 机制",
+    "difficulty": "进阶",
+    "answer_short": "设备树中 interrupt-parent 属性用于指定该节点中断号所属的中断控制器，通常由父节点继承。若一个设备的中断来自不同控制器，可在各中断描述符中用扩展形式（interrupt-parent 与 interrupts 成对出现）分别指定，或把中断拆到不同子节点；具体语法随内核版本与绑定文档而定，需以对应 binding 为准。",
+    "answer_detail": "结论：interrupt-parent 是“中断号到中断控制器”的映射入口，默认沿设备树父链继承；当一个节点需要向多个中断控制器申请中断时，不能只写一个 interrupt-parent 覆盖全部，而要用绑定文档允许的方式逐条指定。机制：中断控制器节点带 interrupt-controller 与 #interrupt-cells，设备节点的 interrupts 属性按该 cells 数编码（常见为“中断号 + 触发类型”）。解析时内核用 of_irq_parse_one 等接口，先取节点自身 interrupt-parent，没有则向上继承，再按控制器的 #interrupt-cells 解析。多父节点场景常见于 SoC 内 GIC 与外部中断控制器（如 GPIO 扩展中断、PMIC、级联控制器）并存。实现方式：较新内核支持在 interrupts 扩展项中成对写 interrupt-parent = <&ctrl> 与 interrupts = <...>，即每个中断描述前可带自己的父节点；另一种更稳妥、兼容性更好的做法是把不同来源的中断放到不同子节点，各自声明 interrupt-parent，驱动用 platform_get_irq 或 of_irq_get 按索引获取。约束与取舍：扩展写法依赖内核版本与具体 binding，老内核或非标准控制器可能不支持，跨版本移植性差；拆子节点结构清晰、兼容性好，但驱动需处理多个子节点或按名字匹配。排查：用 dtc 反编译 dtb 检查最终结构，看 /proc/interrupts 是否出现对应中断，dmesg 中 of_irq_parse 相关报错，以及驱动 request_irq 返回值。示例：GPIO 按键走 GPIO 控制器中断、温度报警走 PMIC 中断时，应分别声明父节点而非共用一个。",
+    "follow_ups": [
+      {
+        "title": "interrupt-parent 的继承规则是什么？",
+        "answer_short": "节点未定义 interrupt-parent 时，沿设备树父链向上查找最近的定义，直到根节点；根节点通常指向主中断控制器。",
+        "answer_detail": "解析中断时内核从目标节点开始逐级向上找 interrupt-parent，找到即停止，因此子节点可覆盖父节点的设置。若整条链都没有，解析失败，request_irq 拿不到有效 virq。工程上常在 SoC 级 dtsi 的根或总线节点统一指定主控制器，板级只在需要时覆盖。"
+      },
+      {
+        "title": "interrupts 属性的 #interrupt-cells 如何决定编码格式？",
+        "answer_short": "由目标中断控制器节点的 #interrupt-cells 决定，常见为 2（中断号 + 触发类型）或 3（增加电平/边沿等参数），设备节点必须按该格式填写。",
+        "answer_detail": "不同控制器编码不同：GIC 常见 3 cells（类型、号、触发），GPIO 控制器常见 2 cells。cells 数写错会导致解析错位，表现为中断号错误或申请失败。应以控制器 binding 文档为准，并用 dtc 检查编译结果。"
+      },
+      {
+        "title": "驱动中如何按索引获取多个中断？",
+        "answer_short": "用 platform_get_irq(pdev, index) 或 of_irq_get(np, index) 按 interrupts 中描述的顺序取第 index 个中断，再分别 request_irq。",
+        "answer_detail": "索引对应解析后的中断描述顺序，与 interrupts 书写顺序一致。多中断设备应逐个获取并检查返回值，失败时释放已申请的中断，避免资源泄漏。也可用 platform_irq_count 先确认数量。"
+      },
+      {
+        "title": "为什么有时把多中断拆成子节点更合适？",
+        "answer_short": "子节点可各自声明 interrupt-parent，结构清晰、兼容老内核与标准 binding，驱动按子节点或名字匹配即可。",
+        "answer_detail": "扩展式逐条 interrupt-parent 依赖较新内核支持，跨版本和跨厂商控制器时风险高。拆子节点符合“一个节点一套中断父”的常规模型，便于复用现有解析代码，代价是驱动需遍历子节点或增加匹配逻辑。"
+      },
+      {
+        "title": "中断申请失败应如何排查？",
+        "answer_short": "先确认 dtb 中节点与属性正确，再看 dmesg 的 of_irq 解析报错、/proc/interrupts 是否注册，最后检查 request_irq 返回值与触发类型是否匹配硬件。",
+        "answer_detail": "常见原因：interrupt-parent 缺失或指向错误控制器、#interrupt-cells 数量不符、触发类型与硬件电平/边沿不一致、中断被其他驱动占用、控制器未使能。可用 dtc 反编译核对，用 cat /proc/interrupts 观察计数是否增长。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "认为一个节点只能有一个 interrupt-parent，多中断无法实现",
+        "explanation": "该说法忽略了扩展写法与拆子节点两种方案，会误判需求不可行。",
+        "correction": "按 binding 使用逐条 interrupt-parent 扩展，或拆分子节点分别声明父控制器。"
+      },
+      {
+        "title": "在设备节点随意写 interrupt-parent 覆盖继承而不核对控制器 cells",
+        "explanation": "cells 数与控制器不匹配会导致中断号解析错位，表现为申请到错误中断或失败。",
+        "correction": "以控制器 binding 的 #interrupt-cells 为准填写 interrupts，并用 dtc 与 /proc/interrupts 验证。"
+      },
+      {
+        "title": "把扩展式多 interrupt-parent 写法当成所有内核版本通用",
+        "explanation": "该语法依赖内核版本与具体绑定，老内核可能不支持，导致解析失败。",
+        "correction": "确认目标内核版本支持后再用；跨版本项目优先拆子节点保证兼容。"
+      },
+      {
+        "title": "忽略触发类型与硬件不一致",
+        "explanation": "边沿与电平配置错误会造成丢中断或中断风暴。",
+        "correction": "按硬件手册确认电平/边沿，在 interrupts 中正确编码，并在驱动中与 request_irq 的 flags 保持一致。"
+      }
+    ],
+    "tags": [
+      "Linux 驱动",
+      "设备树",
+      "中断",
+      "interrupt-parent",
+      "irq",
+      "设备树中断描述与 interrupt-parent 机制"
+    ],
+    "source_ids": [
+      "source-70978abc5fbf5f48"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-8863a4b013a2569f",
+    "title": "I²C、SPI、UART 三种板级通信协议在拓扑、速率、引脚和可靠性上如何取舍？",
+    "domain": "外设与协议",
+    "subtopic": "I²C/SPI/UART 对比与选型",
+    "difficulty": "基础",
+    "answer_short": "I²C 用两根线（SCL/SDA）支持多主多从、带地址寻址和 ACK，速率通常 100k~400kbit/s（快速模式 1Mbit/s），适合低速多器件；SPI 用四线（SCLK/MOSI/MISO/CS）全双工、无寻址靠片选，速率可达数十 Mbit/s，适合高速点对点；UART 异步点对点、无时钟线，需约定波特率，适合调试口和两设备直连。选型看器件数量、速率、引脚预算和是否需要多主。",
+    "answer_detail": "定义与机制：I²C 是同步半双工总线，开漏输出加外部上拉，靠地址帧选从机，每字节有 ACK，支持时钟拉伸和多主仲裁；SPI 是同步全双工，主设备输出时钟，靠独立片选选中从机，无应答机制，模式由 CPOL/CPHA 决定；UART 是异步串行，收发双方按约定波特率采样，帧含起始位、数据位、可选校验位和停止位。\n上下文约束：I²C 总线电容限制约 400pF，上拉电阻与速率需折中，长线或多器件时上升沿变缓；SPI 每增加一个从机多一根片选，引脚开销随器件数线性增长，且无内建错误检测；UART 两端时钟误差需控制在约 2%~3% 以内，否则采样偏移导致误码。\n取舍：多传感器低速场景优先 I²C 省引脚；Flash、LCD、高速 ADC 用 SPI 换带宽；调试串口、GPS/蓝牙模块等点对点链路用 UART。混合使用很常见，例如 I²C 接传感器、SPI 接屏幕、UART 做日志。\n示例与排查：I²C 不通先查上拉和地址、用示波器看 ACK 位；SPI 读回全 0xFF 先核对 CPOL/CPHA 与片选时序；UART 乱码先核对波特率和时钟源分频误差。",
+    "follow_ups": [
+      {
+        "title": "I²C 为什么使用开漏输出而不是推挽输出？",
+        "answer_short": "开漏允许多个器件共享同一根线实现线与，避免推挽对推挽短路，从而支持多主仲裁和 ACK 应答。",
+        "answer_detail": "开漏输出只能主动拉低，释放后由上拉电阻拉高，因此多个器件同时驱动不会出现一个输出高、一个输出低的短路电流。线与特性使任一器件拉低总线即为低，这是 ACK 位和多主仲裁的电气基础。代价是上升沿由 RC 决定，速率越高上拉电阻需越小，功耗和驱动能力要折中。"
+      },
+      {
+        "title": "SPI 没有 ACK，如何保证数据可靠？",
+        "answer_short": "SPI 本身不保证，需要上层加 CRC、读回校验、状态寄存器轮询或重传机制。",
+        "answer_detail": "SPI 只负责按时钟移位传输，从机是否收到、是否忙都不反馈。工程上常用做法：外设提供状态寄存器供轮询；命令后读回寄存器确认写入；帧加 CRC；关键操作加重试。对 Flash 写操作还要轮询忙标志，否则连续写会失败。"
+      },
+      {
+        "title": "UART 通信中波特率误差如何影响采样？",
+        "answer_short": "接收端在起始位后按约定时刻采样，累计误差超过约半个位宽就会采错，通常要求总误差小于 2%~3%。",
+        "answer_detail": "UART 无时钟线，接收端靠起始位下降沿同步，然后按波特率计数采样。误差随帧内位数累积，10 位帧下误差接近 5% 时末位采样点已偏移半个位宽。因此要保证 MCU 时钟分频后的实际波特率与标称值偏差小，双设备晶振精度也要匹配；高波特率时误差容忍度更低。"
+      },
+      {
+        "title": "多主 I²C 总线上仲裁失败会怎样？",
+        "answer_short": "仲裁失败的主机自动退出并转为从机监听，获胜方继续传输，数据不丢失。",
+        "answer_detail": "仲裁逐位进行：主机发送时同时回读 SDA，若自己发高却读到低，说明另一主机在发低，本机失去仲裁。失败方立即停止驱动 SCL，转为接收状态，硬件通常置仲裁丢失标志。软件需检测该标志并重试。这也是 I²C 必须开漏的原因。"
+      },
+      {
+        "title": "SPI 多从机时片选如何管理？",
+        "answer_short": "每个从机独立片选，主机在传输前拉低目标片选、传输后拉高，未选中从机的 MISO 应高阻。",
+        "answer_detail": "片选是 SPI 寻址的唯一手段，同一时刻只能选中一个从机，否则多个从机同时驱动 MISO 会冲突。软件上要保证片选在完整帧期间保持有效，不能在字节间抖动；硬件上可用 GPIO 或译码器扩展片选。未选中从机的 MISO 必须高阻，否则总线被拉死。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "认为 I²C 一定比 SPI 慢所以应全部改用 SPI",
+        "explanation": "忽略引脚预算和器件支持，多传感器场景下 SPI 片选线数量爆炸，且很多传感器只提供 I²C 接口。",
+        "correction": "按器件接口能力和速率需求分别选型，低速多器件用 I²C，高速少器件用 SPI，混合使用是常态。"
+      },
+      {
+        "title": "UART 两端波特率只要“差不多”就行",
+        "explanation": "异步通信无时钟同步，误差在帧内累积，超过约半个位宽即误码，表现为偶发乱码而非完全不通。",
+        "correction": "核算 MCU 时钟分频后的实际波特率误差，保证两端晶振精度，必要时降低波特率或改用同步接口。"
+      },
+      {
+        "title": "SPI 传输成功就代表从机处理成功",
+        "explanation": "SPI 无应答，移位完成只说明电气上收发时钟走完，从机可能忙、命令非法或写入未生效。",
+        "correction": "关键操作后读状态寄存器或回读数据校验，必要时加 CRC 和重试。"
+      },
+      {
+        "title": "I²C 上拉电阻随便选一个 4.7k 就行",
+        "explanation": "上拉过大导致上升沿过缓，高速或大总线电容时通信失败；过小则灌电流超标、功耗增大。",
+        "correction": "按总线电容和速率计算 RC 上升时间，兼顾器件灌电流能力，长线或多器件时减小上拉或加缓冲器。"
+      }
+    ],
+    "tags": [
+      "I2C",
+      "SPI",
+      "UART",
+      "外设协议",
+      "选型",
+      "外设与协议",
+      "I²C/SPI/UART 对比与选型"
+    ],
+    "source_ids": [
+      "source-40f6b471c6a664b2"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-11bd3103e9a4998e",
+    "title": "如何设计一个可同时适配 I2C、SPI、UART 的主机接口抽象层？",
+    "domain": "外设与协议",
+    "subtopic": "多协议驱动抽象与分层设计",
+    "difficulty": "进阶",
+    "answer_short": "核心是把“协议无关的传输语义”和“协议相关的时序实现”分离：上层只依赖统一的 open/transfer/close 接口和描述符（设备地址、速率、模式、片选等），下层为每种协议实现适配器，把统一请求翻译成具体总线操作。用函数指针表或面向对象接口做多态分发，用配置结构体承载差异，避免上层出现 if-else 分支。",
+    "answer_detail": "分层思路：1）定义统一抽象接口，例如 init、transfer（可含 tx/rx 缓冲、长度、超时）、ioctl 用于协议特有配置、deinit；2）定义设备描述，包含协议类型、总线实例号、从机地址或片选、时钟频率、SPI 模式、UART 波特率与校验等；3）每种协议实现一个适配器，内部调用对应底层驱动（Linux 下可为 i2c_transfer、spi_sync、tty 写读；裸机下为寄存器操作）；4）通过函数指针表或 C++ 虚接口完成运行时分发，上层业务代码只持有抽象句柄。关键约束：I2C 有地址与重复起始语义，SPI 有片选与全双工特性，UART 是字节流无事务边界，因此统一接口应允许“半双工请求-响应”和“原始字节流”两种模式，或通过能力标志位声明支持的操作。取舍：过度统一会丢失协议特性（如 SPI 全双工同时收发、I2C 时钟拉伸），建议保留协议专用扩展接口。示例：上层调用 host_transfer(dev, tx, rx, len)，I2C 适配器内部组装地址帧并处理重复起始，SPI 适配器拉片选后同步收发，UART 适配器按帧格式发送并等待应答。排查时先确认抽象层是否吞掉了错误码（NACK、超时、CRC），再逐层用逻辑分析仪验证时序。",
+    "follow_ups": [
+      {
+        "title": "统一接口如何处理 SPI 全双工与 I2C 半双工的差异？",
+        "answer_short": "在接口中同时提供 tx、rx 缓冲，允许 rx 为空或 tx 为空；SPI 适配器一次同步完成收发，I2C 适配器则拆成写地址、写数据、重复起始、读数据等阶段，上层按协议能力标志选择调用方式。",
+        "answer_detail": "若强行用单一“先写后读”语义，SPI 会浪费全双工能力并可能改变时序。做法是定义能力位（如 CAP_FULL_DUPLEX、CAP_REPEATED_START），上层据此选择 transfer 还是 write_then_read；适配器内部保证片选在整次事务期间保持有效，避免事务被拆断。"
+      },
+      {
+        "title": "抽象层如何传递协议特有参数而不污染通用接口？",
+        "answer_short": "用通用配置结构体承载公共字段，再提供 ioctl 或扩展配置指针传递协议私有参数，如 SPI 模式、I2C 10 位地址、UART 停止位。",
+        "answer_detail": "常见做法是基类配置加协议私有结构体，通过类型标签区分；或使用带命令码的 ioctl。注意参数校验应在适配器入口完成，非法参数返回明确错误码，避免下沉到硬件层才失败导致难以定位。"
+      },
+      {
+        "title": "多协议抽象层如何做错误处理与重试？",
+        "answer_short": "适配器把底层错误归一化为统一错误码（超时、NACK、总线错误、参数错误），重试策略放在上层或适配器可配置，I2C 可做总线恢复，SPI/UART 一般重发整帧。",
+        "answer_detail": "错误归一化便于上层统一处理；但需保留原始错误码用于调试。I2C 遇到总线被从机拉低时需发送时钟脉冲恢复；UART 需处理帧错误与溢出；重试次数和退避应可配置，避免在中断上下文长时间阻塞。"
+      },
+      {
+        "title": "在 Linux 下如何实现这样的抽象层？",
+        "answer_short": "可在用户态封装 i2c-dev、spidev、tty 设备，或在核态用 i2c_transfer、spi_sync、serdev 等 API 实现适配器，通过统一 ops 结构体注册。",
+        "answer_detail": "用户态方案简单但受 ioctl 语义限制；核态方案可直接复用子系统的事务队列与 DMA 能力。需注意 spidev 不适合承载正式产品驱动，核态实现应通过设备树描述总线与从机关系，并处理并发访问的互斥。"
+      },
+      {
+        "title": "如何测试和验证多协议抽象层的正确性？",
+        "answer_short": "用逻辑分析仪或示波器抓取实际波形核对时序，配合回环测试与错误注入（NACK、超时、CRC 错）验证错误路径，再对上层做协议无关的单元测试。",
+        "answer_detail": "分层测试：适配器层用硬件回环或模拟从机验证时序与片选；抽象层用桩函数验证分发与参数转换；系统层做长时间压力测试观察并发与资源泄漏。错误注入能暴露重试与恢复逻辑缺陷。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "用大量 if-else 按协议类型分支",
+        "explanation": "每新增一种协议都要修改上层代码，违反开闭原则，且分支散落导致维护困难、易漏改。",
+        "correction": "用函数指针表或虚接口做多态分发，新增协议只需新增适配器并注册。"
+      },
+      {
+        "title": "把协议特有语义强行塞进通用接口",
+        "explanation": "如统一成“写后读”，会破坏 SPI 全双工和 I2C 重复起始语义，造成时序错误或性能损失。",
+        "correction": "通用接口保留最小公共语义，协议特性通过能力标志和扩展接口表达。"
+      },
+      {
+        "title": "抽象层吞掉底层错误码",
+        "explanation": "只返回成功/失败会丢失 NACK、超时、总线错误等关键信息，现场排查无从下手。",
+        "correction": "归一化错误码的同时保留原始错误码或日志，便于分层定位。"
+      },
+      {
+        "title": "忽略并发与重入问题",
+        "explanation": "多个任务共用同一总线句柄时若无互斥，会出现事务交错、片选错乱。",
+        "correction": "在适配器或总线层加锁，明确哪些接口可在中断上下文调用。"
+      }
+    ],
+    "tags": [
+      "外设与协议",
+      "驱动架构",
+      "I2C",
+      "SPI",
+      "UART",
+      "抽象层设计",
+      "多协议驱动抽象与分层设计"
+    ],
+    "source_ids": [
+      "source-1aa3f240fad92df9"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
+  },
+  {
+    "id": "question-dc9288b2a301425b",
+    "title": "C 语言核心、手撕代码、RTOS、Linux 驱动等分类的题库如何组织与复习？",
+    "domain": "调试与测试",
+    "subtopic": "面试题库组织与复习方法",
+    "difficulty": "基础",
+    "answer_short": "题库按知识域分类（C 语言核心 35、手撕代码 30、RTOS 25、Linux 驱动与内核 21 等），复习时先用顺序练扫盲，再用 Leitner 三盒智能复习优先推没练过和练错的题，最后用随机练模拟真实面试的跳跃感。开启口述模式，只看题干加倒计时，出声讲完整答案再揭晓，因为面试考的是能否讲清楚，而不是能否认出正确选项。",
+    "answer_detail": "组织方式：题库是扁平数组，每题带 id、cat、type、level、tags、resume 标记，分类单独登记。复习策略分三层：第一层顺序练，按分类逐题过一遍，建立知识地图，适合首次扫盲；第二层智能复习，用 Leitner 三盒算法，答对升盒、答错回第一盒，优先推送没练过和练错的题，把时间花在薄弱项上；第三层随机练，打乱分类模拟真实面试的跳跃感。口述模式是最关键的开关：只显示题干和倒计时，逼自己出声把答案完整讲一遍再揭晓，因为面试官评估的是表达完整度和边界意识，而不是选择题正确率。工程上还要注意进度持久化：进度主存 IndexedDB，localStorage 留快照兜底，切后台和关页面时强制落盘，保证关掉再打开停在原来那一题；换电脑或清缓存前先导出进度，并导出今日错题为 Markdown 便于复盘。取舍：题量大的题库容易陷入刷题数量而非质量，应把 resume 高危题（简历上写了具体技术名词才会被追问的题）单独成组优先刷，因为答不上来最伤。",
+    "follow_ups": [
+      {
+        "title": "为什么用 Leitner 三盒而不是简单随机抽题？",
+        "answer_short": "随机抽题会让已掌握的题反复出现、薄弱题被稀释；Leitner 按答对答错升降盒，把复习频率自动向薄弱题倾斜，长期记忆保持率更高。",
+        "answer_detail": "随机抽题的期望分布是均匀的，已掌握题和未掌握题被抽中概率相同，时间被浪费在已经会的题上。Leitner 系统把题分盒，答对升盒降低出现频率，答错回第一盒提高频率，形成间隔重复。三盒是简化版，盒数越多间隔越细但管理成本越高。嵌入式面试准备周期通常较短，三盒足够区分没练过、练过但不稳、已掌握三档。"
+      },
+      {
+        "title": "口述模式为什么比选择题模式更接近面试？",
+        "answer_short": "面试是开放表达，需要主动组织答案、覆盖机制与边界；选择题只需识别，无法暴露表达断层和知识盲区。",
+        "answer_detail": "选择题的干扰项会提示答案范围，属于再认任务；面试是回忆加组织任务，要求先给结论再讲机制、约束和取舍。口述模式强制出声讲完整答案，能暴露“心里知道但讲不出来”的问题，也能训练 30 秒内给结论的表达节奏。"
+      },
+      {
+        "title": "进度为什么要同时存 IndexedDB 和 localStorage？",
+        "answer_short": "IndexedDB 容量大适合主存，localStorage 同步写入快适合做快照兜底，防止 IndexedDB 异步写入在页面关闭时丢失。",
+        "answer_detail": "IndexedDB 是异步 API，页面被关闭时未完成的事务可能丢失；localStorage 是同步 API，在 beforeunload 或 visibilitychange 时能可靠落盘。两者结合：主数据写 IndexedDB，关键快照写 localStorage，启动时以 IndexedDB 为准、缺失时回退快照。进度靠题目 id 索引，所以 id 一旦用过不能改，改了等于丢掉该题记录。"
+      },
+      {
+        "title": "简历高危题应该怎么用？",
+        "answer_short": "把简历上写到的具体技术名词对应的追问单独成组优先刷，因为这些是面试官最可能顺着简历深挖、答不上来最伤分的题。",
+        "answer_detail": "面试官通常从简历上的技术名词切入追问，例如写了 Bootloader 就问启动流程和跳转细节，写了链接脚本就问段布局。这类题答不上来会直接削弱简历可信度。做法是把高危题单独筛选成组，先口述再对照参考答案补边界，确保每个简历名词都能讲清机制、参数和踩过的坑。"
+      }
+    ],
+    "pitfalls": [
+      {
+        "title": "只刷选择题不练口述",
+        "explanation": "选择题靠再认，面试靠回忆和组织，只刷选择题会出现“看着都眼熟、开口讲不清”的情况。",
+        "correction": "开启口述模式，只看题干出声讲完整答案再揭晓，训练结论先行、机制随后、边界收尾的表达结构。"
+      },
+      {
+        "title": "追求刷题数量忽略薄弱项",
+        "explanation": "均匀刷题会把时间浪费在已掌握题上，薄弱题得不到足够重复。",
+        "correction": "用 Leitner 或错题本把复习频率向答错题倾斜，定期导出今日错题复盘。"
+      },
+      {
+        "title": "修改已用过的题目 id",
+        "explanation": "进度按 id 索引，改 id 会导致该题历史记录丢失、统计错乱。",
+        "correction": "只追加新题、不改已有 id；新增题跑校验检查 id 重复、分类未登记、选项下标越界。"
+      }
+    ],
+    "tags": [
+      "面试题库",
+      "复习方法",
+      "Leitner",
+      "口述模式",
+      "调试与测试",
+      "面试题库组织与复习方法"
+    ],
+    "source_ids": [
+      "source-dd113c9fe805b55b"
+    ],
+    "status": "ai-draft",
+    "answer_version": 2,
+    "updated_at": "2026-11-14",
+    "generation_kind": "source"
   }
 ]

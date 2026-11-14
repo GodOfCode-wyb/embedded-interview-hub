@@ -319,5 +319,47 @@
     "url": null,
     "trust": "用户本地资料的 AI 结构化草稿；知识点扩展题会单独标记，原文不进入仓库，需人工核验",
     "import_key": "local://candidate-12b5f1a8ef3829a0"
+  },
+  {
+    "id": "source-dd113c9fe805b55b",
+    "title": "Craftbai/Interview-Question",
+    "kind": "公开面经候选",
+    "url": "https://github.com/Craftbai/Interview-Question",
+    "trust": "AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-80a61a7d1d48d306",
+    "title": "Linux hangs at [random: nonblocking pool is initialized]",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-c6543d3b3dc615fa",
+    "title": "How to configure a GPIO button with interrupt in the Device Tree on BeagleBone Black?",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-70978abc5fbf5f48",
+    "title": "Linux Device tree, node with multiple interrupt parents",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-40f6b471c6a664b2",
+    "title": "Communication between micro controllers - I2C, SPI, UART?",
+    "kind": "公开技术问答",
+    "url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
+  },
+  {
+    "id": "source-1aa3f240fad92df9",
+    "title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
+    "kind": "公开技术问答",
+    "url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
+    "trust": "公开技术问答的 AI 结构化草稿，需人工核验"
   }
 ]
