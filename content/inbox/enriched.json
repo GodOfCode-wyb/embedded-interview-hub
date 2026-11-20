@@ -1,5 +1,365 @@
 [
   {
+    "candidate_id": "candidate-7e13612a9925105e",
+    "source_url": "https://electronics.stackexchange.com/questions/452633/rpi-arduino-communication-without-uart",
+    "source_title": "RPI-arduino communication without UART",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2024-11-23T06:02:35+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:04:31.941385+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 3aa3fd5b-1b58-4b89-866f-6812ac6ad095)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-8c594fc9c6a3ae51",
+    "source_url": "https://electronics.stackexchange.com/questions/76956/which-microcontrollers-that-can-i-buy-to-learn-such-an-usart-uart-rs232-usb",
+    "source_title": "Which microcontrollers that can I buy to learn such an USART, UART, RS232, USB, SPI, I2C, TTL communication?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2013-07-25T15:00:17+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:04:22.842036+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: a72102c1-3adb-47b9-ad9c-ba71f96542af)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-40f6b471c6a664b2",
+    "source_url": "https://electronics.stackexchange.com/questions/133968/communication-between-micro-controllers-i2c-spi-uart",
+    "source_title": "Communication between micro controllers - I2C, SPI, UART?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-02-07T21:33:03+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:04:13.701573+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: c43685c5-677b-4de0-a5db-372b901c21ea)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-7aff51e592b03910",
+    "source_url": "https://stackoverflow.com/questions/917060/can-v4l2-be-used-to-read-audio-and-video-from-the-same-device",
+    "source_title": "Can v4l2 be used to read audio and video from the same device?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2015-08-30T08:14:02+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:04:04.471258+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 5af3f2ce-a242-4075-87b6-c5d52c57431d)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-4f74a1ca3e90f5ad",
+    "source_url": "https://stackoverflow.com/questions/39016872/custom-linux-build-on-nanopi-neo-board",
+    "source_title": "Custom Linux Build on NanoPi Neo Board",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2017-12-13T18:59:41+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:55.370207+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: e83e0351-ce8f-44d9-87b6-8771a3592a49)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-3d50627b876ccef1",
+    "source_url": "https://stackoverflow.com/questions/60914235/cmsis-driver-peripherals",
+    "source_title": "CMSIS-Driver peripherals",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-04-07T14:58:53+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:46.264338+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: b79d2f4d-bf03-4589-8d90-f26bd2f509c9)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-c6543d3b3dc615fa",
+    "source_url": "https://stackoverflow.com/questions/79683747/how-to-configure-a-gpio-button-with-interrupt-in-the-device-tree-on-beaglebone-b",
+    "source_title": "How to configure a GPIO button with interrupt in the Device Tree on BeagleBone Black?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2025-06-30T22:43:13+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:37.097855+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 8b6b7e2d-f0bd-4350-9f6e-51c6a43f74fa)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-80a61a7d1d48d306",
+    "source_url": "https://stackoverflow.com/questions/44633482/linux-hangs-at-random-nonblocking-pool-is-initialized",
+    "source_title": "Linux hangs at [random: nonblocking pool is initialized]",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-04-12T10:28:49+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:28.002713+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 0bfd68fa-114f-43a3-9893-85bdd4a3c880)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-8a97d5225576adae",
+    "source_url": "https://stackoverflow.com/questions/41990475/compactpci-system-running-debian-linux-lspci-shows-incorrect-irq-leading-to-gen",
+    "source_title": "CompactPCI system running Debian linux: lspci shows incorrect IRQ leading to gen_irq flags mismatch and IRQ conflict",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2017-02-02T16:35:52+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:18.879651+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 29591854-7c17-46b7-b446-74ce80d7d643)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-54c512c84e55a6f7",
+    "source_url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
+    "source_title": "How to work with UIO drivers with my network card",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-01-31T09:17:40+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:09.719247+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 41459ce0-5303-4ef6-ad95-8d139d22069f)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-bf7d5d06f53e4c1a",
+    "source_url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
+    "source_title": "Error in booting from uSD-card - No filesystem could mount root, tried:Ext4",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-05-08T01:24:03+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:03:00.477683+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: e53fddb9-1fb8-4b6d-bd0a-7c45f83e39ad)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-c4df82f37be62837",
+    "source_url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
+    "source_title": "IRQCHIP_DECLARE: init function is not being run",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-06-14T11:10:33+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:51.374541+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 4da879ac-6b59-4a9a-b73c-2fcd891684ba)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-86883e4ce8fc3e8b",
+    "source_url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
+    "source_title": "Linux Kernel Boot Error: reserving fdt memory region failed",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2023-04-20T23:45:07+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:42.251940+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: ef389ee9-4b6e-4138-ba4f-323f342c2849)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-a82b7b893a49157d",
+    "source_url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
+    "source_title": "How do I run XEN on arm64 and Qemu 6.0.0 with Linux 4.20.11 as Dom0",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2021-11-08T21:27:19+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:33.142642+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 2d4422f0-3ce4-4153-9368-fbb2397b0041)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-70978abc5fbf5f48",
+    "source_url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
+    "source_title": "Linux Device tree, node with multiple interrupt parents",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-02-07T13:39:04+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:24.099164+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 01788f99-1564-4860-b3e6-368b0070eb2b)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-dcca46534d4a5401",
+    "source_url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
+    "source_title": "Ambition66/interview_knowledge_base/interview_questions/12_嵌入式硬件基础面试题.md",
+    "source_provider": "github-code-search",
+    "source_published_at": null,
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:14.994341+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: c29c7882-35ef-44a8-8174-5db692021950)",
+    "page_fetch_error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)"
+  },
+  {
+    "candidate_id": "candidate-a0ebfddc2da74630",
+    "source_url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
+    "source_title": "How do I implement a file system driver driver in Linux?",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-03-24T23:07:56+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:02:05.906021+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: eb5710f4-72f1-47ed-a4c2-f45707c8892c)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-dd113c9fe805b55b",
+    "source_url": "https://github.com/Craftbai/Interview-Question",
+    "source_title": "Craftbai/Interview-Question",
+    "source_provider": "github-search",
+    "source_published_at": "2026-09-16T12:23:00Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:56.723754+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 8d6f6cfb-4242-4f7a-8f41-f52abe10a329)",
+    "page_fetch_error": null
+  },
+  {
+    "candidate_id": "candidate-7292ed02071bab84",
+    "source_url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
+    "source_title": "Embedded Buildroot and Yocto Linux crash 50% of the time",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-11-04T18:22:50+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:47.072470+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 2ee2e3df-1d6f-4f1b-87a1-587f8b14eeec)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-557eafdbca123e04",
+    "source_url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
+    "source_title": "rk3328 soc boot stuck at waiting for root device /dev/mmcblk1p2",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2023-09-04T16:14:46+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:38.006829+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 24761d6b-2007-428e-aefa-534e700cf1cf)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-9e54ea15d105cdd7",
+    "source_url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
+    "source_title": "Device-Tree Issues with ROCKPro64 PCIe Endpoint",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2022-10-17T01:47:01+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:28.900209+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 35df6726-da38-4cbd-82f9-04bc49d154e0)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-f56a85082efe07fc",
+    "source_url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
+    "source_title": "Linux kernel crashes on the stm32h743i",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2020-09-01T10:28:35+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:19.815012+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: c87adfad-e739-4f19-9d9c-e76a29e91a82)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-0b0def94fb5ca731",
+    "source_url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
+    "source_title": "freescale imx6 with mpu9250",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-08-05T13:47:34+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:10.727215+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 55d9e68b-941c-4d22-a305-c5d64c1ff664)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-d03d31f3d150ab77",
+    "source_url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
+    "source_title": "Endless kernel (5.10.204) loading",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2025-02-18T15:10:22+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:01:01.569736+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 2b54be75-a290-46de-a768-164f968f0e53)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-8e9e4fce2bfa9c60",
+    "source_url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
+    "source_title": "ARM stucks at \"Starting kernel image ...\" sometimes",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2016-03-26T08:04:31+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:52.513555+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 4b069f44-8c23-4750-bd36-fa7d8de18298)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-658e01b85df02535",
+    "source_url": "https://github.com/lmq6178/Embedded_Interview_hugo",
+    "source_title": "lmq6178/Embedded_Interview_hugo",
+    "source_provider": "github-search",
+    "source_published_at": "2025-07-07T17:10:30Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:43.332822+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: b96a7784-1c7a-4594-9b5d-de02d97de188)",
+    "page_fetch_error": null
+  },
+  {
+    "candidate_id": "candidate-1aa3f240fad92df9",
+    "source_url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
+    "source_title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2018-09-27T13:40:34+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:33.812537+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 9730072e-9d3c-448c-9a6f-b5d6b807ea2e)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-a73081da8f7115b1",
+    "source_url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
+    "source_title": "SPI slave-mode on imx8qmlpddr4arm2 board using yocto",
+    "source_provider": "stackexchange-search",
+    "source_published_at": "2019-02-12T23:09:18+00:00",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:24.602967+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: b61dca6a-6526-4dc2-828d-8e85dbbe8a4b)",
+    "page_fetch_error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "candidate_id": "candidate-70c59a5f1e9256ea",
+    "source_url": "https://github.com/master869/interview-notes",
+    "source_title": "master869/interview-notes",
+    "source_provider": "github-search",
+    "source_published_at": "2026-11-06T01:17:47Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:14.881603+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 7fba02a7-d19a-42d9-9d5e-12ef2ed2e43b)",
+    "page_fetch_error": null
+  },
+  {
+    "candidate_id": "candidate-35078da57960db73",
+    "source_url": "https://github.com/Sering-Hong/embedded-interview",
+    "source_title": "Sering-Hong/embedded-interview",
+    "source_provider": "github-search",
+    "source_published_at": "2026-11-17T02:57:33Z",
+    "model": "deepseek-v4-flash",
+    "generated_at": "2026-11-20T21:00:05.536811+00:00",
+    "review_status": "failed",
+    "error": "DeepSeek API Key 错误或已失效（HTTP 401）：Authentication Fails, Your api key: ****623b is invalid (request_id: 8ba3447b-cb3e-4881-80c3-03b21949d70b)",
+    "page_fetch_error": null
+  },
+  {
     "candidate_id": "candidate-aa833b6e119dd6d8",
     "source_url": "local://candidate-aa833b6e119dd6d8",
     "source_title": "本地导入面经 119dd6d8",
@@ -144147,81 +144507,6 @@
     }
   },
   {
-    "candidate_id": "candidate-54c512c84e55a6f7",
-    "source_url": "https://stackoverflow.com/questions/34178579/how-to-work-with-uio-drivers-with-my-network-card",
-    "source_title": "How to work with UIO drivers with my network card",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-01-31T09:17:40+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:17.891536+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "主题匹配Linux驱动，但页面仅涉及具体UIO使用问题，未明确列出面试八股题目，且正文不可用，证据不足。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-bf7d5d06f53e4c1a",
-    "source_url": "https://stackoverflow.com/questions/50220156/error-in-booting-from-usd-card-no-filesystem-could-mount-root-triedext4",
-    "source_title": "Error in booting from uSD-card - No filesystem could mount root, tried:Ext4",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-05-08T01:24:03+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:12.139178+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面涉及嵌入式Linux启动时根文件系统挂载失败的问题，属于Linux驱动/系统启动相关技术问答。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-c4df82f37be62837",
-    "source_url": "https://stackoverflow.com/questions/46739529/irqchip-declare-init-function-is-not-being-run",
-    "source_title": "IRQCHIP_DECLARE: init function is not being run",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-06-14T11:10:33+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:21:05.595963+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面属于Linux驱动技术问答，但仅标题和摘要可用，无正文证据，无法提取具体面试题目。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-6e18ed2d71a52519",
     "source_url": "https://stackoverflow.com/questions/42376884/how-to-correctly-configure-interrupt-for-int-line-of-atmel-mxt641t-touch-chip-in",
     "source_title": "How to correctly configure interrupt for INT line of Atmel MXT641T touch chip in Android 5 kernel device tree?",
@@ -144272,81 +144557,6 @@
           "possible_duplicate_title": null
         }
       ]
-    }
-  },
-  {
-    "candidate_id": "candidate-86883e4ce8fc3e8b",
-    "source_url": "https://stackoverflow.com/questions/76052956/linux-kernel-boot-error-reserving-fdt-memory-region-failed",
-    "source_title": "Linux Kernel Boot Error: reserving fdt memory region failed",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2023-04-20T23:45:07+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:47.681460+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "内容涉及 Linux 内核启动与 FDT 内存保留，属于 Linux 驱动/嵌入式技术问答，但正文不可用且无明确面试问题，故 questions 为空。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-a82b7b893a49157d",
-    "source_url": "https://stackoverflow.com/questions/68372448/how-do-i-run-xen-on-arm64-and-qemu-6-0-0-with-linux-4-20-11-as-dom0",
-    "source_title": "How do I run XEN on arm64 and Qemu 6.0.0 with Linux 4.20.11 as Dom0",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2021-11-08T21:27:19+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:41.714162+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": false,
-      "reason": "该页面为 XEN/QEMU 在 arm64 上的运行问题，不属于嵌入式面试常见方向，且无明确面试题证据。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-70978abc5fbf5f48",
-    "source_url": "https://stackoverflow.com/questions/25056717/linux-device-tree-node-with-multiple-interrupt-parents",
-    "source_title": "Linux Device tree, node with multiple interrupt parents",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-02-07T13:39:04+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:20:34.453677+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "该来源是关于Linux设备树中断的公开技术问答，属于Linux驱动领域，但页面正文不可用，未能提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
     }
   },
   {
@@ -144599,81 +144809,6 @@
     }
   },
   {
-    "candidate_id": "candidate-a0ebfddc2da74630",
-    "source_url": "https://unix.stackexchange.com/questions/508314/how-do-i-implement-a-file-system-driver-driver-in-linux",
-    "source_title": "How do I implement a file system driver driver in Linux?",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-03-24T23:07:56+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:28.074091+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面涉及Linux文件系统驱动实现，属于Linux驱动领域，与嵌入式面试相关，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-dcca46534d4a5401",
-    "source_url": "https://github.com/Ambition66/interview_knowledge_base/blob/3cbd26176c3fd682c010408a0962960ceabc8a54/interview_questions/12_嵌入式硬件基础面试题.md",
-    "source_title": "Ambition66/interview_knowledge_base/interview_questions/12_嵌入式硬件基础面试题.md",
-    "source_provider": "github-code-search",
-    "source_published_at": null,
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:23.589921+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "'ascii' codec can't encode characters in position 110-119: ordinal not in range(128)",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面为嵌入式硬件基础面试题文档，属于嵌入式面试资料，但正文不可用，证据不足，无法提取具体问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-dd113c9fe805b55b",
-    "source_url": "https://github.com/Craftbai/Interview-Question",
-    "source_title": "Craftbai/Interview-Question",
-    "source_provider": "github-search",
-    "source_published_at": "2026-08-16T08:27:21Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:19:17.782004+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": true,
-    "page_excerpt_chars": 6158,
-    "page_fetch_error": null,
-    "result": {
-      "is_relevant": true,
-      "reason": "页面为嵌入式面试题库仓库，主题相关，但未列出具体面试题目，仅提供分类和题量，无法提取具体问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-e5508e08478a9201",
     "source_url": "https://stackoverflow.com/questions/74319110/preferred-linux-driver-architecture-for-a-multi-function-pmu-device",
     "source_title": "Preferred Linux driver architecture for a multi-function PMU device",
@@ -144725,106 +144860,6 @@
           "possible_duplicate_title": null
         }
       ]
-    }
-  },
-  {
-    "candidate_id": "candidate-7292ed02071bab84",
-    "source_url": "https://stackoverflow.com/questions/64684509/embedded-buildroot-and-yocto-linux-crash-50-of-the-time",
-    "source_title": "Embedded Buildroot and Yocto Linux crash 50% of the time",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-11-04T18:22:50+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:58.032593+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题涉及嵌入式Linux（Buildroot/Yocto）崩溃问题，属于Linux驱动/系统领域，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-557eafdbca123e04",
-    "source_url": "https://stackoverflow.com/questions/77034992/rk3328-soc-boot-stuck-at-waiting-for-root-device-dev-mmcblk1p2",
-    "source_title": "rk3328 soc boot stuck at waiting for root device /dev/mmcblk1p2",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2023-09-04T16:14:46+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:53.209598+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选页面是Linux内核启动相关技术问答，属于嵌入式Linux驱动/系统启动范畴，可作为八股知识参考；但页面正文不可用，且标题和摘要未明确列出具体面试问题，因此不提取任何问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-9e54ea15d105cdd7",
-    "source_url": "https://stackoverflow.com/questions/73586703/device-tree-issues-with-rockpro64-pcie-endpoint",
-    "source_title": "Device-Tree Issues with ROCKPro64 PCIe Endpoint",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2022-10-17T01:47:01+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:49.100991+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "来源涉及Linux驱动和设备树主题，符合嵌入式Linux面试知识范围，但未提供具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-f56a85082efe07fc",
-    "source_url": "https://stackoverflow.com/questions/63096527/linux-kernel-crashes-on-the-stm32h743i",
-    "source_title": "Linux kernel crashes on the stm32h743i",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2020-09-01T10:28:35+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:41.240989+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题和摘要涉及Linux驱动在STM32上的崩溃问题，属于Linux驱动技术问答范畴，但页面正文不可用，未提取到具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
     }
   },
   {
@@ -144881,56 +144916,6 @@
     }
   },
   {
-    "candidate_id": "candidate-0b0def94fb5ca731",
-    "source_url": "https://stackoverflow.com/questions/36417394/freescale-imx6-with-mpu9250",
-    "source_title": "freescale imx6 with mpu9250",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2016-08-05T13:47:34+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:15.955162+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面主题为Linux驱动技术问答，涉及I2C、设备树、IIO等嵌入式驱动知识，但正文不可用，无明确面试题目。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-d03d31f3d150ab77",
-    "source_url": "https://stackoverflow.com/questions/79396582/endless-kernel-5-10-204-loading",
-    "source_title": "Endless kernel (5.10.204) loading",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2025-02-18T15:10:22+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:18:11.312684+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面主题为Linux驱动/内核技术问答，属于嵌入式面试相关领域，但具体问题证据不足。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
     "candidate_id": "candidate-d690f217ee05dcb1",
     "source_url": "https://stackoverflow.com/questions/40587199/how-to-add-an-spi-device-driver-if-a-device-is-already-accessed-by-the-spidev",
     "source_title": "How to add an SPI device driver, if a device is already accessed by the \"spidev\" driver?",
@@ -144981,118 +144966,6 @@
         }
       ]
     }
-  },
-  {
-    "candidate_id": "candidate-8e9e4fce2bfa9c60",
-    "source_url": "https://stackoverflow.com/questions/36120485/arm-stucks-at-starting-kernel-image-sometimes",
-    "source_title": "ARM stucks at \"Starting kernel image ...\" sometimes",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2016-03-26T08:04:31+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:52.088251+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "页面涉及 ARM 嵌入式 Linux 启动卡在 Starting kernel image 的问题，属于 Linux 驱动/嵌入式 Linux 范畴。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-658e01b85df02535",
-    "source_url": "https://github.com/lmq6178/Embedded_Interview_hugo",
-    "source_title": "lmq6178/Embedded_Interview_hugo",
-    "source_provider": "github-search",
-    "source_published_at": "2025-07-07T17:10:30Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:46.927104+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": true,
-    "page_excerpt_chars": 2923,
-    "page_fetch_error": null,
-    "result": {
-      "is_relevant": true,
-      "reason": "该页面为嵌入式面试笔试题仓库，但正文未列出具体题目，无法提取问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-1aa3f240fad92df9",
-    "source_url": "https://stackoverflow.com/questions/52514064/embedded-host-interface-layer-which-will-work-with-multiple-serial-protocols-lik",
-    "source_title": "Embedded host interface layer which will work with multiple serial protocols like I2C, SPI and UART",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2018-09-27T13:40:34+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:42.615538+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "候选标题和摘要明确涉及嵌入式外设协议（I2C、SPI、UART）的接口层设计，属于外设与协议领域的公开技术问答，可作为知识参考。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-a73081da8f7115b1",
-    "source_url": "https://stackoverflow.com/questions/54591919/spi-slave-mode-on-imx8qmlpddr4arm2-board-using-yocto",
-    "source_title": "SPI slave-mode on imx8qmlpddr4arm2 board using yocto",
-    "source_provider": "stackexchange-search",
-    "source_published_at": "2019-02-12T23:09:18+00:00",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:38.288006+00:00",
-    "review_status": "ai-draft",
-    "page_excerpt_used": false,
-    "page_excerpt_chars": 0,
-    "page_fetch_error": "HTTP Error 403: Forbidden",
-    "result": {
-      "is_relevant": true,
-      "reason": "标题和摘要涉及Linux驱动和SPI，属于嵌入式Linux驱动面试常考主题，但页面正文不可用，无法提取具体面试问题。",
-      "experience": {
-        "company": null,
-        "role": null,
-        "round": null,
-        "date": null,
-        "summary": null
-      },
-      "questions": []
-    }
-  },
-  {
-    "candidate_id": "candidate-35078da57960db73",
-    "source_url": "https://github.com/Sering-Hong/embedded-interview",
-    "source_title": "Sering-Hong/embedded-interview",
-    "source_provider": "github-search",
-    "source_published_at": "2026-07-31T05:23:55Z",
-    "model": "deepseek-v4-flash",
-    "generated_at": "2026-08-23T13:17:33.987497+00:00",
-    "review_status": "failed",
-    "error": "DeepSeek 返回空内容",
-    "page_fetch_error": null
   },
   {
     "candidate_id": "candidate-8e712054715df460",
